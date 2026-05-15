@@ -86,7 +86,7 @@ function Landing() {
       </p>
 
       <div className="mt-8">
-        <TikkunWheel state="idle" onClick={handleSpin} />
+        <TikkunWheel size={320} state="idle" onClick={handleSpin} />
       </div>
 
       <button
