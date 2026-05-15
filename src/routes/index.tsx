@@ -39,9 +39,10 @@ function Landing() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-[clamp(1rem,5vw,3rem)] py-[clamp(2rem,6vh,5rem)] text-cream">
       <p
-        className="mb-6 font-semibold uppercase text-gold-bright"
+        className="mb-6 font-semibold uppercase"
         style={{
           fontFamily: "var(--font-sans)",
+          color: "#d8c599",
           letterSpacing: "0.42em",
           fontSize: "clamp(10px, 1.4vw, 13px)",
         }}
@@ -50,13 +51,22 @@ function Landing() {
       </p>
 
       <h1
-        className="text-center leading-[1.05] text-cream"
+        className="text-center leading-[1.05]"
         style={{ fontFamily: "var(--font-serif)", fontWeight: 300 }}
       >
-        <span className="block" style={{ fontSize: "clamp(28px, 6vw, 56px)" }}>Reveal Your</span>
+        <span
+          className="block"
+          style={{ fontSize: "clamp(26px, 5.5vw, 50px)", color: "#f4ecdb" }}
+        >
+          Reveal Your
+        </span>
         <span
           className="mt-1 block italic"
-          style={{ color: "var(--gold-bright)", fontSize: "clamp(32px, 7vw, 64px)" }}
+          style={{
+            color: "#f0c868",
+            fontSize: "clamp(44px, 10vw, 88px)",
+            lineHeight: 1,
+          }}
         >
           Tikkun
         </span>
@@ -69,9 +79,10 @@ function Landing() {
       />
 
       <p
-        className="text-center text-cream"
+        className="text-center"
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-sans)",
+          color: "#f6ecd0",
           fontWeight: 400,
           fontSize: "clamp(14px, 1.6vw, 18px)",
           lineHeight: 1.65,
@@ -79,15 +90,18 @@ function Landing() {
         }}
       >
         Kabbalistic Astrology maps your <em>Tikkun</em>, the soul's pattern of
-        correction that signals how to fulfill your life's potential in
-        relationships, finances, and career.
+        correction that signals how to{" "}
+        <span style={{ fontWeight: 700, color: "#f6ecd0" }}>
+          fulfill your life's potential
+        </span>{" "}
+        in relationships, finances, and career.
       </p>
 
       <p
         className="mt-8 italic"
         style={{
           fontFamily: "var(--font-serif)",
-          color: "var(--gold-bright)",
+          color: "#f0c868",
           fontWeight: 400,
           fontSize: "clamp(15px, 1.8vw, 20px)",
         }}
