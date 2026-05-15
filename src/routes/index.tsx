@@ -102,12 +102,14 @@ function Landing() {
       <button
         type="button"
         onClick={handleSpin}
-        className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[12px] font-semibold uppercase transition-opacity hover:opacity-90"
+        className="mt-8 inline-flex items-center gap-2 rounded-full font-semibold uppercase transition-opacity hover:opacity-90"
         style={{
           backgroundColor: "var(--gold-bright)",
           color: "var(--forest-deepest)",
           fontFamily: "var(--font-sans)",
           letterSpacing: "0.28em",
+          fontSize: "clamp(11px, 1.3vw, 14px)",
+          padding: "clamp(10px, 1.4vh, 14px) clamp(20px, 3vw, 32px)",
         }}
       >
         <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
