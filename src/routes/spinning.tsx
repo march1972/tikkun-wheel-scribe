@@ -11,6 +11,7 @@ export const Route = createFileRoute("/spinning")({
 function Spinning() {
   const navigate = useNavigate();
   const [target, setTarget] = useState<string | null>(null);
+  const wheelSize = useResponsiveWheelSize(0.8, 260, 420);
 
   useEffect(() => {
     const t = sessionStorage.getItem("tikkun_target_sign");
