@@ -21,7 +21,7 @@ function MaxSpins() {
         Kabbalah Astrology
       </p>
 
-      <SefirotTree size={Math.round(Math.min(120, Math.max(72, 96)))} />
+      <SefirotTree min={72} max={128} vwFraction={0.24} />
 
       <h1
         className="mt-8 text-center"
