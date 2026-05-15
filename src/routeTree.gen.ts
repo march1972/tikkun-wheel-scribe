@@ -9,38 +9,154 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SpinningRouteImport } from './routes/spinning'
+import { Route as SnippetRouteImport } from './routes/snippet'
+import { Route as ReadingRouteImport } from './routes/reading'
+import { Route as MaxspinsRouteImport } from './routes/maxspins'
+import { Route as FormRouteImport } from './routes/form'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ReadingMoreRouteImport } from './routes/reading.more'
 
+const SpinningRoute = SpinningRouteImport.update({
+  id: '/spinning',
+  path: '/spinning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SnippetRoute = SnippetRouteImport.update({
+  id: '/snippet',
+  path: '/snippet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReadingRoute = ReadingRouteImport.update({
+  id: '/reading',
+  path: '/reading',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaxspinsRoute = MaxspinsRouteImport.update({
+  id: '/maxspins',
+  path: '/maxspins',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormRoute = FormRouteImport.update({
+  id: '/form',
+  path: '/form',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReadingMoreRoute = ReadingMoreRouteImport.update({
+  id: '/more',
+  path: '/more',
+  getParentRoute: () => ReadingRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/form': typeof FormRoute
+  '/maxspins': typeof MaxspinsRoute
+  '/reading': typeof ReadingRouteWithChildren
+  '/snippet': typeof SnippetRoute
+  '/spinning': typeof SpinningRoute
+  '/reading/more': typeof ReadingMoreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/form': typeof FormRoute
+  '/maxspins': typeof MaxspinsRoute
+  '/reading': typeof ReadingRouteWithChildren
+  '/snippet': typeof SnippetRoute
+  '/spinning': typeof SpinningRoute
+  '/reading/more': typeof ReadingMoreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/form': typeof FormRoute
+  '/maxspins': typeof MaxspinsRoute
+  '/reading': typeof ReadingRouteWithChildren
+  '/snippet': typeof SnippetRoute
+  '/spinning': typeof SpinningRoute
+  '/reading/more': typeof ReadingMoreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/form'
+    | '/maxspins'
+    | '/reading'
+    | '/snippet'
+    | '/spinning'
+    | '/reading/more'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/form'
+    | '/maxspins'
+    | '/reading'
+    | '/snippet'
+    | '/spinning'
+    | '/reading/more'
+  id:
+    | '__root__'
+    | '/'
+    | '/form'
+    | '/maxspins'
+    | '/reading'
+    | '/snippet'
+    | '/spinning'
+    | '/reading/more'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FormRoute: typeof FormRoute
+  MaxspinsRoute: typeof MaxspinsRoute
+  ReadingRoute: typeof ReadingRouteWithChildren
+  SnippetRoute: typeof SnippetRoute
+  SpinningRoute: typeof SpinningRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/spinning': {
+      id: '/spinning'
+      path: '/spinning'
+      fullPath: '/spinning'
+      preLoaderRoute: typeof SpinningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/snippet': {
+      id: '/snippet'
+      path: '/snippet'
+      fullPath: '/snippet'
+      preLoaderRoute: typeof SnippetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reading': {
+      id: '/reading'
+      path: '/reading'
+      fullPath: '/reading'
+      preLoaderRoute: typeof ReadingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maxspins': {
+      id: '/maxspins'
+      path: '/maxspins'
+      fullPath: '/maxspins'
+      preLoaderRoute: typeof MaxspinsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/form': {
+      id: '/form'
+      path: '/form'
+      fullPath: '/form'
+      preLoaderRoute: typeof FormRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +164,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reading/more': {
+      id: '/reading/more'
+      path: '/more'
+      fullPath: '/reading/more'
+      preLoaderRoute: typeof ReadingMoreRouteImport
+      parentRoute: typeof ReadingRoute
+    }
   }
 }
 
+interface ReadingRouteChildren {
+  ReadingMoreRoute: typeof ReadingMoreRoute
+}
+
+const ReadingRouteChildren: ReadingRouteChildren = {
+  ReadingMoreRoute: ReadingMoreRoute,
+}
+
+const ReadingRouteWithChildren =
+  ReadingRoute._addFileChildren(ReadingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FormRoute: FormRoute,
+  MaxspinsRoute: MaxspinsRoute,
+  ReadingRoute: ReadingRouteWithChildren,
+  SnippetRoute: SnippetRoute,
+  SpinningRoute: SpinningRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
