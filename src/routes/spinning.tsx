@@ -25,14 +25,15 @@ function Spinning() {
   }, [navigate]);
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-6 text-cream">
+    <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-[clamp(1rem,5vw,3rem)] text-cream">
       <TikkunWheel size={wheelSize} state="spinning" targetKey={target} />
       <p
-        className="mt-10 text-[11px] font-semibold uppercase"
+        className="mt-10 font-semibold uppercase"
         style={{
           fontFamily: "var(--font-sans)",
           color: "var(--gold-bright)",
           letterSpacing: "0.32em",
+          fontSize: "clamp(10px, 1.4vw, 13px)",
         }}
       >
         Searching Tikkun pattern…
