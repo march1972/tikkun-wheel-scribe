@@ -420,11 +420,11 @@ export function TikkunWheel({
                 y={y}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fill={isTop ? "var(--gold-bright)" : "var(--cream-soft)"}
+                fill={isTop ? "var(--gold-bright)" : "var(--cream)"}
                 fontFamily="Frank Ruhl Libre, serif"
                 fontWeight={700}
-                fontSize="36"
-                filter={isTop ? "url(#tw-strong)" : "url(#tw-soft)"}
+                fontSize="40"
+                filter="url(#tw-strong)"
                 transform={`rotate(${-rotation} ${x} ${y})`}
                 style={{ letterSpacing: "0.02em" }}
               >
