@@ -103,8 +103,8 @@ function Landing() {
       {/* HERO */}
       <section className="px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.5rem,4vh,3rem)] pb-[clamp(2rem,5vh,4rem)]">
         <div className="mx-auto grid max-w-6xl gap-[clamp(2rem,4vw,4rem)] md:grid-cols-2 md:items-center">
-          {/* Left: copy */}
-          <div className="text-center md:text-left">
+          {/* Left: copy (order-2 on mobile so wheel shows first) */}
+          <div className="order-2 text-center md:order-1 md:text-left">
             <Eyebrow>Kabbalistic Astrology</Eyebrow>
             <h1
               className="mt-[clamp(0.75rem,1.5vh,1.25rem)] leading-[1.05]"
