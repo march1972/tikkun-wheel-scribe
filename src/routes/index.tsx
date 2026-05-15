@@ -55,7 +55,7 @@ function Landing() {
         style={{ fontFamily: "var(--font-serif)", fontWeight: 300 }}
       >
         <span
-          className="block"
+          className="block italic"
           style={{ fontSize: "clamp(26px, 5.5vw, 50px)", color: "#f4ecdb" }}
         >
           Reveal Your
