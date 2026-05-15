@@ -135,10 +135,10 @@ function Landing() {
     <main
       className="relative min-h-screen text-cream"
       style={{
-        // Twilight gradient — luminous indigo at top fading into the deep forest.
-        // Gives the page air and an unmistakable celestial quality.
+        // Twilight gradient — dusty indigo dawn at top, settling into forest below.
+        // Brighter than the previous near-black and unmistakably celestial.
         background:
-          "radial-gradient(120% 60% at 50% -10%, rgba(120, 138, 168, 0.28) 0%, rgba(50, 70, 92, 0.18) 28%, transparent 62%), linear-gradient(180deg, #15302a 0%, #0f221e 38%, #0a1816 100%)",
+          "radial-gradient(110% 55% at 50% -5%, rgba(180, 168, 198, 0.45) 0%, rgba(110, 120, 158, 0.32) 22%, rgba(58, 78, 92, 0.18) 48%, transparent 72%), linear-gradient(180deg, #2b3a4a 0%, #1c3030 32%, #122522 64%, #0a1816 100%)",
       }}
     >
       {/* Star field across the whole page, very faint */}
