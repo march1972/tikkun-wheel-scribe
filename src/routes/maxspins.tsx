@@ -9,25 +9,29 @@ export const Route = createFileRoute("/maxspins")({
 function MaxSpins() {
   const navigate = useNavigate();
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-6 py-16 text-cream">
+    <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-[clamp(1rem,5vw,3rem)] py-[clamp(2rem,6vh,5rem)] text-cream">
       <p
-        className="mb-8 text-[11px] font-semibold uppercase text-gold-bright"
+        className="mb-8 font-semibold uppercase text-gold-bright"
         style={{
           fontFamily: "var(--font-sans)",
           letterSpacing: "0.42em",
+          fontSize: "clamp(10px, 1.4vw, 13px)",
         }}
       >
         Kabbalah Astrology
       </p>
 
-      <SefirotTree size={72} />
+      <SefirotTree size={Math.round(Math.min(120, Math.max(72, 96)))} />
 
       <h1
-        className="mt-8 max-w-[320px] text-center text-[16px] leading-relaxed"
+        className="mt-8 text-center"
         style={{
           fontFamily: "var(--font-serif)",
           color: "var(--cream-soft)",
           fontWeight: 400,
+          fontSize: "clamp(15px, 1.8vw, 22px)",
+          lineHeight: 1.6,
+          maxWidth: "min(92vw, 480px)",
         }}
       >
         Your actual <em>Tikkun</em> pattern is found in your birth date.
@@ -42,20 +46,26 @@ function MaxSpins() {
       <button
         type="button"
         onClick={() => navigate({ to: "/form" })}
-        className="rounded-full px-7 py-3 text-[12px] font-semibold uppercase transition-opacity hover:opacity-90"
+        className="rounded-full font-semibold uppercase transition-opacity hover:opacity-90"
         style={{
           backgroundColor: "var(--gold-bright)",
           color: "var(--forest-deepest)",
           fontFamily: "var(--font-sans)",
           letterSpacing: "0.28em",
+          fontSize: "clamp(11px, 1.3vw, 14px)",
+          padding: "clamp(10px, 1.4vh, 14px) clamp(22px, 3.5vw, 36px)",
         }}
       >
         See My Real Tikkun
       </button>
 
       <p
-        className="mt-4 text-[12px] italic"
-        style={{ fontFamily: "var(--font-serif)", color: "var(--cream-faint)" }}
+        className="mt-4 italic"
+        style={{
+          fontFamily: "var(--font-serif)",
+          color: "var(--cream-faint)",
+          fontSize: "clamp(11px, 1.2vw, 14px)",
+        }}
       >
         Free Tikkun reading + 10-page Workbook
       </p>
