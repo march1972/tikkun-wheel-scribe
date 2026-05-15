@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
+import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { ConstellationGlyph } from "@/components/ConstellationGlyph";
 import { randomSign } from "@/lib/bundle";
 import {
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/")({
 function Landing() {
   const navigate = useNavigate();
   const [attempts, setAttempts] = useState(0);
+  const wheelSize = useResponsiveWheelSize(0.8, 260, 420);
 
   useEffect(() => {
     setAttempts(getAttempts());
@@ -86,7 +88,7 @@ function Landing() {
       </p>
 
       <div className="mt-8">
-        <TikkunWheel size={320} state="idle" onClick={handleSpin} />
+        <TikkunWheel size={wheelSize} state="idle" onClick={handleSpin} />
       </div>
 
       <button
