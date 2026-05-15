@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
+import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { ConstellationGlyph } from "@/components/ConstellationGlyph";
 
 export const Route = createFileRoute("/spinning")({
