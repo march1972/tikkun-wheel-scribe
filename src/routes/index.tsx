@@ -215,8 +215,8 @@ function Landing() {
             </div>
           </div>
 
-          {/* Right: wheel */}
-          <div className="flex justify-center md:justify-end">
+          {/* Right: wheel (order-1 on mobile so it appears first) */}
+          <div className="order-1 flex justify-center md:order-2 md:justify-end">
             <button
               type="button"
               onClick={handleSpin}
