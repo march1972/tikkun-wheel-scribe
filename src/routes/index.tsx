@@ -17,6 +17,7 @@ export const Route = createFileRoute("/")({
 function Landing() {
   const navigate = useNavigate();
   const [attempts, setAttempts] = useState(0);
+  const wheelSize = useResponsiveWheelSize(0.8, 260, 420);
 
   useEffect(() => {
     setAttempts(getAttempts());
