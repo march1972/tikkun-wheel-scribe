@@ -44,35 +44,43 @@ const C_GOLD_SOFT = "#e6c987";
 const C_MUTED = "#b9b39a";
 const C_RULE = "rgba(240, 200, 104, 0.22)";
 
-/** Subtle scattered stars — not a screensaver, just suggestion. */
-function StarField({ density = 60, opacity = 0.55 }: { density?: number; opacity?: number }) {
-  // deterministic positions to avoid hydration mismatch
+/** Subtle scattered stars rendered as positioned dots so they stay round. */
+function StarField({ density = 80, opacity = 0.55 }: { density?: number; opacity?: number }) {
+  // deterministic pseudo-random positions to avoid hydration mismatch
   const stars = Array.from({ length: density }, (_, i) => {
-    const seed = (i * 9301 + 49297) % 233280;
-    const r = seed / 233280;
-    const seed2 = ((i + 7) * 9301 + 49297) % 233280;
-    const r2 = seed2 / 233280;
-    const seed3 = ((i + 13) * 9301 + 49297) % 233280;
-    const r3 = seed3 / 233280;
+    const a = ((i * 9301 + 49297) % 233280) / 233280;
+    const b = (((i + 7) * 9301 + 49297) % 233280) / 233280;
+    const c = (((i + 13) * 9301 + 49297) % 233280) / 233280;
+    const d = (((i + 23) * 9301 + 49297) % 233280) / 233280;
     return {
-      cx: r * 100,
-      cy: r2 * 100,
-      r: 0.2 + r3 * 0.8,
-      o: 0.3 + r * 0.7,
+      left: `${a * 100}%`,
+      top: `${b * 100}%`,
+      size: 1 + Math.round(c * 1.5), // 1–2px, stays round
+      o: 0.25 + d * 0.6,
     };
   });
   return (
-    <svg
+    <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 h-full w-full"
-      preserveAspectRatio="none"
-      viewBox="0 0 100 100"
+      className="pointer-events-none absolute inset-0"
       style={{ opacity }}
     >
       {stars.map((s, i) => (
-        <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill="#f7efdc" opacity={s.o} />
+        <span
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            left: s.left,
+            top: s.top,
+            width: s.size,
+            height: s.size,
+            backgroundColor: "#f7efdc",
+            opacity: s.o,
+            boxShadow: s.size > 1 ? "0 0 2px rgba(247,239,220,0.6)" : undefined,
+          }}
+        />
       ))}
-    </svg>
+    </div>
   );
 }
 
