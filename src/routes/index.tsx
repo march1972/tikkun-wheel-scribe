@@ -124,28 +124,28 @@ function Landing() {
           Spin for your free 60-second reading.
         </p>
 
-        <div className="mt-[clamp(0.75rem,2vh,1.5rem)]">
-          <TikkunWheel size={wheelSize} state="idle" onClick={handleSpin} />
-        </div>
-
         <button
           type="button"
           onClick={handleSpin}
-          className="mt-[clamp(0.75rem,2vh,1.5rem)] inline-flex items-center gap-2 rounded-full font-semibold uppercase transition-opacity hover:opacity-90"
+          aria-label="Spin the Tikkun wheel"
+          className="group relative mt-[clamp(0.75rem,2vh,1.5rem)] cursor-pointer rounded-full transition-transform hover:scale-[1.02] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--gold-bright)] focus-visible:ring-offset-4 focus-visible:ring-offset-[color:var(--forest-deep)]"
+        >
+          <TikkunWheel size={wheelSize} state="idle" />
+        </button>
+
+        <p
+          className="mt-[clamp(0.75rem,2vh,1.25rem)] inline-flex items-center gap-2 uppercase"
           style={{
-            backgroundColor: "var(--gold-bright)",
-            color: "var(--forest-deepest)",
             fontFamily: "var(--font-sans)",
-            letterSpacing: "0.28em",
-            fontSize: "clamp(11px, 1.3vw, 14px)",
-            padding: "clamp(10px, 1.4vh, 14px) clamp(20px, 3vw, 32px)",
+            color: "var(--gold-bright)",
+            letterSpacing: "0.32em",
+            fontSize: "clamp(10px, 1.2vw, 12px)",
+            fontWeight: 600,
           }}
         >
-          <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
-            <path d="M6 1 L11 8 L1 8 Z" fill="currentColor" />
-          </svg>
-          Tap to spin
-        </button>
+          <span aria-hidden="true">↑</span>
+          Tap the wheel to begin
+        </p>
 
         {used > 0 && remaining > 0 && (
           <p
