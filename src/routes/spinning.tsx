@@ -26,7 +26,7 @@ function Spinning() {
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-6 text-cream">
-      <TikkunWheel state="spinning" targetKey={target} />
+      <TikkunWheel size={wheelSize} state="spinning" targetKey={target} />
       <p
         className="mt-10 text-[11px] font-semibold uppercase"
         style={{
