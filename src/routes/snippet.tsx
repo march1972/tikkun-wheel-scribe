@@ -45,13 +45,13 @@ function Snippet() {
   const usedAll = getAttempts() >= MAX_SPINS;
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-6 py-16 text-cream">
-      <div className="flex items-baseline gap-5">
+    <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-[clamp(1rem,5vw,3rem)] py-[clamp(2rem,6vh,5rem)] text-cream">
+      <div className="flex items-baseline gap-[clamp(12px,2vw,24px)]">
         <span
           style={{
             fontFamily: "var(--font-serif-2)",
             color: "var(--cream)",
-            fontSize: "56px",
+            fontSize: "clamp(44px, 10vw, 88px)",
             lineHeight: 1,
           }}
         >
@@ -62,7 +62,7 @@ function Snippet() {
           style={{
             fontFamily: "var(--font-serif)",
             color: "var(--cream)",
-            fontSize: "34px",
+            fontSize: "clamp(26px, 6vw, 52px)",
             fontWeight: 300,
           }}
         >
@@ -77,15 +77,21 @@ function Snippet() {
       />
 
       <div
-        className="max-w-[440px] rounded-sm px-6 py-6 text-center"
+        className="rounded-sm text-center"
         style={{
           backgroundColor: "var(--forest-mid)",
           border: "1px solid var(--gold-deep)",
+          maxWidth: "min(92vw, 560px)",
+          padding: "clamp(16px, 3vw, 28px) clamp(18px, 4vw, 32px)",
         }}
       >
         <p
-          className="text-[15px] leading-relaxed"
-          style={{ fontFamily: "var(--font-serif)", color: "var(--cream)" }}
+          style={{
+            fontFamily: "var(--font-serif)",
+            color: "var(--cream)",
+            fontSize: "clamp(14px, 1.6vw, 18px)",
+            lineHeight: 1.65,
+          }}
         >
           You have a tendency to {sign.oneParagraph}
         </p>
@@ -95,7 +101,7 @@ function Snippet() {
         className="mt-6 italic"
         style={{
           fontFamily: "var(--font-serif)",
-          fontSize: "18px",
+          fontSize: "clamp(15px, 2vw, 22px)",
           color: "#FFB347",
         }}
       >
@@ -105,20 +111,26 @@ function Snippet() {
       <button
         type="button"
         onClick={() => navigate({ to: "/form" })}
-        className="mt-5 rounded-full px-7 py-3 text-[12px] font-semibold uppercase transition-opacity hover:opacity-90"
+        className="mt-5 rounded-full font-semibold uppercase transition-opacity hover:opacity-90"
         style={{
           backgroundColor: "var(--gold-bright)",
           color: "var(--forest-deepest)",
           fontFamily: "var(--font-sans)",
           letterSpacing: "0.28em",
+          fontSize: "clamp(11px, 1.3vw, 14px)",
+          padding: "clamp(10px, 1.4vh, 14px) clamp(22px, 3.5vw, 36px)",
         }}
       >
         See My Real Tikkun
       </button>
 
       <p
-        className="mt-3 text-[12px] italic"
-        style={{ fontFamily: "var(--font-serif)", color: "var(--cream-faint)" }}
+        className="mt-3 italic"
+        style={{
+          fontFamily: "var(--font-serif)",
+          color: "var(--cream-faint)",
+          fontSize: "clamp(11px, 1.2vw, 14px)",
+        }}
       >
         Your real reading takes 30 seconds.
       </p>
