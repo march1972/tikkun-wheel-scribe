@@ -275,7 +275,7 @@ function Landing() {
               type="button"
               onClick={handleSpin}
               aria-label="Turn the Tikkun wheel"
-              className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6b1e26] focus-visible:ring-offset-4 focus-visible:ring-offset-[#f1ece1]"
+              className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1f3a36]"
             >
               <TikkunWheel size={wheelSize} state="idle" />
             </button>
