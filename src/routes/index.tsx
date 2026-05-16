@@ -160,10 +160,12 @@ function Landing() {
     <main
       className="relative min-h-screen"
       style={{
-        background: C_BG,
-        color: C_INK,
+        background: C_BG_GRAD,
+        color: C_INK_SOFT,
       }}
     >
+      <StarField density={80} opacity={0.55} />
+      <div className="relative">
       {/* ── TOP BAR ────────────────────────────────────────────── */}
       <header
         className="px-[clamp(1.25rem,5vw,3rem)] py-[clamp(1rem,2.5vh,1.5rem)]"
