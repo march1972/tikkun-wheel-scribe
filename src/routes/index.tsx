@@ -113,10 +113,10 @@ function PrimaryCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-3 uppercase transition-colors hover:bg-[#0c1a18] hover:text-[#f1ece1] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6b1e26] focus-visible:ring-offset-4 focus-visible:ring-offset-[#f1ece1]"
+      className="group inline-flex items-center gap-3 uppercase transition-colors hover:bg-[#f0c868] hover:text-[#17302c] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1f3a36]"
       style={{
         backgroundColor: C_INK,
-        color: C_BG,
+        color: "#17302c",
         fontFamily: BODY,
         fontWeight: 600,
         letterSpacing: "0.28em",
