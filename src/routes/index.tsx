@@ -32,19 +32,53 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-// Inverted palette — bone/ivory ground, deep ink type, oxblood accent.
-// Light, serious, bold. Modern editorial.
+// Twilight palette — lifted, airy dark. Lighter than the original forest.
 const HEAD = "var(--font-serif)";       // Fraunces
 const BODY = "var(--font-sans)";        // General Sans
 
-const C_BG       = "#f1ece1";           // warm bone
-const C_BG_DEEP  = "#e6dfce";           // slightly deeper for bands
-const C_INK      = "#0c1a18";           // near-black forest ink
-const C_INK_SOFT = "#2a3733";
-const C_MUTED    = "#6b6a5e";
-const C_ACCENT   = "#6b1e26";           // oxblood — the only accent
-const C_RULE     = "rgba(12, 26, 24, 0.18)";
-const C_RULE_SOFT= "rgba(12, 26, 24, 0.10)";
+// Background gradient: dusty mauve-indigo at top → soft teal-forest below.
+const C_BG_GRAD  =
+  "radial-gradient(120% 70% at 50% 0%, rgba(196,184,214,0.35) 0%, rgba(196,184,214,0) 60%), linear-gradient(180deg, #3a4358 0%, #2c3f44 38%, #1f3a36 72%, #17302c 100%)";
+const C_BG       = "#1f3a36";           // mid twilight forest
+const C_BG_DEEP  = "rgba(10, 22, 20, 0.35)"; // translucent band over gradient
+const C_INK      = "#f7efdc";           // warm cream (headlines)
+const C_INK_SOFT = "#ece4cf";           // soft cream (body)
+const C_MUTED    = "rgba(236, 228, 207, 0.62)";
+const C_ACCENT   = "#f0c868";           // gold — the only accent
+const C_RULE     = "rgba(247, 239, 220, 0.22)";
+const C_RULE_SOFT= "rgba(247, 239, 220, 0.12)";
+
+/** Faint scattered stars — small round dots, no streaks. */
+function StarField({ density = 70, opacity = 0.5 }: { density?: number; opacity?: number }) {
+  const stars = Array.from({ length: density }).map((_, i) => {
+    const seed = (i * 9301 + 49297) % 233280;
+    const r = (n: number) => ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
+    const left = r(1) * 100;
+    const top = r(2) * 100;
+    const size = r(3) > 0.85 ? 2 : 1;
+    const o = 0.35 + r(4) * 0.55;
+    return (
+      <span
+        key={i}
+        className="absolute rounded-full"
+        style={{
+          left: `${left}%`,
+          top: `${top}%`,
+          width: `${size}px`,
+          height: `${size}px`,
+          backgroundColor: "#f7efdc",
+          opacity: o * opacity,
+          boxShadow: size === 2 ? "0 0 4px rgba(247,239,220,0.45)" : undefined,
+        }}
+      />
+    );
+  });
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      {stars}
+    </div>
+  );
+}
 
 /** Hairline rule with optional centered eyebrow */
 function Eyebrow({ children }: { children: React.ReactNode }) {
