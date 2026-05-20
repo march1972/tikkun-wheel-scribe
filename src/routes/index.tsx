@@ -263,7 +263,7 @@ function Landing() {
                 letterSpacing: "-0.025em",
               }}
             >
-              What's your{" "}
+              Reveal your{" "}
               <span
                 style={{
                   fontStyle: "italic",
@@ -273,7 +273,6 @@ function Landing() {
               >
                 Tikkun
               </span>
-              <span style={{ color: C_DAWN }}>?</span>
             </h1>
 
             <div className="mt-[clamp(1.5rem,3.5vh,2.5rem)]">
