@@ -514,7 +514,7 @@ function Landing() {
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(36px, 6vw, 68px)",
+                fontSize: "clamp(30px, 5vw, 56px)",
                 lineHeight: 1,
                 letterSpacing: "-0.025em",
               }}
@@ -535,14 +535,11 @@ function Landing() {
               <span style={{ color: C_GOLD }}>.</span>
             </h2>
             <p
-              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
+              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-sm"
               style={{
-                fontFamily: BODY,
                 color: C_INK_SOFT,
-                fontSize: "clamp(15px, 1.5vw, 17px)",
-                lineHeight: 1.6,
-                maxWidth: "32rem",
-                fontWeight: 400,
+                lineHeight: 1.55,
+                maxWidth: "34rem",
               }}
             >
               A free <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes on your birthdate.
