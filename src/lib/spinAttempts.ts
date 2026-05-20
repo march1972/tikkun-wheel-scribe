@@ -38,6 +38,13 @@ export function getCurrentSpinNumber(): number {
   return current > 0 ? current : read();
 }
 
+export function setCurrentSpinNumber(n: number): number {
+  const next = Math.min(MAX_SPINS, Math.max(1, n));
+  write(next);
+  writeCurrent(next);
+  return next;
+}
+
 export function spinsRemaining(): number {
   return Math.max(0, MAX_SPINS - read());
 }
