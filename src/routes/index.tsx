@@ -286,7 +286,7 @@ function Landing() {
               >
                 Tikkun
               </span>
-              <span style={{ color: C_DAWN }}>?</span>
+              <span style={{ color: C_GOLD }}>?</span>
             </h1>
 
             <div className="mt-[clamp(1.5rem,3.5vh,2.5rem)]">
