@@ -256,6 +256,24 @@ export function TikkunWheel({
           stroke={accent}
           strokeWidth={1.2}
         />
+        <circle
+          className={`tk-ripple3-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke={accentBright}
+          strokeWidth={1.2}
+        />
+        <circle
+          className={`tk-ripple4-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke={accent}
+          strokeWidth={1.2}
+        />
 
         {/* Central glow */}
         <circle cx={cx} cy={cy} r={size * 0.3} fill={`url(#${glowId})`} />
