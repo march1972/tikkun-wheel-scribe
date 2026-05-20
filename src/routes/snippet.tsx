@@ -233,27 +233,19 @@ function Snippet() {
                 whiteSpace: "nowrap",
               }}
             >
-              Does this pattern sound like you?
+              Does this Tikkun pattern sound like you?
             </span>
             <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)` }} />
           </div>
 
-          <div className="mt-[clamp(1.25rem,2.5vh,1.75rem)] flex items-baseline justify-center gap-[clamp(12px,2.5vw,24px)]">
+          <div className="mt-[clamp(1.25rem,2.5vh,1.75rem)] flex items-center justify-center">
             <span
               style={{
-                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 12vw, 110px)",
+                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(72px, 14vw, 130px)",
                 lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
               }}
             >
               {sign.hebrewLetter}
-            </span>
-            <span
-              style={{
-                fontFamily: HEAD, color: C_INK, fontStyle: "italic", fontWeight: 400,
-                fontSize: "clamp(28px, 6vw, 56px)",
-              }}
-            >
-              {sign.sign}
             </span>
           </div>
 
@@ -291,7 +283,7 @@ function Snippet() {
         <button
           type="button"
           onClick={() => navigate({ to: "/form" })}
-          className="cta-pulse-glow group mt-[clamp(0.75rem,2vh,1.25rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+          className="cta-pulse-glow group mt-[clamp(2rem,5vh,3.5rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
           style={{
             background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
             color: C_INK,
@@ -311,7 +303,7 @@ function Snippet() {
           className="mt-3 font-mono"
           style={{ color: C_MUTED, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
         >
-          Your free personal Tikkun chart
+          Free Full Birth Chart Reading
         </p>
 
 
