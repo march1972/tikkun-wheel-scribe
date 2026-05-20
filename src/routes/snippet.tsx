@@ -6,7 +6,7 @@ import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
-import { MAX_SPINS, getAttempts, incrementAttempt } from "@/lib/spinAttempts";
+import { MAX_SPINS, getCurrentSpinNumber, incrementAttempt } from "@/lib/spinAttempts";
 
 export const Route = createFileRoute("/snippet")({
   component: Snippet,
@@ -26,7 +26,7 @@ function Snippet() {
       return;
     }
     setSign(s);
-    setSpinNumber(Math.min(MAX_SPINS, Math.max(1, getAttempts())));
+    setSpinNumber(Math.min(MAX_SPINS, Math.max(1, getCurrentSpinNumber())));
   }, [navigate]);
 
   const handleSpinAgain = () => {
@@ -111,23 +111,12 @@ function Snippet() {
           {copy.prompt}
         </p>
 
-        {/* CTA */}
-        <div className="mt-[clamp(1.25rem,3vh,2rem)]">
-          <PrimaryCTA label={copy.primaryButton} onClick={() => navigate({ to: "/interstitial" })} />
-        </div>
-        <p
-          className="mt-3 italic font-mono"
-          style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
-        >
-          {copy.reassurance}
-        </p>
-
         {/* Spin again */}
         {canSpinAgain ? (
           <button
             type="button"
             onClick={handleSpinAgain}
-            className="mt-[clamp(1.75rem,3.5vh,2.5rem)] uppercase transition-opacity hover:opacity-70"
+            className="mt-[clamp(0.85rem,2vh,1.25rem)] uppercase transition-opacity hover:opacity-70"
             style={{
               fontFamily: BODY, letterSpacing: "0.24em", color: C_INK_SOFT,
               background: "transparent", border: `1px solid ${C_RULE}`,
@@ -144,6 +133,17 @@ function Snippet() {
             You've used all {MAX_SPINS} free spins. Your real Tikkun awaits.
           </p>
         )}
+
+        {/* CTA */}
+        <div className="mt-[clamp(1.25rem,3vh,2rem)]">
+          <PrimaryCTA label={copy.primaryButton} onClick={() => navigate({ to: "/interstitial" })} />
+        </div>
+        <p
+          className="mt-3 italic font-mono"
+          style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
+        >
+          {copy.reassurance}
+        </p>
       </section>
     </SkyShell>
   );
