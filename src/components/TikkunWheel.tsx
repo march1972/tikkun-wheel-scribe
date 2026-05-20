@@ -53,9 +53,9 @@ export function TikkunWheel({
   const cy = size / 2;
   const ringR = size * 0.464;
   const letterR = size * 0.393;
-  const alephR = size * 0.18;
+  const alephR = size * 0.143;
   const letterFontSize = size * 0.075;
-  const alephFontSize = size * 0.058;
+  const alephFontSize = size * 0.042;
 
   // Brand palette (matches src/styles.css tokens).
   const accent = "#f0c868";       // gold-bright
@@ -350,34 +350,21 @@ export function TikkunWheel({
             cy={cy}
             r={alephR}
             fill={`url(#${alephId})`}
-            stroke={accentBright}
-            strokeWidth={size * 0.01}
+            stroke="rgb(243, 219, 157)"
+            strokeWidth={size * 0.008}
           />
           <text
             x={cx}
-            y={cy - alephFontSize * 0.55}
+            y={cy}
             fill={accentBright}
             fontSize={alephFontSize}
             fontFamily="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
             fontWeight={600}
-            letterSpacing={alephFontSize * 0.22}
+            letterSpacing={alephFontSize * 0.28}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            CLICK
-          </text>
-          <text
-            x={cx}
-            y={cy + alephFontSize * 0.55}
-            fill={accentBright}
-            fontSize={alephFontSize}
-            fontFamily="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
-            fontWeight={600}
-            letterSpacing={alephFontSize * 0.22}
-            textAnchor="middle"
-            dominantBaseline="central"
-          >
-            ME →
+            CLICK ME
           </text>
         </g>
       </svg>
