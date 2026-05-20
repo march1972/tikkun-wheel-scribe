@@ -43,10 +43,13 @@ const BODY = "var(--font-sans)";
 const C_SKY_GRAD =
   "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.18) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), linear-gradient(180deg, #141d33 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
 
+// Bands deepen toward the middle of the page, then lift toward dawn at the bottom.
 const C_BAND_DEEP =
-  "linear-gradient(180deg, #182240 0%, #1f2b48 50%, #182240 100%)";
+  "linear-gradient(180deg, #131c34 0%, #0f1729 50%, #131c34 100%)";
 const C_BAND_MID =
-  "linear-gradient(180deg, #1f2b48 0%, #283759 50%, #1f2b48 100%)";
+  "linear-gradient(180deg, #1a2440 0%, #1f2b48 50%, #1a2440 100%)";
+const C_BAND_LIFT =
+  "linear-gradient(180deg, #233055 0%, #2a3a5e 50%, #324468 100%)";
 
 const C_INK = "#fdf6e6";            // moonlight cream
 const C_INK_SOFT = "#ece3cf";
