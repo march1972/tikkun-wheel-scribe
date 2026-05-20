@@ -303,7 +303,7 @@ function Snippet() {
 
               <p
                 className="mt-3 font-mono"
-                style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.04em" }}
+                style={{ color: C_INK, fontSize: "13px", letterSpacing: "0.03em", lineHeight: 1.5 }}
               >
                 Email only used for your reading + free workbook. Unsubscribe anytime.
               </p>
