@@ -420,54 +420,48 @@ function Landing() {
               }}
             >
               {[
-                {
-                  accent: C_GOLD,
-                  title: "Your Tikkun reading & archetype",
-                  body: "the soul's pattern of correction drawn from your lunar nodes.",
-                },
-                {
-                  accent: C_SAGE,
-                  title: "Your Aramaic letter and emotion",
-                  body: "the sacred letter and inner quality assigned to your path.",
-                },
-                {
-                  accent: C_DAWN,
-                  title: "A daily mantra and reflection",
-                  body: "a verse to carry, and a prompt to sit with.",
-                },
-              ].map((item, i, arr) => (
-                <li key={item.title}>
-                  <div className="py-[clamp(1rem,2vh,1.5rem)] flex items-start gap-3">
-                    <span
-                      aria-hidden="true"
-                      className="mt-2 inline-block shrink-0"
-                      style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: 9999,
-                        background: item.accent,
-                        boxShadow: `0 0 10px ${item.accent}`,
-                      }}
-                    />
-                    <span>
-                      <span style={{ color: item.accent, fontStyle: "italic" }}>
-                        {item.title}
-                      </span>{" "}
-                      — {item.body}
-                    </span>
-                  </div>
-                  {i < arr.length - 1 && (
-                    <span
-                      aria-hidden="true"
-                      className="block"
-                      style={{
-                        height: 1,
-                        background: `linear-gradient(90deg, transparent 0%, ${C_RULE} 50%, transparent 100%)`,
-                      }}
-                    />
-                  )}
-                </li>
-              ))}
+                { letter: "א", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes." },
+                { letter: "מ", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path." },
+                { letter: "ש", title: "A daily mantra and reflection", body: "a verse to carry, and a prompt to sit with." },
+              ].map((item, i, arr) => {
+                const accent = "#6fae99";
+                return (
+                  <li key={item.title}>
+                    <div className="py-[clamp(1rem,2vh,1.5rem)] flex items-start gap-4">
+                      <span
+                        aria-hidden="true"
+                        className="shrink-0 leading-none"
+                        style={{
+                          fontFamily: HEAD,
+                          color: accent,
+                          fontSize: "clamp(28px, 4vw, 36px)",
+                          textShadow: `0 0 14px ${accent}55`,
+                          minWidth: "1.4em",
+                          textAlign: "center",
+                        }}
+                      >
+                        {item.letter}
+                      </span>
+                      <span>
+                        <span style={{ color: accent, fontStyle: "italic" }}>
+                          {item.title}
+                        </span>{" "}
+                        — {item.body}
+                      </span>
+                    </div>
+                    {i < arr.length - 1 && (
+                      <span
+                        aria-hidden="true"
+                        className="block"
+                        style={{
+                          height: 1,
+                          background: `linear-gradient(90deg, transparent 0%, ${C_RULE} 50%, transparent 100%)`,
+                        }}
+                      />
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
