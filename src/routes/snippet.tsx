@@ -130,58 +130,59 @@ function Snippet() {
         .cta-pulse-glow:hover { animation: none; }
       `}</style>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        {/* Sign + snippet block */}
-        <div
-          className="w-full"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
-            border: `1px solid ${C_RULE}`,
-            borderRadius: "14px",
-            padding: "clamp(1.75rem,4.5vw,2.75rem)",
-            boxShadow:
-              "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
-            backdropFilter: "blur(8px)",
-          }}
-        >
-          <div className="flex items-center justify-center gap-3">
-            <span style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
-            <span
-              style={{
-                fontFamily: BODY,
-                color: C_GOLD,
-                fontWeight: 600,
-                fontSize: "clamp(10px, 2.6vw, 13px)",
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                textAlign: "center",
-              }}
-            >
-              Sound like you?
-            </span>
-            <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
-          </div>
-
-          <div className="mt-[clamp(0.5rem,1vh,1rem)] flex items-center justify-center">
-            <span
-              style={{
-                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(50px, 10vw, 90px)",
-                lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
-              }}
-            >
-              {sign.hebrewLetter}
-            </span>
-          </div>
-
-          <p
-            className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin"
+        {!showForm && (
+          <div
+            className="w-full"
             style={{
-              color: C_INK, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)",
+              background:
+                "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
+              border: `1px solid ${C_RULE}`,
+              borderRadius: "14px",
+              padding: "clamp(1.75rem,4.5vw,2.75rem)",
+              boxShadow:
+                "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
+              backdropFilter: "blur(8px)",
             }}
           >
-            {sign.screen3.spinSnippet}
-          </p>
-        </div>
+            <div className="flex items-center justify-center gap-3">
+              <span style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
+              <span
+                style={{
+                  fontFamily: BODY,
+                  color: C_GOLD,
+                  fontWeight: 600,
+                  fontSize: "clamp(10px, 2.6vw, 13px)",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                }}
+              >
+                Sound like you?
+              </span>
+              <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
+            </div>
+
+            <div className="mt-[clamp(0.5rem,1vh,1rem)] flex items-center justify-center">
+              <span
+                style={{
+                  fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(50px, 10vw, 90px)",
+                  lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
+                }}
+              >
+                {sign.hebrewLetter}
+              </span>
+            </div>
+
+            <p
+              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin"
+              style={{
+                color: C_INK, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)",
+              }}
+            >
+              {sign.screen3.spinSnippet}
+            </p>
+          </div>
+        )}
 
         {!showForm && (
           <>
@@ -220,7 +221,7 @@ function Snippet() {
         {showForm && (
           <>
             <div
-              className="mt-[clamp(2rem,5vh,3.5rem)] w-full"
+              className="w-full"
               style={{
                 background:
                   "radial-gradient(80% 100% at 50% 0%, rgba(233,78,43,0.10) 0%, rgba(233,78,43,0) 70%)",
@@ -243,12 +244,12 @@ function Snippet() {
               <p
                 className="mt-3"
                 style={{
-                  fontFamily: BODY, color: C_GOLD, fontWeight: 600,
-                  fontSize: "15px", letterSpacing: "0.28em",
+                  fontFamily: BODY, color: "rgba(180,200,230,0.85)", fontWeight: 400,
+                  fontSize: "12px", letterSpacing: "0.18em",
                   textTransform: "uppercase",
                 }}
               >
-                Free Full Birth Chart Reading
+                Full Tikkun Chart + PDF Workbook
               </p>
 
               <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
