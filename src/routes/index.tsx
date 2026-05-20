@@ -439,7 +439,7 @@ function Landing() {
               A free <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes on your birthdate.
             </p>
             <div className="mt-[clamp(2rem,4vh,2.75rem)] flex justify-center">
-              <PrimaryCTA onClick={handleSpin} />
+              <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
             </div>
           </div>
         </section>
