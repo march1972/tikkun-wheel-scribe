@@ -278,10 +278,7 @@ function Landing() {
                 style={{
                   fontStyle: "italic",
                   fontWeight: 400,
-                  background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  color: C_DAWN,
                 }}
               >
                 Tikkun
