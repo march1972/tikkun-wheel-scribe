@@ -33,27 +33,31 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-// ── Dawn palette (no purple) ─────────────────────────────────────
-// Dawn lifting: deep blue-grey night → soft blue-grey → warm peach &
-// orange horizon. Brighter than before, more stars, no violet/mauve.
+// ── Night-into-dawn palette ──────────────────────────────────────
+// Deep indigo / blue-grey body that harmonizes with the gold wheel.
+// A small warm horizon glow at the very top corner hints at dawn
+// without competing with the wheel's gold.
 const HEAD = "var(--font-serif)";
 const BODY = "var(--font-sans)";
 
 const C_SKY_GRAD =
-  "radial-gradient(70% 45% at 80% 6%, rgba(255,220,180,0.28) 0%, rgba(255,220,180,0) 60%), radial-gradient(80% 50% at 15% 85%, rgba(255,160,110,0.20) 0%, rgba(255,160,110,0) 65%), linear-gradient(180deg, #2b3a52 0%, #3d5170 22%, #5a7090 46%, #8a8f9e 66%, #d49574 88%, #f0b485 100%)";
+  "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.18) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), linear-gradient(180deg, #141d33 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
 
-const C_BAND_GRAD =
-  "linear-gradient(180deg, #3d5170 0%, #4a5f7e 50%, #3d5170 100%)";
+const C_BAND_DEEP =
+  "linear-gradient(180deg, #182240 0%, #1f2b48 50%, #182240 100%)";
+const C_BAND_MID =
+  "linear-gradient(180deg, #1f2b48 0%, #283759 50%, #1f2b48 100%)";
 
 const C_INK = "#fdf6e6";            // moonlight cream
-const C_INK_SOFT = "#f3e8d2";
-const C_MUTED = "rgba(243, 232, 210, 0.66)";
-const C_DAWN = "#ffb088";           // dawn coral
-const C_ORANGE = "#ff9354";         // brighter orange
-const C_GOLD = "#f5cf7a";           // soft gold
-const C_BLUEGREY = "#5a7090";       // blue-grey accent
-const C_RULE = "rgba(253, 246, 230, 0.22)";
+const C_INK_SOFT = "#ece3cf";
+const C_MUTED = "rgba(236, 227, 207, 0.62)";
+const C_GOLD = "#f0c868";           // wheel gold (matches TikkunWheel)
+const C_GOLD_BRIGHT = "#FFE9B8";
+const C_DAWN = "#ffb088";           // dawn coral — reserved for accents only
+const C_DEEP = "#0f1729";           // near-black indigo
+const C_RULE = "rgba(253, 246, 230, 0.20)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
+
 
 /** Scattered stars with twinkle. */
 function StarField({
