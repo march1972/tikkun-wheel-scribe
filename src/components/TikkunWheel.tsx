@@ -351,15 +351,15 @@ export function TikkunWheel({
             r={alephR}
             fill={`url(#${alephId})`}
             stroke="rgb(243, 219, 157)"
-            strokeWidth={size * 0.008}
+            strokeWidth={size * 0.003}
           />
           <text
             x={cx}
             y={cy}
-            fill={accentBright}
+            fill={text}
             style={{
               fontFamily: "var(--font-sans)",
-              fontWeight: 700,
+              fontWeight: 400,
               fontSize: "clamp(11px, 1.2vw, 13px)",
               letterSpacing: "0.28em",
             }}
