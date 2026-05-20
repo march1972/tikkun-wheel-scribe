@@ -220,18 +220,18 @@ function Snippet() {
           {copy.prompt}
         </h2>
 
-        {/* Sign + snippet block — elevated, more pop */}
+        {/* Sign + snippet block — clean, modern, no gold border */}
         <div
           className="mt-[clamp(1.5rem,3vh,2.25rem)] w-full"
           style={{
             background:
-              "linear-gradient(180deg, rgba(27, 37, 64, 0.85) 0%, rgba(15, 23, 41, 0.85) 100%)",
-            border: `1px solid ${C_GOLD}55`,
-            borderRadius: "6px",
+              "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
+            border: `1px solid ${C_RULE}`,
+            borderRadius: "14px",
             padding: "clamp(1.75rem,4.5vw,2.75rem)",
             boxShadow:
-              "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 40px -10px rgba(240,200,104,0.18), inset 0 1px 0 rgba(255,233,184,0.08)",
-            backdropFilter: "blur(6px)",
+              "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
+            backdropFilter: "blur(8px)",
           }}
         >
           <div className="flex items-baseline justify-center gap-[clamp(12px,2.5vw,24px)]">
