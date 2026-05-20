@@ -6,7 +6,7 @@ import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
-import { MAX_SPINS, getAttempts, incrementAttempt, spinsRemaining } from "@/lib/spinAttempts";
+import { MAX_SPINS, getAttempts, incrementAttempt } from "@/lib/spinAttempts";
 
 export const Route = createFileRoute("/snippet")({
   component: Snippet,
