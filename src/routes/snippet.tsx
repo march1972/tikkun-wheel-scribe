@@ -16,7 +16,7 @@ export const Route = createFileRoute("/snippet")({
 function Snippet() {
   const navigate = useNavigate();
   const [sign, setSign] = useState<TikkunSign | null>(null);
-  const [remaining, setRemaining] = useState(0);
+  const [spinNumber, setSpinNumber] = useState(1);
 
   useEffect(() => {
     const key = sessionStorage.getItem("tikkun_target_sign");
@@ -26,7 +26,7 @@ function Snippet() {
       return;
     }
     setSign(s);
-    setRemaining(spinsRemaining());
+    setSpinNumber(Math.min(MAX_SPINS, Math.max(1, getAttempts())));
   }, [navigate]);
 
   const handleSpinAgain = () => {
@@ -41,7 +41,7 @@ function Snippet() {
   };
 
   if (!sign) return null;
-  const usedAll = getAttempts() >= MAX_SPINS;
+  const canSpinAgain = spinNumber < MAX_SPINS;
   const copy = STATIC_COPY.screen3;
 
   return (
