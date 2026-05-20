@@ -464,8 +464,9 @@ function Landing() {
             >
               Kabbalists accept the signals or influence of the celestial
               constellations ({" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Mazalot</span>{" "}
-              ), but reject astrology as fatalistic prediction. A person's free
+              <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
+              ), but reject astrology as{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free
               will always overrides fate.
             </p>
           </div>
