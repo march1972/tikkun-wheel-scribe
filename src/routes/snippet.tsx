@@ -1,9 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
-import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import {
-  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
 import { MAX_SPINS, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
