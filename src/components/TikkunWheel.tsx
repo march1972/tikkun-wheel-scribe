@@ -177,16 +177,16 @@ export function TikkunWheel({
           ${isIdle ? `animation: tk-halo-${uid} 2.2s ease-in-out infinite;` : "opacity: 0.7;"}
         }
         .tk-ripple-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out infinite;` : "opacity: 0;"}
         }
         .tk-ripple2-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 0.4s infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 0.8s infinite;` : "opacity: 0;"}
         }
         .tk-ripple3-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 0.8s infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 1.6s infinite;` : "opacity: 0;"}
         }
         .tk-ripple4-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 1.2s infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 2.4s infinite;` : "opacity: 0;"}
         }
         .tk-spark-${uid} {
           ${isIdle ? `animation: tk-twinkle-${uid} 3.4s ease-in-out infinite;` : ""}
