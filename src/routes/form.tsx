@@ -81,13 +81,13 @@ function FormPage() {
               letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
             }}
           >
-            Kabbalah Astrology
+            See your actual Tikkun birth chart
           </span>
           <span className="h-px flex-1" style={{ background: C_RULE }} />
         </div>
 
         <h1
-          className="mt-[clamp(1.75rem,4vh,2.75rem)]"
+          className="relative mx-auto max-w-md flex-col px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center flex items-center justify-start"
           style={{
             fontFamily: HEAD, color: C_INK, fontWeight: 500,
             fontSize: "clamp(28px, 5vw, 44px)", lineHeight: 1.12,

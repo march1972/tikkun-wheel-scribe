@@ -10,7 +10,7 @@ import { subscribeNewsletter } from "@/lib/lead.functions";
 
 export const Route = createFileRoute("/history")({
   component: HistoryPage,
-  head: () => ({ meta: [{ title: "Kabbalah Astrology — A Brief History" }] }),
+  head: () => ({ meta: [{ title: "See your actual Tikkun birth chart — A Brief History" }] }),
 });
 
 function HistoryPage() {
@@ -51,7 +51,7 @@ function HistoryPage() {
         </div>
 
         <h1
-          className="mt-[clamp(1.75rem,4vh,2.75rem)]"
+          className="relative mx-auto max-w-md flex-col px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center flex items-center justify-start"
           style={{
             fontFamily: HEAD, color: C_INK, fontWeight: 500,
             fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.15, letterSpacing: "-0.02em",
@@ -71,7 +71,7 @@ function HistoryPage() {
             className="font-mono font-thin"
             style={{ color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.7 }}
           >
-            Kabbalah Astrology dates back to{" "}
+            See your actual Tikkun birth chart dates back to{" "}
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span> and is found in many ancient texts and commentaries — the{" "}
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the{" "}
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the{" "}
