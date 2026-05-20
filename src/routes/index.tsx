@@ -275,9 +275,7 @@ function Landing() {
                   fontWeight: 600,
                 }}
               >
-                {remaining > 0
-                  ? `${remaining} of ${MAX_SPINS} ${remaining === 1 ? "turn" : "turns"} remaining`
-                  : "Free Tikkun Reading"}
+                Free Tikkun Reading
               </p>
             </div>
           </div>
