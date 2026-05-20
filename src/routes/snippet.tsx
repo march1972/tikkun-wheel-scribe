@@ -6,7 +6,7 @@ import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
-import { MAX_SPINS, getCurrentSpinNumber, incrementAttempt } from "@/lib/spinAttempts";
+import { MAX_SPINS, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
 
 export const Route = createFileRoute("/snippet")({
   component: Snippet,
@@ -30,11 +30,12 @@ function Snippet() {
   }, [navigate]);
 
   const handleSpinAgain = () => {
-    const next = incrementAttempt();
+    const next = spinNumber + 1;
     if (next > MAX_SPINS) {
       navigate({ to: "/maxspins" });
       return;
     }
+    setCurrentSpinNumber(next);
     const target = randomTikkunSign(sign?.id ?? null);
     sessionStorage.setItem("tikkun_target_sign", target.id);
     navigate({ to: "/spinning" });
