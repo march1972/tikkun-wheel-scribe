@@ -187,7 +187,7 @@ function Snippet() {
             className="mt-3 font-mono"
             style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.04em" }}
           >
-            We'll never share your email.
+            Email only used for your reading + free workbook. Unsubscribe anytime.
           </p>
         </section>
       </SkyShell>
