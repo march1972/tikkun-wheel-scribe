@@ -10,7 +10,7 @@ import { subscribeNewsletter } from "@/lib/lead.functions";
 
 export const Route = createFileRoute("/history")({
   component: HistoryPage,
-  head: () => ({ meta: [{ title: "Kabbalah Astrology — A Brief History" }] }),
+  head: () => ({ meta: [{ title: "See your actual Tikkun birth chart — A Brief History" }] }),
 });
 
 function HistoryPage() {

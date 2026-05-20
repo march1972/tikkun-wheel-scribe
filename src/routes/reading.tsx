@@ -13,7 +13,7 @@ const search = z.object({ sign: z.string().optional() });
 export const Route = createFileRoute("/reading")({
   component: ReadingPage,
   validateSearch: search,
-  head: () => ({ meta: [{ title: "Your Tikkun Reading — Kabbalah Astrology" }] }),
+  head: () => ({ meta: [{ title: "Your Tikkun Reading — See your actual Tikkun birth chart" }] }),
 });
 
 function Paragraphs({ text, splitOn }: { text: string; splitOn: string }) {
