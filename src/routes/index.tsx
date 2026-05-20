@@ -63,17 +63,30 @@ const C_RULE = "rgba(253, 246, 230, 0.20)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
 
 
-/** Scattered stars with twinkle + slow parallax drift. */
+/** Scattered stars + tiny planets + drifting Hebrew letters. */
+const HEBREW_GLYPHS = ["א","ב","ג","ד","ה","ו","ז","ח","ט","י","כ","ל","מ","נ","ס","ע","פ","צ","ק","ר","ש","ת"];
+const PLANET_TINTS = [
+  { core: "#f0c868", glow: "rgba(240,200,104,0.55)" }, // gold
+  { core: "#ffb088", glow: "rgba(255,176,136,0.45)" }, // dawn
+  { core: "#9bd1bf", glow: "rgba(155,209,191,0.45)" }, // sage
+  { core: "#c8b8e8", glow: "rgba(200,184,232,0.45)" }, // violet
+  { core: "#a8c8e8", glow: "rgba(168,200,232,0.45)" }, // cool blue
+];
+
 function StarField({
   density = 90,
   opacity = 0.7,
   seedOffset = 0,
   driftSeconds = 90,
+  planets = 4,
+  letters = 6,
 }: {
   density?: number;
   opacity?: number;
   seedOffset?: number;
   driftSeconds?: number;
+  planets?: number;
+  letters?: number;
 }) {
   const stars = Array.from({ length: density }).map((_, i) => {
     const seed = ((i + seedOffset) * 9301 + 49297) % 233280;
@@ -89,13 +102,13 @@ function StarField({
     const tint = r(5);
     const bg =
       tint > 0.93
-        ? "#a8c8e8" // cool moonlight cyan
+        ? "#a8c8e8"
         : tint > 0.86
-          ? "#ffd6b8" // dawn warmth
+          ? "#ffd6b8"
           : "#fffdf3";
     return (
       <span
-        key={i}
+        key={`s-${i}`}
         className="absolute rounded-full"
         style={{
           left: `${left}%`,
@@ -113,6 +126,85 @@ function StarField({
       />
     );
   });
+
+  const planetEls = Array.from({ length: planets }).map((_, i) => {
+    const seed = ((i + seedOffset + 7777) * 6151 + 31337) % 233280;
+    const r = (n: number) =>
+      ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
+    const left = r(1) * 100;
+    const top = r(2) * 100;
+    const tint = PLANET_TINTS[Math.floor(r(3) * PLANET_TINTS.length)];
+    const size = 3 + r(4) * 3.5; // 3–6.5px
+    const hasRing = r(5) > 0.6;
+    return (
+      <span
+        key={`p-${i}`}
+        className="absolute"
+        style={{
+          left: `${left}%`,
+          top: `${top}%`,
+          width: `${size}px`,
+          height: `${size}px`,
+          borderRadius: "9999px",
+          background: `radial-gradient(circle at 35% 35%, #fff 0%, ${tint.core} 55%, ${tint.core} 100%)`,
+          boxShadow: `0 0 ${size * 2}px ${tint.glow}, 0 0 ${size * 4}px ${tint.glow}`,
+          opacity: 0.85 * opacity,
+        }}
+      >
+        {hasRing && (
+          <span
+            className="absolute"
+            style={{
+              left: "50%",
+              top: "50%",
+              width: `${size * 2.4}px`,
+              height: `${size * 0.7}px`,
+              transform: `translate(-50%, -50%) rotate(${r(6) * 60 - 30}deg)`,
+              border: `1px solid ${tint.glow}`,
+              borderRadius: "9999px",
+            }}
+          />
+        )}
+      </span>
+    );
+  });
+
+  const letterEls = Array.from({ length: letters }).map((_, i) => {
+    const seed = ((i + seedOffset + 3333) * 2741 + 17891) % 233280;
+    const r = (n: number) =>
+      ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
+    const left = r(1) * 100;
+    const top = r(2) * 100;
+    const glyph = HEBREW_GLYPHS[Math.floor(r(3) * HEBREW_GLYPHS.length)];
+    const size = 9 + r(4) * 6; // 9–15px
+    const tintRoll = r(5);
+    const color =
+      tintRoll > 0.66
+        ? "rgba(240,200,104,0.45)"
+        : tintRoll > 0.33
+          ? "rgba(253,246,230,0.38)"
+          : "rgba(155,209,191,0.4)";
+    return (
+      <span
+        key={`l-${i}`}
+        className="absolute"
+        aria-hidden="true"
+        style={{
+          left: `${left}%`,
+          top: `${top}%`,
+          fontFamily: "'Frank Ruhl Libre', 'Fraunces', serif",
+          fontSize: `${size}px`,
+          color,
+          opacity: 0.7 * opacity,
+          textShadow: `0 0 6px ${color}`,
+          lineHeight: 1,
+        }}
+      >
+        {glyph}
+      </span>
+    );
+  });
+
   const driftName = `tk-drift-${seedOffset}`;
   return (
     <div
@@ -134,6 +226,8 @@ function StarField({
         }}
       >
         {stars}
+        {planetEls}
+        {letterEls}
       </div>
     </div>
   );
@@ -226,7 +320,7 @@ function Landing() {
       className="relative min-h-screen overflow-hidden"
       style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
     >
-      <StarField density={180} opacity={0.85} />
+      <StarField density={260} opacity={0.85} planets={8} letters={12} />
 
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
@@ -331,7 +425,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: "linear-gradient(180deg, #1c2848 0%, #22304f 50%, #283958 100%)" }}
         >
-          <StarField density={60} opacity={0.5} seedOffset={2100} />
+          <StarField density={120} opacity={0.6} seedOffset={2100} planets={5} letters={8} />
           <div className="relative mx-auto max-w-3xl text-center">
             <h2
               className="font-mono font-thin text-2xl"
@@ -351,9 +445,9 @@ function Landing() {
               }}
             >
               {[
-                { letter: "א", accent: "#c5a059", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(197, 160, 89, 0.06)" },
-                { letter: "מ", accent: C_SAGE,    title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(155, 209, 191, 0.06)" },
-                { letter: "ש", accent: C_DAWN,    title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(255, 176, 136, 0.06)" },
+                { letter: "א", accent: "#f0c868", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(240, 200, 104, 0.07)" },
+                { letter: "מ", accent: "#fbe6a8", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(251, 230, 168, 0.06)" },
+                { letter: "ש", accent: "#c99245", title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(201, 146, 69, 0.07)" },
               ].map((item) => {
                 return (
                   <li
@@ -399,7 +493,7 @@ function Landing() {
             borderBottom: `1px solid ${C_RULE_SOFT}`,
           }}
         >
-          <StarField density={60} opacity={0.55} seedOffset={500} />
+          <StarField density={120} opacity={0.6} seedOffset={500} planets={5} letters={8} />
           <div className="relative mx-auto max-w-2xl text-center">
             
             <h2
@@ -434,7 +528,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
-          <StarField density={70} opacity={0.5} seedOffset={900} />
+          <StarField density={130} opacity={0.55} seedOffset={900} planets={5} letters={8} />
           <div className="relative mx-auto max-w-3xl text-center">
             
             <h2
@@ -466,7 +560,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
-          <StarField density={50} opacity={0.5} seedOffset={1300} driftSeconds={140} />
+          <StarField density={110} opacity={0.55} seedOffset={1300} driftSeconds={140} planets={5} letters={7} />
           
           <div className="relative mx-auto max-w-3xl text-center">
             
@@ -507,7 +601,7 @@ function Landing() {
               "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.07) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #0e1426 0%, #131c34 100%)",
           }}
         >
-          <StarField density={50} opacity={0.55} seedOffset={1700} />
+          <StarField density={110} opacity={0.6} seedOffset={1700} planets={5} letters={7} />
           <div className="relative mx-auto max-w-3xl">
             <h2
               style={{
@@ -544,7 +638,7 @@ function Landing() {
             >
               A free <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes on your birthdate.
             </p>
-            <div className="mt-[clamp(3.5rem,7vh,5rem)] flex justify-center">
+            <div className="mt-[clamp(5rem,10vh,7.5rem)] flex justify-center">
               <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
             </div>
           </div>
