@@ -198,10 +198,11 @@ function Landing() {
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
           <div className="mx-auto max-w-6xl">
             <span
-              className="font-mono text-2xl"
+              className="font-mono"
               style={{
                 fontFamily: BODY,
                 color: C_MUTED,
+                fontSize: "10px",
                 letterSpacing: "0.38em",
                 textTransform: "uppercase",
                 fontWeight: 600,
@@ -257,7 +258,7 @@ function Landing() {
             </div>
 
             <p
-              className="mt-[clamp(1.5rem,3vh,2rem)] text-2xl"
+              className="mt-[clamp(1.5rem,3vh,2rem)]"
               style={{
                 fontFamily: HEAD,
                 color: C_INK_SOFT,
