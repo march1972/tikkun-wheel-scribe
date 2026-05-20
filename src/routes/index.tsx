@@ -499,7 +499,7 @@ function Landing() {
               Fulfilling your{" "}
               <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>{" "}
               serves a greater purpose —{" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
               — sharing your light to build a better world.
             </p>
 
