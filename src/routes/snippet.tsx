@@ -315,9 +315,9 @@ function Snippet() {
                     lineHeight: 1.5, marginBottom: "1rem",
                   }}
                 >
-                  Curious about the other archetypes? Keep spinning to preview all 12 Tikkun snippets.
+                  Curious about more Tikkun archetypes? Keep spinning to preview more Tikkun snippets.
                   <span style={{ color: C_MUTED, display: "block", marginTop: 4, fontSize: "11px" }}>
-                    Spin {spinNumber} of {MAX_SPINS}
+                    Spin no. {spinNumber}
                   </span>
                 </p>
                 {spinAgainButton}
