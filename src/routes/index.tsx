@@ -454,8 +454,8 @@ function Landing() {
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
             >
-              Free will overrides{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>fate</span>.
+              Influence, Not{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Prediction</span>
             </h2>
             <p
               className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm"
