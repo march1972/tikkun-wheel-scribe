@@ -173,9 +173,7 @@ export function TikkunWheel({
         }
         .tk-wheel:hover { transform: scale(1.02); }
         .tk-wheel:hover .tk-cta-bg-${uid} {
-          stroke: rgba(255, 246, 214, 1);
-          stroke-width: ${size * 0.007};
-          filter: drop-shadow(0 0 22px rgba(255,215,106,0.95)) drop-shadow(0 0 44px rgba(255,183,77,0.6));
+          filter: drop-shadow(0 0 26px rgba(255,252,235,1)) drop-shadow(0 0 50px rgba(255,246,214,0.7));
         }
         .tk-wheel:focus-visible {
           box-shadow: 0 0 0 2px ${accent}, 0 0 0 8px rgba(240,200,104,0.22);
