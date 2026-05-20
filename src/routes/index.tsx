@@ -446,7 +446,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
-          <StarField density={70} opacity={0.5} seedOffset={900} />
+          <StarField density={160} opacity={0.5} seedOffset={900} />
           <div className="relative mx-auto max-w-3xl text-center">
             
             <h2
