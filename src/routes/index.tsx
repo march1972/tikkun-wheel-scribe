@@ -466,8 +466,24 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
-          <StarField density={50} opacity={0.5} seedOffset={1300} />
+          <StarField density={50} opacity={0.5} seedOffset={1300} driftSeconds={140} />
+          {/* Giant faint Hebrew watermark */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
+            style={{
+              fontFamily: HEAD,
+              color: C_GOLD,
+              opacity: 0.05,
+              fontSize: "clamp(220px, 38vw, 520px)",
+              lineHeight: 1,
+              letterSpacing: "0.1em",
+            }}
+          >
+            תיקון
+          </div>
           <div className="relative mx-auto max-w-3xl text-center">
+            
             
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
