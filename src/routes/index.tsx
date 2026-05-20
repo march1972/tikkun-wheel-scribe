@@ -289,7 +289,7 @@ function Landing() {
             </div>
 
             <p
-              className="mt-[clamp(1.75rem,3.5vh,2.5rem)] font-mono font-thin text-sm"
+              className="mt-[clamp(2.75rem,5.5vh,4rem)] font-mono font-thin text-sm"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.55,
