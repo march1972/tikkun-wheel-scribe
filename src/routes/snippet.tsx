@@ -128,12 +128,19 @@ function Snippet() {
 
           <p
             className="mt-3 font-mono font-thin"
-            style={{ color: C_INK_SOFT, fontSize: "13px", maxWidth: "24rem", lineHeight: 1.5 }}
+            style={{ color: C_GOLD, fontSize: "13px", maxWidth: "24rem", lineHeight: 1.5 }}
           >
-            Your free personal Tikkun birth chart + 10-page workbook .
+            Your free Tikkun birth chart + PDF workbook
           </p>
 
           <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
+            <div>
+              <label style={labelStyle} htmlFor="name">Name (optional)</label>
+              <input
+                id="name" type="text" value={name} onChange={(e) => setName(e.target.value)}
+                autoComplete="given-name" maxLength={120} placeholder="Your name" style={inputStyle}
+              />
+            </div>
             <div>
               <label style={labelStyle} htmlFor="email">Email</label>
               <input
