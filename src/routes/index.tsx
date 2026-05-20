@@ -133,7 +133,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function PrimaryCTA({
   onClick,
-  label = "Receive your reading",
+  label = "Who you are",
 }: {
   onClick: () => void;
   label?: string;
