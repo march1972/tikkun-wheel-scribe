@@ -10,13 +10,13 @@ export const Route = createFileRoute("/")({
   component: Landing,
   head: () => ({
     meta: [
-      { title: "Kabbalah Astrology — What's Your Tikkun?" },
+      { title: "Kabbalah Astrology — Reveal Your Tikkun" },
       {
         name: "description",
         content:
           "Kabbalah Astrology maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's potential in relationships, finances, and career.",
       },
-      { property: "og:title", content: "Kabbalah Astrology — What's Your Tikkun?" },
+      { property: "og:title", content: "Kabbalah Astrology — Reveal Your Tikkun" },
       {
         property: "og:description",
         content:
