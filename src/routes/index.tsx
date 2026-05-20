@@ -445,9 +445,9 @@ function Landing() {
               }}
             >
               {[
-                { letter: "א", accent: "#c5a059", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(197, 160, 89, 0.06)" },
-                { letter: "מ", accent: C_SAGE,    title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(155, 209, 191, 0.06)" },
-                { letter: "ש", accent: C_DAWN,    title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(255, 176, 136, 0.06)" },
+                { letter: "א", accent: "#f0c868", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(240, 200, 104, 0.07)" },
+                { letter: "מ", accent: "#fbe6a8", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(251, 230, 168, 0.06)" },
+                { letter: "ש", accent: "#c99245", title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(201, 146, 69, 0.07)" },
               ].map((item) => {
                 return (
                   <li
