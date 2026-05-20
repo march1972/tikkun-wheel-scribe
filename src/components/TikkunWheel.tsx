@@ -418,7 +418,7 @@ export function TikkunWheel({
           <text
             x={cx}
             y={cy - size * 0.005}
-            fill="#6b1e26"
+            fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
               fontWeight: 500,
@@ -434,7 +434,7 @@ export function TikkunWheel({
           <text
             x={cx}
             y={cy + size * 0.032}
-            fill="#a8803c"
+            fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
               fontWeight: 500,
