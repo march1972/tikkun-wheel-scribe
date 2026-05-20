@@ -1,9 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
-import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import {
-  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
 import { MAX_SPINS, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
@@ -48,7 +47,7 @@ function Snippet() {
   return (
     <SkyShell starDensity={200}>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        {/* Eyebrow + spin counter */}
+        {/* Eyebrow: Does this sound like you? */}
         <div className="flex w-full items-center gap-3">
           <span className="h-px flex-1" style={{ background: C_RULE }} />
           <span
@@ -57,67 +56,58 @@ function Snippet() {
               letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
             }}
           >
-            {copy.eyebrow}
+            {copy.prompt}
           </span>
           <span className="h-px flex-1" style={{ background: C_RULE }} />
         </div>
+
+        {/* Sign + snippet block — visibly contained */}
         <div
-          className="mt-3"
+          className="mt-[clamp(1.5rem,3vh,2.25rem)] w-full"
           style={{
-            fontFamily: BODY, color: C_GOLD, fontSize: "10px",
-            letterSpacing: "0.4em", textTransform: "uppercase", fontWeight: 700,
+            background: "rgba(15, 23, 41, 0.55)",
+            border: `1px solid ${C_RULE}`,
+            borderRadius: "4px",
+            padding: "clamp(1.5rem,4vw,2.5rem)",
+            boxShadow: "0 20px 60px -20px rgba(0,0,0,0.5)",
+            backdropFilter: "blur(4px)",
           }}
         >
-          Spin {spinNumber} of {MAX_SPINS}
-        </div>
+          <div className="flex items-baseline justify-center gap-[clamp(12px,2.5vw,24px)]">
+            <span
+              style={{
+                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 12vw, 110px)",
+                lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
+              }}
+            >
+              {sign.hebrewLetter}
+            </span>
+            <span
+              style={{
+                fontFamily: HEAD, color: C_INK, fontStyle: "italic", fontWeight: 400,
+                fontSize: "clamp(28px, 6vw, 56px)",
+              }}
+            >
+              {sign.sign}
+            </span>
+          </div>
 
-        {/* Letter + sign */}
-        <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex items-baseline gap-[clamp(12px,2.5vw,24px)]">
-          <span
+          <p
+            className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin"
             style={{
-              fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 12vw, 110px)",
-              lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
+              color: C_INK, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)",
             }}
           >
-            {sign.hebrewLetter}
-          </span>
-          <span
-            style={{
-              fontFamily: HEAD, color: C_INK, fontStyle: "italic", fontWeight: 400,
-              fontSize: "clamp(28px, 6vw, 56px)",
-            }}
-          >
-            {sign.sign}
-          </span>
+            {sign.screen3.spinSnippet}
+          </p>
         </div>
-
-        {/* Snippet */}
-        <p
-          className="mt-[clamp(1.5rem,3vh,2rem)] font-mono font-thin"
-          style={{
-            color: C_INK_SOFT, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)",
-            maxWidth: "34rem",
-          }}
-        >
-          <span style={{ color: C_INK }}>{sign.screen3.spinSnippet}</span>
-        </p>
-
-        {/* Prompt */}
-        <p
-          className="mt-[clamp(1.75rem,3.5vh,2.5rem)] italic"
-          style={{
-            fontFamily: HEAD, color: C_GOLD, fontSize: "clamp(17px, 2.2vw, 22px)",
-          }}
-        >
-          {copy.prompt}
-        </p>
 
         {/* Spin again */}
         {canSpinAgain ? (
           <button
             type="button"
             onClick={handleSpinAgain}
-            className="mt-[clamp(0.85rem,2vh,1.25rem)] uppercase transition-opacity hover:opacity-70"
+            className="mt-[clamp(1rem,2.5vh,1.5rem)] uppercase transition-opacity hover:opacity-70"
             style={{
               fontFamily: BODY, letterSpacing: "0.24em", color: C_INK_SOFT,
               background: "transparent", border: `1px solid ${C_RULE}`,
@@ -135,10 +125,28 @@ function Snippet() {
           </p>
         )}
 
-        {/* CTA */}
-        <div className="mt-[clamp(1.25rem,3vh,2rem)]">
-          <PrimaryCTA label={copy.primaryButton} onClick={() => navigate({ to: "/interstitial" })} />
-        </div>
+        {/* CTA — red dawn accent */}
+        <button
+          type="button"
+          onClick={() => navigate({ to: "/interstitial" })}
+          className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5"
+          style={{
+            background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
+            color: C_INK,
+            fontFamily: BODY,
+            fontWeight: 700,
+            letterSpacing: "0.28em",
+            fontSize: "clamp(11px, 1.2vw, 13px)",
+            padding: "clamp(14px, 1.9vh, 20px) clamp(24px, 4vw, 44px)",
+            borderRadius: "0px",
+            boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+          }}
+        >
+          <span>{copy.primaryButton}</span>
+          <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" style={{ fontWeight: 800 }}>
+            →
+          </span>
+        </button>
         <p
           className="mt-3 italic font-mono"
           style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
@@ -149,3 +157,4 @@ function Snippet() {
     </SkyShell>
   );
 }
+
