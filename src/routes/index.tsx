@@ -194,32 +194,62 @@ function Landing() {
       <StarField density={180} opacity={0.85} />
 
       <div className="relative">
-        {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)]">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-            <p
+        {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
+        <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
+          <div className="mx-auto max-w-6xl">
+            <span
               style={{
                 fontFamily: BODY,
-                color: C_DAWN,
-                fontSize: "clamp(10px, 1.05vw, 12px)",
-                letterSpacing: "0.36em",
+                color: C_MUTED,
+                fontSize: "10px",
+                letterSpacing: "0.38em",
                 textTransform: "uppercase",
-                fontWeight: 700,
-                lineHeight: 1.5,
+                fontWeight: 600,
               }}
             >
-              Kabbalah Astrology Reveals Your Tikkun
-            </p>
+              Kabbalah Astrology
+            </span>
+          </div>
+        </header>
 
-            <div className="mt-[clamp(1.25rem,3vh,2rem)]">
+        {/* ── HERO ─────────────────────────────────────────────── */}
+        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <h1
+              style={{
+                fontFamily: HEAD,
+                color: C_INK,
+                fontWeight: 500,
+                fontSize: "clamp(38px, 7vw, 78px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.025em",
+              }}
+            >
+              What is your{" "}
+              <span
+                style={{
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Tikkun
+              </span>
+              <span style={{ color: C_GOLD }}>?</span>
+            </h1>
+
+            <div className="mt-[clamp(1.5rem,3.5vh,2.5rem)]">
               <button
                 type="button"
                 onClick={handleSpin}
                 aria-label="Turn the Tikkun wheel"
-                className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb088] focus-visible:ring-offset-4 focus-visible:ring-offset-[#3d5170]"
+                className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
                 style={{
                   filter:
-                    "drop-shadow(0 0 60px rgba(255,176,136,0.30)) drop-shadow(0 0 30px rgba(245,207,122,0.25))",
+                    "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
                 }}
               >
                 <TikkunWheel size={wheelSize} state="idle" />
@@ -230,10 +260,10 @@ function Landing() {
               className="mt-[clamp(1.5rem,3vh,2rem)]"
               style={{
                 fontFamily: HEAD,
-                color: C_INK,
+                color: C_INK_SOFT,
                 fontWeight: 400,
                 fontStyle: "italic",
-                fontSize: "clamp(17px, 2vw, 22px)",
+                fontSize: "clamp(16px, 1.9vw, 21px)",
                 lineHeight: 1.55,
                 maxWidth: "34rem",
                 letterSpacing: "-0.005em",
@@ -272,7 +302,7 @@ function Landing() {
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,7vh,5.5rem)]"
           style={{
-            background: C_BAND_GRAD,
+            background: C_BAND_DEEP,
             borderTop: `1px solid ${C_RULE_SOFT}`,
             borderBottom: `1px solid ${C_RULE_SOFT}`,
           }}
@@ -304,10 +334,7 @@ function Landing() {
         {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,6rem)]"
-          style={{
-            background:
-              "linear-gradient(180deg, #4a5f7e 0%, #5a7090 50%, #6e7d96 100%)",
-          }}
+          style={{ background: C_BAND_MID }}
         >
           <StarField density={70} opacity={0.5} seedOffset={900} />
           <div className="relative mx-auto max-w-3xl text-center">
@@ -324,7 +351,7 @@ function Landing() {
               }}
             >
               Free will always overrides
-              <span style={{ color: C_DAWN }}> fate</span>.
+              <span style={{ color: C_GOLD }}> fate</span>.
             </h2>
             <p
               className="mx-auto mt-6"
@@ -344,21 +371,19 @@ function Landing() {
           </div>
         </section>
 
-        {/* ── TIKKUN OLAM ──────────────────────────────────────── */}
+        {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,6rem)]"
-          style={{
-            background:
-              "linear-gradient(180deg, #6e7d96 0%, #9c8678 50%, #c89070 100%)",
-          }}
+          style={{ background: C_BAND_DEEP }}
         >
+          <StarField density={50} opacity={0.5} seedOffset={1300} />
           <div className="relative mx-auto max-w-3xl text-center">
             <Eyebrow>Tikkun Olam · תיקון עולם</Eyebrow>
             <p
               className="mt-[clamp(1.5rem,3vh,2rem)]"
               style={{
                 fontFamily: HEAD,
-                color: "#1b2740",
+                color: C_INK,
                 fontWeight: 400,
                 fontStyle: "italic",
                 fontSize: "clamp(22px, 3vw, 32px)",
@@ -381,14 +406,15 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
           style={{
             background:
-              "linear-gradient(180deg, #c89070 0%, #e0a07c 55%, #f0b485 100%)",
+              "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.10) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #1b2540 0%, #233055 100%)",
           }}
         >
-          <div className="mx-auto max-w-3xl">
+          <StarField density={50} opacity={0.55} seedOffset={1700} />
+          <div className="relative mx-auto max-w-3xl">
             <h2
               style={{
                 fontFamily: HEAD,
-                color: "#1b2740",
+                color: C_INK,
                 fontWeight: 500,
                 fontSize: "clamp(36px, 6vw, 68px)",
                 lineHeight: 1,
@@ -396,46 +422,35 @@ function Landing() {
               }}
             >
               Turn the<br />
-              <span style={{ fontStyle: "italic", fontWeight: 400 }}>
-                wheel<span style={{ color: "#6b1e26" }}>.</span>
+              <span
+                style={{
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                wheel
               </span>
+              <span style={{ color: C_GOLD }}>.</span>
             </h2>
             <p
               className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
               style={{
                 fontFamily: BODY,
-                color: "rgba(27, 39, 64, 0.78)",
+                color: C_INK_SOFT,
                 fontSize: "clamp(15px, 1.5vw, 17px)",
                 lineHeight: 1.6,
                 maxWidth: "32rem",
-                fontWeight: 500,
+                fontWeight: 400,
               }}
             >
               A free reading drawn in the moment. No account, no email.
             </p>
             <div className="mt-[clamp(2rem,4vh,2.75rem)] flex justify-center">
-              <button
-                type="button"
-                onClick={handleSpin}
-                className="group inline-flex items-center gap-3 uppercase transition-all hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1b2740] focus-visible:ring-offset-4 focus-visible:ring-offset-[#e0a07c]"
-                style={{
-                  background: "#1b2740",
-                  color: C_INK,
-                  fontFamily: BODY,
-                  fontWeight: 700,
-                  letterSpacing: "0.28em",
-                  fontSize: "clamp(11px, 1.2vw, 13px)",
-                  padding:
-                    "clamp(16px, 1.9vh, 20px) clamp(28px, 4vw, 44px)",
-                  borderRadius: "0px",
-                  boxShadow: "0 10px 40px -10px rgba(27,39,64,0.5)",
-                }}
-              >
-                <span>Receive your reading</span>
-                <span aria-hidden="true" style={{ color: C_DAWN, fontWeight: 800 }}>
-                  →
-                </span>
-              </button>
+              <PrimaryCTA onClick={handleSpin} />
             </div>
           </div>
         </section>
