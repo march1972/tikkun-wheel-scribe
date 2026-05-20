@@ -391,8 +391,8 @@ export function TikkunWheel({
             style={{
               fontFamily: "var(--font-sans)",
               fontWeight: 500,
-              fontSize: "10px",
-              letterSpacing: "0.22em",
+              fontSize: "9px",
+              letterSpacing: "0.12em",
             }}
             textAnchor="middle"
             dominantBaseline="central"
