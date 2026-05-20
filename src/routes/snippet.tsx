@@ -310,17 +310,7 @@ function Snippet() {
             </div>
 
             {canSpinAgain && (
-              <div
-                className="mt-[clamp(2.5rem,6vh,4rem)] w-full max-w-md"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(27, 37, 64, 0.45) 0%, rgba(15, 23, 41, 0.45) 100%)",
-                  border: `1px solid ${C_RULE}`,
-                  borderRadius: "14px",
-                  padding: "clamp(1.25rem,3vw,1.75rem)",
-                  backdropFilter: "blur(8px)",
-                }}
-              >
+              <div className="mt-[clamp(2.5rem,6vh,4rem)] w-full max-w-md flex flex-col items-center text-center">
                 <p
                   className="font-mono"
                   style={{
