@@ -493,7 +493,7 @@ function Landing() {
             borderBottom: `1px solid ${C_RULE_SOFT}`,
           }}
         >
-          <StarField density={60} opacity={0.55} seedOffset={500} />
+          <StarField density={120} opacity={0.6} seedOffset={500} planets={5} letters={8} />
           <div className="relative mx-auto max-w-2xl text-center">
             
             <h2
