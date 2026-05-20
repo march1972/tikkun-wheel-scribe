@@ -374,30 +374,50 @@ export function TikkunWheel({
 
         {/* Central CTA medallion (breathes) */}
         <g className={`tk-aleph-${uid} tk-cta-${uid}`} style={{ cursor: "pointer" }}>
+          {/* Soft outer glow */}
+          <circle
+            cx={cx}
+            cy={cy}
+            r={alephR * 1.18}
+            fill="none"
+            stroke="rgba(240, 200, 104, 0.22)"
+            strokeWidth={size * 0.012}
+          />
+          {/* Main medallion — radial wine gradient */}
           <circle
             className={`tk-cta-bg-${uid}`}
             cx={cx}
             cy={cy}
             r={alephR}
-            fill="#5a1620"
-            stroke="rgb(243, 219, 157)"
-            strokeWidth={size * 0.003}
-            style={{ transition: "fill 200ms ease, stroke-width 200ms ease" }}
+            fill={`url(#${alephId})`}
+            stroke="rgba(243, 219, 157, 0.85)"
+            strokeWidth={size * 0.0035}
+            style={{ transition: "stroke 200ms ease, stroke-width 200ms ease, filter 200ms ease" }}
+          />
+          {/* Inset gold hairline */}
+          <circle
+            cx={cx}
+            cy={cy}
+            r={alephR - size * 0.012}
+            fill="none"
+            stroke="rgba(243, 219, 157, 0.28)"
+            strokeWidth={0.6}
           />
           <text
             x={cx}
             y={cy}
-            fill={text}
+            fill={accentBright}
             style={{
               fontFamily: "var(--font-sans)",
               fontWeight: 500,
               fontSize: "9px",
-              letterSpacing: "0.12em",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
             }}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            Click Me
+            Enter Here
           </text>
         </g>
       </svg>
