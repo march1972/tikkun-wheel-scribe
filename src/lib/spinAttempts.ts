@@ -2,6 +2,7 @@
 // Resets on a fresh visit to the landing page.
 
 const KEY = "tikkun_spin_count_v2";
+const CURRENT_SPIN_KEY = "tikkun_current_spin_v2";
 export const MAX_SPINS = 3;
 
 function read(): number {
@@ -16,8 +17,25 @@ function write(n: number) {
   sessionStorage.setItem(KEY, String(n));
 }
 
+function readCurrent(): number {
+  if (typeof sessionStorage === "undefined") return 0;
+  const raw = sessionStorage.getItem(CURRENT_SPIN_KEY);
+  const n = raw ? parseInt(raw, 10) : 0;
+  return Number.isFinite(n) && n >= 0 ? n : 0;
+}
+
+function writeCurrent(n: number) {
+  if (typeof sessionStorage === "undefined") return;
+  sessionStorage.setItem(CURRENT_SPIN_KEY, String(n));
+}
+
 export function getAttempts(): number {
   return read();
+}
+
+export function getCurrentSpinNumber(): number {
+  const current = readCurrent();
+  return current > 0 ? current : read();
 }
 
 export function spinsRemaining(): number {
@@ -26,6 +44,7 @@ export function spinsRemaining(): number {
 
 export function resetAttempts(): void {
   write(0);
+  writeCurrent(0);
 }
 
 export function recordInitialSpin(): void {
@@ -36,6 +55,7 @@ export function recordInitialSpin(): void {
 export function incrementAttempt(): number {
   const next = read() + 1;
   write(next);
+  if (next <= MAX_SPINS) writeCurrent(next);
   return next;
 }
 
