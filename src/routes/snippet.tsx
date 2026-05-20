@@ -224,7 +224,7 @@ function Snippet() {
               style={{
                 background:
                   "radial-gradient(80% 100% at 50% 0%, rgba(233,78,43,0.10) 0%, rgba(233,78,43,0) 70%)",
-                borderTop: `1px solid ${C_GOLD}55`,
+                borderTop: `1px solid rgba(120,150,200,0.45)`,
                 padding: "clamp(2rem,5vw,3rem) clamp(0.5rem,2vw,1.5rem) 0",
                 textAlign: "center",
               }}
