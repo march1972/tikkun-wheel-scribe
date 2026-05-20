@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Kabbalah Astrology dates back to Abraham and is found in many ancient texts and commentaries — the Talmud, the Sefer Yetzirah, and the Zohar.",
+          "Kabbalah Astrology maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's potential in relationships, finances, and career.",
       },
       { property: "og:title", content: "Kabbalah Astrology — What's Your Tikkun?" },
       {
@@ -198,7 +198,6 @@ function Landing() {
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
           <div className="mx-auto max-w-6xl">
             <span
-              className="font-mono"
               style={{
                 fontFamily: BODY,
                 color: C_MUTED,
@@ -270,20 +269,13 @@ function Landing() {
                 letterSpacing: "-0.005em",
               }}
             >
-              Kabbalah Astrology dates back to Abraham and is found in many ancient
-              texts and commentaries — the{" "}
+              Kabbalistic Astrology maps your{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>
+              : the soul's pattern of correction that signals how to{" "}
               <span style={{ color: C_INK, fontStyle: "normal", fontWeight: 600 }}>
-                Talmud
+                fulfill your life's potential
               </span>{" "}
-              (the Oral Torah), the{" "}
-              <span style={{ color: C_INK, fontStyle: "normal", fontWeight: 600 }}>
-                Sefer Yetzirah
-              </span>{" "}
-              (Book of Formation), and the{" "}
-              <span style={{ color: C_INK, fontStyle: "normal", fontWeight: 600 }}>
-                Zohar
-              </span>{" "}
-              (Book of Splendor).
+              — in relationships, finances, and career.
             </p>
 
             <div className="mt-[clamp(1.75rem,3.5vh,2.5rem)] flex flex-col items-center gap-3">
