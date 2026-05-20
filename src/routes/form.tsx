@@ -2,7 +2,6 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
-import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
@@ -10,7 +9,7 @@ import { submitLead } from "@/lib/lead.functions";
 
 export const Route = createFileRoute("/form")({
   component: FormPage,
-  head: () => ({ meta: [{ title: "See your actual Tikkun" }] }),
+  head: () => ({ meta: [{ title: "See your real Tikkun pattern" }] }),
 });
 
 const inputStyle: React.CSSProperties = {
@@ -19,7 +18,7 @@ const inputStyle: React.CSSProperties = {
   background: "rgba(10,14,28,0.45)",
   border: `1px solid ${C_RULE}`,
   borderRadius: 2,
-  padding: "14px 16px",
+  padding: "12px 14px",
   fontSize: "15px",
   width: "100%",
   outline: "none",
@@ -28,12 +27,12 @@ const inputStyle: React.CSSProperties = {
 const labelStyle: React.CSSProperties = {
   fontFamily: BODY,
   color: C_INK_SOFT,
-  fontSize: "11px",
+  fontSize: "10px",
   letterSpacing: "0.22em",
   textTransform: "uppercase",
   fontWeight: 600,
   display: "block",
-  marginBottom: "8px",
+  marginBottom: "6px",
 };
 
 function FormPage() {
@@ -72,71 +71,61 @@ function FormPage() {
 
   return (
     <SkyShell starDensity={200}>
-      <section className="relative mx-auto flex max-w-md flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        <div className="flex w-full items-center gap-3">
-          <span className="h-px flex-1" style={{ background: C_RULE }} />
-          <span
-            style={{
-              fontFamily: BODY, color: C_INK_SOFT, fontSize: "11px",
-              letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
-            }}
-          >
-            Kabbalah Astrology
-          </span>
-          <span className="h-px flex-1" style={{ background: C_RULE }} />
-        </div>
-
+      <style>{`
+        @keyframes cta-pulse-glow {
+          0%, 100% { box-shadow: 0 10px 40px -10px #e94e2baa; transform: scale(1); }
+          50% { box-shadow: 0 14px 50px -8px #e94e2bcc, 0 0 25px -3px #e94e2b33; transform: scale(1.015); }
+        }
+        .cta-pulse-glow {
+          animation: cta-pulse-glow 2.5s ease-in-out infinite;
+        }
+        .cta-pulse-glow:hover {
+          animation: none;
+        }
+      `}</style>
+      <section className="relative mx-auto flex max-w-md flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.5rem,4vh,3rem)] pb-[clamp(2.5rem,5vh,4rem)] text-center">
         <h1
-          className="mt-[clamp(1.75rem,4vh,2.75rem)]"
           style={{
             fontFamily: HEAD, color: C_INK, fontWeight: 500,
-            fontSize: "clamp(28px, 5vw, 44px)", lineHeight: 1.12,
+            fontSize: "clamp(26px, 5vw, 42px)", lineHeight: 1.12,
             letterSpacing: "-0.02em",
           }}
         >
-          See your actual{" "}
-          <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>
+          See your real{" "}
+          <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
+          pattern
         </h1>
 
         <p
-          className="mt-[clamp(0.75rem,2vh,1.25rem)] font-mono font-thin"
-          style={{ color: C_INK_SOFT, fontSize: "13px", maxWidth: "26rem", lineHeight: 1.55 }}
+          className="mt-3 font-mono font-thin"
+          style={{ color: C_GOLD, fontSize: "13px", maxWidth: "24rem", lineHeight: 1.5 }}
         >
-          Your personal reading + a free 10-page{" "}
-          <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun Workbook</span>, emailed instantly.
+          Your free Tikkun birth chart + PDF workbook
         </p>
 
-        <ul
-          className="mt-[clamp(1rem,2vh,1.5rem)] flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-mono"
-          style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.08em" }}
-        >
-          <li>✓ 60-second reading</li>
-          <li>✓ Free workbook</li>
-          <li>✓ No spam</li>
-        </ul>
-
-        <form onSubmit={onSubmit} className="mt-[clamp(1.5rem,3vh,2.25rem)] flex w-full flex-col gap-5 text-left">
+        <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
           <div>
-            <label style={labelStyle} htmlFor="name">Your Name <span style={{ opacity: 0.5, letterSpacing: "0.12em" }}>(optional)</span></label>
+            <label style={labelStyle} htmlFor="name">Name (optional)</label>
             <input
               id="name" type="text" value={name} onChange={(e) => setName(e.target.value)}
-              autoComplete="name" maxLength={120} style={inputStyle}
+              autoComplete="given-name" maxLength={120} placeholder="Your name" style={inputStyle}
             />
           </div>
           <div>
-            <label style={labelStyle} htmlFor="dob">Date of Birth *</label>
+            <label style={labelStyle} htmlFor="email">Email</label>
+            <input
+              id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email" maxLength={255} placeholder="you@example.com" style={inputStyle}
+            />
+          </div>
+          <div>
+            <label style={labelStyle} htmlFor="dob">Date of Birth</label>
             <input
               id="dob" type="date" required value={dob} onChange={(e) => setDob(e.target.value)}
               min="1901-01-22" max={today} style={inputStyle}
             />
           </div>
-          <div>
-            <label style={labelStyle} htmlFor="email">Email *</label>
-            <input
-              id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email" maxLength={255} style={inputStyle}
-            />
-          </div>
+
           <label
             className="flex items-start gap-3 mt-1 cursor-pointer"
             style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "12px", lineHeight: 1.45 }}
@@ -152,16 +141,34 @@ function FormPage() {
             <p style={{ fontFamily: BODY, color: C_DAWN, fontSize: "12px" }}>{err}</p>
           )}
 
-          <div className="mt-2 flex justify-center">
-            <PrimaryCTA type="submit" label={busy ? "Revealing…" : "Reveal my Tikkun"} disabled={busy} />
-          </div>
+          <button
+            type="submit"
+            disabled={busy}
+            className="cta-pulse-glow group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
+            style={{
+              background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
+              color: C_INK,
+              fontFamily: BODY,
+              fontWeight: 700,
+              letterSpacing: "0.24em",
+              fontSize: "12px",
+              padding: "18px 32px",
+              borderRadius: "0px",
+              boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+            }}
+          >
+            <span>{busy ? "Revealing…" : "Reveal my Tikkun"}</span>
+            {!busy && (
+              <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
+            )}
+          </button>
         </form>
 
         <p
-          className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono italic"
-          style={{ color: C_MUTED, fontSize: "11px", maxWidth: "24rem" }}
+          className="mt-3 font-mono"
+          style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.04em" }}
         >
-          Only used for your reading and free Workbook. Unsubscribe anytime.
+          Email only used for your reading + free workbook. Unsubscribe anytime.
         </p>
       </section>
     </SkyShell>
