@@ -329,12 +329,7 @@ function Landing() {
         {/* ── WHAT YOU RECEIVE ─────────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
-          style={{
-            background:
-              "radial-gradient(80% 60% at 50% 0%, rgba(240,200,104,0.10) 0%, rgba(240,200,104,0) 70%), linear-gradient(180deg, #2a2238 0%, #2f2740 50%, #2a2238 100%)",
-            borderTop: `1px solid ${C_GOLD}22`,
-            borderBottom: `1px solid ${C_GOLD}22`,
-          }}
+          style={{ background: C_BAND_LIFT }}
         >
           <StarField density={60} opacity={0.5} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
