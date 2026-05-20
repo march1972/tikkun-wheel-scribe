@@ -219,7 +219,20 @@ function Snippet() {
 
         {showForm && (
           <>
-            <div className="mt-[clamp(2rem,5vh,3.5rem)] w-full max-w-md">
+            <div
+              className="mt-[clamp(2rem,5vh,3.5rem)] w-full max-w-md"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(27, 37, 64, 0.65) 0%, rgba(15, 23, 41, 0.65) 100%)",
+                border: `1px solid ${C_RULE}`,
+                borderRadius: "14px",
+                padding: "clamp(1.75rem,4.5vw,2.5rem)",
+                boxShadow:
+                  "0 30px 80px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)",
+                backdropFilter: "blur(8px)",
+                textAlign: "center",
+              }}
+            >
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK, fontWeight: 500,
@@ -315,9 +328,9 @@ function Snippet() {
                     lineHeight: 1.5, marginBottom: "1rem",
                   }}
                 >
-                  Curious about the other archetypes? Keep spinning to preview all 12 Tikkun snippets.
+                  Curious about more Tikkun archetypes? Keep spinning to preview more Tikkun snippets.
                   <span style={{ color: C_MUTED, display: "block", marginTop: 4, fontSize: "11px" }}>
-                    Spin {spinNumber} of {MAX_SPINS}
+                    Spin no. {spinNumber}
                   </span>
                 </p>
                 {spinAgainButton}
