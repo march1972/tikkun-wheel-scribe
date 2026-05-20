@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
+import { SefirotTree } from "@/components/SefirotTree";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomSign } from "@/lib/bundle";
 import {
@@ -13,13 +14,13 @@ export const Route = createFileRoute("/")({
   component: Landing,
   head: () => ({
     meta: [
-      { title: "Tikkun — Kabbalistic Astrology" },
+      { title: "Kabbalah Astrology — What's Your Tikkun?" },
       {
         name: "description",
         content:
-          "Kabbalistic Astrology maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's potential in relationships, finances, and career.",
+          "Kabbalah Astrology maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's potential in relationships, finances, and career.",
       },
-      { property: "og:title", content: "Tikkun — Kabbalistic Astrology" },
+      { property: "og:title", content: "Kabbalah Astrology — What's Your Tikkun?" },
       {
         property: "og:description",
         content:
@@ -32,28 +33,29 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-// ── Dawn palette ─────────────────────────────────────────────────
-// Early-night sky lifting into dawn: deep indigo at top, warm coral
-// horizon glow, soft blue-violet body. Stars, moon, brightness.
+// ── Dawn palette (no purple) ─────────────────────────────────────
+// Dawn lifting: deep blue-grey night → soft blue-grey → warm peach &
+// orange horizon. Brighter than before, more stars, no violet/mauve.
 const HEAD = "var(--font-serif)";
 const BODY = "var(--font-sans)";
 
-// Top → bottom: indigo night → mauve → warm peach horizon → blue-violet body.
 const C_SKY_GRAD =
-  "radial-gradient(80% 50% at 80% 8%, rgba(255,224,189,0.22) 0%, rgba(255,224,189,0) 55%), radial-gradient(90% 55% at 15% 80%, rgba(255,150,110,0.18) 0%, rgba(255,150,110,0) 60%), linear-gradient(180deg, #1b2347 0%, #2a2c55 22%, #44345f 48%, #6b3f63 70%, #b56a5a 92%, #d8896a 100%)";
+  "radial-gradient(70% 45% at 80% 6%, rgba(255,220,180,0.28) 0%, rgba(255,220,180,0) 60%), radial-gradient(80% 50% at 15% 85%, rgba(255,160,110,0.20) 0%, rgba(255,160,110,0) 65%), linear-gradient(180deg, #2b3a52 0%, #3d5170 22%, #5a7090 46%, #8a8f9e 66%, #d49574 88%, #f0b485 100%)";
 
 const C_BAND_GRAD =
-  "linear-gradient(180deg, #2a2c55 0%, #3a325c 50%, #2a2c55 100%)";
+  "linear-gradient(180deg, #3d5170 0%, #4a5f7e 50%, #3d5170 100%)";
 
 const C_INK = "#fdf6e6";            // moonlight cream
 const C_INK_SOFT = "#f3e8d2";
-const C_MUTED = "rgba(243, 232, 210, 0.62)";
-const C_DAWN = "#ffb088";           // dawn coral accent
+const C_MUTED = "rgba(243, 232, 210, 0.66)";
+const C_DAWN = "#ffb088";           // dawn coral
+const C_ORANGE = "#ff9354";         // brighter orange
 const C_GOLD = "#f5cf7a";           // soft gold
+const C_BLUEGREY = "#5a7090";       // blue-grey accent
 const C_RULE = "rgba(253, 246, 230, 0.22)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
 
-/** Scattered stars with occasional brighter twinkle. */
+/** Scattered stars with twinkle. */
 function StarField({
   density = 90,
   opacity = 0.7,
@@ -69,9 +71,11 @@ function StarField({
       ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
     const left = r(1) * 100;
     const top = r(2) * 100;
-    const big = r(3) > 0.88;
-    const size = big ? 2 : 1;
-    const o = 0.4 + r(4) * 0.6;
+    const v = r(3);
+    const big = v > 0.92;
+    const mid = v > 0.78 && !big;
+    const size = big ? 2.5 : mid ? 1.6 : 1;
+    const o = 0.45 + r(4) * 0.55;
     return (
       <span
         key={i}
@@ -81,9 +85,13 @@ function StarField({
           top: `${top}%`,
           width: `${size}px`,
           height: `${size}px`,
-          backgroundColor: "#fdf6e6",
+          backgroundColor: "#fffdf3",
           opacity: o * opacity,
-          boxShadow: big ? "0 0 6px rgba(245,207,122,0.7)" : undefined,
+          boxShadow: big
+            ? "0 0 8px rgba(245,207,122,0.85), 0 0 14px rgba(255,176,136,0.4)"
+            : mid
+              ? "0 0 4px rgba(253,246,230,0.6)"
+              : undefined,
         }}
       />
     );
@@ -95,28 +103,6 @@ function StarField({
     >
       {stars}
     </div>
-  );
-}
-
-/** Soft crescent moon, top-right of hero. */
-function Moon({ size = 90 }: { size?: number }) {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute"
-      style={{
-        top: "6%",
-        right: "8%",
-        width: size,
-        height: size,
-        borderRadius: "9999px",
-        background:
-          "radial-gradient(circle at 35% 35%, #fff6e0 0%, #f5cf7a 55%, rgba(245,207,122,0) 72%)",
-        boxShadow:
-          "0 0 60px 10px rgba(245,207,122,0.35), 0 0 120px 30px rgba(255,176,136,0.18)",
-        filter: "blur(0.3px)",
-      }}
-    />
   );
 }
 
@@ -152,17 +138,17 @@ function PrimaryCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-3 uppercase transition-all hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb088] focus-visible:ring-offset-4 focus-visible:ring-offset-[#2a2c55]"
+      className="group inline-flex items-center gap-3 uppercase transition-all hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb088] focus-visible:ring-offset-4 focus-visible:ring-offset-[#3d5170]"
       style={{
-        background: `linear-gradient(135deg, ${C_DAWN} 0%, ${C_GOLD} 100%)`,
-        color: "#1b2347",
+        background: `linear-gradient(135deg, ${C_ORANGE} 0%, ${C_GOLD} 100%)`,
+        color: "#1b2740",
         fontFamily: BODY,
         fontWeight: 700,
         letterSpacing: "0.28em",
         fontSize: "clamp(11px, 1.2vw, 13px)",
         padding: "clamp(16px, 1.9vh, 20px) clamp(28px, 4vw, 44px)",
         borderRadius: "0px",
-        boxShadow: "0 10px 40px -10px rgba(255,176,136,0.55)",
+        boxShadow: "0 10px 40px -10px rgba(255,147,84,0.6)",
       }}
     >
       <span>{label}</span>
@@ -201,148 +187,98 @@ function Landing() {
       className="relative min-h-screen overflow-hidden"
       style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
     >
-      <StarField density={120} opacity={0.7} />
+      <StarField density={180} opacity={0.85} />
 
       <div className="relative">
         {/* ── TOP BAR ─────────────────────────────────────────── */}
         <header
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(1rem,2.5vh,1.5rem)]"
-          style={{ borderBottom: `1px solid ${C_RULE}` }}
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(0.9rem,2vh,1.25rem)]"
+          style={{ borderBottom: `1px solid ${C_RULE_SOFT}` }}
         >
-          <div className="mx-auto flex max-w-6xl items-center justify-between">
-            <div
-              style={{
-                fontFamily: HEAD,
-                color: C_INK,
-                fontWeight: 500,
-                fontSize: "18px",
-                letterSpacing: "0.04em",
-              }}
-            >
-              Tikkun<span style={{ color: C_DAWN }}>.</span>
-            </div>
-            <div
-              style={{
-                fontFamily: BODY,
-                color: C_INK_SOFT,
-                fontSize: "11px",
-                letterSpacing: "0.32em",
-                textTransform: "uppercase",
-                fontWeight: 600,
-              }}
-            >
-              Kabbalistic Astrology
-            </div>
+          <div
+            className="mx-auto max-w-6xl text-center"
+            style={{
+              fontFamily: BODY,
+              color: C_INK_SOFT,
+              fontSize: "10px",
+              letterSpacing: "0.42em",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
+          >
+            Kabbalah Astrology
           </div>
         </header>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2.5rem,6vh,5rem)] pb-[clamp(3rem,6vh,5rem)]">
-          <Moon size={110} />
-          <div className="mx-auto grid max-w-6xl items-center gap-[clamp(2rem,5vw,4rem)] md:grid-cols-[1.05fr_1fr]">
-            {/* Copy column */}
-            <div className="order-2 text-center md:order-1 md:text-left">
-              <p
-                style={{
-                  fontFamily: BODY,
-                  color: C_DAWN,
-                  fontSize: "11px",
-                  letterSpacing: "0.4em",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                }}
-              >
-                A Reading · Free · No account
-              </p>
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <p
+              style={{
+                fontFamily: BODY,
+                color: C_DAWN,
+                fontSize: "11px",
+                letterSpacing: "0.4em",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
+              What's your Tikkun?
+            </p>
 
-              <h1
-                className="mt-5"
-                style={{
-                  fontFamily: HEAD,
-                  fontWeight: 500,
-                  fontSize: "clamp(40px, 7.4vw, 82px)",
-                  lineHeight: 0.98,
-                  color: C_INK,
-                  letterSpacing: "-0.025em",
-                }}
-              >
-                Map the work<br />
-                <span style={{ fontStyle: "italic", fontWeight: 400 }}>
-                  your soul came{" "}
-                  <span
-                    style={{
-                      background: `linear-gradient(135deg, ${C_DAWN} 0%, ${C_GOLD} 100%)`,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    to do
-                  </span>
-                  <span style={{ color: C_DAWN }}>.</span>
-                </span>
-              </h1>
-
-              <p
-                className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)] md:mx-0"
-                style={{
-                  fontFamily: BODY,
-                  color: C_INK_SOFT,
-                  fontSize: "clamp(15px, 1.55vw, 18px)",
-                  lineHeight: 1.6,
-                  maxWidth: "32rem",
-                  fontWeight: 400,
-                }}
-              >
-                Kabbalistic Astrology maps your{" "}
-                <em style={{ color: C_GOLD, fontStyle: "normal", fontWeight: 600 }}>
-                  Tikkun
-                </em>
-                : the soul's pattern of correction that signals how to{" "}
-                <strong style={{ color: C_INK, fontWeight: 700 }}>
-                  fulfill your life's potential
-                </strong>{" "}
-                — in relationships, finances, and career.
-              </p>
-
-              <div className="mt-[clamp(1.75rem,3.5vh,2.5rem)] flex flex-col items-center gap-3 md:items-start">
-                <PrimaryCTA onClick={handleSpin} />
-                <p
-                  style={{
-                    fontFamily: BODY,
-                    color: C_MUTED,
-                    fontSize: "11px",
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                    fontWeight: 600,
-                  }}
-                >
-                  {remaining > 0
-                    ? `${remaining} of ${MAX_SPINS} ${remaining === 1 ? "turn" : "turns"} remaining`
-                    : "Three turns of the wheel"}
-                </p>
-              </div>
-            </div>
-
-            {/* Wheel column */}
-            <div className="order-1 flex justify-center md:order-2 md:justify-end">
+            <div className="mt-[clamp(1.25rem,3vh,2rem)]">
               <button
                 type="button"
                 onClick={handleSpin}
                 aria-label="Turn the Tikkun wheel"
-                className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb088] focus-visible:ring-offset-4 focus-visible:ring-offset-[#2a2c55]"
+                className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb088] focus-visible:ring-offset-4 focus-visible:ring-offset-[#3d5170]"
                 style={{
                   filter:
-                    "drop-shadow(0 0 60px rgba(255,176,136,0.25)) drop-shadow(0 0 30px rgba(245,207,122,0.2))",
+                    "drop-shadow(0 0 60px rgba(255,176,136,0.30)) drop-shadow(0 0 30px rgba(245,207,122,0.25))",
                 }}
               >
                 <TikkunWheel size={wheelSize} state="idle" />
               </button>
             </div>
+
+            <p
+              className="mt-[clamp(1.5rem,3vh,2rem)]"
+              style={{
+                fontFamily: HEAD,
+                color: C_INK,
+                fontWeight: 400,
+                fontStyle: "italic",
+                fontSize: "clamp(18px, 2.2vw, 24px)",
+                lineHeight: 1.5,
+                maxWidth: "32rem",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              The soul's pattern of correction — the work you came to do, in
+              love, livelihood, and purpose.
+            </p>
+
+            <div className="mt-[clamp(1.75rem,3.5vh,2.5rem)] flex flex-col items-center gap-3">
+              <PrimaryCTA onClick={handleSpin} />
+              <p
+                style={{
+                  fontFamily: BODY,
+                  color: C_MUTED,
+                  fontSize: "11px",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                }}
+              >
+                {remaining > 0
+                  ? `${remaining} of ${MAX_SPINS} ${remaining === 1 ? "turn" : "turns"} remaining`
+                  : "Three turns of the wheel"}
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* ── PASSAGE ──────────────────────────────────────────── */}
+        {/* ── ORIGINS ──────────────────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,7vh,5.5rem)]"
           style={{
@@ -351,184 +287,101 @@ function Landing() {
             borderBottom: `1px solid ${C_RULE_SOFT}`,
           }}
         >
-          <StarField density={40} opacity={0.5} seedOffset={500} />
-          <div className="relative mx-auto max-w-3xl text-center">
-            <Eyebrow>Sefer Yetzirah · 2:2</Eyebrow>
-            <blockquote
+          <StarField density={60} opacity={0.55} seedOffset={500} />
+          <div className="relative mx-auto max-w-2xl text-center">
+            <Eyebrow>Origins</Eyebrow>
+            <p
               className="mt-[clamp(1.5rem,3vh,2rem)]"
               style={{
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 400,
-                fontStyle: "italic",
-                fontSize: "clamp(22px, 3vw, 34px)",
-                lineHeight: 1.35,
+                fontSize: "clamp(20px, 2.4vw, 26px)",
+                lineHeight: 1.5,
                 letterSpacing: "-0.01em",
               }}
             >
-              "With twenty-two letters He engraved, hewed, weighed, and
-              combined them, and out of them He formed all that was formed
-              and all that will be formed."
-            </blockquote>
+              Kabbalah Astrology dates back to{" "}
+              <em style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</em>{" "}
+              and lives in the ancient texts — the{" "}
+              <span style={{ color: C_INK }}>Talmud</span>, the{" "}
+              <span style={{ color: C_INK }}>Sefer Yetzirah</span>, and the{" "}
+              <span style={{ color: C_INK }}>Zohar</span>.
+            </p>
           </div>
         </section>
 
-        {/* ── THREE GATES ──────────────────────────────────────── */}
+        {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,6rem)]"
           style={{
             background:
-              "linear-gradient(180deg, #44345f 0%, #523963 50%, #6b3f63 100%)",
+              "linear-gradient(180deg, #4a5f7e 0%, #5a7090 50%, #6e7d96 100%)",
           }}
         >
-          <StarField density={50} opacity={0.5} seedOffset={900} />
-          <div className="relative mx-auto max-w-6xl">
-            <div className="mx-auto max-w-2xl text-center">
-              <Eyebrow>The reading</Eyebrow>
-              <h2
-                className="mt-6"
-                style={{
-                  fontFamily: HEAD,
-                  color: C_INK,
-                  fontWeight: 500,
-                  fontSize: "clamp(32px, 5vw, 52px)",
-                  lineHeight: 1.05,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Three gates the<br />
-                wheel opens
-                <span style={{ color: C_DAWN }}>.</span>
-              </h2>
-            </div>
-
-            <div
-              className="mt-[clamp(3rem,6vh,4.5rem)] grid gap-px md:grid-cols-3"
-              style={{ background: C_RULE_SOFT }}
+          <StarField density={70} opacity={0.5} seedOffset={900} />
+          <div className="relative mx-auto max-w-3xl text-center">
+            <Eyebrow>Mazalot · מזלות</Eyebrow>
+            <h2
+              className="mt-6"
+              style={{
+                fontFamily: HEAD,
+                color: C_INK,
+                fontWeight: 500,
+                fontSize: "clamp(28px, 4.4vw, 44px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+              }}
             >
-              {[
-                {
-                  num: "01",
-                  glyph: "א",
-                  t: "Your sign",
-                  d: "The Hebrew letter and month that govern your soul, drawn from the twelvefold scheme of the Sefer Yetzirah.",
-                },
-                {
-                  num: "02",
-                  glyph: "ב",
-                  t: "Your tikkun",
-                  d: "The correction your soul came to make — the work that defines the shape of this lifetime.",
-                },
-                {
-                  num: "03",
-                  glyph: "ג",
-                  t: "Your fields",
-                  d: "How the work expresses itself in love, livelihood, and your relationship to purpose.",
-                },
-              ].map((s) => (
-                <div
-                  key={s.t}
-                  className="p-[clamp(1.5rem,3vw,2.25rem)]"
-                  style={{ background: "rgba(27, 35, 71, 0.55)" }}
-                >
-                  <div className="flex items-baseline justify-between">
-                    <span
-                      style={{
-                        fontFamily: BODY,
-                        color: C_DAWN,
-                        fontSize: "12px",
-                        letterSpacing: "0.2em",
-                        fontWeight: 700,
-                      }}
-                    >
-                      {s.num}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: HEAD,
-                        color: C_GOLD,
-                        fontSize: "clamp(40px, 5vw, 56px)",
-                        lineHeight: 1,
-                        fontWeight: 400,
-                      }}
-                    >
-                      {s.glyph}
-                    </span>
-                  </div>
-                  <h3
-                    className="mt-[clamp(2rem,4vh,3rem)]"
-                    style={{
-                      fontFamily: HEAD,
-                      color: C_INK,
-                      fontWeight: 500,
-                      fontSize: "clamp(22px, 2.4vw, 28px)",
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {s.t}
-                  </h3>
-                  <p
-                    className="mt-3"
-                    style={{
-                      fontFamily: BODY,
-                      color: C_INK_SOFT,
-                      fontSize: "clamp(14px, 1.3vw, 15px)",
-                      lineHeight: 1.65,
-                    }}
-                  >
-                    {s.d}
-                  </p>
-                </div>
-              ))}
-            </div>
+              Free will always overrides
+              <span style={{ color: C_DAWN }}> fate</span>.
+            </h2>
+            <p
+              className="mx-auto mt-6"
+              style={{
+                fontFamily: BODY,
+                color: C_INK_SOFT,
+                fontSize: "clamp(15px, 1.5vw, 17px)",
+                lineHeight: 1.7,
+                maxWidth: "34rem",
+              }}
+            >
+              Kabbalists accept the influence of the celestial constellations —
+              the <em style={{ color: C_GOLD, fontStyle: "italic" }}>Mazalot</em> —
+              but reject astrology as fatalistic prediction. The stars
+              incline; they do not decide.
+            </p>
           </div>
         </section>
 
-        {/* ── TRADITION ────────────────────────────────────────── */}
+        {/* ── TIKKUN OLAM ──────────────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,6rem)]"
           style={{
             background:
-              "linear-gradient(180deg, #6b3f63 0%, #8a4f5e 60%, #b56a5a 100%)",
-            borderTop: `1px solid ${C_RULE_SOFT}`,
+              "linear-gradient(180deg, #6e7d96 0%, #9c8678 50%, #c89070 100%)",
           }}
         >
-          <div className="mx-auto grid max-w-6xl gap-[clamp(2rem,5vw,4rem)] md:grid-cols-[auto_1fr] md:items-start">
-            <div>
-              <Eyebrow>The tradition</Eyebrow>
-            </div>
-            <div className="max-w-2xl">
-              <p
-                style={{
-                  fontFamily: HEAD,
-                  color: C_INK,
-                  fontWeight: 500,
-                  fontSize: "clamp(22px, 2.8vw, 32px)",
-                  lineHeight: 1.3,
-                  letterSpacing: "-0.015em",
-                }}
-              >
-                Kabbalistic Astrology is drawn from the{" "}
-                <em style={{ fontWeight: 400 }}>Sefer Yetzirah</em>, the
-                oldest extant work of Jewish mysticism, and elaborated in
-                the <em style={{ fontWeight: 400 }}>Zohar</em>. It does not
-                describe personality<span style={{ color: C_GOLD }}>.</span>{" "}
-                It describes work.
-              </p>
-              <p
-                className="mt-6"
-                style={{
-                  fontFamily: BODY,
-                  color: C_INK_SOFT,
-                  fontSize: "clamp(14px, 1.4vw, 16px)",
-                  lineHeight: 1.7,
-                }}
-              >
-                Western astrology centers the natal chart and the
-                personality it implies. The Kabbalistic reading centers the
-                soul's correction — the pattern you came to mend, and the
-                doorway through which you mend it.
-              </p>
+          <div className="relative mx-auto max-w-3xl text-center">
+            <Eyebrow>Tikkun Olam · תיקון עולם</Eyebrow>
+            <p
+              className="mt-[clamp(1.5rem,3vh,2rem)]"
+              style={{
+                fontFamily: HEAD,
+                color: "#1b2740",
+                fontWeight: 400,
+                fontStyle: "italic",
+                fontSize: "clamp(22px, 3vw, 32px)",
+                lineHeight: 1.4,
+                letterSpacing: "-0.015em",
+              }}
+            >
+              Fulfilling your Tikkun serves a greater purpose — sharing your
+              light to build a better world.
+            </p>
+
+            <div className="mt-[clamp(2.5rem,5vh,4rem)] flex justify-center">
+              <SefirotTree min={120} max={200} vwFraction={0.32} />
             </div>
           </div>
         </section>
@@ -538,17 +391,17 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
           style={{
             background:
-              "linear-gradient(180deg, #b56a5a 0%, #d8896a 60%, #e8a07a 100%)",
+              "linear-gradient(180deg, #c89070 0%, #e0a07c 55%, #f0b485 100%)",
           }}
         >
           <div className="mx-auto max-w-3xl">
             <h2
               style={{
                 fontFamily: HEAD,
-                color: "#1b2347",
+                color: "#1b2740",
                 fontWeight: 500,
-                fontSize: "clamp(40px, 7vw, 80px)",
-                lineHeight: 0.98,
+                fontSize: "clamp(36px, 6vw, 68px)",
+                lineHeight: 1,
                 letterSpacing: "-0.025em",
               }}
             >
@@ -561,23 +414,22 @@ function Landing() {
               className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
               style={{
                 fontFamily: BODY,
-                color: "rgba(27, 35, 71, 0.78)",
+                color: "rgba(27, 39, 64, 0.78)",
                 fontSize: "clamp(15px, 1.5vw, 17px)",
                 lineHeight: 1.6,
                 maxWidth: "32rem",
                 fontWeight: 500,
               }}
             >
-              A free reading drawn in the moment. No account, no email, no
-              subscription.
+              A free reading drawn in the moment. No account, no email.
             </p>
             <div className="mt-[clamp(2rem,4vh,2.75rem)] flex justify-center">
               <button
                 type="button"
                 onClick={handleSpin}
-                className="group inline-flex items-center gap-3 uppercase transition-all hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1b2347] focus-visible:ring-offset-4 focus-visible:ring-offset-[#d8896a]"
+                className="group inline-flex items-center gap-3 uppercase transition-all hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1b2740] focus-visible:ring-offset-4 focus-visible:ring-offset-[#e0a07c]"
                 style={{
-                  background: "#1b2347",
+                  background: "#1b2740",
                   color: C_INK,
                   fontFamily: BODY,
                   fontWeight: 700,
@@ -586,7 +438,7 @@ function Landing() {
                   padding:
                     "clamp(16px, 1.9vh, 20px) clamp(28px, 4vw, 44px)",
                   borderRadius: "0px",
-                  boxShadow: "0 10px 40px -10px rgba(27,35,71,0.5)",
+                  boxShadow: "0 10px 40px -10px rgba(27,39,64,0.5)",
                 }}
               >
                 <span>Receive your reading</span>
@@ -602,33 +454,22 @@ function Landing() {
         <footer
           className="px-[clamp(1.25rem,5vw,3rem)] py-[clamp(1.5rem,3vh,2.5rem)]"
           style={{
-            background: "#1b2347",
+            background: "#1b2740",
             borderTop: `1px solid ${C_RULE}`,
           }}
         >
-          <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 md:flex-row">
-            <p
-              style={{
-                fontFamily: HEAD,
-                color: C_INK,
-                fontWeight: 500,
-                fontSize: "14px",
-                letterSpacing: "0.04em",
-              }}
-            >
-              Tikkun · <span style={{ fontFamily: HEAD }}>תיקון</span>
-            </p>
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2">
             <p
               style={{
                 fontFamily: BODY,
                 color: C_MUTED,
-                fontSize: "11px",
-                letterSpacing: "0.24em",
+                fontSize: "10px",
+                letterSpacing: "0.32em",
                 textTransform: "uppercase",
                 fontWeight: 600,
               }}
             >
-              © {new Date().getFullYear()} · Kabbalistic Astrology
+              © {new Date().getFullYear()} · Kabbalah Astrology
             </p>
           </div>
         </footer>
