@@ -343,7 +343,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: "linear-gradient(180deg, #1c2848 0%, #22304f 50%, #283958 100%)" }}
         >
-          <StarField density={60} opacity={0.5} seedOffset={2100} />
+          <StarField density={140} opacity={0.5} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
             <h2
               className="font-mono font-thin text-2xl"
