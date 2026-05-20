@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { SkyShell } from "@/components/landing/SkyShell";
-import { BODY, C_GOLD_BRIGHT } from "@/lib/landing-style";
+import { HEAD, BODY, C_INK, C_GOLD_BRIGHT, C_DAWN } from "@/lib/landing-style";
 
 export const Route = createFileRoute("/spinning")({
   component: Spinning,
@@ -27,6 +27,15 @@ function Spinning() {
   return (
     <SkyShell starDensity={220}>
       <section className="relative flex min-h-[calc(100vh-3rem)] flex-col items-center justify-center px-[clamp(1rem,5vw,3rem)] py-[clamp(2rem,6vh,5rem)] text-center">
+        <h1
+          className="mt-[clamp(1.25rem,3vh,2rem)] mb-[clamp(1.5rem,4vh,2.5rem)]"
+          style={{
+            fontFamily: HEAD, color: C_INK, fontWeight: 500,
+            fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.02em",
+          }}
+        >
+          Reveal Your <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>
+        </h1>
         <div
           style={{
             filter:
