@@ -63,15 +63,17 @@ const C_RULE = "rgba(253, 246, 230, 0.20)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
 
 
-/** Scattered stars with twinkle. */
+/** Scattered stars with twinkle + slow parallax drift. */
 function StarField({
   density = 90,
   opacity = 0.7,
   seedOffset = 0,
+  driftSeconds = 90,
 }: {
   density?: number;
   opacity?: number;
   seedOffset?: number;
+  driftSeconds?: number;
 }) {
   const stars = Array.from({ length: density }).map((_, i) => {
     const seed = ((i + seedOffset) * 9301 + 49297) % 233280;
@@ -84,6 +86,13 @@ function StarField({
     const mid = v > 0.78 && !big;
     const size = big ? 2.5 : mid ? 1.6 : 1;
     const o = 0.45 + r(4) * 0.55;
+    const tint = r(5);
+    const bg =
+      tint > 0.93
+        ? "#a8c8e8" // cool moonlight cyan
+        : tint > 0.86
+          ? "#ffd6b8" // dawn warmth
+          : "#fffdf3";
     return (
       <span
         key={i}
@@ -93,7 +102,7 @@ function StarField({
           top: `${top}%`,
           width: `${size}px`,
           height: `${size}px`,
-          backgroundColor: "#fffdf3",
+          backgroundColor: bg,
           opacity: o * opacity,
           boxShadow: big
             ? "0 0 8px rgba(245,207,122,0.85), 0 0 14px rgba(255,176,136,0.4)"
@@ -104,12 +113,28 @@ function StarField({
       />
     );
   });
+  const driftName = `tk-drift-${seedOffset}`;
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
     >
-      {stars}
+      <style>{`
+        @keyframes ${driftName} {
+          0%   { transform: translate3d(0, 0, 0); }
+          50%  { transform: translate3d(-2%, -1.2%, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+      `}</style>
+      <div
+        className="absolute inset-0"
+        style={{
+          animation: `${driftName} ${driftSeconds}s ease-in-out infinite`,
+          willChange: "transform",
+        }}
+      >
+        {stars}
+      </div>
     </div>
   );
 }
