@@ -1,14 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
-import { randomSign } from "@/lib/bundle";
-import {
-  MAX_SPINS,
-  getAttempts,
-  incrementAttempt,
-} from "@/lib/spinAttempts";
+import { randomTikkunSign } from "@/lib/tikkun-data";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -213,26 +207,13 @@ function PrimaryCTA({
 
 function Landing() {
   const navigate = useNavigate();
-  const [attempts, setAttempts] = useState(0);
   const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
 
-  useEffect(() => {
-    setAttempts(getAttempts());
-  }, []);
-
   const handleSpin = () => {
-    const next = incrementAttempt();
-    if (next > MAX_SPINS) {
-      navigate({ to: "/maxspins" });
-      return;
-    }
-    const target = randomSign();
-    sessionStorage.setItem("tikkun_target_sign", target.key);
+    const target = randomTikkunSign();
+    sessionStorage.setItem("tikkun_target_sign", target.id);
     navigate({ to: "/spinning" });
   };
-
-  const used = Math.min(attempts, MAX_SPINS);
-  const remaining = Math.max(0, MAX_SPINS - used);
 
   return (
     <main
