@@ -177,10 +177,16 @@ export function TikkunWheel({
           ${isIdle ? `animation: tk-halo-${uid} 2.2s ease-in-out infinite;` : "opacity: 0.7;"}
         }
         .tk-ripple-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 2.6s ease-out infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out infinite;` : "opacity: 0;"}
         }
         .tk-ripple2-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 2.6s ease-out 1.3s infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 0.4s infinite;` : "opacity: 0;"}
+        }
+        .tk-ripple3-${uid} {
+          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 0.8s infinite;` : "opacity: 0;"}
+        }
+        .tk-ripple4-${uid} {
+          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 1.2s infinite;` : "opacity: 0;"}
         }
         .tk-spark-${uid} {
           ${isIdle ? `animation: tk-twinkle-${uid} 3.4s ease-in-out infinite;` : ""}
@@ -243,6 +249,24 @@ export function TikkunWheel({
         />
         <circle
           className={`tk-ripple2-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke={accent}
+          strokeWidth={1.2}
+        />
+        <circle
+          className={`tk-ripple3-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke={accentBright}
+          strokeWidth={1.2}
+        />
+        <circle
+          className={`tk-ripple4-${uid}`}
           cx={cx}
           cy={cy}
           r={ringR}
@@ -351,15 +375,15 @@ export function TikkunWheel({
             r={alephR}
             fill={`url(#${alephId})`}
             stroke="rgb(243, 219, 157)"
-            strokeWidth={size * 0.008}
+            strokeWidth={size * 0.003}
           />
           <text
             x={cx}
             y={cy}
-            fill={accentBright}
+            fill={text}
             style={{
               fontFamily: "var(--font-sans)",
-              fontWeight: 700,
+              fontWeight: 400,
               fontSize: "clamp(11px, 1.2vw, 13px)",
               letterSpacing: "0.28em",
             }}
