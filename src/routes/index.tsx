@@ -339,10 +339,11 @@ function Landing() {
             </h2>
 
             <ul
-              className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] font-mono font-thin text-sm text-left"
+              className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] font-mono font-thin text-left"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.55,
+                lineHeight: 1.6,
+                fontSize: "clamp(14px, 1.5vw, 17px)",
                 listStyle: "none",
                 padding: 0,
               }}
@@ -407,11 +408,12 @@ function Landing() {
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
             </h2>
             <p
-              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin text-sm"
+              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.55,
-                maxWidth: "34rem",
+                lineHeight: 1.6,
+                maxWidth: "36rem",
+                fontSize: "clamp(14px, 1.5vw, 17px)",
               }}
             >
               Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
@@ -434,11 +436,12 @@ function Landing() {
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
             </h2>
             <p
-              className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm"
+              className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.55,
-                maxWidth: "34rem",
+                lineHeight: 1.6,
+                maxWidth: "36rem",
+                fontSize: "clamp(14px, 1.5vw, 17px)",
               }}
             >
               Kabbalists accept the signals or influence of the celestial
@@ -468,11 +471,12 @@ function Landing() {
               A greater purpose.
             </h2>
             <p
-              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin text-sm"
+              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.55,
-                maxWidth: "34rem",
+                lineHeight: 1.6,
+                maxWidth: "36rem",
+                fontSize: "clamp(14px, 1.5vw, 17px)",
               }}
             >
               Fulfilling your{" "}
@@ -525,11 +529,12 @@ function Landing() {
               <span style={{ color: C_GOLD }}>.</span>
             </h2>
             <p
-              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-sm"
+              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.55,
-                maxWidth: "34rem",
+                lineHeight: 1.6,
+                maxWidth: "36rem",
+                fontSize: "clamp(14px, 1.5vw, 17px)",
               }}
             >
               A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
@@ -559,7 +564,7 @@ function Landing() {
                 fontWeight: 600,
               }}
             >
-              © {new Date().getFullYear()} · Kabbalah Astrology
+              © {new Date().getFullYear()} · Kabbalah Astrology · Kabbalah Circle
             </p>
           </div>
         </footer>
