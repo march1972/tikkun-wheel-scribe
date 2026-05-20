@@ -53,7 +53,7 @@ export function TikkunWheel({
   const cy = size / 2;
   const ringR = size * 0.464;
   const letterR = size * 0.393;
-  const alephR = size * 0.122;
+  const alephR = size * 0.10;
   const letterFontSize = size * 0.075;
   const alephFontSize = size * 0.042;
 
@@ -221,9 +221,9 @@ export function TikkunWheel({
             <stop offset="100%" stopColor="#C99245" />
           </linearGradient>
           <radialGradient id={alephId} cx="50%" cy="45%" r="60%">
-            <stop offset="0%" stopColor="#6b1e26" />
-            <stop offset="60%" stopColor="#3a1820" />
-            <stop offset="100%" stopColor="#1f1014" />
+            <stop offset="0%" stopColor="#d96475" />
+            <stop offset="60%" stopColor="#a83a48" />
+            <stop offset="100%" stopColor="#6b1e26" />
           </radialGradient>
           <filter id={letterGlowId} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation={size * 0.006} result="b" />
