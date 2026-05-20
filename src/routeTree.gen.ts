@@ -13,9 +13,10 @@ import { Route as SpinningRouteImport } from './routes/spinning'
 import { Route as SnippetRouteImport } from './routes/snippet'
 import { Route as ReadingRouteImport } from './routes/reading'
 import { Route as MaxspinsRouteImport } from './routes/maxspins'
+import { Route as InterstitialRouteImport } from './routes/interstitial'
+import { Route as HistoryRouteImport } from './routes/history'
 import { Route as FormRouteImport } from './routes/form'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ReadingMoreRouteImport } from './routes/reading.more'
 
 const SpinningRoute = SpinningRouteImport.update({
   id: '/spinning',
@@ -37,6 +38,16 @@ const MaxspinsRoute = MaxspinsRouteImport.update({
   path: '/maxspins',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InterstitialRoute = InterstitialRouteImport.update({
+  id: '/interstitial',
+  path: '/interstitial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FormRoute = FormRouteImport.update({
   id: '/form',
   path: '/form',
@@ -47,75 +58,78 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReadingMoreRoute = ReadingMoreRouteImport.update({
-  id: '/more',
-  path: '/more',
-  getParentRoute: () => ReadingRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/form': typeof FormRoute
+  '/history': typeof HistoryRoute
+  '/interstitial': typeof InterstitialRoute
   '/maxspins': typeof MaxspinsRoute
-  '/reading': typeof ReadingRouteWithChildren
+  '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
-  '/reading/more': typeof ReadingMoreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/form': typeof FormRoute
+  '/history': typeof HistoryRoute
+  '/interstitial': typeof InterstitialRoute
   '/maxspins': typeof MaxspinsRoute
-  '/reading': typeof ReadingRouteWithChildren
+  '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
-  '/reading/more': typeof ReadingMoreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/form': typeof FormRoute
+  '/history': typeof HistoryRoute
+  '/interstitial': typeof InterstitialRoute
   '/maxspins': typeof MaxspinsRoute
-  '/reading': typeof ReadingRouteWithChildren
+  '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
-  '/reading/more': typeof ReadingMoreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/form'
+    | '/history'
+    | '/interstitial'
     | '/maxspins'
     | '/reading'
     | '/snippet'
     | '/spinning'
-    | '/reading/more'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/form'
+    | '/history'
+    | '/interstitial'
     | '/maxspins'
     | '/reading'
     | '/snippet'
     | '/spinning'
-    | '/reading/more'
   id:
     | '__root__'
     | '/'
     | '/form'
+    | '/history'
+    | '/interstitial'
     | '/maxspins'
     | '/reading'
     | '/snippet'
     | '/spinning'
-    | '/reading/more'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FormRoute: typeof FormRoute
+  HistoryRoute: typeof HistoryRoute
+  InterstitialRoute: typeof InterstitialRoute
   MaxspinsRoute: typeof MaxspinsRoute
-  ReadingRoute: typeof ReadingRouteWithChildren
+  ReadingRoute: typeof ReadingRoute
   SnippetRoute: typeof SnippetRoute
   SpinningRoute: typeof SpinningRoute
 }
@@ -150,6 +164,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaxspinsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/interstitial': {
+      id: '/interstitial'
+      path: '/interstitial'
+      fullPath: '/interstitial'
+      preLoaderRoute: typeof InterstitialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/form': {
       id: '/form'
       path: '/form'
@@ -164,32 +192,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reading/more': {
-      id: '/reading/more'
-      path: '/more'
-      fullPath: '/reading/more'
-      preLoaderRoute: typeof ReadingMoreRouteImport
-      parentRoute: typeof ReadingRoute
-    }
   }
 }
-
-interface ReadingRouteChildren {
-  ReadingMoreRoute: typeof ReadingMoreRoute
-}
-
-const ReadingRouteChildren: ReadingRouteChildren = {
-  ReadingMoreRoute: ReadingMoreRoute,
-}
-
-const ReadingRouteWithChildren =
-  ReadingRoute._addFileChildren(ReadingRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FormRoute: FormRoute,
+  HistoryRoute: HistoryRoute,
+  InterstitialRoute: InterstitialRoute,
   MaxspinsRoute: MaxspinsRoute,
-  ReadingRoute: ReadingRouteWithChildren,
+  ReadingRoute: ReadingRoute,
   SnippetRoute: SnippetRoute,
   SpinningRoute: SpinningRoute,
 }

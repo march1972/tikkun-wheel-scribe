@@ -1,26 +1,26 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ConstellationGlyph } from "@/components/ConstellationGlyph";
-import { randomSign, signByKey, type Sign } from "@/lib/bundle";
+import { SkyShell } from "@/components/landing/SkyShell";
+import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import {
-  MAX_SPINS,
-  getAttempts,
-  incrementAttempt,
-  spinsRemaining,
-} from "@/lib/spinAttempts";
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
+} from "@/lib/landing-style";
+import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
+import { MAX_SPINS, getAttempts, incrementAttempt, spinsRemaining } from "@/lib/spinAttempts";
 
 export const Route = createFileRoute("/snippet")({
   component: Snippet,
+  head: () => ({ meta: [{ title: "Your Tikkun teaser" }] }),
 });
 
 function Snippet() {
   const navigate = useNavigate();
-  const [sign, setSign] = useState<Sign | null>(null);
+  const [sign, setSign] = useState<TikkunSign | null>(null);
   const [remaining, setRemaining] = useState(0);
 
   useEffect(() => {
     const key = sessionStorage.getItem("tikkun_target_sign");
-    const s = signByKey(key);
+    const s = signById(key);
     if (!s) {
       navigate({ to: "/" });
       return;
@@ -35,136 +35,107 @@ function Snippet() {
       navigate({ to: "/maxspins" });
       return;
     }
-    const target = randomSign();
-    sessionStorage.setItem("tikkun_target_sign", target.key);
+    const target = randomTikkunSign(sign?.id ?? null);
+    sessionStorage.setItem("tikkun_target_sign", target.id);
     navigate({ to: "/spinning" });
   };
 
   if (!sign) return null;
-
   const usedAll = getAttempts() >= MAX_SPINS;
+  const copy = STATIC_COPY.screen3;
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center bg-forest-deep px-[clamp(1rem,5vw,3rem)] py-[clamp(2rem,6vh,5rem)] text-cream">
-      <div className="flex items-baseline gap-[clamp(12px,2vw,24px)]">
-        <span
-          style={{
-            fontFamily: "var(--font-serif-2)",
-            color: "var(--cream)",
-            fontSize: "clamp(44px, 10vw, 88px)",
-            lineHeight: 1,
-          }}
-        >
-          {sign.letter}
-        </span>
-        <span
-          className="italic"
-          style={{
-            fontFamily: "var(--font-serif)",
-            color: "var(--cream)",
-            fontSize: "clamp(26px, 6vw, 52px)",
-            fontWeight: 300,
-          }}
-        >
-          {sign.signName}
-        </span>
-      </div>
+    <SkyShell starDensity={200}>
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
+        {/* Eyebrow */}
+        <div className="flex w-full items-center gap-3">
+          <span className="h-px flex-1" style={{ background: C_RULE }} />
+          <span
+            style={{
+              fontFamily: BODY, color: C_INK_SOFT, fontSize: "11px",
+              letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
+            }}
+          >
+            {copy.eyebrow}
+          </span>
+          <span className="h-px flex-1" style={{ background: C_RULE }} />
+        </div>
 
-      <span
-        aria-hidden="true"
-        className="my-5 block h-px w-10"
-        style={{ backgroundColor: "var(--gold-deep)" }}
-      />
+        {/* Letter + sign */}
+        <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex items-baseline gap-[clamp(12px,2.5vw,24px)]">
+          <span
+            style={{
+              fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 12vw, 110px)",
+              lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
+            }}
+          >
+            {sign.hebrewLetter}
+          </span>
+          <span
+            style={{
+              fontFamily: HEAD, color: C_INK, fontStyle: "italic", fontWeight: 400,
+              fontSize: "clamp(28px, 6vw, 56px)",
+            }}
+          >
+            {sign.sign}
+          </span>
+        </div>
 
-      <div
-        className="rounded-sm text-center"
-        style={{
-          backgroundColor: "var(--forest-mid)",
-          border: "1px solid var(--gold-deep)",
-          maxWidth: "min(92vw, 560px)",
-          padding: "clamp(16px, 3vw, 28px) clamp(18px, 4vw, 32px)",
-        }}
-      >
+        {/* Snippet */}
         <p
+          className="mt-[clamp(1.5rem,3vh,2rem)] font-mono font-thin"
           style={{
-            fontFamily: "var(--font-serif)",
-            color: "var(--cream)",
-            fontSize: "clamp(14px, 1.6vw, 18px)",
-            lineHeight: 1.65,
+            color: C_INK_SOFT, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)",
+            maxWidth: "34rem",
           }}
         >
-          You have a tendency to {sign.oneParagraph}
+          You have a tendency to <span style={{ color: C_INK }}>{sign.screen3.spinSnippet}</span>
         </p>
-      </div>
 
-      <p
-        className="mt-6 italic"
-        style={{
-          fontFamily: "var(--font-serif)",
-          fontSize: "clamp(15px, 2vw, 22px)",
-          color: "#FFB347",
-        }}
-      >
-        Does this sound like you?
-      </p>
-
-      <button
-        type="button"
-        onClick={() => navigate({ to: "/form" })}
-        className="mt-5 rounded-full font-semibold uppercase transition-opacity hover:opacity-90"
-        style={{
-          backgroundColor: "var(--gold-bright)",
-          color: "var(--forest-deepest)",
-          fontFamily: "var(--font-sans)",
-          letterSpacing: "0.28em",
-          fontSize: "clamp(11px, 1.3vw, 14px)",
-          padding: "clamp(10px, 1.4vh, 14px) clamp(22px, 3.5vw, 36px)",
-        }}
-      >
-        See My Real Tikkun
-      </button>
-
-      <p
-        className="mt-3 italic"
-        style={{
-          fontFamily: "var(--font-serif)",
-          color: "var(--cream-faint)",
-          fontSize: "clamp(11px, 1.2vw, 14px)",
-        }}
-      >
-        Your real reading takes 30 seconds.
-      </p>
-
-      {remaining > 0 ? (
-        <button
-          type="button"
-          onClick={handleSpinAgain}
-          className="mt-6 text-[12px] uppercase transition-opacity hover:opacity-70"
-          style={{
-            fontFamily: "var(--font-sans)",
-            letterSpacing: "0.24em",
-            color: "var(--cream)",
-            background: "transparent",
-            border: "1px solid var(--gold-deep)",
-            padding: "10px 20px",
-            borderRadius: "999px",
-          }}
-        >
-          Not quite — spin again ({remaining} left)
-        </button>
-      ) : usedAll ? (
+        {/* Prompt */}
         <p
-          className="mt-6 max-w-[320px] text-center text-[12px] italic"
+          className="mt-[clamp(1.75rem,3.5vh,2.5rem)] italic"
           style={{
-            fontFamily: "var(--font-serif)",
-            color: "var(--cream-faint)",
+            fontFamily: HEAD, color: C_GOLD, fontSize: "clamp(17px, 2.2vw, 22px)",
           }}
         >
-          You've used all 3 free spins. Your real Tikkun awaits.
+          {copy.prompt}
         </p>
-      ) : null}
 
-      <ConstellationGlyph />
-    </main>
+        {/* CTA */}
+        <div className="mt-[clamp(1.25rem,3vh,2rem)]">
+          <PrimaryCTA label={copy.primaryButton} onClick={() => navigate({ to: "/interstitial" })} />
+        </div>
+        <p
+          className="mt-3 italic font-mono"
+          style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
+        >
+          {copy.reassurance}
+        </p>
+
+        {/* Spin again */}
+        {remaining > 0 ? (
+          <button
+            type="button"
+            onClick={handleSpinAgain}
+            className="mt-[clamp(1.75rem,3.5vh,2.5rem)] uppercase transition-opacity hover:opacity-70"
+            style={{
+              fontFamily: BODY, letterSpacing: "0.24em", color: C_INK_SOFT,
+              background: "transparent", border: `1px solid ${C_RULE}`,
+              padding: "10px 22px", borderRadius: "999px", fontSize: "11px",
+            }}
+          >
+            {copy.secondaryButton.replace("(N left)", `(${remaining} left)`)}
+          </button>
+        ) : usedAll ? (
+          <p
+            className="mt-[clamp(1.5rem,3vh,2rem)] max-w-xs italic font-mono"
+            style={{ color: C_MUTED, fontSize: "12px" }}
+          >
+            You've used all 3 free spins. Your real Tikkun awaits.
+          </p>
+        ) : null}
+      </section>
+    </SkyShell>
   );
 }
