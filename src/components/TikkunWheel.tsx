@@ -189,11 +189,11 @@ export function TikkunWheel({
         }
         .tk-aleph-${uid} {
           transform-origin: ${cx}px ${cy}px;
-          ${isIdle ? `animation: tk-breath-${uid} 2.2s ease-in-out infinite;` : ""}
+          ${isIdle ? `animation: tk-breath-${uid} 2.4s ease-in-out infinite;` : ""}
         }
         .tk-aleph-halo-${uid} {
           transform-origin: ${cx}px ${cy}px;
-          ${isIdle ? `animation: tk-halo-${uid} 2.2s ease-in-out infinite;` : "opacity: 0.7;"}
+          ${isIdle ? `animation: tk-halo-${uid} 3.6s ease-in-out 0.6s infinite;` : "opacity: 0.7;"}
         }
         .tk-ripple-${uid} {
           ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out infinite;` : "opacity: 0;"}
