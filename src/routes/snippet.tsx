@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
 import {
-  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_DAWN, C_RULE,
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
 import { MAX_SPINS, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
@@ -43,6 +43,87 @@ function Snippet() {
   if (!sign) return null;
   const canSpinAgain = spinNumber < MAX_SPINS;
   const copy = STATIC_COPY.screen3;
+
+  // FINAL SPIN (3 of 3): convert to CTA-focused email capture screen.
+  if (!canSpinAgain) {
+    return (
+      <SkyShell starDensity={200}>
+        <section className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-2xl flex-col items-center justify-center px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3rem,8vh,6rem)] text-center">
+          <div className="flex w-full items-center gap-3">
+            <span className="h-px flex-1" style={{ background: C_RULE }} />
+            <span
+              style={{
+                fontFamily: BODY, color: C_INK_SOFT, fontSize: "11px",
+                letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
+              }}
+            >
+              Kabbalah Astrology
+            </span>
+            <span className="h-px flex-1" style={{ background: C_RULE }} />
+          </div>
+
+          <p
+            className="mt-[clamp(1.25rem,3vh,2rem)] font-mono italic"
+            style={{ color: C_MUTED, fontSize: "12px", letterSpacing: "0.12em" }}
+          >
+            {MAX_SPINS} of {MAX_SPINS} spins reached
+          </p>
+
+          <h1
+            className="mt-[clamp(0.75rem,2vh,1.25rem)]"
+            style={{
+              fontFamily: HEAD, color: C_INK, fontWeight: 500,
+              fontSize: "clamp(28px, 5vw, 52px)", lineHeight: 1.12,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Your actual{" "}
+            <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
+            pattern is found in your{" "}
+            <span style={{ color: C_GOLD, fontStyle: "italic" }}>lunar birth chart</span>.
+          </h1>
+
+          <ul
+            className="mt-[clamp(1.5rem,3vh,2rem)] flex flex-wrap items-center justify-center gap-x-5 gap-y-1 font-mono"
+            style={{ color: C_INK_SOFT, fontSize: "12px", letterSpacing: "0.08em" }}
+          >
+            <li>✓ Your soul's pattern</li>
+            <li>✓ Free 10-page workbook</li>
+            <li>✓ Emailed instantly</li>
+          </ul>
+
+          <button
+            type="button"
+            onClick={() => navigate({ to: "/form" })}
+            className="group mt-[clamp(2rem,4vh,3rem)] inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5"
+            style={{
+              background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
+              color: C_INK,
+              fontFamily: BODY,
+              fontWeight: 700,
+              letterSpacing: "0.28em",
+              fontSize: "clamp(11px, 1.2vw, 13px)",
+              padding: "clamp(14px, 1.9vh, 20px) clamp(24px, 4vw, 44px)",
+              borderRadius: "0px",
+              boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+            }}
+          >
+            <span>Get my real Tikkun</span>
+            <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" style={{ fontWeight: 800 }}>
+              →
+            </span>
+          </button>
+
+          <p
+            className="mt-[clamp(0.75rem,2vh,1.25rem)] font-mono italic"
+            style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
+          >
+            Takes under a minute. No payment, no spam.
+          </p>
+        </section>
+      </SkyShell>
+    );
+  }
 
   return (
     <SkyShell starDensity={200}>
@@ -103,32 +184,23 @@ function Snippet() {
         </div>
 
         {/* Spin again */}
-        {canSpinAgain ? (
-          <button
-            type="button"
-            onClick={handleSpinAgain}
-            className="mt-[clamp(1rem,2.5vh,1.5rem)] uppercase transition-opacity hover:opacity-70"
-            style={{
-              fontFamily: BODY, letterSpacing: "0.24em", color: C_INK_SOFT,
-              background: "transparent", border: `1px solid ${C_RULE}`,
-              padding: "10px 22px", borderRadius: "999px", fontSize: "11px",
-            }}
-          >
-            Not quite — spin again ({spinNumber} of {MAX_SPINS})
-          </button>
-        ) : (
-          <p
-            className="mt-[clamp(1.5rem,3vh,2rem)] max-w-xs italic font-mono"
-            style={{ color: C_MUTED, fontSize: "12px" }}
-          >
-            {MAX_SPINS} of {MAX_SPINS} reached. Your real Tikkun awaits.
-          </p>
-        )}
-
-        {/* CTA — red dawn accent */}
         <button
           type="button"
-          onClick={() => navigate({ to: "/interstitial" })}
+          onClick={handleSpinAgain}
+          className="mt-[clamp(1rem,2.5vh,1.5rem)] uppercase transition-opacity hover:opacity-70"
+          style={{
+            fontFamily: BODY, letterSpacing: "0.24em", color: C_INK_SOFT,
+            background: "transparent", border: `1px solid ${C_RULE}`,
+            padding: "10px 22px", borderRadius: "999px", fontSize: "11px",
+          }}
+        >
+          Not quite — spin again ({spinNumber} of {MAX_SPINS})
+        </button>
+
+        {/* CTA — red dawn accent, direct to form */}
+        <button
+          type="button"
+          onClick={() => navigate({ to: "/form" })}
           className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5"
           style={{
             background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
@@ -157,4 +229,5 @@ function Snippet() {
     </SkyShell>
   );
 }
+
 
