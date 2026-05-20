@@ -180,23 +180,23 @@ function PrimaryCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e94e2b] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
       style={{
-        background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
-        color: C_DEEP,
+        background: `linear-gradient(135deg, ${C_DAWN} 0%, #c93a1c 100%)`,
+        color: C_INK,
         fontFamily: BODY,
         fontWeight: 700,
         letterSpacing: "0.28em",
         fontSize: "clamp(11px, 1.2vw, 13px)",
         padding: "clamp(16px, 1.9vh, 20px) clamp(28px, 4vw, 44px)",
         borderRadius: "0px",
-        boxShadow: "0 10px 40px -10px rgba(240,200,104,0.55)",
+        boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = "0 18px 60px -10px rgba(240,200,104,0.85), 0 0 0 1px rgba(255,233,184,0.6)";
+        e.currentTarget.style.boxShadow = `0 18px 60px -10px ${C_DAWN}, 0 0 0 1px ${C_DAWN}99`;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = "0 10px 40px -10px rgba(240,200,104,0.55)";
+        e.currentTarget.style.boxShadow = `0 10px 40px -10px ${C_DAWN}aa`;
       }}
     >
       <span>{label}</span>
@@ -289,7 +289,7 @@ function Landing() {
             </div>
 
             <p
-              className="mt-[clamp(1.75rem,3.5vh,2.5rem)] font-mono font-thin text-sm"
+              className="mt-[clamp(2.75rem,5.5vh,4rem)] font-mono font-thin text-sm"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.55,
@@ -403,7 +403,8 @@ function Landing() {
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
             >
-              Ancient roots.
+              Ancient{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
             </h2>
             <p
               className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin text-sm"
@@ -413,15 +414,7 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              Kabbalah Astrology dates back to{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span>{" "}
-              and is found in many ancient texts and commentaries — the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span>{" "}
-              (the Oral Torah), the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span>{" "}
-              (Book of Formation), and the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span>{" "}
-              (Book of Splendor).
+              Kabbalah Astrology dates back to Abraham and is found in many ancient texts and commentaries — the Talmud (the Oral Torah), the Sefer Yetzirah (Book of Formation), and the Zohar (Book of Splendor).
             </p>
           </div>
         </section>
@@ -438,8 +431,7 @@ function Landing() {
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
             >
-              Influence, Not{" "}
-              <span style={{ color: C_INK, fontStyle: "italic" }}>Prediction</span>
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
             </h2>
             <p
               className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm"
@@ -452,9 +444,9 @@ function Landing() {
               Kabbalists accept the signals or influence of the celestial
               constellations ({" "}
               <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
-              ), but reject astrology as{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free
-              will always overrides fate.
+              ), but reject astrology as fatalistic prediction. A person's{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>free will</span>{" "}
+              always overrides fate.
             </p>
           </div>
         </section>
