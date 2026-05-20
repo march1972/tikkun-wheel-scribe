@@ -376,8 +376,9 @@ function Landing() {
             >
               Fulfilling your{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>{" "}
-              serves a greater purpose — sharing your light to build a better
-              world.
+              serves a greater purpose —{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun Olam</span>{" "}
+              — sharing your light to build a better world.
             </p>
 
             <div className="mt-[clamp(2.5rem,5vh,4rem)] flex justify-center">
