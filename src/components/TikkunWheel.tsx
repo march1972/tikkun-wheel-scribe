@@ -368,14 +368,16 @@ export function TikkunWheel({
         />
 
         {/* Central CTA medallion (breathes) */}
-        <g className={`tk-aleph-${uid}`} style={{ cursor: "pointer" }}>
+        <g className={`tk-aleph-${uid} tk-cta-${uid}`} style={{ cursor: "pointer" }}>
           <circle
+            className={`tk-cta-bg-${uid}`}
             cx={cx}
             cy={cy}
             r={alephR}
             fill="#5a1620"
             stroke="rgb(243, 219, 157)"
             strokeWidth={size * 0.003}
+            style={{ transition: "fill 200ms ease, stroke-width 200ms ease" }}
           />
           <text
             x={cx}
@@ -383,9 +385,9 @@ export function TikkunWheel({
             fill={text}
             style={{
               fontFamily: "var(--font-sans)",
-              fontWeight: 700,
-              fontSize: "clamp(11px, 1.2vw, 13px)",
-              letterSpacing: "0.28em",
+              fontWeight: 500,
+              fontSize: "10px",
+              letterSpacing: "0.22em",
             }}
             textAnchor="middle"
             dominantBaseline="central"
