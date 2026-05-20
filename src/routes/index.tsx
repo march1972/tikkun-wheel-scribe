@@ -218,12 +218,7 @@ function Landing() {
             <h1
               className="font-mono font-thin text-2xl"
               style={{
-                fontFamily: HEAD,
                 color: C_INK,
-                fontWeight: 500,
-                fontSize: "clamp(38px, 7vw, 78px)",
-                lineHeight: 1.02,
-                letterSpacing: "-0.025em",
               }}
             >
               What's your{" "}
