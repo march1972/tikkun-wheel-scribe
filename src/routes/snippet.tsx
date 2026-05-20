@@ -220,18 +220,18 @@ function Snippet() {
           {copy.prompt}
         </h2>
 
-        {/* Sign + snippet block — elevated, more pop */}
+        {/* Sign + snippet block — clean, modern, no gold border */}
         <div
           className="mt-[clamp(1.5rem,3vh,2.25rem)] w-full"
           style={{
             background:
-              "linear-gradient(180deg, rgba(27, 37, 64, 0.85) 0%, rgba(15, 23, 41, 0.85) 100%)",
-            border: `1px solid ${C_GOLD}55`,
-            borderRadius: "6px",
+              "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
+            border: `1px solid ${C_RULE}`,
+            borderRadius: "14px",
             padding: "clamp(1.75rem,4.5vw,2.75rem)",
             boxShadow:
-              "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 40px -10px rgba(240,200,104,0.18), inset 0 1px 0 rgba(255,233,184,0.08)",
-            backdropFilter: "blur(6px)",
+              "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
+            backdropFilter: "blur(8px)",
           }}
         >
           <div className="flex items-baseline justify-center gap-[clamp(12px,2.5vw,24px)]">
@@ -263,32 +263,31 @@ function Snippet() {
           </p>
         </div>
 
-        {/* Spin again — same dimensions as CTA, gold accent */}
+        {/* Spin again — transparent, rounded, same width as CTA */}
         <button
           type="button"
           onClick={handleSpinAgain}
-          className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+          className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:border-white/40"
           style={{
-            background: "rgba(10,14,28,0.4)",
-            color: C_GOLD_BRIGHT,
+            background: "transparent",
+            color: C_INK_SOFT,
             fontFamily: BODY,
-            fontWeight: 700,
-            letterSpacing: "0.24em",
-            fontSize: "12px",
-            padding: "18px 32px",
-            borderRadius: "0px",
-            border: `1px solid ${C_GOLD}`,
-            boxShadow: `0 10px 40px -14px ${C_GOLD}66`,
+            fontWeight: 600,
+            letterSpacing: "0.22em",
+            fontSize: "11px",
+            padding: "16px 28px",
+            borderRadius: "999px",
+            border: `1px solid ${C_RULE}`,
           }}
         >
-          <span>Not quite — spin again ({spinNumber} of {MAX_SPINS})</span>
+          <span>Not quite — spin again</span>
         </button>
 
         {/* CTA — matches form Reveal button exactly */}
         <button
           type="button"
           onClick={() => navigate({ to: "/form" })}
-          className="cta-pulse-glow group mt-[clamp(0.75rem,2vh,1.25rem)] inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+          className="cta-pulse-glow group mt-[clamp(0.75rem,2vh,1.25rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
           style={{
             background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
             color: C_INK,
@@ -297,7 +296,7 @@ function Snippet() {
             letterSpacing: "0.24em",
             fontSize: "12px",
             padding: "18px 32px",
-            borderRadius: "0px",
+            borderRadius: "999px",
             boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
           }}
         >
@@ -305,11 +304,18 @@ function Snippet() {
           <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
         </button>
         <p
-          className="mt-3 italic font-mono"
+          className="mt-3 font-mono"
+          style={{ color: C_GOLD, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
+        >
+          Your free full Tikkun reading
+        </p>
+        <p
+          className="mt-2 italic font-mono"
           style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
         >
           {copy.reassurance}
         </p>
+
       </section>
     </SkyShell>
   );
