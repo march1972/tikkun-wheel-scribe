@@ -260,7 +260,9 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              Kabbalistic Astrology uses lunar nodes to map your Tikkun: the soul's pattern of correction that signals how to fulfill your life's potential — in relationships, finances, and career.
+              Kabbalistic Astrology uses lunar nodes to map your{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>
+              : the soul's pattern of correction that signals how to fulfill your life's potential — in relationships, finances, and career.
             </p>
 
             <div className="mt-[clamp(1.75rem,3.5vh,2.5rem)] flex flex-col items-center gap-3">
