@@ -224,22 +224,26 @@ function Snippet() {
               className="w-full"
               style={{
                 background:
-                  "radial-gradient(80% 100% at 50% 0%, rgba(233,78,43,0.10) 0%, rgba(233,78,43,0) 70%)",
-                borderTop: `1px solid rgba(120,150,200,0.45)`,
-                padding: "clamp(2rem,5vw,3rem) clamp(0.5rem,2vw,1.5rem) 0",
+                  "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
+                border: `1px solid ${C_RULE}`,
+                borderRadius: "14px",
+                padding: "clamp(1.75rem,4.5vw,2.75rem)",
+                boxShadow:
+                  "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
+                backdropFilter: "blur(8px)",
                 textAlign: "center",
               }}
             >
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK, fontWeight: 500,
-                  fontSize: "clamp(22px, 4vw, 32px)", lineHeight: 1.15,
+                  fontSize: "clamp(22px, 6vw, 32px)", lineHeight: 1.2,
                   letterSpacing: "-0.02em",
                 }}
               >
-                See your real{" "}
+                See your actual{" "}
                 <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
-                pattern
+                lunar chart
               </h2>
               <p
                 className="mt-3"
@@ -249,7 +253,7 @@ function Snippet() {
                   textTransform: "uppercase",
                 }}
               >
-                Full Tikkun Chart + PDF Workbook
+                (Free reading + PDF workbook)
               </p>
 
               <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
