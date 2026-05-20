@@ -124,14 +124,14 @@ function Snippet() {
               padding: "10px 22px", borderRadius: "999px", fontSize: "11px",
             }}
           >
-            Not quite — spin again ({spinNumber + 1} of {MAX_SPINS})
+            Not quite — spin again ({spinNumber} of {MAX_SPINS})
           </button>
         ) : (
           <p
             className="mt-[clamp(1.5rem,3vh,2rem)] max-w-xs italic font-mono"
             style={{ color: C_MUTED, fontSize: "12px" }}
           >
-            You've used all {MAX_SPINS} free spins. Your real Tikkun awaits.
+            {MAX_SPINS} of {MAX_SPINS} reached. Your real Tikkun awaits.
           </p>
         )}
 
