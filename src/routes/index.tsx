@@ -403,7 +403,8 @@ function Landing() {
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
             >
-              Ancient roots.
+              Ancient{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
             </h2>
             <p
               className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin text-sm"
@@ -413,15 +414,7 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              Kabbalah Astrology dates back to{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span>{" "}
-              and is found in many ancient texts and commentaries — the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span>{" "}
-              (the Oral Torah), the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span>{" "}
-              (Book of Formation), and the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span>{" "}
-              (Book of Splendor).
+              Kabbalah Astrology dates back to Abraham and is found in many ancient texts and commentaries — the Talmud (the Oral Torah), the Sefer Yetzirah (Book of Formation), and the Zohar (Book of Splendor).
             </p>
           </div>
         </section>
