@@ -164,6 +164,11 @@ export function TikkunWheel({
           50%      { opacity: 0.95; }
         }
         .tk-wheel:hover { transform: scale(1.02); }
+        .tk-wheel:hover .tk-cta-bg-${uid} {
+          fill: #8a2a36;
+          stroke-width: ${size * 0.006};
+          filter: drop-shadow(0 0 12px rgba(240,200,104,0.55));
+        }
         .tk-wheel:focus-visible {
           box-shadow: 0 0 0 2px ${accent}, 0 0 0 8px rgba(240,200,104,0.22);
           border-radius: 9999px;
