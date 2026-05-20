@@ -351,18 +351,17 @@ function Landing() {
               }}
             >
               {[
-                { letter: "א", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(253, 246, 230, 0.04)" },
-                { letter: "מ", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(253, 246, 230, 0.07)" },
-                { letter: "ש", title: "A daily mantra and reflection", body: "a verse to carry, and a prompt to sit with.", tint: "rgba(253, 246, 230, 0.04)" },
+                { letter: "א", accent: "#c5a059", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(197, 160, 89, 0.06)" },
+                { letter: "מ", accent: C_SAGE,    title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(155, 209, 191, 0.06)" },
+                { letter: "ש", accent: C_DAWN,    title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(255, 176, 136, 0.06)" },
               ].map((item) => {
-                const accent = "#c5a059"; // antique gold
                 return (
                   <li
                     key={item.title}
-                    className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full"
+                    className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full transition-all duration-300 hover:-translate-y-1"
                     style={{
                       background: item.tint,
-                      border: `1px solid ${C_RULE_SOFT}`,
+                      border: `1px solid ${item.accent}33`,
                       borderRadius: 2,
                     }}
                   >
@@ -371,15 +370,15 @@ function Landing() {
                       className="leading-none"
                       style={{
                         fontFamily: HEAD,
-                        color: accent,
+                        color: item.accent,
                         fontSize: "clamp(32px, 4.5vw, 44px)",
-                        textShadow: `0 0 14px ${accent}55`,
+                        textShadow: `0 0 14px ${item.accent}66`,
                       }}
                     >
                       {item.letter}
                     </span>
                     <span>
-                      <span style={{ color: accent, fontStyle: "italic" }}>
+                      <span style={{ color: item.accent, fontStyle: "italic" }}>
                         {item.title}
                       </span>{" "}
                       — {item.body}
