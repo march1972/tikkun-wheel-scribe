@@ -253,7 +253,7 @@ export function TikkunWheel({
           cy={cy}
           r={ringR}
           fill="none"
-          stroke="#a83340"
+          stroke="#e87a86"
           strokeWidth={1.2}
         />
         <circle
@@ -271,7 +271,7 @@ export function TikkunWheel({
           cy={cy}
           r={ringR}
           fill="none"
-          stroke="#a83340"
+          stroke="#e87a86"
           strokeWidth={1.2}
         />
 
@@ -382,10 +382,10 @@ export function TikkunWheel({
             y={cy}
             fill={text}
             style={{
-              fontFamily: "var(--font-sans)",
+              fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
               fontWeight: 400,
               fontSize: "clamp(11px, 1.2vw, 13px)",
-              letterSpacing: "0.28em",
+              letterSpacing: "0.04em",
             }}
             textAnchor="middle"
             dominantBaseline="central"
