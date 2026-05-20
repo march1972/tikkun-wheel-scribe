@@ -53,7 +53,7 @@ export function TikkunWheel({
   const cy = size / 2;
   const ringR = size * 0.464;
   const letterR = size * 0.393;
-  const alephR = size * 0.143;
+  const alephR = size * 0.122;
   const letterFontSize = size * 0.075;
   const alephFontSize = size * 0.042;
 
