@@ -241,8 +241,12 @@ function Snippet() {
                 pattern
               </h2>
               <p
-                className="mt-3 font-mono font-thin"
-                style={{ color: C_GOLD, fontSize: "13px", lineHeight: 1.5 }}
+                className="mt-3"
+                style={{
+                  fontFamily: BODY, color: C_GOLD, fontWeight: 600,
+                  fontSize: "15px", letterSpacing: "0.28em",
+                  textTransform: "uppercase",
+                }}
               >
                 Free Full Birth Chart Reading
               </p>
