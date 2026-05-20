@@ -408,7 +408,7 @@ function Landing() {
                 letterSpacing: "-0.025em",
               }}
             >
-              Turn the<br />
+              Who you<br />
               <span
                 style={{
                   fontStyle: "italic",
@@ -419,7 +419,7 @@ function Landing() {
                   backgroundClip: "text",
                 }}
               >
-                wheel
+                are
               </span>
               <span style={{ color: C_GOLD }}>.</span>
             </h2>
