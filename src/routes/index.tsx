@@ -301,23 +301,8 @@ function Landing() {
               </button>
             </div>
 
-            <div className="mt-[clamp(1.75rem,3.5vh,2.5rem)] flex flex-col items-center gap-3">
-              <p
-                style={{
-                  fontFamily: BODY,
-                  color: C_MUTED,
-                  fontSize: "11px",
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  fontWeight: 600,
-                }}
-              >
-                Free Tikkun Astrology Reading
-              </p>
-            </div>
-
             <p
-              className="mt-[clamp(1.5rem,3vh,2rem)] font-mono font-thin text-sm"
+              className="mt-[clamp(1.75rem,3.5vh,2.5rem)] font-mono font-thin text-sm"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.55,
@@ -333,8 +318,21 @@ function Landing() {
               — in relationships, finances, and career.
             </p>
 
-            <div className="mt-[clamp(1.5rem,3vh,2rem)]">
+            <div className="mt-[clamp(1.5rem,3vh,2rem)] inline-flex w-fit flex-col items-stretch gap-3">
               <PrimaryCTA onClick={handleSpin} />
+              <p
+                className="w-full text-center"
+                style={{
+                  fontFamily: BODY,
+                  color: C_MUTED,
+                  fontSize: "11px",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                }}
+              >
+                Free Tikkun Astrology Reading
+              </p>
             </div>
           </div>
         </section>
