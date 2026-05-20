@@ -18,6 +18,12 @@ const inputStyle: React.CSSProperties = {
   padding: "12px 14px",
   fontSize: "15px",
   width: "100%",
+  display: "block",
+  boxSizing: "border-box",
+  appearance: "none",
+  WebkitAppearance: "none",
+  MozAppearance: "none",
+  minHeight: "46px",
   outline: "none",
 };
 
@@ -243,7 +249,7 @@ function Snippet() {
               >
                 See your actual{" "}
                 <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
-                lunar chart
+                chart
               </h2>
               <p
                 className="mt-3"
