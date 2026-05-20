@@ -252,19 +252,6 @@ function Landing() {
               </button>
             </div>
 
-            <p
-              className="mt-[clamp(1.5rem,3vh,2rem)] font-mono font-thin text-sm"
-              style={{
-                color: C_INK_SOFT,
-                lineHeight: 1.55,
-                maxWidth: "34rem",
-              }}
-            >
-              Kabbalistic Astrology uses lunar nodes to map your{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>
-              : the soul's pattern of correction that signals how to fulfill your life's potential — in relationships, finances, and career.
-            </p>
-
             <div className="mt-[clamp(1.75rem,3.5vh,2.5rem)] flex flex-col items-center gap-3">
               <PrimaryCTA onClick={handleSpin} />
               <p
@@ -280,6 +267,23 @@ function Landing() {
                 Free Tikkun Astrology Reading
               </p>
             </div>
+
+            <p
+              className="mt-[clamp(1.5rem,3vh,2rem)] font-mono font-thin text-sm"
+              style={{
+                color: C_INK_SOFT,
+                lineHeight: 1.55,
+                maxWidth: "34rem",
+              }}
+            >
+              Kabbalistic Astrology uses lunar nodes to map your{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>
+              : the soul's pattern of correction that signals how to{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>
+                fulfill your life's potential
+              </span>{" "}
+              — in relationships, finances, and career.
+            </p>
           </div>
         </section>
 
