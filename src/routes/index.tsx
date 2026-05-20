@@ -225,7 +225,7 @@ function Landing() {
                 letterSpacing: "-0.025em",
               }}
             >
-              What is your{" "}
+              What's your{" "}
               <span
                 style={{
                   fontStyle: "italic",
