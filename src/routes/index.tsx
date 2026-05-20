@@ -198,7 +198,7 @@ function Landing() {
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
           <div className="mx-auto max-w-6xl">
             <span
-              className="font-mono"
+              className="font-mono text-2xl"
               style={{
                 fontFamily: BODY,
                 color: C_MUTED,
