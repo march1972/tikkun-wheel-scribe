@@ -3,7 +3,8 @@
 
 const KEY = "tikkun_spin_count_v2";
 const CURRENT_SPIN_KEY = "tikkun_current_spin_v2";
-export const MAX_SPINS = 3;
+export const MAX_SPINS = 12;
+export const FREE_SPINS_BEFORE_FORM = 3;
 
 function read(): number {
   if (typeof sessionStorage === "undefined") return 0;

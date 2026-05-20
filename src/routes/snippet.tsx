@@ -6,7 +6,7 @@ import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_GOLD_BRIGHT, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
-import { MAX_SPINS, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
+import { MAX_SPINS, FREE_SPINS_BEFORE_FORM, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
 import { submitLead } from "@/lib/lead.functions";
 
 const inputStyle: React.CSSProperties = {
@@ -94,105 +94,30 @@ function Snippet() {
 
   if (!sign) return null;
   const canSpinAgain = spinNumber < MAX_SPINS;
+  const showForm = spinNumber > FREE_SPINS_BEFORE_FORM;
   const copy = STATIC_COPY.screen3;
   const today = new Date().toISOString().slice(0, 10);
 
-  // FINAL SPIN (3 of 3): inline signup form for max conversion.
-  if (!canSpinAgain) {
-    return (
-      <SkyShell starDensity={200}>
-        <style>{`
-          @keyframes cta-pulse-glow {
-            0%, 100% { box-shadow: 0 10px 40px -10px #e94e2baa; transform: scale(1); }
-            50% { box-shadow: 0 14px 50px -8px #e94e2bcc, 0 0 25px -3px #e94e2b33; transform: scale(1.015); }
-          }
-          .cta-pulse-glow {
-            animation: cta-pulse-glow 2.5s ease-in-out infinite;
-          }
-          .cta-pulse-glow:hover {
-            animation: none;
-          }
-        `}</style>
-        <section className="relative mx-auto flex max-w-md flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.5rem,4vh,3rem)] pb-[clamp(2.5rem,5vh,4rem)] text-center">
-          <h1
-            style={{
-              fontFamily: HEAD, color: C_INK, fontWeight: 500,
-              fontSize: "clamp(26px, 5vw, 42px)", lineHeight: 1.12,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            See your real{" "}
-            <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
-            pattern
-          </h1>
-
-          <p
-            className="mt-3 font-mono font-thin"
-            style={{ color: C_GOLD, fontSize: "13px", maxWidth: "24rem", lineHeight: 1.5 }}
-          >
-            Your free Tikkun birth chart + PDF workbook
-          </p>
-
-          <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
-            <div>
-              <label style={labelStyle} htmlFor="name">Name (optional)</label>
-              <input
-                id="name" type="text" value={name} onChange={(e) => setName(e.target.value)}
-                autoComplete="given-name" maxLength={120} placeholder="Your name" style={inputStyle}
-              />
-            </div>
-            <div>
-              <label style={labelStyle} htmlFor="email">Email</label>
-              <input
-                id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email" maxLength={255} placeholder="you@example.com" style={inputStyle}
-              />
-            </div>
-            <div>
-              <label style={labelStyle} htmlFor="dob">Date of Birth</label>
-              <input
-                id="dob" type="date" required value={dob} onChange={(e) => setDob(e.target.value)}
-                min="1901-01-22" max={today} style={inputStyle}
-              />
-            </div>
-
-            {err && (
-              <p style={{ fontFamily: BODY, color: C_DAWN, fontSize: "12px" }}>{err}</p>
-            )}
-
-            <button
-              type="submit"
-              disabled={busy}
-              className="cta-pulse-glow group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
-              style={{
-                background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
-                color: C_INK,
-                fontFamily: BODY,
-                fontWeight: 700,
-                letterSpacing: "0.24em",
-                fontSize: "12px",
-                padding: "18px 32px",
-                borderRadius: "0px",
-                boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
-              }}
-            >
-              <span>{busy ? "Revealing…" : "Reveal my Tikkun"}</span>
-              {!busy && (
-                <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
-              )}
-            </button>
-          </form>
-
-          <p
-            className="mt-3 font-mono"
-            style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.04em" }}
-          >
-            Email only used for your reading + free workbook. Unsubscribe anytime.
-          </p>
-        </section>
-      </SkyShell>
-    );
-  }
+  const spinAgainButton = canSpinAgain ? (
+    <button
+      type="button"
+      onClick={handleSpinAgain}
+      className="group inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:border-white/40"
+      style={{
+        background: "transparent",
+        color: C_INK_SOFT,
+        fontFamily: BODY,
+        fontWeight: 600,
+        letterSpacing: "0.22em",
+        fontSize: "11px",
+        padding: "16px 28px",
+        borderRadius: "999px",
+        border: `1px solid ${C_RULE}`,
+      }}
+    >
+      <span>{showForm ? "Spin again" : "Not quite — spin again"}</span>
+    </button>
+  ) : null;
 
   return (
     <SkyShell starDensity={200}>
@@ -205,7 +130,7 @@ function Snippet() {
         .cta-pulse-glow:hover { animation: none; }
       `}</style>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        {/* Sign + snippet block — eyebrow now lives inside the card */}
+        {/* Sign + snippet block */}
         <div
           className="w-full"
           style={{
@@ -219,7 +144,6 @@ function Snippet() {
             backdropFilter: "blur(8px)",
           }}
         >
-          {/* Eyebrow inside card — gold caps with flanking line */}
           <div className="flex items-center justify-center gap-3">
             <span style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${C_GOLD}55)` }} />
             <span
@@ -259,57 +183,152 @@ function Snippet() {
           </p>
         </div>
 
-        {/* Spin again — transparent, rounded, same width as CTA */}
-        <button
-          type="button"
-          onClick={handleSpinAgain}
-          className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:border-white/40"
-          style={{
-            background: "transparent",
-            color: C_INK_SOFT,
-            fontFamily: BODY,
-            fontWeight: 600,
-            letterSpacing: "0.22em",
-            fontSize: "11px",
-            padding: "16px 28px",
-            borderRadius: "999px",
-            border: `1px solid ${C_RULE}`,
-          }}
-        >
-          <span>Not quite — spin again</span>
-        </button>
+        {!showForm && (
+          <>
+            {/* Spin again — transparent, rounded, same width as CTA */}
+            <div className="mt-[clamp(1.25rem,3vh,2rem)]">{spinAgainButton}</div>
 
-        {/* CTA — rectangular red button */}
-        <button
-          type="button"
-          onClick={() => navigate({ to: "/form" })}
-          className="cta-pulse-glow group mt-[clamp(2rem,5vh,3.5rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
-          style={{
-            background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
-            color: C_INK,
-            fontFamily: BODY,
-            fontWeight: 700,
-            letterSpacing: "0.24em",
-            fontSize: "12px",
-            padding: "18px 32px",
-            borderRadius: "0px",
-            boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
-          }}
-        >
-          <span>{copy.primaryButton}</span>
-          <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
-        </button>
-        <p
-          className="mt-3 font-mono"
-          style={{ color: C_MUTED, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
-        >
-          Free Full Birth Chart Reading
-        </p>
+            {/* CTA — rectangular red button */}
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/form" })}
+              className="cta-pulse-glow group mt-[clamp(2rem,5vh,3.5rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+              style={{
+                background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
+                color: C_INK,
+                fontFamily: BODY,
+                fontWeight: 700,
+                letterSpacing: "0.24em",
+                fontSize: "12px",
+                padding: "18px 32px",
+                borderRadius: "0px",
+                boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+              }}
+            >
+              <span>{copy.primaryButton}</span>
+              <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
+            </button>
+            <p
+              className="mt-3 font-mono"
+              style={{ color: C_MUTED, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
+            >
+              Free Full Birth Chart Reading
+            </p>
+          </>
+        )}
 
+        {showForm && (
+          <>
+            <div className="mt-[clamp(2rem,5vh,3.5rem)] w-full max-w-md">
+              <h2
+                style={{
+                  fontFamily: HEAD, color: C_INK, fontWeight: 500,
+                  fontSize: "clamp(22px, 4vw, 32px)", lineHeight: 1.15,
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                See your real{" "}
+                <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
+                pattern
+              </h2>
+              <p
+                className="mt-3 font-mono font-thin"
+                style={{ color: C_GOLD, fontSize: "13px", lineHeight: 1.5 }}
+              >
+                Free Full Birth Chart Reading
+              </p>
 
+              <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
+                <div>
+                  <label style={labelStyle} htmlFor="name">Name (optional)</label>
+                  <input
+                    id="name" type="text" value={name} onChange={(e) => setName(e.target.value)}
+                    autoComplete="given-name" maxLength={120} placeholder="Your name" style={inputStyle}
+                  />
+                </div>
+                <div>
+                  <label style={labelStyle} htmlFor="email">Email</label>
+                  <input
+                    id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="email" maxLength={255} placeholder="you@example.com" style={inputStyle}
+                  />
+                </div>
+                <div>
+                  <label style={labelStyle} htmlFor="dob">Date of Birth</label>
+                  <input
+                    id="dob" type="date" required value={dob} onChange={(e) => setDob(e.target.value)}
+                    min="1901-01-22" max={today} style={inputStyle}
+                  />
+                </div>
+
+                {err && (
+                  <p style={{ fontFamily: BODY, color: C_DAWN, fontSize: "12px" }}>{err}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={busy}
+                  className="cta-pulse-glow group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
+                  style={{
+                    background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
+                    color: C_INK,
+                    fontFamily: BODY,
+                    fontWeight: 700,
+                    letterSpacing: "0.24em",
+                    fontSize: "12px",
+                    padding: "18px 32px",
+                    borderRadius: "0px",
+                    boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+                  }}
+                >
+                  <span>{busy ? "Revealing…" : "Reveal my Tikkun"}</span>
+                  {!busy && (
+                    <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
+                  )}
+                </button>
+              </form>
+
+              <p
+                className="mt-3 font-mono"
+                style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.04em" }}
+              >
+                Email only used for your reading + free workbook. Unsubscribe anytime.
+              </p>
+            </div>
+
+            {canSpinAgain && (
+              <div
+                className="mt-[clamp(2.5rem,6vh,4rem)] w-full max-w-md"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(27, 37, 64, 0.45) 0%, rgba(15, 23, 41, 0.45) 100%)",
+                  border: `1px solid ${C_RULE}`,
+                  borderRadius: "14px",
+                  padding: "clamp(1.25rem,3vw,1.75rem)",
+                  backdropFilter: "blur(8px)",
+                }}
+              >
+                <p
+                  className="font-mono"
+                  style={{
+                    color: C_INK_SOFT, fontSize: "12px", letterSpacing: "0.04em",
+                    lineHeight: 1.5, marginBottom: "1rem",
+                  }}
+                >
+                  Curious about the other archetypes? Keep spinning to preview all 12 Tikkun snippets.
+                  <span style={{ color: C_MUTED, display: "block", marginTop: 4, fontSize: "11px" }}>
+                    Spin {spinNumber} of {MAX_SPINS}
+                  </span>
+                </p>
+                {spinAgainButton}
+              </div>
+            )}
+          </>
+        )}
       </section>
     </SkyShell>
   );
 }
+
 
 
