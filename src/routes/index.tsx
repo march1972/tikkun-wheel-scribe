@@ -465,7 +465,7 @@ function Landing() {
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
-          style={{ background: C_BAND_DEEP }}
+          style={{ background: C_BAND_LIFT }}
         >
           <StarField density={50} opacity={0.5} seedOffset={1300} />
           <div className="relative mx-auto max-w-3xl text-center">
