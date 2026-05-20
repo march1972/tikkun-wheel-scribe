@@ -202,7 +202,6 @@ function Landing() {
               style={{
                 fontFamily: BODY,
                 color: C_MUTED,
-                fontSize: "10px",
                 letterSpacing: "0.38em",
                 textTransform: "uppercase",
                 fontWeight: 600,
