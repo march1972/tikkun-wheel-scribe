@@ -63,23 +63,12 @@ const C_RULE = "rgba(253, 246, 230, 0.20)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
 
 
-/** Scattered stars + tiny planets + drifting Hebrew letters. */
-const HEBREW_GLYPHS = ["א","ב","ג","ד","ה","ו","ז","ח","ט","י","כ","ל","מ","נ","ס","ע","פ","צ","ק","ר","ש","ת"];
-const PLANET_TINTS = [
-  { core: "#f0c868", glow: "rgba(240,200,104,0.55)" }, // gold
-  { core: "#ffb088", glow: "rgba(255,176,136,0.45)" }, // dawn
-  { core: "#9bd1bf", glow: "rgba(155,209,191,0.45)" }, // sage
-  { core: "#c8b8e8", glow: "rgba(200,184,232,0.45)" }, // violet
-  { core: "#a8c8e8", glow: "rgba(168,200,232,0.45)" }, // cool blue
-];
-
+/** Scattered stars with twinkle + slow parallax drift. */
 function StarField({
   density = 90,
   opacity = 0.7,
   seedOffset = 0,
   driftSeconds = 90,
-  planets = 4,
-  letters = 6,
 }: {
   density?: number;
   opacity?: number;
@@ -95,10 +84,10 @@ function StarField({
     const left = r(1) * 100;
     const top = r(2) * 100;
     const v = r(3);
-    const big = v > 0.92;
+    const big = v > 0.94;
     const mid = v > 0.78 && !big;
-    const size = big ? 2.5 : mid ? 1.6 : 1;
-    const o = 0.45 + r(4) * 0.55;
+    const size = big ? 2.4 : mid ? 1.5 : 0.9;
+    const o = 0.4 + r(4) * 0.6;
     const tint = r(5);
     const bg =
       tint > 0.93
@@ -118,90 +107,12 @@ function StarField({
           backgroundColor: bg,
           opacity: o * opacity,
           boxShadow: big
-            ? "0 0 8px rgba(245,207,122,0.85), 0 0 14px rgba(255,176,136,0.4)"
+            ? "0 0 8px rgba(245,207,122,0.8), 0 0 14px rgba(255,176,136,0.35)"
             : mid
-              ? "0 0 4px rgba(253,246,230,0.6)"
+              ? "0 0 4px rgba(253,246,230,0.55)"
               : undefined,
         }}
       />
-    );
-  });
-
-  const planetEls = Array.from({ length: planets }).map((_, i) => {
-    const seed = ((i + seedOffset + 7777) * 6151 + 31337) % 233280;
-    const r = (n: number) =>
-      ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
-    const left = r(1) * 100;
-    const top = r(2) * 100;
-    const tint = PLANET_TINTS[Math.floor(r(3) * PLANET_TINTS.length)];
-    const size = 3 + r(4) * 3.5; // 3–6.5px
-    const hasRing = r(5) > 0.6;
-    return (
-      <span
-        key={`p-${i}`}
-        className="absolute"
-        style={{
-          left: `${left}%`,
-          top: `${top}%`,
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: "9999px",
-          background: `radial-gradient(circle at 35% 35%, #fff 0%, ${tint.core} 55%, ${tint.core} 100%)`,
-          boxShadow: `0 0 ${size * 2}px ${tint.glow}, 0 0 ${size * 4}px ${tint.glow}`,
-          opacity: 0.85 * opacity,
-        }}
-      >
-        {hasRing && (
-          <span
-            className="absolute"
-            style={{
-              left: "50%",
-              top: "50%",
-              width: `${size * 2.4}px`,
-              height: `${size * 0.7}px`,
-              transform: `translate(-50%, -50%) rotate(${r(6) * 60 - 30}deg)`,
-              border: `1px solid ${tint.glow}`,
-              borderRadius: "9999px",
-            }}
-          />
-        )}
-      </span>
-    );
-  });
-
-  const letterEls = Array.from({ length: letters }).map((_, i) => {
-    const seed = ((i + seedOffset + 3333) * 2741 + 17891) % 233280;
-    const r = (n: number) =>
-      ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
-    const left = r(1) * 100;
-    const top = r(2) * 100;
-    const glyph = HEBREW_GLYPHS[Math.floor(r(3) * HEBREW_GLYPHS.length)];
-    const size = 9 + r(4) * 6; // 9–15px
-    const tintRoll = r(5);
-    const color =
-      tintRoll > 0.66
-        ? "rgba(240,200,104,0.45)"
-        : tintRoll > 0.33
-          ? "rgba(253,246,230,0.38)"
-          : "rgba(155,209,191,0.4)";
-    return (
-      <span
-        key={`l-${i}`}
-        className="absolute"
-        aria-hidden="true"
-        style={{
-          left: `${left}%`,
-          top: `${top}%`,
-          fontFamily: "'Frank Ruhl Libre', 'Fraunces', serif",
-          fontSize: `${size}px`,
-          color,
-          opacity: 0.7 * opacity,
-          textShadow: `0 0 6px ${color}`,
-          lineHeight: 1,
-        }}
-      >
-        {glyph}
-      </span>
     );
   });
 
@@ -226,8 +137,6 @@ function StarField({
         }}
       >
         {stars}
-        {planetEls}
-        {letterEls}
       </div>
     </div>
   );
