@@ -263,32 +263,31 @@ function Snippet() {
           </p>
         </div>
 
-        {/* Spin again — same dimensions as CTA, gold accent */}
+        {/* Spin again — transparent, rounded, same width as CTA */}
         <button
           type="button"
           onClick={handleSpinAgain}
-          className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+          className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:border-white/40"
           style={{
-            background: "rgba(10,14,28,0.4)",
-            color: C_GOLD_BRIGHT,
+            background: "transparent",
+            color: C_INK_SOFT,
             fontFamily: BODY,
-            fontWeight: 700,
-            letterSpacing: "0.24em",
-            fontSize: "12px",
-            padding: "18px 32px",
-            borderRadius: "0px",
-            border: `1px solid ${C_GOLD}`,
-            boxShadow: `0 10px 40px -14px ${C_GOLD}66`,
+            fontWeight: 600,
+            letterSpacing: "0.22em",
+            fontSize: "11px",
+            padding: "16px 28px",
+            borderRadius: "999px",
+            border: `1px solid ${C_RULE}`,
           }}
         >
-          <span>Not quite — spin again ({spinNumber} of {MAX_SPINS})</span>
+          <span>Not quite — spin again</span>
         </button>
 
         {/* CTA — matches form Reveal button exactly */}
         <button
           type="button"
           onClick={() => navigate({ to: "/form" })}
-          className="cta-pulse-glow group mt-[clamp(0.75rem,2vh,1.25rem)] inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+          className="cta-pulse-glow group mt-[clamp(0.75rem,2vh,1.25rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
           style={{
             background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
             color: C_INK,
@@ -297,7 +296,7 @@ function Snippet() {
             letterSpacing: "0.24em",
             fontSize: "12px",
             padding: "18px 32px",
-            borderRadius: "0px",
+            borderRadius: "999px",
             boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
           }}
         >
@@ -305,11 +304,18 @@ function Snippet() {
           <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
         </button>
         <p
-          className="mt-3 italic font-mono"
+          className="mt-3 font-mono"
+          style={{ color: C_GOLD, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
+        >
+          Your free full Tikkun reading
+        </p>
+        <p
+          className="mt-2 italic font-mono"
           style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
         >
           {copy.reassurance}
         </p>
+
       </section>
     </SkyShell>
   );
