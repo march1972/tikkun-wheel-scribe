@@ -380,9 +380,9 @@ function Landing() {
                       className="leading-none"
                       style={{
                         fontFamily: HEAD,
-                        color: item.accent,
+                        color: item.letterColor,
                         fontSize: "clamp(32px, 4.5vw, 44px)",
-                        textShadow: `0 0 14px ${item.accent}66`,
+                        textShadow: `0 0 14px ${item.letterColor}66`,
                       }}
                     >
                       {item.letter}
