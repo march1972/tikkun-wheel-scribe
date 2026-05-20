@@ -389,6 +389,52 @@ function Landing() {
           </div>
         </section>
 
+        {/* ── WHAT YOU RECEIVE ─────────────────────────────────── */}
+        <section
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,6rem)]"
+          style={{ background: C_BAND_MID }}
+        >
+          <StarField density={60} opacity={0.5} seedOffset={2100} />
+          <div className="relative mx-auto max-w-3xl text-center">
+            <h2
+              className="font-mono font-thin text-2xl"
+              style={{ color: C_INK }}
+            >
+              What you{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>.
+            </h2>
+
+            <ul
+              className="mt-[clamp(1.5rem,3vh,2.25rem)] mx-auto flex flex-col gap-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm text-left"
+              style={{
+                color: C_INK_SOFT,
+                lineHeight: 1.55,
+                maxWidth: "34rem",
+                listStyle: "none",
+                padding: 0,
+              }}
+            >
+              <li>
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>
+                  Your Tikkun reading
+                </span>{" "}
+                — the soul's pattern of correction drawn from your lunar nodes.
+              </li>
+              <li>
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>
+                  Your Aramaic letter and emotion
+                </span>{" "}
+                — the sacred letter and inner quality assigned to your path.
+              </li>
+              <li>
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>
+                  A daily mantra and reflection
+                </span>{" "}
+                — a verse to carry, and a prompt to sit with.
+              </li>
+            </ul>
+          </div>
+        </section>
 
         {/* ── CLOSING CTA ──────────────────────────────────────── */}
         <section
