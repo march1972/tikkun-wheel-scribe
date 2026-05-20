@@ -54,6 +54,7 @@ const C_MUTED = "rgba(236, 227, 207, 0.62)";
 const C_GOLD = "#f0c868";           // wheel gold (matches TikkunWheel)
 const C_GOLD_BRIGHT = "#FFE9B8";
 const C_DAWN = "#ffb088";           // dawn coral — reserved for accents only
+const C_SAGE = "#9bd1bf";           // sage mint — secondary accent
 const C_DEEP = "#0f1729";           // near-black indigo
 const C_RULE = "rgba(253, 246, 230, 0.20)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
