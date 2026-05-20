@@ -504,7 +504,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
           style={{
             background:
-              "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.10) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #1b2540 0%, #233055 100%)",
+              "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.07) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #0e1426 0%, #131c34 100%)",
           }}
         >
           <StarField density={50} opacity={0.55} seedOffset={1700} />
