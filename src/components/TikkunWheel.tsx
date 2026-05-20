@@ -410,7 +410,7 @@ export function TikkunWheel({
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
               fontWeight: 400,
-              fontSize: "7px",
+              fontSize: `${Math.max(7, Math.min(13, size * 0.022))}px`,
               letterSpacing: "0.08em",
             }}
             textAnchor="middle"
