@@ -133,7 +133,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function PrimaryCTA({
   onClick,
-  label = "Receive your reading",
+  label = "Who you are",
 }: {
   onClick: () => void;
   label?: string;
@@ -275,9 +275,7 @@ function Landing() {
                   fontWeight: 600,
                 }}
               >
-                {remaining > 0
-                  ? `${remaining} of ${MAX_SPINS} ${remaining === 1 ? "turn" : "turns"} remaining`
-                  : "Three turns of the wheel"}
+                Free Tikkun Reading
               </p>
             </div>
           </div>
@@ -294,7 +292,7 @@ function Landing() {
         >
           <StarField density={60} opacity={0.55} seedOffset={500} />
           <div className="relative mx-auto max-w-2xl text-center">
-            <Eyebrow>Origins</Eyebrow>
+            
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
@@ -329,7 +327,7 @@ function Landing() {
         >
           <StarField density={70} opacity={0.5} seedOffset={900} />
           <div className="relative mx-auto max-w-3xl text-center">
-            <Eyebrow>Mazalot · מזלות</Eyebrow>
+            
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
@@ -361,7 +359,7 @@ function Landing() {
         >
           <StarField density={50} opacity={0.5} seedOffset={1300} />
           <div className="relative mx-auto max-w-3xl text-center">
-            <Eyebrow>Tikkun Olam · תיקון עולם</Eyebrow>
+            
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
@@ -378,8 +376,9 @@ function Landing() {
             >
               Fulfilling your{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>{" "}
-              serves a greater purpose — sharing your light to build a better
-              world.
+              serves a greater purpose —{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun Olam</span>{" "}
+              — sharing your light to build a better world.
             </p>
 
             <div className="mt-[clamp(2.5rem,5vh,4rem)] flex justify-center">
@@ -409,7 +408,7 @@ function Landing() {
                 letterSpacing: "-0.025em",
               }}
             >
-              Turn the<br />
+              Who you<br />
               <span
                 style={{
                   fontStyle: "italic",
@@ -420,7 +419,7 @@ function Landing() {
                   backgroundClip: "text",
                 }}
               >
-                wheel
+                are
               </span>
               <span style={{ color: C_GOLD }}>.</span>
             </h2>
@@ -435,7 +434,7 @@ function Landing() {
                 fontWeight: 400,
               }}
             >
-              A free reading drawn in the moment. No account, no email.
+              A free <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes on your birthdate.
             </p>
             <div className="mt-[clamp(2rem,4vh,2.75rem)] flex justify-center">
               <PrimaryCTA onClick={handleSpin} />
