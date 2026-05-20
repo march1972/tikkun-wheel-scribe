@@ -97,8 +97,8 @@ function StarField({
     const big = v > 0.92;
     const mid = v > 0.78 && !big;
     const size = big ? 2.5 : mid ? 1.6 : 1;
-    const o = 0.45 + r(4) * 0.55;
-    const tint = r(5);
+    const o = 0.45 + rng() * 0.55;
+    const tint = rng();
     const bg =
       tint > 0.93
         ? "#a8c8e8" // cool moonlight cyan
