@@ -145,21 +145,21 @@ function Snippet() {
           }}
         >
           <div className="flex items-center justify-center gap-3">
-            <span style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${C_GOLD}55)` }} />
+            <span style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
             <span
               style={{
                 fontFamily: BODY,
                 color: C_GOLD,
                 fontWeight: 600,
-                fontSize: "13px",
-                letterSpacing: "0.28em",
+                fontSize: "clamp(10px, 2.6vw, 13px)",
+                letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                whiteSpace: "nowrap",
+                textAlign: "center",
               }}
             >
-              Does this pattern sound like you?
+              Sound like you?
             </span>
-            <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)` }} />
+            <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
           </div>
 
           <div className="mt-[clamp(0.5rem,1vh,1rem)] flex items-center justify-center">
@@ -318,10 +318,7 @@ function Snippet() {
                     lineHeight: 1.5, marginBottom: "1rem", fontWeight: 300,
                   }}
                 >
-                  Curious about more Tikkun archetypes? Keep spinning to preview more Tikkun snippets.
-                  <span style={{ color: "rgba(236, 227, 207, 0.35)", display: "block", marginTop: 4, fontSize: "10px" }}>
-                    Spin no. {spinNumber}
-                  </span>
+                  See more archetypes.
                 </p>
                 {spinAgainButton}
               </div>
