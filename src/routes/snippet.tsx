@@ -221,7 +221,7 @@ function Snippet() {
         {showForm && (
           <>
             <div
-              className="mt-[clamp(2rem,5vh,3.5rem)] w-full"
+              className="w-full"
               style={{
                 background:
                   "radial-gradient(80% 100% at 50% 0%, rgba(233,78,43,0.10) 0%, rgba(233,78,43,0) 70%)",
@@ -244,12 +244,12 @@ function Snippet() {
               <p
                 className="mt-3"
                 style={{
-                  fontFamily: BODY, color: C_GOLD, fontWeight: 600,
-                  fontSize: "15px", letterSpacing: "0.28em",
+                  fontFamily: BODY, color: "rgba(180,200,230,0.85)", fontWeight: 400,
+                  fontSize: "12px", letterSpacing: "0.18em",
                   textTransform: "uppercase",
                 }}
               >
-                Free Full Birth Chart Reading
+                Full Tikkun Chart + PDF Workbook
               </p>
 
               <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
