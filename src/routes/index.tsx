@@ -302,7 +302,6 @@ function Landing() {
             </div>
 
             <div className="mt-[clamp(1.75rem,3.5vh,2.5rem)] flex flex-col items-center gap-3">
-              <PrimaryCTA onClick={handleSpin} />
               <p
                 style={{
                   fontFamily: BODY,
@@ -333,6 +332,10 @@ function Landing() {
               </span>{" "}
               — in relationships, finances, and career.
             </p>
+
+            <div className="mt-[clamp(1.5rem,3vh,2rem)]">
+              <PrimaryCTA onClick={handleSpin} />
+            </div>
           </div>
         </section>
 
