@@ -224,7 +224,7 @@ function Snippet() {
               style={{
                 background:
                   "radial-gradient(80% 100% at 50% 0%, rgba(233,78,43,0.10) 0%, rgba(233,78,43,0) 70%)",
-                borderTop: `1px solid ${C_GOLD}55`,
+                borderTop: `1px solid rgba(120,150,200,0.45)`,
                 padding: "clamp(2rem,5vw,3rem) clamp(0.5rem,2vw,1.5rem) 0",
                 textAlign: "center",
               }}
@@ -241,8 +241,12 @@ function Snippet() {
                 pattern
               </h2>
               <p
-                className="mt-3 font-mono font-thin"
-                style={{ color: C_GOLD, fontSize: "13px", lineHeight: 1.5 }}
+                className="mt-3"
+                style={{
+                  fontFamily: BODY, color: C_GOLD, fontWeight: 600,
+                  fontSize: "15px", letterSpacing: "0.28em",
+                  textTransform: "uppercase",
+                }}
               >
                 Free Full Birth Chart Reading
               </p>
@@ -299,7 +303,7 @@ function Snippet() {
 
               <p
                 className="mt-3 font-mono"
-                style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.04em" }}
+                style={{ color: C_INK, fontSize: "13px", letterSpacing: "0.03em", lineHeight: 1.5 }}
               >
                 Email only used for your reading + free workbook. Unsubscribe anytime.
               </p>
@@ -310,12 +314,12 @@ function Snippet() {
                 <p
                   className="font-mono"
                   style={{
-                    color: C_INK_SOFT, fontSize: "12px", letterSpacing: "0.04em",
-                    lineHeight: 1.5, marginBottom: "1rem",
+                    color: "rgba(236, 227, 207, 0.45)", fontSize: "11px", letterSpacing: "0.04em",
+                    lineHeight: 1.5, marginBottom: "1rem", fontWeight: 300,
                   }}
                 >
                   Curious about more Tikkun archetypes? Keep spinning to preview more Tikkun snippets.
-                  <span style={{ color: C_MUTED, display: "block", marginTop: 4, fontSize: "11px" }}>
+                  <span style={{ color: "rgba(236, 227, 207, 0.35)", display: "block", marginTop: 4, fontSize: "10px" }}>
                     Spin no. {spinNumber}
                   </span>
                 </p>
