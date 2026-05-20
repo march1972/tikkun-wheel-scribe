@@ -397,7 +397,7 @@ export function TikkunWheel({
             textAnchor="middle"
             dominantBaseline="central"
           >
-            CLICK ME
+            Click Me
           </text>
         </g>
       </svg>
