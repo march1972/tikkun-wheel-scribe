@@ -431,8 +431,7 @@ function Landing() {
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
             >
-              Influence, Not{" "}
-              <span style={{ color: C_INK, fontStyle: "italic" }}>Prediction</span>
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
             </h2>
             <p
               className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm"
@@ -445,9 +444,9 @@ function Landing() {
               Kabbalists accept the signals or influence of the celestial
               constellations ({" "}
               <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
-              ), but reject astrology as{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free
-              will always overrides fate.
+              ), but reject astrology as fatalistic prediction. A person's{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>free will</span>{" "}
+              always overrides fate.
             </p>
           </div>
         </section>
