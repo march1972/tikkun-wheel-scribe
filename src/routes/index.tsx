@@ -295,9 +295,9 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              Kabbalistic Astrology uses lunar nodes to map your{" "}
+              Kabbalistic Astrology maps your{" "}
               <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>
-: the soul's pattern of correction that signals how to{" "}
+              : the soul's pattern that signals how to{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>
                 fulfill your life's potential
               </span>{" "}
