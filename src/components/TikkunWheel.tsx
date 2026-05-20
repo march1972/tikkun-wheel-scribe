@@ -375,42 +375,55 @@ export function TikkunWheel({
 
         {/* Central CTA medallion (breathes) */}
         <g className={`tk-aleph-${uid} tk-cta-${uid}`} style={{ cursor: "pointer" }}>
-          {/* Soft outer glow */}
+          {/* Outer radiant glow — pulses like emanating light */}
+          <circle
+            className={`tk-cta-shine-${uid}`}
+            cx={cx}
+            cy={cy}
+            r={alephR * 1.35}
+            fill="none"
+            stroke="rgba(255, 215, 106, 0.45)"
+            strokeWidth={size * 0.008}
+            style={{ filter: "blur(2px)" }}
+          />
           <circle
             cx={cx}
             cy={cy}
             r={alephR * 1.18}
             fill="none"
-            stroke="rgba(240, 200, 104, 0.22)"
+            stroke="rgba(255, 233, 184, 0.55)"
             strokeWidth={size * 0.012}
           />
-          {/* Main medallion — radial wine gradient */}
+          {/* Main medallion — radiant gold */}
           <circle
             className={`tk-cta-bg-${uid}`}
             cx={cx}
             cy={cy}
             r={alephR}
             fill={`url(#${alephId})`}
-            stroke="rgba(243, 219, 157, 0.85)"
-            strokeWidth={size * 0.0035}
-            style={{ transition: "stroke 200ms ease, stroke-width 200ms ease, filter 200ms ease" }}
+            stroke="rgba(255, 246, 214, 0.95)"
+            strokeWidth={size * 0.0045}
+            style={{
+              transition: "stroke 200ms ease, stroke-width 200ms ease, filter 200ms ease",
+              filter: "drop-shadow(0 0 14px rgba(255,215,106,0.7)) drop-shadow(0 0 28px rgba(255,183,77,0.45))",
+            }}
           />
-          {/* Inset gold hairline */}
+          {/* Inset highlight hairline */}
           <circle
             cx={cx}
             cy={cy}
             r={alephR - size * 0.012}
             fill="none"
-            stroke="rgba(243, 219, 157, 0.28)"
+            stroke="rgba(255, 246, 214, 0.55)"
             strokeWidth={0.6}
           />
           <text
             x={cx}
             y={cy}
-            fill="#fdf6e6"
+            fill="#c8102e"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontWeight: 400,
+              fontWeight: 600,
               fontSize: `${Math.max(7, Math.min(13, size * 0.022))}px`,
               letterSpacing: "0.08em",
             }}
