@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { SkyShell } from "@/components/landing/SkyShell";
-import { BODY, C_GOLD_BRIGHT } from "@/lib/landing-style";
+import { HEAD, BODY, C_INK, C_INK_SOFT, C_GOLD_BRIGHT, C_DAWN, C_RULE } from "@/lib/landing-style";
 
 export const Route = createFileRoute("/spinning")({
   component: Spinning,
@@ -22,20 +22,44 @@ function Spinning() {
       return;
     }
     setTarget(t);
-    const id = setTimeout(() => navigate({ to: "/snippet" }), 2500);
-    return () => clearTimeout(id);
   }, [navigate]);
 
   return (
     <SkyShell starDensity={220}>
-      <section className="relative flex min-h-[calc(100vh-3rem)] flex-col items-center justify-center px-[clamp(1rem,5vw,3rem)] py-[clamp(2rem,6vh,5rem)]">
+      <section className="relative flex min-h-[calc(100vh-3rem)] flex-col items-center justify-center px-[clamp(1rem,5vw,3rem)] py-[clamp(2rem,6vh,5rem)] text-center">
+        <div className="flex w-full max-w-2xl items-center gap-3">
+          <span className="h-px flex-1" style={{ background: C_RULE }} />
+          <span
+            style={{
+              fontFamily: BODY, color: C_INK_SOFT, fontSize: "11px",
+              letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
+            }}
+          >
+            Kabbalah Astrology
+          </span>
+          <span className="h-px flex-1" style={{ background: C_RULE }} />
+        </div>
+        <h1
+          className="mt-[clamp(1.25rem,3vh,2rem)] mb-[clamp(1.5rem,4vh,2.5rem)]"
+          style={{
+            fontFamily: HEAD, color: C_INK, fontWeight: 500,
+            fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.02em",
+          }}
+        >
+          Reveal Your <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>
+        </h1>
         <div
           style={{
             filter:
               "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
           }}
         >
-          <TikkunWheel size={wheelSize} state="spinning" targetKey={target} />
+          <TikkunWheel
+            size={wheelSize}
+            state="spinning"
+            targetKey={target}
+            onSettle={() => navigate({ to: "/snippet" })}
+          />
         </div>
         <p
           className="mt-[clamp(2rem,4vh,3rem)] font-semibold uppercase text-center"
