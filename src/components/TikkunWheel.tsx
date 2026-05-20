@@ -373,7 +373,7 @@ export function TikkunWheel({
             cx={cx}
             cy={cy}
             r={alephR}
-            fill={`url(#${alephId})`}
+            fill="#5a1620"
             stroke="rgb(243, 219, 157)"
             strokeWidth={size * 0.003}
           />
@@ -382,15 +382,15 @@ export function TikkunWheel({
             y={cy}
             fill={text}
             style={{
-              fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontWeight: 400,
+              fontFamily: "var(--font-sans)",
+              fontWeight: 700,
               fontSize: "clamp(11px, 1.2vw, 13px)",
-              letterSpacing: "0.04em",
+              letterSpacing: "0.28em",
             }}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            click me
+            CLICK ME
           </text>
         </g>
       </svg>
