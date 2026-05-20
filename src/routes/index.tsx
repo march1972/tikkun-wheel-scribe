@@ -43,10 +43,13 @@ const BODY = "var(--font-sans)";
 const C_SKY_GRAD =
   "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.18) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), linear-gradient(180deg, #141d33 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
 
+// Bands deepen toward the middle of the page, then lift toward dawn at the bottom.
 const C_BAND_DEEP =
-  "linear-gradient(180deg, #182240 0%, #1f2b48 50%, #182240 100%)";
+  "linear-gradient(180deg, #131c34 0%, #0f1729 50%, #131c34 100%)";
 const C_BAND_MID =
-  "linear-gradient(180deg, #1f2b48 0%, #283759 50%, #1f2b48 100%)";
+  "linear-gradient(180deg, #1a2440 0%, #1f2b48 50%, #1a2440 100%)";
+const C_BAND_LIFT =
+  "linear-gradient(180deg, #233055 0%, #2a3a5e 50%, #324468 100%)";
 
 const C_INK = "#fdf6e6";            // moonlight cream
 const C_INK_SOFT = "#ece3cf";
@@ -60,15 +63,17 @@ const C_RULE = "rgba(253, 246, 230, 0.20)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
 
 
-/** Scattered stars with twinkle. */
+/** Scattered stars with twinkle + slow parallax drift. */
 function StarField({
   density = 90,
   opacity = 0.7,
   seedOffset = 0,
+  driftSeconds = 90,
 }: {
   density?: number;
   opacity?: number;
   seedOffset?: number;
+  driftSeconds?: number;
 }) {
   const stars = Array.from({ length: density }).map((_, i) => {
     const seed = ((i + seedOffset) * 9301 + 49297) % 233280;
@@ -81,6 +86,13 @@ function StarField({
     const mid = v > 0.78 && !big;
     const size = big ? 2.5 : mid ? 1.6 : 1;
     const o = 0.45 + r(4) * 0.55;
+    const tint = r(5);
+    const bg =
+      tint > 0.93
+        ? "#a8c8e8" // cool moonlight cyan
+        : tint > 0.86
+          ? "#ffd6b8" // dawn warmth
+          : "#fffdf3";
     return (
       <span
         key={i}
@@ -90,7 +102,7 @@ function StarField({
           top: `${top}%`,
           width: `${size}px`,
           height: `${size}px`,
-          backgroundColor: "#fffdf3",
+          backgroundColor: bg,
           opacity: o * opacity,
           boxShadow: big
             ? "0 0 8px rgba(245,207,122,0.85), 0 0 14px rgba(255,176,136,0.4)"
@@ -101,12 +113,28 @@ function StarField({
       />
     );
   });
+  const driftName = `tk-drift-${seedOffset}`;
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
     >
-      {stars}
+      <style>{`
+        @keyframes ${driftName} {
+          0%   { transform: translate3d(0, 0, 0); }
+          50%  { transform: translate3d(-2%, -1.2%, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+      `}</style>
+      <div
+        className="absolute inset-0"
+        style={{
+          animation: `${driftName} ${driftSeconds}s ease-in-out infinite`,
+          willChange: "transform",
+        }}
+      >
+        {stars}
+      </div>
     </div>
   );
 }
@@ -323,18 +351,17 @@ function Landing() {
               }}
             >
               {[
-                { letter: "א", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(253, 246, 230, 0.04)" },
-                { letter: "מ", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(253, 246, 230, 0.07)" },
-                { letter: "ש", title: "A daily mantra and reflection", body: "a verse to carry, and a prompt to sit with.", tint: "rgba(253, 246, 230, 0.04)" },
+                { letter: "א", accent: "#c5a059", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(197, 160, 89, 0.06)" },
+                { letter: "מ", accent: C_SAGE,    title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(155, 209, 191, 0.06)" },
+                { letter: "ש", accent: C_DAWN,    title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(255, 176, 136, 0.06)" },
               ].map((item) => {
-                const accent = "#c5a059"; // antique gold
                 return (
                   <li
                     key={item.title}
-                    className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full"
+                    className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full transition-all duration-300 hover:-translate-y-1"
                     style={{
                       background: item.tint,
-                      border: `1px solid ${C_RULE_SOFT}`,
+                      border: `1px solid ${item.accent}33`,
                       borderRadius: 2,
                     }}
                   >
@@ -343,15 +370,15 @@ function Landing() {
                       className="leading-none"
                       style={{
                         fontFamily: HEAD,
-                        color: accent,
+                        color: item.accent,
                         fontSize: "clamp(32px, 4.5vw, 44px)",
-                        textShadow: `0 0 14px ${accent}55`,
+                        textShadow: `0 0 14px ${item.accent}66`,
                       }}
                     >
                       {item.letter}
                     </span>
                     <span>
-                      <span style={{ color: accent, fontStyle: "italic" }}>
+                      <span style={{ color: item.accent, fontStyle: "italic" }}>
                         {item.title}
                       </span>{" "}
                       — {item.body}
@@ -437,10 +464,26 @@ function Landing() {
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
-          style={{ background: C_BAND_DEEP }}
+          style={{ background: C_BAND_LIFT }}
         >
-          <StarField density={50} opacity={0.5} seedOffset={1300} />
+          <StarField density={50} opacity={0.5} seedOffset={1300} driftSeconds={140} />
+          {/* Giant faint Hebrew watermark */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
+            style={{
+              fontFamily: HEAD,
+              color: C_GOLD,
+              opacity: 0.05,
+              fontSize: "clamp(220px, 38vw, 520px)",
+              lineHeight: 1,
+              letterSpacing: "0.1em",
+            }}
+          >
+            תיקון
+          </div>
           <div className="relative mx-auto max-w-3xl text-center">
+            
             
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
