@@ -232,9 +232,9 @@ export function TikkunWheel({
             <stop offset="100%" stopColor="#C99245" />
           </linearGradient>
           <radialGradient id={alephId} cx="50%" cy="38%" r="70%">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="55%" stopColor="#fbf4e1" />
-            <stop offset="100%" stopColor="#e8dcc0" />
+            <stop offset="0%" stopColor="#fdf6e6" />
+            <stop offset="55%" stopColor="#f1e6c8" />
+            <stop offset="100%" stopColor="#d8c79b" />
           </radialGradient>
           <filter id={letterGlowId} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation={size * 0.006} result="b" />
