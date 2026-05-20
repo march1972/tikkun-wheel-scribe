@@ -67,6 +67,12 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-serif);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-weight: 100;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, span, a, button, li, em, strong {
+    font-family: inherit !important;
+    font-weight: 100 !important;
   }
 }
