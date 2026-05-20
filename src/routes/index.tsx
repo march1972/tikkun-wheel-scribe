@@ -329,7 +329,12 @@ function Landing() {
         {/* ── WHAT YOU RECEIVE ─────────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
-          style={{ background: C_BAND_MID }}
+          style={{
+            background:
+              "radial-gradient(80% 60% at 50% 0%, rgba(240,200,104,0.10) 0%, rgba(240,200,104,0) 70%), linear-gradient(180deg, #2a2238 0%, #2f2740 50%, #2a2238 100%)",
+            borderTop: `1px solid ${C_GOLD}22`,
+            borderBottom: `1px solid ${C_GOLD}22`,
+          }}
         >
           <StarField density={60} opacity={0.5} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
@@ -514,7 +519,7 @@ function Landing() {
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(36px, 6vw, 68px)",
+                fontSize: "clamp(30px, 5vw, 56px)",
                 lineHeight: 1,
                 letterSpacing: "-0.025em",
               }}
@@ -535,14 +540,11 @@ function Landing() {
               <span style={{ color: C_GOLD }}>.</span>
             </h2>
             <p
-              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
+              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-sm"
               style={{
-                fontFamily: BODY,
                 color: C_INK_SOFT,
-                fontSize: "clamp(15px, 1.5vw, 17px)",
-                lineHeight: 1.6,
-                maxWidth: "32rem",
-                fontWeight: 400,
+                lineHeight: 1.55,
+                maxWidth: "34rem",
               }}
             >
               A free <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes on your birthdate.
