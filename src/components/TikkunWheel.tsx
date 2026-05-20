@@ -163,11 +163,19 @@ export function TikkunWheel({
           0%, 100% { opacity: 0.25; }
           50%      { opacity: 0.95; }
         }
+        @keyframes tk-shine-${uid} {
+          0%, 100% { opacity: 0.35; transform: scale(1); }
+          50%      { opacity: 0.9;  transform: scale(1.08); }
+        }
+        .tk-cta-shine-${uid} {
+          transform-origin: ${cx}px ${cy}px;
+          animation: tk-shine-${uid} 2.4s ease-in-out infinite;
+        }
         .tk-wheel:hover { transform: scale(1.02); }
         .tk-wheel:hover .tk-cta-bg-${uid} {
-          stroke: rgba(255, 233, 184, 1);
+          stroke: rgba(255, 246, 214, 1);
           stroke-width: ${size * 0.007};
-          filter: drop-shadow(0 0 18px rgba(240,200,104,0.7));
+          filter: drop-shadow(0 0 22px rgba(255,215,106,0.95)) drop-shadow(0 0 44px rgba(255,183,77,0.6));
         }
         .tk-wheel:focus-visible {
           box-shadow: 0 0 0 2px ${accent}, 0 0 0 8px rgba(240,200,104,0.22);
