@@ -53,9 +53,9 @@ export function TikkunWheel({
   const cy = size / 2;
   const ringR = size * 0.464;
   const letterR = size * 0.393;
-  const alephR = size * 0.18;
+  const alephR = size * 0.143;
   const letterFontSize = size * 0.075;
-  const alephFontSize = size * 0.058;
+  const alephFontSize = size * 0.042;
 
   // Brand palette (matches src/styles.css tokens).
   const accent = "#f0c868";       // gold-bright
