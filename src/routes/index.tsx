@@ -292,7 +292,7 @@ function Landing() {
         >
           <StarField density={60} opacity={0.55} seedOffset={500} />
           <div className="relative mx-auto max-w-2xl text-center">
-            <Eyebrow>Origins</Eyebrow>
+            
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
               style={{ color: C_INK }}
