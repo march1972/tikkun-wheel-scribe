@@ -190,9 +190,6 @@ function Snippet() {
       </SkyShell>
     );
   }
-      </SkyShell>
-    );
-  }
 
   return (
     <SkyShell starDensity={200}>
