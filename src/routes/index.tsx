@@ -37,8 +37,8 @@ export const Route = createFileRoute("/")({
 // Deep indigo / blue-grey body that harmonizes with the gold wheel.
 // A small warm horizon glow at the very top corner hints at dawn
 // without competing with the wheel's gold.
-const HEAD = "var(--font-serif)";
-const BODY = "var(--font-sans)";
+const HEAD = "ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace";
+const BODY = "ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace";
 
 const C_SKY_GRAD =
   "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.18) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), linear-gradient(180deg, #141d33 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
