@@ -97,7 +97,7 @@ export function SefirotTree({
           cx={n.x}
           cy={n.y}
           r={nodeRadius}
-          fill="var(--forest-mid)"
+          fill="var(--gold)"
           stroke="var(--gold-bright)"
           strokeWidth={nodeStroke}
         />
