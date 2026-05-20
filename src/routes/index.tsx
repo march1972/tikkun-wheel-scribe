@@ -504,7 +504,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
           style={{
             background:
-              "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.10) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #1b2540 0%, #233055 100%)",
+              "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.07) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #0e1426 0%, #131c34 100%)",
           }}
         >
           <StarField density={50} opacity={0.55} seedOffset={1700} />
@@ -544,7 +544,7 @@ function Landing() {
             >
               A free <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes on your birthdate.
             </p>
-            <div className="mt-[clamp(2rem,4vh,2.75rem)] flex justify-center">
+            <div className="mt-[clamp(3.5rem,7vh,5rem)] flex justify-center">
               <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
             </div>
           </div>

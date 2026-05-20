@@ -352,12 +352,14 @@ export function TikkunWheel({
           })}
 
           {LETTERS.map((letter, i) => {
-            const angleRad = (-90 + i * 30) * (Math.PI / 180);
+            const angleDeg = -90 + i * 30 + 15; // +15° centers letter between spokes
+            const angleRad = angleDeg * (Math.PI / 180);
             const lx = cx + letterR * Math.cos(angleRad);
             const ly = cy + letterR * Math.sin(angleRad);
             const isHighlighted = highlightLetter === letter && state === "stopped";
             const isAccentSlot = i % 3 === 2;
             const baseColor = isAccentSlot ? accentBright : text;
+            const rotation = angleDeg + 90; // top of letter points outward
             return (
               <text
                 key={`${letter}-${i}`}
@@ -369,6 +371,7 @@ export function TikkunWheel({
                 fontWeight={isHighlighted ? 600 : isAccentSlot ? 500 : 400}
                 textAnchor="middle"
                 dominantBaseline="central"
+                transform={`rotate(${rotation} ${lx} ${ly})`}
                 filter={isAccentSlot || isHighlighted ? `url(#${letterGlowId})` : undefined}
               >
                 {letter}
