@@ -238,7 +238,7 @@ function Landing() {
       className="relative min-h-screen overflow-hidden"
       style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
     >
-      <StarField density={180} opacity={0.85} />
+      <StarField density={360} opacity={0.85} />
 
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
@@ -343,7 +343,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: "linear-gradient(180deg, #1c2848 0%, #22304f 50%, #283958 100%)" }}
         >
-          <StarField density={60} opacity={0.5} seedOffset={2100} />
+          <StarField density={140} opacity={0.5} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
             <h2
               className="font-mono font-thin text-2xl"
@@ -411,7 +411,7 @@ function Landing() {
             borderBottom: `1px solid ${C_RULE_SOFT}`,
           }}
         >
-          <StarField density={60} opacity={0.55} seedOffset={500} />
+          <StarField density={140} opacity={0.55} seedOffset={500} />
           <div className="relative mx-auto max-w-2xl text-center">
             
             <h2
@@ -446,7 +446,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
-          <StarField density={70} opacity={0.5} seedOffset={900} />
+          <StarField density={160} opacity={0.5} seedOffset={900} />
           <div className="relative mx-auto max-w-3xl text-center">
             
             <h2
@@ -478,7 +478,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
-          <StarField density={50} opacity={0.5} seedOffset={1300} driftSeconds={140} />
+          <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
           
           <div className="relative mx-auto max-w-3xl text-center">
             
@@ -519,7 +519,7 @@ function Landing() {
               "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.07) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #0e1426 0%, #131c34 100%)",
           }}
         >
-          <StarField density={50} opacity={0.55} seedOffset={1700} />
+          <StarField density={120} opacity={0.55} seedOffset={1700} />
           <div className="relative mx-auto max-w-3xl">
             <h2
               style={{
