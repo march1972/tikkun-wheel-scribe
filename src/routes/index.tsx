@@ -290,7 +290,7 @@ function Landing() {
 
         {/* ── ORIGINS ──────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,7vh,5.5rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{
             background: C_BAND_DEEP,
             borderTop: `1px solid ${C_RULE_SOFT}`,
@@ -329,7 +329,7 @@ function Landing() {
 
         {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,6rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
           <StarField density={70} opacity={0.5} seedOffset={900} />
@@ -361,7 +361,7 @@ function Landing() {
 
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,6rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_DEEP }}
         >
           <StarField density={50} opacity={0.5} seedOffset={1300} />
@@ -396,7 +396,7 @@ function Landing() {
 
         {/* ── WHAT YOU RECEIVE ─────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,6rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
           <StarField density={60} opacity={0.5} seedOffset={2100} />
@@ -410,7 +410,7 @@ function Landing() {
             </h2>
 
             <ul
-              className="mt-[clamp(1.5rem,3vh,2.25rem)] mx-auto flex flex-col gap-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm text-left"
+              className="mt-[clamp(2rem,4vh,3rem)] mx-auto flex flex-col font-mono font-thin text-sm text-left"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.55,
@@ -419,24 +419,55 @@ function Landing() {
                 padding: 0,
               }}
             >
-              <li>
-                <span style={{ color: C_GOLD, fontStyle: "italic" }}>
-                  Your Tikkun reading
-                </span>{" "}
-                — the soul's pattern of correction drawn from your lunar nodes.
-              </li>
-              <li>
-                <span style={{ color: C_GOLD, fontStyle: "italic" }}>
-                  Your Aramaic letter and emotion
-                </span>{" "}
-                — the sacred letter and inner quality assigned to your path.
-              </li>
-              <li>
-                <span style={{ color: C_GOLD, fontStyle: "italic" }}>
-                  A daily mantra and reflection
-                </span>{" "}
-                — a verse to carry, and a prompt to sit with.
-              </li>
+              {[
+                {
+                  accent: C_GOLD,
+                  title: "Your Tikkun reading & archetype",
+                  body: "the soul's pattern of correction drawn from your lunar nodes.",
+                },
+                {
+                  accent: C_SAGE,
+                  title: "Your Aramaic letter and emotion",
+                  body: "the sacred letter and inner quality assigned to your path.",
+                },
+                {
+                  accent: C_DAWN,
+                  title: "A daily mantra and reflection",
+                  body: "a verse to carry, and a prompt to sit with.",
+                },
+              ].map((item, i, arr) => (
+                <li key={item.title}>
+                  <div className="py-[clamp(1rem,2vh,1.5rem)] flex items-start gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 inline-block shrink-0"
+                      style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: 9999,
+                        background: item.accent,
+                        boxShadow: `0 0 10px ${item.accent}`,
+                      }}
+                    />
+                    <span>
+                      <span style={{ color: item.accent, fontStyle: "italic" }}>
+                        {item.title}
+                      </span>{" "}
+                      — {item.body}
+                    </span>
+                  </div>
+                  {i < arr.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="block"
+                      style={{
+                        height: 1,
+                        background: `linear-gradient(90deg, transparent 0%, ${C_RULE} 50%, transparent 100%)`,
+                      }}
+                    />
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </section>
