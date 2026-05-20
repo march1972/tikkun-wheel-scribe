@@ -1,11 +1,36 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { SkyShell } from "@/components/landing/SkyShell";
 import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
 import { MAX_SPINS, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
+import { submitLead } from "@/lib/lead.functions";
+
+const inputStyle: React.CSSProperties = {
+  fontFamily: BODY,
+  color: C_INK,
+  background: "rgba(10,14,28,0.45)",
+  border: `1px solid ${C_RULE}`,
+  borderRadius: 2,
+  padding: "12px 14px",
+  fontSize: "15px",
+  width: "100%",
+  outline: "none",
+};
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: BODY,
+  color: C_INK_SOFT,
+  fontSize: "10px",
+  letterSpacing: "0.22em",
+  textTransform: "uppercase",
+  fontWeight: 600,
+  display: "block",
+  marginBottom: "6px",
+};
 
 export const Route = createFileRoute("/snippet")({
   component: Snippet,
