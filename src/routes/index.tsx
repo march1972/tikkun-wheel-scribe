@@ -167,7 +167,7 @@ function PrimaryCTA({
 function Landing() {
   const navigate = useNavigate();
   const [attempts, setAttempts] = useState(0);
-  const wheelSize = useResponsiveWheelSize(0.92, 300, 560);
+  const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
 
   useEffect(() => {
     setAttempts(getAttempts());
