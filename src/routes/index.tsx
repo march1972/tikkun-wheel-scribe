@@ -238,7 +238,7 @@ function Landing() {
       className="relative min-h-screen overflow-hidden"
       style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
     >
-      <StarField density={180} opacity={0.85} />
+      <StarField density={360} opacity={0.85} />
 
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
