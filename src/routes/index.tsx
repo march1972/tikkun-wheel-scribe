@@ -211,6 +211,12 @@ function Landing() {
   const navigate = useNavigate();
   const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
 
+  // Reset spin counter on each fresh visit to the landing page.
+  useEffect(() => {
+    resetAttempts();
+  }, []);
+
+
   const handleSpin = () => {
     const next = incrementAttempt();
     if (next > MAX_SPINS) {
