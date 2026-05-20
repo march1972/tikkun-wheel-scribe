@@ -217,9 +217,13 @@ function Landing() {
         <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <h1
-              className="font-mono font-thin text-3xl"
               style={{
+                fontFamily: HEAD,
                 color: C_INK,
+                fontWeight: 500,
+                fontSize: "clamp(36px, 6vw, 68px)",
+                lineHeight: 1,
+                letterSpacing: "-0.025em",
               }}
             >
               What's your{" "}
