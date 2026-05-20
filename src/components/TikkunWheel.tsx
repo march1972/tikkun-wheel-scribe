@@ -355,43 +355,29 @@ export function TikkunWheel({
           />
           <text
             x={cx}
-            y={cy - alephFontSize * 0.7}
+            y={cy - alephFontSize * 0.55}
             fill={accentBright}
             fontSize={alephFontSize}
-            fontFamily="'Fraunces', serif"
+            fontFamily="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
             fontWeight={600}
-            letterSpacing={alephFontSize * 0.18}
+            letterSpacing={alephFontSize * 0.22}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            WHO
+            CLICK
           </text>
           <text
             x={cx}
-            y={cy + alephFontSize * 0.05}
+            y={cy + alephFontSize * 0.55}
             fill={accentBright}
             fontSize={alephFontSize}
-            fontFamily="'Fraunces', serif"
+            fontFamily="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
             fontWeight={600}
-            letterSpacing={alephFontSize * 0.18}
+            letterSpacing={alephFontSize * 0.22}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            YOU
-          </text>
-          <text
-            x={cx}
-            y={cy + alephFontSize * 0.8}
-            fill={accentBright}
-            fontSize={alephFontSize}
-            fontFamily="'Fraunces', serif"
-            fontStyle="italic"
-            fontWeight={500}
-            letterSpacing={alephFontSize * 0.12}
-            textAnchor="middle"
-            dominantBaseline="central"
-          >
-            are →
+            ME →
           </text>
         </g>
       </svg>
