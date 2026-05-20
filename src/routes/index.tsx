@@ -142,17 +142,17 @@ function PrimaryCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-3 uppercase transition-all hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ffb088] focus-visible:ring-offset-4 focus-visible:ring-offset-[#3d5170]"
+      className="group inline-flex items-center gap-3 uppercase transition-all hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
       style={{
-        background: `linear-gradient(135deg, ${C_ORANGE} 0%, ${C_GOLD} 100%)`,
-        color: "#1b2740",
+        background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
+        color: C_DEEP,
         fontFamily: BODY,
         fontWeight: 700,
         letterSpacing: "0.28em",
         fontSize: "clamp(11px, 1.2vw, 13px)",
         padding: "clamp(16px, 1.9vh, 20px) clamp(28px, 4vw, 44px)",
         borderRadius: "0px",
-        boxShadow: "0 10px 40px -10px rgba(255,147,84,0.6)",
+        boxShadow: "0 10px 40px -10px rgba(240,200,104,0.55)",
       }}
     >
       <span>{label}</span>
