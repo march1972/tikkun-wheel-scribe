@@ -467,21 +467,7 @@ function Landing() {
           style={{ background: C_BAND_LIFT }}
         >
           <StarField density={50} opacity={0.5} seedOffset={1300} driftSeconds={140} />
-          {/* Giant faint Hebrew watermark */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
-            style={{
-              fontFamily: HEAD,
-              color: C_GOLD,
-              opacity: 0.05,
-              fontSize: "clamp(220px, 38vw, 520px)",
-              lineHeight: 1,
-              letterSpacing: "0.1em",
-            }}
-          >
-            תיקון
-          </div>
+          
           <div className="relative mx-auto max-w-3xl text-center">
             
             
