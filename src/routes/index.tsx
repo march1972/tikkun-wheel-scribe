@@ -10,13 +10,13 @@ export const Route = createFileRoute("/")({
   component: Landing,
   head: () => ({
     meta: [
-      { title: "See your actual Tikkun birth chart — What's Your Tikkun?" },
+      { title: "Kabbalah Astrology — What's Your Tikkun?" },
       {
         name: "description",
         content:
-          "See your actual Tikkun birth chart maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's potential in relationships, finances, and career.",
+          "Kabbalah Astrology maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's potential in relationships, finances, and career.",
       },
-      { property: "og:title", content: "See your actual Tikkun birth chart — What's Your Tikkun?" },
+      { property: "og:title", content: "Kabbalah Astrology — What's Your Tikkun?" },
       {
         property: "og:description",
         content:
@@ -245,7 +245,7 @@ function Landing() {
                 fontWeight: 600,
               }}
             >
-              See your actual Tikkun birth chart
+              Kabbalah Astrology
             </span>
           </div>
         </header>
@@ -413,7 +413,7 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              See your actual Tikkun birth chart dates back to{" "}
+              Kabbalah Astrology dates back to{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span>{" "}
               and is found in many ancient texts and commentaries — the{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span>{" "}
@@ -567,7 +567,7 @@ function Landing() {
                 fontWeight: 600,
               }}
             >
-              © {new Date().getFullYear()} · See your actual Tikkun birth chart
+              © {new Date().getFullYear()} · Kabbalah Astrology
             </p>
           </div>
         </footer>

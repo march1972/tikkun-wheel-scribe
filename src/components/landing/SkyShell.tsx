@@ -30,7 +30,7 @@ export function SkyShell({
                 fontWeight: 600,
               }}
             >
-              See your actual Tikkun birth chart
+              Kabbalah Astrology
             </Link>
           </div>
         </header>

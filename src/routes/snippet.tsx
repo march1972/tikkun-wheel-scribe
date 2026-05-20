@@ -110,7 +110,7 @@ function Snippet() {
                 letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
               }}
             >
-              See your actual Tikkun birth chart
+              Kabbalah Astrology
             </span>
             <span className="h-px flex-1" style={{ background: C_RULE }} />
           </div>
