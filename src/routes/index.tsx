@@ -41,15 +41,15 @@ const HEAD = "var(--font-serif)";
 const BODY = "var(--font-sans)";
 
 const C_SKY_GRAD =
-  "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.18) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), linear-gradient(180deg, #141d33 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
+  "radial-gradient(60% 38% at 88% 0%, rgba(245,207,122,0.22) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 50% at 12% 30%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), radial-gradient(80% 55% at 50% 100%, rgba(255,176,136,0.10) 0%, rgba(255,176,136,0) 70%), linear-gradient(180deg, #0d1426 0%, #141d33 22%, #1b2540 48%, #233055 75%, #2a3a5e 100%)";
 
-// Bands deepen toward the middle of the page, then lift toward dawn at the bottom.
+// Each band layers a soft glow pool + vignette over a deep base for depth.
 const C_BAND_DEEP =
-  "linear-gradient(180deg, #131c34 0%, #0f1729 50%, #131c34 100%)";
+  "radial-gradient(70% 60% at 50% 0%, rgba(240,200,104,0.06) 0%, rgba(240,200,104,0) 65%), radial-gradient(90% 70% at 50% 100%, rgba(34,48,85,0.55) 0%, rgba(13,20,38,0) 70%), linear-gradient(180deg, #0b1222 0%, #0f1729 50%, #0b1222 100%)";
 const C_BAND_MID =
-  "linear-gradient(180deg, #1a2440 0%, #1f2b48 50%, #1a2440 100%)";
+  "radial-gradient(55% 45% at 20% 30%, rgba(155,209,191,0.07) 0%, rgba(155,209,191,0) 65%), radial-gradient(55% 45% at 80% 70%, rgba(240,200,104,0.08) 0%, rgba(240,200,104,0) 65%), linear-gradient(180deg, #161f3a 0%, #1d2845 50%, #161f3a 100%)";
 const C_BAND_LIFT =
-  "linear-gradient(180deg, #233055 0%, #2a3a5e 50%, #324468 100%)";
+  "radial-gradient(65% 55% at 50% 0%, rgba(255,233,184,0.10) 0%, rgba(255,233,184,0) 70%), radial-gradient(80% 70% at 50% 100%, rgba(13,20,38,0.5) 0%, rgba(13,20,38,0) 70%), linear-gradient(180deg, #1f2b4c 0%, #263558 50%, #2d3e64 100%)";
 
 const C_INK = "#fdf6e6";            // moonlight cream
 const C_INK_SOFT = "#ece3cf";
@@ -63,23 +63,12 @@ const C_RULE = "rgba(253, 246, 230, 0.20)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
 
 
-/** Scattered stars + tiny planets + drifting Hebrew letters. */
-const HEBREW_GLYPHS = ["א","ב","ג","ד","ה","ו","ז","ח","ט","י","כ","ל","מ","נ","ס","ע","פ","צ","ק","ר","ש","ת"];
-const PLANET_TINTS = [
-  { core: "#f0c868", glow: "rgba(240,200,104,0.55)" }, // gold
-  { core: "#ffb088", glow: "rgba(255,176,136,0.45)" }, // dawn
-  { core: "#9bd1bf", glow: "rgba(155,209,191,0.45)" }, // sage
-  { core: "#c8b8e8", glow: "rgba(200,184,232,0.45)" }, // violet
-  { core: "#a8c8e8", glow: "rgba(168,200,232,0.45)" }, // cool blue
-];
-
+/** Scattered stars with twinkle + slow parallax drift. */
 function StarField({
   density = 90,
   opacity = 0.7,
   seedOffset = 0,
   driftSeconds = 90,
-  planets = 4,
-  letters = 6,
 }: {
   density?: number;
   opacity?: number;
@@ -95,10 +84,10 @@ function StarField({
     const left = r(1) * 100;
     const top = r(2) * 100;
     const v = r(3);
-    const big = v > 0.92;
+    const big = v > 0.94;
     const mid = v > 0.78 && !big;
-    const size = big ? 2.5 : mid ? 1.6 : 1;
-    const o = 0.45 + r(4) * 0.55;
+    const size = big ? 2.4 : mid ? 1.5 : 0.9;
+    const o = 0.4 + r(4) * 0.6;
     const tint = r(5);
     const bg =
       tint > 0.93
@@ -118,90 +107,12 @@ function StarField({
           backgroundColor: bg,
           opacity: o * opacity,
           boxShadow: big
-            ? "0 0 8px rgba(245,207,122,0.85), 0 0 14px rgba(255,176,136,0.4)"
+            ? "0 0 8px rgba(245,207,122,0.8), 0 0 14px rgba(255,176,136,0.35)"
             : mid
-              ? "0 0 4px rgba(253,246,230,0.6)"
+              ? "0 0 4px rgba(253,246,230,0.55)"
               : undefined,
         }}
       />
-    );
-  });
-
-  const planetEls = Array.from({ length: planets }).map((_, i) => {
-    const seed = ((i + seedOffset + 7777) * 6151 + 31337) % 233280;
-    const r = (n: number) =>
-      ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
-    const left = r(1) * 100;
-    const top = r(2) * 100;
-    const tint = PLANET_TINTS[Math.floor(r(3) * PLANET_TINTS.length)];
-    const size = 3 + r(4) * 3.5; // 3–6.5px
-    const hasRing = r(5) > 0.6;
-    return (
-      <span
-        key={`p-${i}`}
-        className="absolute"
-        style={{
-          left: `${left}%`,
-          top: `${top}%`,
-          width: `${size}px`,
-          height: `${size}px`,
-          borderRadius: "9999px",
-          background: `radial-gradient(circle at 35% 35%, #fff 0%, ${tint.core} 55%, ${tint.core} 100%)`,
-          boxShadow: `0 0 ${size * 2}px ${tint.glow}, 0 0 ${size * 4}px ${tint.glow}`,
-          opacity: 0.85 * opacity,
-        }}
-      >
-        {hasRing && (
-          <span
-            className="absolute"
-            style={{
-              left: "50%",
-              top: "50%",
-              width: `${size * 2.4}px`,
-              height: `${size * 0.7}px`,
-              transform: `translate(-50%, -50%) rotate(${r(6) * 60 - 30}deg)`,
-              border: `1px solid ${tint.glow}`,
-              borderRadius: "9999px",
-            }}
-          />
-        )}
-      </span>
-    );
-  });
-
-  const letterEls = Array.from({ length: letters }).map((_, i) => {
-    const seed = ((i + seedOffset + 3333) * 2741 + 17891) % 233280;
-    const r = (n: number) =>
-      ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
-    const left = r(1) * 100;
-    const top = r(2) * 100;
-    const glyph = HEBREW_GLYPHS[Math.floor(r(3) * HEBREW_GLYPHS.length)];
-    const size = 9 + r(4) * 6; // 9–15px
-    const tintRoll = r(5);
-    const color =
-      tintRoll > 0.66
-        ? "rgba(240,200,104,0.45)"
-        : tintRoll > 0.33
-          ? "rgba(253,246,230,0.38)"
-          : "rgba(155,209,191,0.4)";
-    return (
-      <span
-        key={`l-${i}`}
-        className="absolute"
-        aria-hidden="true"
-        style={{
-          left: `${left}%`,
-          top: `${top}%`,
-          fontFamily: "'Frank Ruhl Libre', 'Fraunces', serif",
-          fontSize: `${size}px`,
-          color,
-          opacity: 0.7 * opacity,
-          textShadow: `0 0 6px ${color}`,
-          lineHeight: 1,
-        }}
-      >
-        {glyph}
-      </span>
     );
   });
 
@@ -226,8 +137,6 @@ function StarField({
         }}
       >
         {stars}
-        {planetEls}
-        {letterEls}
       </div>
     </div>
   );
@@ -320,7 +229,7 @@ function Landing() {
       className="relative min-h-screen overflow-hidden"
       style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
     >
-      <StarField density={260} opacity={0.85} planets={8} letters={12} />
+      <StarField density={260} opacity={0.85} />
 
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
@@ -425,7 +334,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: "linear-gradient(180deg, #1c2848 0%, #22304f 50%, #283958 100%)" }}
         >
-          <StarField density={120} opacity={0.6} seedOffset={2100} planets={5} letters={8} />
+          <StarField density={120} opacity={0.6} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
             <h2
               className="font-mono font-thin text-2xl"
@@ -493,7 +402,7 @@ function Landing() {
             borderBottom: `1px solid ${C_RULE_SOFT}`,
           }}
         >
-          <StarField density={120} opacity={0.6} seedOffset={500} planets={5} letters={8} />
+          <StarField density={120} opacity={0.6} seedOffset={500} />
           <div className="relative mx-auto max-w-2xl text-center">
             
             <h2
@@ -528,7 +437,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
-          <StarField density={130} opacity={0.55} seedOffset={900} planets={5} letters={8} />
+          <StarField density={130} opacity={0.55} seedOffset={900} />
           <div className="relative mx-auto max-w-3xl text-center">
             
             <h2
@@ -560,7 +469,7 @@ function Landing() {
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
-          <StarField density={110} opacity={0.55} seedOffset={1300} driftSeconds={140} planets={5} letters={7} />
+          <StarField density={110} opacity={0.55} seedOffset={1300} driftSeconds={140} />
           
           <div className="relative mx-auto max-w-3xl text-center">
             
@@ -601,7 +510,7 @@ function Landing() {
               "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.07) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #0e1426 0%, #131c34 100%)",
           }}
         >
-          <StarField density={110} opacity={0.6} seedOffset={1700} planets={5} letters={7} />
+          <StarField density={110} opacity={0.6} seedOffset={1700} />
           <div className="relative mx-auto max-w-3xl">
             <h2
               style={{
