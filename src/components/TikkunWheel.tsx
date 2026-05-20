@@ -105,7 +105,7 @@ export function TikkunWheel({
           transition: "transform 2.5s cubic-bezier(0.17, 0.67, 0.16, 0.99)",
         }
       : state === "idle"
-        ? { animation: `tk-slow-spin-${uid} 75s linear infinite` }
+        ? { animation: `tk-slow-spin-${uid} 20s linear infinite` }
         : {};
 
   const handleActivate = useCallback(() => {
