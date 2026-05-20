@@ -41,15 +41,16 @@ const HEAD = "var(--font-serif)";
 const BODY = "var(--font-sans)";
 
 const C_SKY_GRAD =
-  "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.18) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), linear-gradient(180deg, #141d33 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
+  "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.22) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.22) 0%, rgba(120,150,190,0) 65%), radial-gradient(60% 50% at 50% 35%, rgba(120,150,200,0.18) 0%, rgba(10,14,28,0) 70%), linear-gradient(180deg, #0c1426 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
 
 // Bands deepen toward the middle of the page, then lift toward dawn at the bottom.
+// Each band gets a soft radial highlight so the sky feels luminous, not flat.
 const C_BAND_DEEP =
-  "linear-gradient(180deg, #131c34 0%, #0f1729 50%, #131c34 100%)";
+  "radial-gradient(70% 55% at 50% 40%, rgba(120,150,200,0.14) 0%, rgba(10,14,28,0) 70%), radial-gradient(40% 30% at 15% 85%, rgba(245,207,122,0.06) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #0a1020 0%, #060a18 50%, #0a1020 100%)";
 const C_BAND_MID =
-  "linear-gradient(180deg, #1a2440 0%, #1f2b48 50%, #1a2440 100%)";
+  "radial-gradient(75% 60% at 50% 30%, rgba(155,180,220,0.16) 0%, rgba(10,14,28,0) 70%), radial-gradient(45% 35% at 85% 90%, rgba(155,209,191,0.07) 0%, rgba(155,209,191,0) 70%), linear-gradient(180deg, #131c34 0%, #182142 50%, #131c34 100%)";
 const C_BAND_LIFT =
-  "linear-gradient(180deg, #233055 0%, #2a3a5e 50%, #324468 100%)";
+  "radial-gradient(80% 60% at 50% 20%, rgba(255,220,180,0.14) 0%, rgba(10,14,28,0) 70%), radial-gradient(50% 40% at 20% 100%, rgba(245,207,122,0.10) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #1b2545 0%, #2a3a5e 55%, #38507a 100%)";
 
 const C_INK = "#fdf6e6";            // moonlight cream
 const C_INK_SOFT = "#ece3cf";
