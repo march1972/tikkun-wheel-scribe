@@ -173,9 +173,7 @@ export function TikkunWheel({
         }
         .tk-wheel:hover { transform: scale(1.02); }
         .tk-wheel:hover .tk-cta-bg-${uid} {
-          stroke: rgba(255, 246, 214, 1);
-          stroke-width: ${size * 0.007};
-          filter: drop-shadow(0 0 22px rgba(255,215,106,0.95)) drop-shadow(0 0 44px rgba(255,183,77,0.6));
+          filter: drop-shadow(0 0 26px rgba(255,252,235,1)) drop-shadow(0 0 50px rgba(255,246,214,0.7));
         }
         .tk-wheel:focus-visible {
           box-shadow: 0 0 0 2px ${accent}, 0 0 0 8px rgba(240,200,104,0.22);
@@ -234,10 +232,9 @@ export function TikkunWheel({
             <stop offset="100%" stopColor="#C99245" />
           </linearGradient>
           <radialGradient id={alephId} cx="50%" cy="38%" r="70%">
-            <stop offset="0%" stopColor="#fff6d6" />
-            <stop offset="35%" stopColor="#ffd76a" />
-            <stop offset="75%" stopColor="#e8a73a" />
-            <stop offset="100%" stopColor="#9a6418" />
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="55%" stopColor="#fbf4e1" />
+            <stop offset="100%" stopColor="#e8dcc0" />
           </radialGradient>
           <filter id={letterGlowId} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation={size * 0.006} result="b" />
@@ -383,52 +380,34 @@ export function TikkunWheel({
 
         {/* Central CTA medallion (breathes) */}
         <g className={`tk-aleph-${uid} tk-cta-${uid}`} style={{ cursor: "pointer" }}>
-          {/* Outer radiant glow — pulses like emanating light */}
+          {/* Outer radiant glow — pulses like emanating white light */}
           <circle
             className={`tk-cta-shine-${uid}`}
             cx={cx}
             cy={cy}
-            r={alephR * 1.35}
+            r={alephR * 1.4}
             fill="none"
-            stroke="rgba(255, 215, 106, 0.45)"
-            strokeWidth={size * 0.008}
-            style={{ filter: "blur(2px)" }}
+            stroke="rgba(255, 252, 235, 0.55)"
+            strokeWidth={size * 0.01}
+            style={{ filter: "blur(3px)" }}
           />
-          <circle
-            cx={cx}
-            cy={cy}
-            r={alephR * 1.18}
-            fill="none"
-            stroke="rgba(255, 233, 184, 0.55)"
-            strokeWidth={size * 0.012}
-          />
-          {/* Main medallion — radiant gold */}
+          {/* Main medallion — soft moonlight white */}
           <circle
             className={`tk-cta-bg-${uid}`}
             cx={cx}
             cy={cy}
             r={alephR}
             fill={`url(#${alephId})`}
-            stroke="rgba(255, 246, 214, 0.95)"
-            strokeWidth={size * 0.0045}
+            stroke="none"
             style={{
-              transition: "stroke 200ms ease, stroke-width 200ms ease, filter 200ms ease",
-              filter: "drop-shadow(0 0 14px rgba(255,215,106,0.7)) drop-shadow(0 0 28px rgba(255,183,77,0.45))",
+              transition: "filter 200ms ease",
+              filter: "drop-shadow(0 0 16px rgba(255,252,235,0.85)) drop-shadow(0 0 34px rgba(255,246,214,0.55))",
             }}
-          />
-          {/* Inset highlight hairline */}
-          <circle
-            cx={cx}
-            cy={cy}
-            r={alephR - size * 0.012}
-            fill="none"
-            stroke="rgba(255, 246, 214, 0.55)"
-            strokeWidth={0.6}
           />
           <text
             x={cx}
             y={cy}
-            fill="#c8102e"
+            fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
               fontWeight: 600,
