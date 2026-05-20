@@ -545,7 +545,7 @@ function Landing() {
               >
                 are
               </span>
-              <span style={{ color: C_GOLD }}>.</span>
+              <span style={{ color: C_DAWN }}>.</span>
             </h2>
             <p
               className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-sm"
