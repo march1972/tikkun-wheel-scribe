@@ -277,7 +277,7 @@ function Landing() {
                   fontWeight: 600,
                 }}
               >
-                Free Tikkun Reading
+                Free Tikkun Astrology Reading
               </p>
             </div>
           </div>
