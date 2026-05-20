@@ -3,6 +3,7 @@ import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
+import { incrementAttempt, MAX_SPINS } from "@/lib/spinAttempts";
 
 export const Route = createFileRoute("/")({
   component: Landing,
