@@ -601,7 +601,7 @@ function Landing() {
               "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.07) 0%, rgba(240,200,104,0) 60%), linear-gradient(180deg, #0e1426 0%, #131c34 100%)",
           }}
         >
-          <StarField density={50} opacity={0.55} seedOffset={1700} />
+          <StarField density={110} opacity={0.6} seedOffset={1700} planets={5} letters={7} />
           <div className="relative mx-auto max-w-3xl">
             <h2
               style={{
