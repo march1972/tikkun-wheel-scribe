@@ -41,15 +41,15 @@ const HEAD = "var(--font-serif)";
 const BODY = "var(--font-sans)";
 
 const C_SKY_GRAD =
-  "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.18) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), linear-gradient(180deg, #141d33 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
+  "radial-gradient(60% 38% at 88% 0%, rgba(245,207,122,0.22) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 50% at 12% 30%, rgba(120,150,190,0.18) 0%, rgba(120,150,190,0) 65%), radial-gradient(80% 55% at 50% 100%, rgba(255,176,136,0.10) 0%, rgba(255,176,136,0) 70%), linear-gradient(180deg, #0d1426 0%, #141d33 22%, #1b2540 48%, #233055 75%, #2a3a5e 100%)";
 
-// Bands deepen toward the middle of the page, then lift toward dawn at the bottom.
+// Each band layers a soft glow pool + vignette over a deep base for depth.
 const C_BAND_DEEP =
-  "linear-gradient(180deg, #131c34 0%, #0f1729 50%, #131c34 100%)";
+  "radial-gradient(70% 60% at 50% 0%, rgba(240,200,104,0.06) 0%, rgba(240,200,104,0) 65%), radial-gradient(90% 70% at 50% 100%, rgba(34,48,85,0.55) 0%, rgba(13,20,38,0) 70%), linear-gradient(180deg, #0b1222 0%, #0f1729 50%, #0b1222 100%)";
 const C_BAND_MID =
-  "linear-gradient(180deg, #1a2440 0%, #1f2b48 50%, #1a2440 100%)";
+  "radial-gradient(55% 45% at 20% 30%, rgba(155,209,191,0.07) 0%, rgba(155,209,191,0) 65%), radial-gradient(55% 45% at 80% 70%, rgba(240,200,104,0.08) 0%, rgba(240,200,104,0) 65%), linear-gradient(180deg, #161f3a 0%, #1d2845 50%, #161f3a 100%)";
 const C_BAND_LIFT =
-  "linear-gradient(180deg, #233055 0%, #2a3a5e 50%, #324468 100%)";
+  "radial-gradient(65% 55% at 50% 0%, rgba(255,233,184,0.10) 0%, rgba(255,233,184,0) 70%), radial-gradient(80% 70% at 50% 100%, rgba(13,20,38,0.5) 0%, rgba(13,20,38,0) 70%), linear-gradient(180deg, #1f2b4c 0%, #263558 50%, #2d3e64 100%)";
 
 const C_INK = "#fdf6e6";            // moonlight cream
 const C_INK_SOFT = "#ece3cf";
