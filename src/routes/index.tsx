@@ -3,7 +3,7 @@ import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
-import { incrementAttempt, MAX_SPINS, resetAttempts } from "@/lib/spinAttempts";
+import { resetAttempts, setCurrentSpinNumber } from "@/lib/spinAttempts";
 import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
@@ -218,11 +218,7 @@ function Landing() {
 
 
   const handleSpin = () => {
-    const next = incrementAttempt();
-    if (next > MAX_SPINS) {
-      navigate({ to: "/maxspins" });
-      return;
-    }
+    setCurrentSpinNumber(1);
     const target = randomTikkunSign();
     sessionStorage.setItem("tikkun_target_sign", target.id);
     navigate({ to: "/spinning" });
