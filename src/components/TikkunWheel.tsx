@@ -53,7 +53,7 @@ export function TikkunWheel({
   const cy = size / 2;
   const ringR = size * 0.464;
   const letterR = size * 0.393;
-  const alephR = size * 0.143;
+  const alephR = size * 0.122;
   const letterFontSize = size * 0.075;
   const alephFontSize = size * 0.042;
 
@@ -177,16 +177,16 @@ export function TikkunWheel({
           ${isIdle ? `animation: tk-halo-${uid} 2.2s ease-in-out infinite;` : "opacity: 0.7;"}
         }
         .tk-ripple-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out infinite;` : "opacity: 0;"}
         }
         .tk-ripple2-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 0.4s infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 0.8s infinite;` : "opacity: 0;"}
         }
         .tk-ripple3-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 0.8s infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 1.6s infinite;` : "opacity: 0;"}
         }
         .tk-ripple4-${uid} {
-          ${isIdle ? `animation: tk-ripple-${uid} 1.6s ease-out 1.2s infinite;` : "opacity: 0;"}
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 2.4s infinite;` : "opacity: 0;"}
         }
         .tk-spark-${uid} {
           ${isIdle ? `animation: tk-twinkle-${uid} 3.4s ease-in-out infinite;` : ""}
@@ -253,7 +253,7 @@ export function TikkunWheel({
           cy={cy}
           r={ringR}
           fill="none"
-          stroke={accent}
+          stroke="#a83340"
           strokeWidth={1.2}
         />
         <circle
@@ -262,7 +262,7 @@ export function TikkunWheel({
           cy={cy}
           r={ringR}
           fill="none"
-          stroke={accentBright}
+          stroke={accent}
           strokeWidth={1.2}
         />
         <circle
@@ -271,7 +271,7 @@ export function TikkunWheel({
           cy={cy}
           r={ringR}
           fill="none"
-          stroke={accent}
+          stroke="#a83340"
           strokeWidth={1.2}
         />
 
