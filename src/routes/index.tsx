@@ -293,7 +293,7 @@ function Landing() {
                 color: C_INK_SOFT,
                 lineHeight: 1.6,
                 maxWidth: "36rem",
-                fontSize: "clamp(16px, 1.7vw, 19px)",
+                fontSize: "clamp(14px, 1.5vw, 17px)",
               }}
             >
               Kabbalistic Astrology maps your{" "}
@@ -301,9 +301,8 @@ function Landing() {
               : the soul's pattern that signals how to{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>
                 fulfill your life's potential
-              </span>
-              <br />
-              <span style={{ whiteSpace: "nowrap" }}>— in relationships, finances, and career.</span>
+              </span>{" "}
+              — in relationships, finances, and career.
             </p>
 
             <div className="mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
