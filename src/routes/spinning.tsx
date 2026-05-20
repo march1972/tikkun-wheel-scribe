@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { SkyShell } from "@/components/landing/SkyShell";
-import { HEAD, BODY, C_INK, C_GOLD_BRIGHT, C_DAWN } from "@/lib/landing-style";
+import { HEAD, BODY, C_INK, C_DAWN } from "@/lib/landing-style";
 
 export const Route = createFileRoute("/spinning")({
   component: Spinning,
