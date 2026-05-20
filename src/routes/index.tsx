@@ -245,7 +245,7 @@ function Landing() {
                 fontWeight: 600,
               }}
             >
-              Kabbalah Astrology
+              See your actual Tikkun birth chart
             </span>
           </div>
         </header>
