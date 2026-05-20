@@ -40,3 +40,17 @@ export const submitLead = createServerFn({ method: "POST" })
     return { ok: true as const, error: null, signId: sign.id };
   });
 
+const subSchema = z.object({ email: z.string().trim().email().max(255) });
+
+export const subscribeNewsletter = createServerFn({ method: "POST" })
+  .inputValidator((input) => subSchema.parse(input))
+  .handler(async ({ data }) => {
+    const { error } = await supabaseAdmin
+      .from("newsletter_subscribers")
+      .upsert({ email: data.email, source: "history_page" }, { onConflict: "email" });
+    if (error) {
+      console.error("newsletter sub failed", error);
+      return { ok: false as const, error: "Could not subscribe — please try again." };
+    }
+    return { ok: true as const, error: null };
+  });

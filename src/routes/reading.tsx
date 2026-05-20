@@ -284,6 +284,22 @@ function ReadingPage() {
         </div>
       </ReadingBand>
 
+      {/* ── Want to go deeper → /history ── */}
+      <section
+        className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)] text-center"
+        style={{ background: C_BAND_MID, borderTop: `1px solid ${C_RULE_SOFT}` }}
+      >
+        <SectionHeader>{headers[7]}</SectionHeader>
+        <p
+          className="mt-2 font-mono font-thin"
+          style={{ color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
+        >
+          {sc.deeperSub}
+        </p>
+        <div className="mt-8 flex justify-center">
+          <PrimaryCTA label={sc.deeperButton} onClick={() => navigate({ to: "/history" })} />
+        </div>
+      </section>
     </SkyShell>
   );
 }

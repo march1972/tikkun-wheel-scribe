@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SpinningRouteImport } from './routes/spinning'
 import { Route as SnippetRouteImport } from './routes/snippet'
 import { Route as ReadingRouteImport } from './routes/reading'
+import { Route as HistoryRouteImport } from './routes/history'
 import { Route as FormRouteImport } from './routes/form'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const ReadingRoute = ReadingRouteImport.update({
   path: '/reading',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FormRoute = FormRouteImport.update({
   id: '/form',
   path: '/form',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/form': typeof FormRoute
+  '/history': typeof HistoryRoute
   '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/form': typeof FormRoute
+  '/history': typeof HistoryRoute
   '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
@@ -59,21 +67,30 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/form': typeof FormRoute
+  '/history': typeof HistoryRoute
   '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/form' | '/reading' | '/snippet' | '/spinning'
+  fullPaths: '/' | '/form' | '/history' | '/reading' | '/snippet' | '/spinning'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/form' | '/reading' | '/snippet' | '/spinning'
-  id: '__root__' | '/' | '/form' | '/reading' | '/snippet' | '/spinning'
+  to: '/' | '/form' | '/history' | '/reading' | '/snippet' | '/spinning'
+  id:
+    | '__root__'
+    | '/'
+    | '/form'
+    | '/history'
+    | '/reading'
+    | '/snippet'
+    | '/spinning'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FormRoute: typeof FormRoute
+  HistoryRoute: typeof HistoryRoute
   ReadingRoute: typeof ReadingRoute
   SnippetRoute: typeof SnippetRoute
   SpinningRoute: typeof SpinningRoute
@@ -102,6 +119,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReadingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/form': {
       id: '/form'
       path: '/form'
@@ -122,6 +146,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FormRoute: FormRoute,
+  HistoryRoute: HistoryRoute,
   ReadingRoute: ReadingRoute,
   SnippetRoute: SnippetRoute,
   SpinningRoute: SpinningRoute,
