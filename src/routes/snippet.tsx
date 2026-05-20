@@ -89,7 +89,7 @@ function Snippet() {
             maxWidth: "34rem",
           }}
         >
-          You have a tendency to <span style={{ color: C_INK }}>{sign.screen3.spinSnippet}</span>
+          <span style={{ color: C_INK }}>{sign.screen3.spinSnippet}</span>
         </p>
 
         {/* Prompt */}

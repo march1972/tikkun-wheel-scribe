@@ -1,14 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
-import { randomSign } from "@/lib/bundle";
-import {
-  MAX_SPINS,
-  getAttempts,
-  incrementAttempt,
-} from "@/lib/spinAttempts";
+import { randomTikkunSign } from "@/lib/tikkun-data";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -213,26 +207,13 @@ function PrimaryCTA({
 
 function Landing() {
   const navigate = useNavigate();
-  const [attempts, setAttempts] = useState(0);
   const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
 
-  useEffect(() => {
-    setAttempts(getAttempts());
-  }, []);
-
   const handleSpin = () => {
-    const next = incrementAttempt();
-    if (next > MAX_SPINS) {
-      navigate({ to: "/maxspins" });
-      return;
-    }
-    const target = randomSign();
-    sessionStorage.setItem("tikkun_target_sign", target.key);
+    const target = randomTikkunSign();
+    sessionStorage.setItem("tikkun_target_sign", target.id);
     navigate({ to: "/spinning" });
   };
-
-  const used = Math.min(attempts, MAX_SPINS);
-  const remaining = Math.max(0, MAX_SPINS - used);
 
   return (
     <main
@@ -287,18 +268,15 @@ function Landing() {
             </h1>
 
             <div className="mt-[clamp(1.5rem,3.5vh,2.5rem)]">
-              <button
-                type="button"
-                onClick={handleSpin}
-                aria-label="Turn the Tikkun wheel"
+              <div
                 className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
                 style={{
                   filter:
                     "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
                 }}
               >
-                <TikkunWheel size={wheelSize} state="idle" />
-              </button>
+                <TikkunWheel size={wheelSize} state="idle" onClick={handleSpin} />
+              </div>
             </div>
 
             <p

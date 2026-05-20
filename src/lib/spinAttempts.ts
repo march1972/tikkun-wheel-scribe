@@ -68,6 +68,12 @@ export function spinsRemaining(): number {
   return Math.max(0, MAX_SPINS - getAttempts());
 }
 
+export function recordInitialSpin(): void {
+  const current = read();
+  if (current.count > 0) return;
+  write({ count: 0, expiresAt: current.expiresAt });
+}
+
 /** Increment attempt. Returns the new count (so the 4th call returns 4). */
 export function incrementAttempt(): number {
   const current = read();
