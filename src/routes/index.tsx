@@ -190,40 +190,21 @@ function Landing() {
       <StarField density={180} opacity={0.85} />
 
       <div className="relative">
-        {/* ── TOP BAR ─────────────────────────────────────────── */}
-        <header
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(0.9rem,2vh,1.25rem)]"
-          style={{ borderBottom: `1px solid ${C_RULE_SOFT}` }}
-        >
-          <div
-            className="mx-auto max-w-6xl text-center"
-            style={{
-              fontFamily: BODY,
-              color: C_INK_SOFT,
-              fontSize: "10px",
-              letterSpacing: "0.42em",
-              textTransform: "uppercase",
-              fontWeight: 600,
-            }}
-          >
-            Kabbalah Astrology
-          </div>
-        </header>
-
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2.5rem,6vh,5rem)] pb-[clamp(3rem,6vh,5rem)]">
+        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)]">
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <p
               style={{
                 fontFamily: BODY,
                 color: C_DAWN,
-                fontSize: "11px",
-                letterSpacing: "0.4em",
+                fontSize: "clamp(10px, 1.05vw, 12px)",
+                letterSpacing: "0.36em",
                 textTransform: "uppercase",
                 fontWeight: 700,
+                lineHeight: 1.5,
               }}
             >
-              What's your Tikkun?
+              Kabbalah Astrology Reveals Your Tikkun
             </p>
 
             <div className="mt-[clamp(1.25rem,3vh,2rem)]">
@@ -248,14 +229,19 @@ function Landing() {
                 color: C_INK,
                 fontWeight: 400,
                 fontStyle: "italic",
-                fontSize: "clamp(18px, 2.2vw, 24px)",
-                lineHeight: 1.5,
-                maxWidth: "32rem",
-                letterSpacing: "-0.01em",
+                fontSize: "clamp(17px, 2vw, 22px)",
+                lineHeight: 1.55,
+                maxWidth: "34rem",
+                letterSpacing: "-0.005em",
               }}
             >
-              The soul's pattern of correction — the work you came to do, in
-              love, livelihood, and purpose.
+              Kabbalistic Astrology maps your{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>
+              : the soul's pattern of correction that signals how to{" "}
+              <span style={{ color: C_INK, fontStyle: "normal", fontWeight: 600 }}>
+                fulfill your life's potential
+              </span>{" "}
+              — in relationships, finances, and career.
             </p>
 
             <div className="mt-[clamp(1.75rem,3.5vh,2.5rem)] flex flex-col items-center gap-3">
