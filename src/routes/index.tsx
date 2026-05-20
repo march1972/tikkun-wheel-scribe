@@ -278,10 +278,7 @@ function Landing() {
                 style={{
                   fontStyle: "italic",
                   fontWeight: 400,
-                  background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  color: C_DAWN,
                 }}
               >
                 Tikkun
@@ -365,7 +362,7 @@ function Landing() {
             >
               {[
                 { letter: "א", accent: "#FFE9B8", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(255, 233, 184, 0.06)" },
-                { letter: "מ", accent: "#f08050", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(240, 128, 80, 0.07)" },
+                { letter: "מ", accent: "#f0c868", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(240, 200, 104, 0.07)" },
                 { letter: "ש", accent: "#b8862e", title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(184, 134, 46, 0.07)" },
               ].map((item) => {
                 return (
@@ -455,7 +452,7 @@ function Landing() {
               style={{ color: C_INK }}
             >
               Influence, Not{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Prediction</span>
+              <span style={{ color: C_INK, fontStyle: "italic" }}>Prediction</span>
             </h2>
             <p
               className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm"
@@ -467,8 +464,9 @@ function Landing() {
             >
               Kabbalists accept the signals or influence of the celestial
               constellations ({" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Mazalot</span>{" "}
-              ), but reject astrology as fatalistic prediction. A person's free
+              <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
+              ), but reject astrology as{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free
               will always overrides fate.
             </p>
           </div>
@@ -501,7 +499,7 @@ function Landing() {
               Fulfilling your{" "}
               <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>{" "}
               serves a greater purpose —{" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
               — sharing your light to build a better world.
             </p>
 
