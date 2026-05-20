@@ -288,11 +288,12 @@ function Landing() {
             </div>
 
             <p
-              className="mt-[clamp(2.75rem,5.5vh,4rem)] font-mono font-thin text-sm"
+              className="mt-[clamp(3.25rem,6.5vh,5rem)] font-mono font-thin"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.55,
                 maxWidth: "34rem",
+                fontSize: "clamp(13.5px, 1.35vw, 15px)",
               }}
             >
               Kabbalistic Astrology maps your{" "}
