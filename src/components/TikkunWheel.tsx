@@ -253,7 +253,7 @@ export function TikkunWheel({
           cy={cy}
           r={ringR}
           fill="none"
-          stroke={accent}
+          stroke="#a83340"
           strokeWidth={1.2}
         />
         <circle
@@ -262,7 +262,7 @@ export function TikkunWheel({
           cy={cy}
           r={ringR}
           fill="none"
-          stroke={accentBright}
+          stroke={accent}
           strokeWidth={1.2}
         />
         <circle
@@ -271,7 +271,7 @@ export function TikkunWheel({
           cy={cy}
           r={ringR}
           fill="none"
-          stroke={accent}
+          stroke="#a83340"
           strokeWidth={1.2}
         />
 
