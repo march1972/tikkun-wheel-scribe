@@ -53,9 +53,9 @@ export function TikkunWheel({
   const cy = size / 2;
   const ringR = size * 0.464;
   const letterR = size * 0.393;
-  const alephR = size * 0.143;
+  const alephR = size * 0.18;
   const letterFontSize = size * 0.075;
-  const alephFontSize = size * 0.125;
+  const alephFontSize = size * 0.058;
 
   // Brand palette (matches src/styles.css tokens).
   const accent = "#f0c868";       // gold-bright
@@ -343,28 +343,55 @@ export function TikkunWheel({
           fill={`url(#${alephHaloId})`}
         />
 
-        {/* Central aleph medallion (breathes) */}
-        <g className={`tk-aleph-${uid}`}>
+        {/* Central CTA medallion (breathes) */}
+        <g className={`tk-aleph-${uid}`} style={{ cursor: "pointer" }}>
           <circle
             cx={cx}
             cy={cy}
             r={alephR}
             fill={`url(#${alephId})`}
-            stroke="rgb(243, 219, 157)"
-            strokeWidth={size * 0.008}
+            stroke={accentBright}
+            strokeWidth={size * 0.01}
           />
           <text
             x={cx}
-            y={cy}
+            y={cy - alephFontSize * 0.7}
+            fill={accentBright}
+            fontSize={alephFontSize}
+            fontFamily="'Fraunces', serif"
+            fontWeight={600}
+            letterSpacing={alephFontSize * 0.18}
+            textAnchor="middle"
+            dominantBaseline="central"
+          >
+            WHO
+          </text>
+          <text
+            x={cx}
+            y={cy + alephFontSize * 0.05}
+            fill={accentBright}
+            fontSize={alephFontSize}
+            fontFamily="'Fraunces', serif"
+            fontWeight={600}
+            letterSpacing={alephFontSize * 0.18}
+            textAnchor="middle"
+            dominantBaseline="central"
+          >
+            YOU
+          </text>
+          <text
+            x={cx}
+            y={cy + alephFontSize * 0.8}
             fill={accentBright}
             fontSize={alephFontSize}
             fontFamily="'Fraunces', serif"
             fontStyle="italic"
             fontWeight={500}
+            letterSpacing={alephFontSize * 0.12}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            א
+            are →
           </text>
         </g>
       </svg>
