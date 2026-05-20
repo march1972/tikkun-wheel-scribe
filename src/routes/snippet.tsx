@@ -30,10 +30,7 @@ function Snippet() {
 
   const handleSpinAgain = () => {
     const next = spinNumber + 1;
-    if (next > MAX_SPINS) {
-      navigate({ to: "/maxspins" });
-      return;
-    }
+    if (next > MAX_SPINS) return;
     setCurrentSpinNumber(next);
     const target = randomTikkunSign(sign?.id ?? null);
     sessionStorage.setItem("tikkun_target_sign", target.id);
