@@ -39,8 +39,16 @@ export const Route = createFileRoute("/snippet")({
 
 function Snippet() {
   const navigate = useNavigate();
+  const submit = useServerFn(submitLead);
   const [sign, setSign] = useState<TikkunSign | null>(null);
   const [spinNumber, setSpinNumber] = useState(1);
+
+  // Inline form state (used on final spin)
+  const [dob, setDob] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [err, setErr] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     const key = sessionStorage.getItem("tikkun_target_sign");
@@ -62,15 +70,38 @@ function Snippet() {
     navigate({ to: "/spinning" });
   };
 
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErr(null);
+    if (!dob) return setErr("Please enter your date of birth.");
+    if (!email) return setErr("Please enter your email.");
+    setBusy(true);
+    try {
+      const res = await submit({ data: { name: name || undefined, dob, email, newsletterOptIn: false } });
+      if (!res.ok || !res.signId) {
+        setErr(res.error ?? "Something went wrong.");
+        setBusy(false);
+        return;
+      }
+      sessionStorage.setItem("tikkun_real_sign", res.signId);
+      navigate({ to: "/reading", search: { sign: res.signId } });
+    } catch (e2) {
+      console.error(e2);
+      setErr("Could not submit. Please try again.");
+      setBusy(false);
+    }
+  };
+
   if (!sign) return null;
   const canSpinAgain = spinNumber < MAX_SPINS;
   const copy = STATIC_COPY.screen3;
+  const today = new Date().toISOString().slice(0, 10);
 
-  // FINAL SPIN (3 of 3): convert to CTA-focused email capture screen.
+  // FINAL SPIN (3 of 3): inline signup form for max conversion.
   if (!canSpinAgain) {
     return (
       <SkyShell starDensity={200}>
-        <section className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-2xl flex-col items-center justify-center px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3rem,8vh,6rem)] text-center">
+        <section className="relative mx-auto flex max-w-md flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.5rem,4vh,3rem)] pb-[clamp(2.5rem,5vh,4rem)] text-center">
           <div className="flex w-full items-center gap-3">
             <span className="h-px flex-1" style={{ background: C_RULE }} />
             <span
@@ -84,65 +115,81 @@ function Snippet() {
             <span className="h-px flex-1" style={{ background: C_RULE }} />
           </div>
 
-          <p
-            className="mt-[clamp(1.25rem,3vh,2rem)] font-mono italic"
-            style={{ color: C_MUTED, fontSize: "12px", letterSpacing: "0.12em" }}
-          >
-            {MAX_SPINS} of {MAX_SPINS} spins reached
-          </p>
-
           <h1
-            className="mt-[clamp(0.75rem,2vh,1.25rem)]"
+            className="mt-[clamp(1rem,2.5vh,1.5rem)]"
             style={{
               fontFamily: HEAD, color: C_INK, fontWeight: 500,
-              fontSize: "clamp(28px, 5vw, 52px)", lineHeight: 1.12,
+              fontSize: "clamp(26px, 5vw, 42px)", lineHeight: 1.12,
               letterSpacing: "-0.02em",
             }}
           >
-            Your actual{" "}
-            <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
-            pattern is found in your{" "}
-            <span style={{ color: C_GOLD, fontStyle: "italic" }}>lunar birth chart</span>.
+            Get your real{" "}
+            <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>
           </h1>
 
-          <ul
-            className="mt-[clamp(1.5rem,3vh,2rem)] flex flex-wrap items-center justify-center gap-x-5 gap-y-1 font-mono"
-            style={{ color: C_INK_SOFT, fontSize: "12px", letterSpacing: "0.08em" }}
-          >
-            <li>✓ Your soul's pattern</li>
-            <li>✓ Free 10-page workbook</li>
-            <li>✓ Emailed instantly</li>
-          </ul>
-
-          <button
-            type="button"
-            onClick={() => navigate({ to: "/form" })}
-            className="group mt-[clamp(2rem,4vh,3rem)] inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5"
-            style={{
-              background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
-              color: C_INK,
-              fontFamily: BODY,
-              fontWeight: 700,
-              letterSpacing: "0.28em",
-              fontSize: "clamp(11px, 1.2vw, 13px)",
-              padding: "clamp(14px, 1.9vh, 20px) clamp(24px, 4vw, 44px)",
-              borderRadius: "0px",
-              boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
-            }}
-          >
-            <span>Get my real Tikkun</span>
-            <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" style={{ fontWeight: 800 }}>
-              →
-            </span>
-          </button>
-
           <p
-            className="mt-[clamp(0.75rem,2vh,1.25rem)] font-mono italic"
-            style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
+            className="mt-3 font-mono font-thin"
+            style={{ color: C_INK_SOFT, fontSize: "13px", maxWidth: "24rem", lineHeight: 1.5 }}
           >
-            Takes under a minute. No payment, no spam.
+            Your personal reading + a free 10-page{" "}
+            <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun Workbook</span> — emailed instantly.
           </p>
+
+          <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
+            <div>
+              <label style={labelStyle} htmlFor="dob">Date of Birth</label>
+              <input
+                id="dob" type="date" required value={dob} onChange={(e) => setDob(e.target.value)}
+                min="1901-01-22" max={today} style={inputStyle}
+              />
+            </div>
+            <div>
+              <label style={labelStyle} htmlFor="email">Email</label>
+              <input
+                id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email" maxLength={255} placeholder="you@example.com" style={inputStyle}
+              />
+            </div>
+
+            {err && (
+              <p style={{ fontFamily: BODY, color: C_DAWN, fontSize: "12px" }}>{err}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={busy}
+              className="group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60"
+              style={{
+                background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
+                color: C_INK,
+                fontFamily: BODY,
+                fontWeight: 700,
+                letterSpacing: "0.24em",
+                fontSize: "12px",
+                padding: "16px 24px",
+                borderRadius: "0px",
+                boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+              }}
+            >
+              <span>{busy ? "Revealing…" : "Reveal my Tikkun"}</span>
+              {!busy && (
+                <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
+              )}
+            </button>
+          </form>
+
+          <ul
+            className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-mono"
+            style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.06em" }}
+          >
+            <li>✓ Free workbook</li>
+            <li>✓ 60-second reading</li>
+            <li>✓ No spam</li>
+          </ul>
         </section>
+      </SkyShell>
+    );
+  }
       </SkyShell>
     );
   }
