@@ -455,7 +455,7 @@ function Landing() {
               style={{ color: C_INK }}
             >
               Influence, Not{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Prediction</span>
+              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Prediction</span>
             </h2>
             <p
               className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm"
