@@ -407,12 +407,12 @@ export function TikkunWheel({
           <text
             x={cx}
             y={cy}
-            fill="#1b2540"
+            fill="rgba(50, 68, 104, 0.55)"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontWeight: 600,
+              fontWeight: 300,
               fontSize: `${Math.max(7, Math.min(13, size * 0.022))}px`,
-              letterSpacing: "0.08em",
+              letterSpacing: "0.1em",
             }}
             textAnchor="middle"
             dominantBaseline="central"
