@@ -406,18 +406,17 @@ export function TikkunWheel({
           <text
             x={cx}
             y={cy}
-            fill={accentBright}
+            fill="#fdf6e6"
             style={{
-              fontFamily: "var(--font-sans)",
-              fontWeight: 500,
-              fontSize: "9px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
+              fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+              fontWeight: 400,
+              fontSize: "7px",
+              letterSpacing: "0.08em",
             }}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            Enter Here
+            enter here
           </text>
         </g>
       </svg>
