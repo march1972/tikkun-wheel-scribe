@@ -314,12 +314,12 @@ function Snippet() {
                 <p
                   className="font-mono"
                   style={{
-                    color: C_INK_SOFT, fontSize: "12px", letterSpacing: "0.04em",
-                    lineHeight: 1.5, marginBottom: "1rem",
+                    color: "rgba(236, 227, 207, 0.45)", fontSize: "11px", letterSpacing: "0.04em",
+                    lineHeight: 1.5, marginBottom: "1rem", fontWeight: 300,
                   }}
                 >
                   Curious about more Tikkun archetypes? Keep spinning to preview more Tikkun snippets.
-                  <span style={{ color: C_MUTED, display: "block", marginTop: 4, fontSize: "11px" }}>
+                  <span style={{ color: "rgba(236, 227, 207, 0.35)", display: "block", marginTop: 4, fontSize: "10px" }}>
                     Spin no. {spinNumber}
                   </span>
                 </p>
