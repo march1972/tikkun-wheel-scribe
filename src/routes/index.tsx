@@ -348,9 +348,9 @@ function Landing() {
               }}
             >
               {[
-                { letter: "א", letterColor: C_GOLD, accent: C_GOLD, title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(240, 200, 104, 0.06)" },
-                { letter: "מ", letterColor: C_GOLD, accent: C_GOLD, title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(240, 200, 104, 0.06)" },
-                { letter: "ש", letterColor: C_GOLD, accent: C_GOLD, title: "A daily mantra and reflection",   body: "a verse to meditate on for personal change.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "א", letterColor: C_DAWN, accent: C_GOLD, title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "מ", letterColor: C_DAWN, accent: C_GOLD, title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "ש", letterColor: C_DAWN, accent: C_GOLD, title: "A daily mantra and reflection",   body: "a verse to meditate on for personal change.", tint: "rgba(240, 200, 104, 0.06)" },
               ].map((item) => {
                 return (
                   <li
@@ -414,7 +414,7 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              Kabbalah Astrology dates back to Abraham and is found in many ancient texts and commentaries — the Talmud (the Oral Torah), the Sefer Yetzirah (Book of Formation), and the Zohar (Book of Splendor).
+              Kabbalah Astrology dates back to Abraham and is found in many ancient texts and commentaries — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
             </p>
           </div>
         </section>
@@ -445,7 +445,7 @@ function Landing() {
               constellations ({" "}
               <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
               ), but reject astrology as fatalistic prediction. A person's{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>free will</span>{" "}
+              <span style={{ color: C_DAWN, fontStyle: "italic" }}>free will</span>{" "}
               always overrides fate.
             </p>
           </div>
