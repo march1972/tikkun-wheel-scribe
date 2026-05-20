@@ -361,9 +361,9 @@ function Landing() {
               }}
             >
               {[
-                { letter: "א", accent: "#ff6a4a", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(255, 106, 74, 0.07)" },
-                { letter: "מ", accent: "#e94e2b", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(233, 78, 43, 0.07)" },
-                { letter: "ש", accent: "#b83518", title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(184, 53, 24, 0.08)" },
+                { letter: "א", letterColor: "#ff6a4a", accent: "#FFE9B8", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(255, 233, 184, 0.06)" },
+                { letter: "מ", letterColor: "#e94e2b", accent: "#f0c868", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(240, 200, 104, 0.07)" },
+                { letter: "ש", letterColor: "#b83518", accent: "#b8862e", title: "A daily mantra and reflection",   body: "a verse to carry, and a prompt to sit with.", tint: "rgba(184, 134, 46, 0.07)" },
               ].map((item) => {
                 return (
                   <li
@@ -380,9 +380,9 @@ function Landing() {
                       className="leading-none"
                       style={{
                         fontFamily: HEAD,
-                        color: item.accent,
+                        color: item.letterColor,
                         fontSize: "clamp(32px, 4.5vw, 44px)",
-                        textShadow: `0 0 14px ${item.accent}66`,
+                        textShadow: `0 0 14px ${item.letterColor}66`,
                       }}
                     >
                       {item.letter}
