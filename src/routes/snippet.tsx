@@ -205,24 +205,9 @@ function Snippet() {
         .cta-pulse-glow:hover { animation: none; }
       `}</style>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        {/* Eyebrow: Does this sound like you? — match landing hero font, gold */}
-        <h2
-          style={{
-            fontFamily: HEAD,
-            color: C_GOLD,
-            fontWeight: 500,
-            fontStyle: "italic",
-            fontSize: "clamp(24px, 4vw, 38px)",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {copy.prompt}
-        </h2>
-
-        {/* Sign + snippet block — clean, modern, no gold border */}
+        {/* Sign + snippet block — eyebrow now lives inside the card */}
         <div
-          className="mt-[clamp(1.5rem,3vh,2.25rem)] w-full"
+          className="w-full"
           style={{
             background:
               "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
@@ -234,7 +219,26 @@ function Snippet() {
             backdropFilter: "blur(8px)",
           }}
         >
-          <div className="flex items-baseline justify-center gap-[clamp(12px,2.5vw,24px)]">
+          {/* Eyebrow inside card — gold caps with flanking line */}
+          <div className="flex items-center justify-center gap-3">
+            <span style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${C_GOLD}55)` }} />
+            <span
+              style={{
+                fontFamily: BODY,
+                color: C_GOLD,
+                fontWeight: 600,
+                fontSize: "11px",
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Does this pattern sound like you?
+            </span>
+            <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)` }} />
+          </div>
+
+          <div className="mt-[clamp(1.25rem,2.5vh,1.75rem)] flex items-baseline justify-center gap-[clamp(12px,2.5vw,24px)]">
             <span
               style={{
                 fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 12vw, 110px)",
@@ -283,7 +287,7 @@ function Snippet() {
           <span>Not quite — spin again</span>
         </button>
 
-        {/* CTA — matches form Reveal button exactly */}
+        {/* CTA — rectangular red button */}
         <button
           type="button"
           onClick={() => navigate({ to: "/form" })}
@@ -296,7 +300,7 @@ function Snippet() {
             letterSpacing: "0.24em",
             fontSize: "12px",
             padding: "18px 32px",
-            borderRadius: "999px",
+            borderRadius: "0px",
             boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
           }}
         >
@@ -305,16 +309,11 @@ function Snippet() {
         </button>
         <p
           className="mt-3 font-mono"
-          style={{ color: C_GOLD, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
+          style={{ color: C_MUTED, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
         >
-          Your free full Tikkun reading
+          Your free personal Tikkun chart
         </p>
-        <p
-          className="mt-2 italic font-mono"
-          style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
-        >
-          {copy.reassurance}
-        </p>
+
 
       </section>
     </SkyShell>
