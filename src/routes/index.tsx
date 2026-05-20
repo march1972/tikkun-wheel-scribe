@@ -75,13 +75,25 @@ function StarField({
   seedOffset?: number;
   driftSeconds?: number;
 }) {
+  // Mulberry32 PRNG — produces well-distributed pseudo-random values
+  // so stars truly scatter instead of forming visible diagonal bands.
+  const mulberry32 = (a: number) => {
+    let t = a >>> 0;
+    return () => {
+      t = (t + 0x6d2b79f5) >>> 0;
+      let x = t;
+      x = Math.imul(x ^ (x >>> 15), x | 1);
+      x ^= x + Math.imul(x ^ (x >>> 7), x | 61);
+      return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+    };
+  };
   const stars = Array.from({ length: density }).map((_, i) => {
-    const seed = ((i + seedOffset) * 9301 + 49297) % 233280;
-    const r = (n: number) =>
-      ((seed * (n + 1) * 1103515245 + 12345) % 2147483648) / 2147483648;
-    const left = r(1) * 100;
-    const top = r(2) * 100;
-    const v = r(3);
+    const rng = mulberry32((i + 1) * 2654435761 + seedOffset * 97);
+    // Burn a few values to decorrelate adjacent indices.
+    rng(); rng();
+    const left = rng() * 100;
+    const top = rng() * 100;
+    const v = rng();
     const big = v > 0.92;
     const mid = v > 0.78 && !big;
     const size = big ? 2.5 : mid ? 1.6 : 1;
