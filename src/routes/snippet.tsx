@@ -47,7 +47,7 @@ function Snippet() {
   return (
     <SkyShell starDensity={200}>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        {/* Eyebrow */}
+        {/* Eyebrow + spin counter */}
         <div className="flex w-full items-center gap-3">
           <span className="h-px flex-1" style={{ background: C_RULE }} />
           <span
@@ -59,6 +59,15 @@ function Snippet() {
             {copy.eyebrow}
           </span>
           <span className="h-px flex-1" style={{ background: C_RULE }} />
+        </div>
+        <div
+          className="mt-3"
+          style={{
+            fontFamily: BODY, color: C_GOLD, fontSize: "10px",
+            letterSpacing: "0.4em", textTransform: "uppercase", fontWeight: 700,
+          }}
+        >
+          Spin {spinNumber} of {MAX_SPINS}
         </div>
 
         {/* Letter + sign */}
