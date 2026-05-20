@@ -277,7 +277,7 @@ function Landing() {
               >
                 {remaining > 0
                   ? `${remaining} of ${MAX_SPINS} ${remaining === 1 ? "turn" : "turns"} remaining`
-                  : "Three turns of the wheel"}
+                  : "Free Tikkun Reading"}
               </p>
             </div>
           </div>
