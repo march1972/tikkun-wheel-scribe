@@ -102,21 +102,7 @@ function Snippet() {
     return (
       <SkyShell starDensity={200}>
         <section className="relative mx-auto flex max-w-md flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.5rem,4vh,3rem)] pb-[clamp(2.5rem,5vh,4rem)] text-center">
-          <div className="flex w-full items-center gap-3">
-            <span className="h-px flex-1" style={{ background: C_RULE }} />
-            <span
-              style={{
-                fontFamily: BODY, color: C_INK_SOFT, fontSize: "11px",
-                letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
-              }}
-            >
-              Kabbalah Astrology
-            </span>
-            <span className="h-px flex-1" style={{ background: C_RULE }} />
-          </div>
-
           <h1
-            className="mt-[clamp(1rem,2.5vh,1.5rem)]"
             style={{
               fontFamily: HEAD, color: C_INK, fontWeight: 500,
               fontSize: "clamp(26px, 5vw, 42px)", lineHeight: 1.12,
