@@ -2,8 +2,7 @@
 @source "../src";
 @import "tw-animate-css";
 
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Frank+Ruhl+Libre:wght@400;500;600;700&display=swap");
-@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -31,30 +30,31 @@
   --color-gold: var(--gold);
   --color-gold-deep: var(--gold-deep);
 
-  --font-serif: "Fraunces", serif;
-  --font-serif-2: "Frank Ruhl Libre", serif;
-  --font-sans: "General Sans", system-ui, sans-serif;
+  --font-serif: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  --font-serif-2: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  --font-sans: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
 }
 
 :root {
   --radius: 0.5rem;
 
-  --forest-deepest: #0a1816;
-  --forest-deep: #0f221e;
-  --forest-mid: #142d26;
-  --forest-soft: #20403a;
-  --wine-base: #281418;
-  --oxblood: #6b1e26;
-  --cream: #f4ecdb;
-  --cream-soft: #f6ecd0;
-  --cream-faint: rgba(244, 236, 219, 0.45);
-  --gold-bright: #f0c868;
-  --gold: #d4a651;
+  --forest-deepest: #0f1729;
+  --forest-deep: #141d33;
+  --forest-mid: #1b2540;
+  --forest-soft: #233055;
+  --wine-base: #182240;
+  --oxblood: #ff9354;
+  --cream: #fdf6e6;
+  --cream-soft: #ece3cf;
+  --cream-faint: rgba(253, 246, 230, 0.45);
+  --gold-bright: #ffe9b8;
+  --gold: #f0c868;
   --gold-deep: #a8803c;
 
-  --background: var(--forest-deep);
+  --background: #141d33;
   --foreground: var(--cream);
-  --border: var(--gold-deep);
+  --border: rgba(253, 246, 230, 0.20);
   --ring: var(--gold-bright);
 }
 
@@ -67,6 +67,6 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-serif);
+    font-family: var(--font-mono);
   }
 }
