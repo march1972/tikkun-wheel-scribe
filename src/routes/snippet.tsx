@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { SkyShell } from "@/components/landing/SkyShell";
 import {
-  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_GOLD_BRIGHT, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
 import { MAX_SPINS, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
@@ -196,31 +196,42 @@ function Snippet() {
 
   return (
     <SkyShell starDensity={200}>
+      <style>{`
+        @keyframes cta-pulse-glow {
+          0%, 100% { box-shadow: 0 10px 40px -10px #e94e2baa; transform: scale(1); }
+          50% { box-shadow: 0 14px 50px -8px #e94e2bcc, 0 0 25px -3px #e94e2b33; transform: scale(1.015); }
+        }
+        .cta-pulse-glow { animation: cta-pulse-glow 2.5s ease-in-out infinite; }
+        .cta-pulse-glow:hover { animation: none; }
+      `}</style>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        {/* Eyebrow: Does this sound like you? */}
-        <div className="flex w-full items-center gap-3">
-          <span className="h-px flex-1" style={{ background: C_RULE }} />
-          <span
-            style={{
-              fontFamily: BODY, color: C_INK_SOFT, fontSize: "11px",
-              letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
-            }}
-          >
-            {copy.prompt}
-          </span>
-          <span className="h-px flex-1" style={{ background: C_RULE }} />
-        </div>
+        {/* Eyebrow: Does this sound like you? — match landing hero font, gold */}
+        <h2
+          style={{
+            fontFamily: HEAD,
+            color: C_GOLD,
+            fontWeight: 500,
+            fontStyle: "italic",
+            fontSize: "clamp(24px, 4vw, 38px)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          {copy.prompt}
+        </h2>
 
-        {/* Sign + snippet block — visibly contained */}
+        {/* Sign + snippet block — elevated, more pop */}
         <div
           className="mt-[clamp(1.5rem,3vh,2.25rem)] w-full"
           style={{
-            background: "rgba(15, 23, 41, 0.55)",
-            border: `1px solid ${C_RULE}`,
-            borderRadius: "4px",
-            padding: "clamp(1.5rem,4vw,2.5rem)",
-            boxShadow: "0 20px 60px -20px rgba(0,0,0,0.5)",
-            backdropFilter: "blur(4px)",
+            background:
+              "linear-gradient(180deg, rgba(27, 37, 64, 0.85) 0%, rgba(15, 23, 41, 0.85) 100%)",
+            border: `1px solid ${C_GOLD}55`,
+            borderRadius: "6px",
+            padding: "clamp(1.75rem,4.5vw,2.75rem)",
+            boxShadow:
+              "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 40px -10px rgba(240,200,104,0.18), inset 0 1px 0 rgba(255,233,184,0.08)",
+            backdropFilter: "blur(6px)",
           }}
         >
           <div className="flex items-baseline justify-center gap-[clamp(12px,2.5vw,24px)]">
@@ -252,41 +263,46 @@ function Snippet() {
           </p>
         </div>
 
-        {/* Spin again */}
+        {/* Spin again — same dimensions as CTA, gold accent */}
         <button
           type="button"
           onClick={handleSpinAgain}
-          className="mt-[clamp(1rem,2.5vh,1.5rem)] uppercase transition-opacity hover:opacity-70"
+          className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
           style={{
-            fontFamily: BODY, letterSpacing: "0.24em", color: C_INK_SOFT,
-            background: "transparent", border: `1px solid ${C_RULE}`,
-            padding: "10px 22px", borderRadius: "999px", fontSize: "11px",
+            background: "rgba(10,14,28,0.4)",
+            color: C_GOLD_BRIGHT,
+            fontFamily: BODY,
+            fontWeight: 700,
+            letterSpacing: "0.24em",
+            fontSize: "12px",
+            padding: "18px 32px",
+            borderRadius: "0px",
+            border: `1px solid ${C_GOLD}`,
+            boxShadow: `0 10px 40px -14px ${C_GOLD}66`,
           }}
         >
-          Not quite — spin again ({spinNumber} of {MAX_SPINS})
+          <span>Not quite — spin again ({spinNumber} of {MAX_SPINS})</span>
         </button>
 
-        {/* CTA — red dawn accent, direct to form */}
+        {/* CTA — matches form Reveal button exactly */}
         <button
           type="button"
           onClick={() => navigate({ to: "/form" })}
-          className="group mt-[clamp(1.25rem,3vh,2rem)] inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5"
+          className="cta-pulse-glow group mt-[clamp(0.75rem,2vh,1.25rem)] inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
           style={{
             background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
             color: C_INK,
             fontFamily: BODY,
             fontWeight: 700,
-            letterSpacing: "0.28em",
-            fontSize: "clamp(11px, 1.2vw, 13px)",
-            padding: "clamp(14px, 1.9vh, 20px) clamp(24px, 4vw, 44px)",
+            letterSpacing: "0.24em",
+            fontSize: "12px",
+            padding: "18px 32px",
             borderRadius: "0px",
             boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
           }}
         >
           <span>{copy.primaryButton}</span>
-          <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" style={{ fontWeight: 800 }}>
-            →
-          </span>
+          <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
         </button>
         <p
           className="mt-3 italic font-mono"
