@@ -291,9 +291,9 @@ function Landing() {
               className="mt-[clamp(3.25rem,6.5vh,5rem)] font-mono font-thin"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.55,
-                maxWidth: "34rem",
-                fontSize: "clamp(13.5px, 1.35vw, 15px)",
+                lineHeight: 1.6,
+                maxWidth: "36rem",
+                fontSize: "clamp(16px, 1.7vw, 19px)",
               }}
             >
               Kabbalistic Astrology maps your{" "}
@@ -301,8 +301,9 @@ function Landing() {
               : the soul's pattern that signals how to{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>
                 fulfill your life's potential
-              </span>{" "}
-              — in relationships, finances, and career.
+              </span>
+              <br />
+              <span style={{ whiteSpace: "nowrap" }}>— in relationships, finances, and career.</span>
             </p>
 
             <div className="mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
@@ -414,7 +415,7 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              Kabbalah Astrology dates back to Abraham and is found in many ancient texts and commentaries — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
+              Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
             </p>
           </div>
         </section>
