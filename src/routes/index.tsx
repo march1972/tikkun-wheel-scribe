@@ -410,55 +410,48 @@ function Landing() {
             </h2>
 
             <ul
-              className="mt-[clamp(2rem,4vh,3rem)] mx-auto flex flex-col font-mono font-thin text-sm text-left"
+              className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] font-mono font-thin text-sm text-left"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.55,
-                maxWidth: "34rem",
                 listStyle: "none",
                 padding: 0,
               }}
             >
               {[
-                { letter: "א", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes." },
-                { letter: "מ", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path." },
-                { letter: "ש", title: "A daily mantra and reflection", body: "a verse to carry, and a prompt to sit with." },
-              ].map((item, i, arr) => {
-                const accent = "#6fae99";
+                { letter: "א", title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(253, 246, 230, 0.04)" },
+                { letter: "מ", title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(253, 246, 230, 0.07)" },
+                { letter: "ש", title: "A daily mantra and reflection", body: "a verse to carry, and a prompt to sit with.", tint: "rgba(253, 246, 230, 0.04)" },
+              ].map((item) => {
+                const accent = "#c5a059"; // antique gold
                 return (
-                  <li key={item.title}>
-                    <div className="py-[clamp(1rem,2vh,1.5rem)] flex items-start gap-4">
-                      <span
-                        aria-hidden="true"
-                        className="shrink-0 leading-none"
-                        style={{
-                          fontFamily: HEAD,
-                          color: accent,
-                          fontSize: "clamp(28px, 4vw, 36px)",
-                          textShadow: `0 0 14px ${accent}55`,
-                          minWidth: "1.4em",
-                          textAlign: "center",
-                        }}
-                      >
-                        {item.letter}
-                      </span>
-                      <span>
-                        <span style={{ color: accent, fontStyle: "italic" }}>
-                          {item.title}
-                        </span>{" "}
-                        — {item.body}
-                      </span>
-                    </div>
-                    {i < arr.length - 1 && (
-                      <span
-                        aria-hidden="true"
-                        className="block"
-                        style={{
-                          height: 1,
-                          background: `linear-gradient(90deg, transparent 0%, ${C_RULE} 50%, transparent 100%)`,
-                        }}
-                      />
-                    )}
+                  <li
+                    key={item.title}
+                    className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full"
+                    style={{
+                      background: item.tint,
+                      border: `1px solid ${C_RULE_SOFT}`,
+                      borderRadius: 2,
+                    }}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="leading-none"
+                      style={{
+                        fontFamily: HEAD,
+                        color: accent,
+                        fontSize: "clamp(32px, 4.5vw, 44px)",
+                        textShadow: `0 0 14px ${accent}55`,
+                      }}
+                    >
+                      {item.letter}
+                    </span>
+                    <span>
+                      <span style={{ color: accent, fontStyle: "italic" }}>
+                        {item.title}
+                      </span>{" "}
+                      — {item.body}
+                    </span>
                   </li>
                 );
               })}
