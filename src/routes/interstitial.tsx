@@ -41,15 +41,24 @@ function Interstitial() {
           pattern is found in your <span style={{ color: C_GOLD, fontStyle: "italic" }}>lunar birth chart</span>.
         </h1>
 
-        <div className="mt-[clamp(2.5rem,5vh,4rem)]">
+        <ul
+          className="mt-[clamp(1.5rem,3vh,2rem)] flex flex-wrap items-center justify-center gap-x-5 gap-y-1 font-mono"
+          style={{ color: C_INK_SOFT, fontSize: "12px", letterSpacing: "0.08em" }}
+        >
+          <li>✓ Your soul's pattern</li>
+          <li>✓ Free 10-page workbook</li>
+          <li>✓ Emailed instantly</li>
+        </ul>
+
+        <div className="mt-[clamp(2rem,4vh,3rem)]">
           <PrimaryCTA label="See my real Tikkun" onClick={() => navigate({ to: "/form" })} />
         </div>
 
         <p
-          className="mt-[clamp(1rem,2.5vh,1.75rem)] font-mono"
-          style={{ color: C_MUTED, fontSize: "clamp(12px, 1.3vw, 14px)" }}
+          className="mt-[clamp(0.75rem,2vh,1.25rem)] font-mono italic"
+          style={{ color: C_MUTED, fontSize: "clamp(11px, 1.2vw, 13px)" }}
         >
-          Free Tikkun reading + 10-page Workbook
+          Takes under a minute. No payment, no spam.
         </p>
       </section>
     </SkyShell>

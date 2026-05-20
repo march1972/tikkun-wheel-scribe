@@ -100,15 +100,24 @@ function FormPage() {
 
         <p
           className="mt-[clamp(0.75rem,2vh,1.25rem)] font-mono font-thin"
-          style={{ color: C_INK_SOFT, fontSize: "13px", maxWidth: "26rem" }}
+          style={{ color: C_INK_SOFT, fontSize: "13px", maxWidth: "26rem", lineHeight: 1.55 }}
         >
-          Plus a free 10-page Tikkun Workbook,{" "}
-          <span style={{ color: C_GOLD, fontStyle: "italic" }}>emailed to you</span>.
+          Your personal reading + a free 10-page{" "}
+          <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun Workbook</span>, emailed instantly.
         </p>
 
-        <form onSubmit={onSubmit} className="mt-[clamp(2rem,4vh,3rem)] flex w-full flex-col gap-5 text-left">
+        <ul
+          className="mt-[clamp(1rem,2vh,1.5rem)] flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-mono"
+          style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.08em" }}
+        >
+          <li>✓ 60-second reading</li>
+          <li>✓ Free workbook</li>
+          <li>✓ No spam</li>
+        </ul>
+
+        <form onSubmit={onSubmit} className="mt-[clamp(1.5rem,3vh,2.25rem)] flex w-full flex-col gap-5 text-left">
           <div>
-            <label style={labelStyle} htmlFor="name">Your Name</label>
+            <label style={labelStyle} htmlFor="name">Your Name <span style={{ opacity: 0.5, letterSpacing: "0.12em" }}>(optional)</span></label>
             <input
               id="name" type="text" value={name} onChange={(e) => setName(e.target.value)}
               autoComplete="name" maxLength={120} style={inputStyle}

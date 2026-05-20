@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { SkyShell } from "@/components/landing/SkyShell";
@@ -297,9 +297,7 @@ function ReadingPage() {
           {sc.deeperSub}
         </p>
         <div className="mt-8 flex justify-center">
-          <Link to="/history">
-            <PrimaryCTA label={sc.deeperButton} />
-          </Link>
+          <PrimaryCTA label={sc.deeperButton} onClick={() => navigate({ to: "/history" })} />
         </div>
       </section>
     </SkyShell>
