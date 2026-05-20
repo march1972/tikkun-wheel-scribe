@@ -417,18 +417,34 @@ export function TikkunWheel({
           />
           <text
             x={cx}
-            y={cy}
-            fill="rgba(50, 68, 104, 0.55)"
+            y={cy - size * 0.005}
+            fill="#6b1e26"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontWeight: 300,
-              fontSize: `${Math.max(7, Math.min(13, size * 0.022))}px`,
-              letterSpacing: "0.1em",
+              fontWeight: 500,
+              fontSize: `${Math.max(9, Math.min(15, size * 0.028))}px`,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
             }}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            enter here
+            enter
+          </text>
+          <text
+            x={cx}
+            y={cy + size * 0.032}
+            fill="#a8803c"
+            style={{
+              fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+              fontWeight: 500,
+              fontSize: `${Math.max(8, Math.min(12, size * 0.022))}px`,
+              letterSpacing: "0.2em",
+            }}
+            textAnchor="middle"
+            dominantBaseline="central"
+          >
+            ↓
           </text>
         </g>
       </svg>
