@@ -173,8 +173,16 @@ export function TikkunWheel({
         }
         .tk-wheel:hover { transform: scale(1.02); }
         .tk-wheel:hover .tk-cta-bg-${uid} {
-          filter: drop-shadow(0 0 26px rgba(255,252,235,1)) drop-shadow(0 0 50px rgba(255,246,214,0.7));
+          filter: drop-shadow(0 0 32px rgba(255,252,235,1)) drop-shadow(0 0 60px rgba(255,246,214,0.85));
+          transform: scale(1.06);
+          transform-origin: ${cx}px ${cy}px;
         }
+        .tk-wheel:hover .tk-cta-shine-${uid} {
+          opacity: 1 !important;
+          transform: scale(1.15);
+          transform-origin: ${cx}px ${cy}px;
+        }
+        .tk-cta-bg-${uid} { transition: filter 220ms ease, transform 220ms ease; transform-origin: ${cx}px ${cy}px; }
         .tk-wheel:focus-visible {
           box-shadow: 0 0 0 2px ${accent}, 0 0 0 8px rgba(240,200,104,0.22);
           border-radius: 9999px;
@@ -232,9 +240,9 @@ export function TikkunWheel({
             <stop offset="100%" stopColor="#C99245" />
           </linearGradient>
           <radialGradient id={alephId} cx="50%" cy="38%" r="70%">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="55%" stopColor="#fbf4e1" />
-            <stop offset="100%" stopColor="#e8dcc0" />
+            <stop offset="0%" stopColor="#fdf6e6" />
+            <stop offset="55%" stopColor="#f1e6c8" />
+            <stop offset="100%" stopColor="#d8c79b" />
           </radialGradient>
           <filter id={letterGlowId} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation={size * 0.006} result="b" />
@@ -407,12 +415,12 @@ export function TikkunWheel({
           <text
             x={cx}
             y={cy}
-            fill="#1b2540"
+            fill="rgba(50, 68, 104, 0.55)"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontWeight: 600,
+              fontWeight: 300,
               fontSize: `${Math.max(7, Math.min(13, size * 0.022))}px`,
-              letterSpacing: "0.08em",
+              letterSpacing: "0.1em",
             }}
             textAnchor="middle"
             dominantBaseline="central"
