@@ -6,7 +6,7 @@ import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
-import { MAX_SPINS, getAttempts, incrementAttempt, spinsRemaining } from "@/lib/spinAttempts";
+import { MAX_SPINS, getAttempts, incrementAttempt } from "@/lib/spinAttempts";
 
 export const Route = createFileRoute("/snippet")({
   component: Snippet,
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/snippet")({
 function Snippet() {
   const navigate = useNavigate();
   const [sign, setSign] = useState<TikkunSign | null>(null);
-  const [remaining, setRemaining] = useState(0);
+  const [spinNumber, setSpinNumber] = useState(1);
 
   useEffect(() => {
     const key = sessionStorage.getItem("tikkun_target_sign");
@@ -26,7 +26,7 @@ function Snippet() {
       return;
     }
     setSign(s);
-    setRemaining(spinsRemaining());
+    setSpinNumber(Math.min(MAX_SPINS, Math.max(1, getAttempts())));
   }, [navigate]);
 
   const handleSpinAgain = () => {
@@ -41,13 +41,13 @@ function Snippet() {
   };
 
   if (!sign) return null;
-  const usedAll = getAttempts() >= MAX_SPINS;
+  const canSpinAgain = spinNumber < MAX_SPINS;
   const copy = STATIC_COPY.screen3;
 
   return (
     <SkyShell starDensity={200}>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        {/* Eyebrow */}
+        {/* Eyebrow + spin counter */}
         <div className="flex w-full items-center gap-3">
           <span className="h-px flex-1" style={{ background: C_RULE }} />
           <span
@@ -59,6 +59,15 @@ function Snippet() {
             {copy.eyebrow}
           </span>
           <span className="h-px flex-1" style={{ background: C_RULE }} />
+        </div>
+        <div
+          className="mt-3"
+          style={{
+            fontFamily: BODY, color: C_GOLD, fontSize: "10px",
+            letterSpacing: "0.4em", textTransform: "uppercase", fontWeight: 700,
+          }}
+        >
+          Spin {spinNumber} of {MAX_SPINS}
         </div>
 
         {/* Letter + sign */}
@@ -114,7 +123,7 @@ function Snippet() {
         </p>
 
         {/* Spin again */}
-        {remaining > 0 ? (
+        {canSpinAgain ? (
           <button
             type="button"
             onClick={handleSpinAgain}
@@ -125,16 +134,16 @@ function Snippet() {
               padding: "10px 22px", borderRadius: "999px", fontSize: "11px",
             }}
           >
-            {copy.secondaryButton.replace("(N left)", `(${remaining} left)`)}
+            Not quite — spin again ({spinNumber + 1} of {MAX_SPINS})
           </button>
-        ) : usedAll ? (
+        ) : (
           <p
             className="mt-[clamp(1.5rem,3vh,2rem)] max-w-xs italic font-mono"
             style={{ color: C_MUTED, fontSize: "12px" }}
           >
-            You've used all 3 free spins. Your real Tikkun awaits.
+            You've used all {MAX_SPINS} free spins. Your real Tikkun awaits.
           </p>
-        ) : null}
+        )}
       </section>
     </SkyShell>
   );
