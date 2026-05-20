@@ -295,23 +295,29 @@ function Landing() {
           <StarField density={60} opacity={0.55} seedOffset={500} />
           <div className="relative mx-auto max-w-2xl text-center">
             <Eyebrow>Origins</Eyebrow>
+            <h2
+              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
+              style={{ color: C_INK }}
+            >
+              Ancient roots.
+            </h2>
             <p
-              className="mt-[clamp(1.5rem,3vh,2rem)]"
+              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin text-sm"
               style={{
-                fontFamily: HEAD,
-                color: C_INK,
-                fontWeight: 400,
-                fontSize: "clamp(20px, 2.4vw, 26px)",
-                lineHeight: 1.5,
-                letterSpacing: "-0.01em",
+                color: C_INK_SOFT,
+                lineHeight: 1.55,
+                maxWidth: "34rem",
               }}
             >
               Kabbalah Astrology dates back to{" "}
-              <em style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</em>{" "}
-              and lives in the ancient texts — the{" "}
-              <span style={{ color: C_INK }}>Talmud</span>, the{" "}
-              <span style={{ color: C_INK }}>Sefer Yetzirah</span>, and the{" "}
-              <span style={{ color: C_INK }}>Zohar</span>.
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span>{" "}
+              and is found in many ancient texts and commentaries — the{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span>{" "}
+              (the Oral Torah), the{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span>{" "}
+              (Book of Formation), and the{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span>{" "}
+              (Book of Splendor).
             </p>
           </div>
         </section>
@@ -325,33 +331,25 @@ function Landing() {
           <div className="relative mx-auto max-w-3xl text-center">
             <Eyebrow>Mazalot · מזלות</Eyebrow>
             <h2
-              className="mt-6"
-              style={{
-                fontFamily: HEAD,
-                color: C_INK,
-                fontWeight: 500,
-                fontSize: "clamp(28px, 4.4vw, 44px)",
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-              }}
+              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
+              style={{ color: C_INK }}
             >
-              Free will always overrides
-              <span style={{ color: C_GOLD }}> fate</span>.
+              Free will overrides{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>fate</span>.
             </h2>
             <p
-              className="mx-auto mt-6"
+              className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm"
               style={{
-                fontFamily: BODY,
                 color: C_INK_SOFT,
-                fontSize: "clamp(15px, 1.5vw, 17px)",
-                lineHeight: 1.7,
+                lineHeight: 1.55,
                 maxWidth: "34rem",
               }}
             >
-              Kabbalists accept the influence of the celestial constellations —
-              the <em style={{ color: C_GOLD, fontStyle: "italic" }}>Mazalot</em> —
-              but reject astrology as fatalistic prediction. The stars
-              incline; they do not decide.
+              Kabbalists accept the signals or influence of the celestial
+              constellations ({" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Mazalot</span>{" "}
+              ), but reject astrology as fatalistic prediction. A person's free
+              will always overrides fate.
             </p>
           </div>
         </section>
@@ -364,20 +362,24 @@ function Landing() {
           <StarField density={50} opacity={0.5} seedOffset={1300} />
           <div className="relative mx-auto max-w-3xl text-center">
             <Eyebrow>Tikkun Olam · תיקון עולם</Eyebrow>
+            <h2
+              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
+              style={{ color: C_INK }}
+            >
+              A greater purpose.
+            </h2>
             <p
-              className="mt-[clamp(1.5rem,3vh,2rem)]"
+              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin text-sm"
               style={{
-                fontFamily: HEAD,
-                color: C_INK,
-                fontWeight: 400,
-                fontStyle: "italic",
-                fontSize: "clamp(22px, 3vw, 32px)",
-                lineHeight: 1.4,
-                letterSpacing: "-0.015em",
+                color: C_INK_SOFT,
+                lineHeight: 1.55,
+                maxWidth: "34rem",
               }}
             >
-              Fulfilling your Tikkun serves a greater purpose — sharing your
-              light to build a better world.
+              Fulfilling your{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>{" "}
+              serves a greater purpose — sharing your light to build a better
+              world.
             </p>
 
             <div className="mt-[clamp(2.5rem,5vh,4rem)] flex justify-center">
@@ -385,6 +387,7 @@ function Landing() {
             </div>
           </div>
         </section>
+
 
         {/* ── CLOSING CTA ──────────────────────────────────────── */}
         <section
