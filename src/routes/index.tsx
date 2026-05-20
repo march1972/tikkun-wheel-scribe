@@ -180,23 +180,23 @@ function PrimaryCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e94e2b] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
       style={{
-        background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
-        color: C_DEEP,
+        background: `linear-gradient(135deg, ${C_DAWN} 0%, #c93a1c 100%)`,
+        color: C_INK,
         fontFamily: BODY,
         fontWeight: 700,
         letterSpacing: "0.28em",
         fontSize: "clamp(11px, 1.2vw, 13px)",
         padding: "clamp(16px, 1.9vh, 20px) clamp(28px, 4vw, 44px)",
         borderRadius: "0px",
-        boxShadow: "0 10px 40px -10px rgba(240,200,104,0.55)",
+        boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = "0 18px 60px -10px rgba(240,200,104,0.85), 0 0 0 1px rgba(255,233,184,0.6)";
+        e.currentTarget.style.boxShadow = `0 18px 60px -10px ${C_DAWN}, 0 0 0 1px ${C_DAWN}99`;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = "0 10px 40px -10px rgba(240,200,104,0.55)";
+        e.currentTarget.style.boxShadow = `0 10px 40px -10px ${C_DAWN}aa`;
       }}
     >
       <span>{label}</span>
