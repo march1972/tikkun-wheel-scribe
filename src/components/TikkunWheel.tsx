@@ -357,14 +357,16 @@ export function TikkunWheel({
             x={cx}
             y={cy}
             fill={accentBright}
-            fontSize={alephFontSize}
-            fontFamily="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
-            fontWeight={600}
-            letterSpacing={alephFontSize * 0.28}
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontWeight: 700,
+              fontSize: "clamp(11px, 1.2vw, 13px)",
+              letterSpacing: "0.28em",
+            }}
             textAnchor="middle"
             dominantBaseline="central"
           >
-            CLICK ME
+            click me
           </text>
         </g>
       </svg>
