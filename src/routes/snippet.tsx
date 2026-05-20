@@ -101,6 +101,18 @@ function Snippet() {
   if (!canSpinAgain) {
     return (
       <SkyShell starDensity={200}>
+        <style>{`
+          @keyframes cta-pulse-glow {
+            0%, 100% { box-shadow: 0 10px 40px -10px #e94e2baa; transform: scale(1); }
+            50% { box-shadow: 0 14px 50px -8px #e94e2bcc, 0 0 25px -3px #e94e2b33; transform: scale(1.015); }
+          }
+          .cta-pulse-glow {
+            animation: cta-pulse-glow 2.5s ease-in-out infinite;
+          }
+          .cta-pulse-glow:hover {
+            animation: none;
+          }
+        `}</style>
         <section className="relative mx-auto flex max-w-md flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.5rem,4vh,3rem)] pb-[clamp(2.5rem,5vh,4rem)] text-center">
           <h1
             style={{
@@ -109,31 +121,31 @@ function Snippet() {
               letterSpacing: "-0.02em",
             }}
           >
-            Get your real{" "}
-            <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>
+            See your real{" "}
+            <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
+            pattern
           </h1>
 
           <p
             className="mt-3 font-mono font-thin"
             style={{ color: C_INK_SOFT, fontSize: "13px", maxWidth: "24rem", lineHeight: 1.5 }}
           >
-            Your personal reading + a free 10-page{" "}
-            <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun Workbook</span> — emailed instantly.
+            Your free personal Tikkun birth chart + 10-page workbook .
           </p>
 
           <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
-            <div>
-              <label style={labelStyle} htmlFor="dob">Date of Birth</label>
-              <input
-                id="dob" type="date" required value={dob} onChange={(e) => setDob(e.target.value)}
-                min="1901-01-22" max={today} style={inputStyle}
-              />
-            </div>
             <div>
               <label style={labelStyle} htmlFor="email">Email</label>
               <input
                 id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email" maxLength={255} placeholder="you@example.com" style={inputStyle}
+              />
+            </div>
+            <div>
+              <label style={labelStyle} htmlFor="dob">Date of Birth</label>
+              <input
+                id="dob" type="date" required value={dob} onChange={(e) => setDob(e.target.value)}
+                min="1901-01-22" max={today} style={inputStyle}
               />
             </div>
 
@@ -144,7 +156,7 @@ function Snippet() {
             <button
               type="submit"
               disabled={busy}
-              className="group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60"
+              className="cta-pulse-glow group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
               style={{
                 background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
                 color: C_INK,
@@ -152,7 +164,7 @@ function Snippet() {
                 fontWeight: 700,
                 letterSpacing: "0.24em",
                 fontSize: "12px",
-                padding: "16px 24px",
+                padding: "18px 32px",
                 borderRadius: "0px",
                 boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
               }}
@@ -164,14 +176,12 @@ function Snippet() {
             </button>
           </form>
 
-          <ul
-            className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-mono"
-            style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.06em" }}
+          <p
+            className="mt-3 font-mono"
+            style={{ color: C_MUTED, fontSize: "11px", letterSpacing: "0.04em" }}
           >
-            <li>✓ Free workbook</li>
-            <li>✓ 60-second reading</li>
-            <li>✓ No spam</li>
-          </ul>
+            We'll never share your email.
+          </p>
         </section>
       </SkyShell>
     );
