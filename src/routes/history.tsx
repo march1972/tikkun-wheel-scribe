@@ -71,7 +71,7 @@ function HistoryPage() {
             className="font-mono font-thin"
             style={{ color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.7 }}
           >
-            Kabbalah Astrology dates back to{" "}
+            See your actual Tikkun birth chart dates back to{" "}
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span> and is found in many ancient texts and commentaries — the{" "}
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the{" "}
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the{" "}

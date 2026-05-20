@@ -80,7 +80,7 @@ function ReadingPage() {
   const sc = STATIC_COPY.screen6;
   const headers = sc.sectionHeaders;
   const shareUrl = typeof window !== "undefined" ? window.location.origin : "";
-  const shareText = `Discover your Tikkun — your soul's pattern of correction in Kabbalah Astrology.`;
+  const shareText = `Discover your Tikkun — your soul's pattern of correction in See your actual Tikkun birth chart.`;
 
   return (
     <SkyShell starDensity={260}>

@@ -413,7 +413,7 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              Kabbalah Astrology dates back to{" "}
+              See your actual Tikkun birth chart dates back to{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span>{" "}
               and is found in many ancient texts and commentaries — the{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span>{" "}
@@ -567,7 +567,7 @@ function Landing() {
                 fontWeight: 600,
               }}
             >
-              © {new Date().getFullYear()} · Kabbalah Astrology
+              © {new Date().getFullYear()} · See your actual Tikkun birth chart
             </p>
           </div>
         </footer>

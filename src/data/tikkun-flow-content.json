@@ -1,5 +1,5 @@
 {
-  "_README": "Content for the Kabbalah Astrology Tikkun microsite, generated from 12_Tikkun_Flow_API_Content.xlsx. One object per sign in `signs`. screen3.spinSnippet feeds the random-spin Recognition screen; the screen6.* fields feed the personalized Reading. birthDateRanges drive the internal Tikkun API (match DOB to a range -> return that sign). Fixed UI text is in `staticCopy`. lifesPattern/lifesWork contain \\n\\n paragraph breaks; archetype contains a single \\n line break. Prose has no decorative quotes — the UI styles them.",
+  "_README": "Content for the See your actual Tikkun birth chart Tikkun microsite, generated from 12_Tikkun_Flow_API_Content.xlsx. One object per sign in `signs`. screen3.spinSnippet feeds the random-spin Recognition screen; the screen6.* fields feed the personalized Reading. birthDateRanges drive the internal Tikkun API (match DOB to a range -> return that sign). Fixed UI text is in `staticCopy`. lifesPattern/lifesWork contain \\n\\n paragraph breaks; archetype contains a single \\n line break. Prose has no decorative quotes — the UI styles them.",
   "staticCopy": {
     "screen3": {
       "eyebrow": "This Tikkun is in",
@@ -16,7 +16,7 @@
       "shareHeadline": "Share the Tikkun Wheel",
       "shareSub": "Help a friend find the work their soul is asking them to do.",
       "shareChannels": "WhatsApp  ·  Instagram  ·  Copy link",
-      "deeperSub": "The history of Kabbalah Astrology, and where to learn more.",
+      "deeperSub": "The history of See your actual Tikkun birth chart, and where to learn more.",
       "deeperButton": "Continue",
       "sectionHeaders": [
         "Your Life’s Pattern",
