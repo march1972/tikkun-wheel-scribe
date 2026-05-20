@@ -227,21 +227,21 @@ function Snippet() {
                 fontFamily: BODY,
                 color: C_GOLD,
                 fontWeight: 600,
-                fontSize: "11px",
+                fontSize: "13px",
                 letterSpacing: "0.28em",
                 textTransform: "uppercase",
                 whiteSpace: "nowrap",
               }}
             >
-              Does this Tikkun pattern sound like you?
+              Does this pattern sound like you?
             </span>
             <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)` }} />
           </div>
 
-          <div className="mt-[clamp(1.25rem,2.5vh,1.75rem)] flex items-center justify-center">
+          <div className="mt-[clamp(0.5rem,1vh,1rem)] flex items-center justify-center">
             <span
               style={{
-                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(72px, 14vw, 130px)",
+                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(50px, 10vw, 90px)",
                 lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
               }}
             >
