@@ -286,7 +286,7 @@ function Landing() {
               >
                 Tikkun
               </span>
-              <span style={{ color: C_DAWN }}>?</span>
+              <span style={{ color: C_GOLD }}>?</span>
             </h1>
 
             <div className="mt-[clamp(1.5rem,3.5vh,2.5rem)]">
@@ -331,7 +331,7 @@ function Landing() {
               Kabbalistic Astrology uses lunar nodes to map your{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>
               : the soul's pattern of correction that signals how to{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>
+              <span style={{ color: C_DAWN, fontStyle: "italic" }}>
                 fulfill your life's potential
               </span>{" "}
               — in relationships, finances, and career.
@@ -455,7 +455,7 @@ function Landing() {
               style={{ color: C_INK }}
             >
               Influence, Not{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Prediction</span>
+              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Prediction</span>
             </h2>
             <p
               className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-sm"
@@ -501,7 +501,7 @@ function Landing() {
               Fulfilling your{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span>{" "}
               serves a greater purpose —{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun Olam</span>{" "}
+              <span style={{ color: C_DAWN, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
               — sharing your light to build a better world.
             </p>
 
@@ -545,7 +545,7 @@ function Landing() {
               >
                 are
               </span>
-              <span style={{ color: C_DAWN }}>.</span>
+              <span style={{ color: C_GOLD }}>.</span>
             </h2>
             <p
               className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-sm"
@@ -555,7 +555,7 @@ function Landing() {
                 maxWidth: "34rem",
               }}
             >
-              A free <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
+              A free <span style={{ color: C_GOLD, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_DAWN, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
             </p>
             <div className="mt-[clamp(6rem,11vh,8rem)] flex justify-center">
               <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
