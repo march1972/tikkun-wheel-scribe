@@ -297,9 +297,7 @@ function ReadingPage() {
           {sc.deeperSub}
         </p>
         <div className="mt-8 flex justify-center">
-          <Link to="/history">
-            <PrimaryCTA label={sc.deeperButton} />
-          </Link>
+          <PrimaryCTA label={sc.deeperButton} onClick={() => navigate({ to: "/history" })} />
         </div>
       </section>
     </SkyShell>
