@@ -225,10 +225,10 @@ export function TikkunWheel({
             <stop offset="50%" stopColor={accent} />
             <stop offset="100%" stopColor="#C99245" />
           </linearGradient>
-          <radialGradient id={alephId} cx="50%" cy="45%" r="60%">
-            <stop offset="0%" stopColor="#d96475" />
-            <stop offset="60%" stopColor="#a83a48" />
-            <stop offset="100%" stopColor="#6b1e26" />
+          <radialGradient id={alephId} cx="50%" cy="38%" r="70%">
+            <stop offset="0%" stopColor="#6b2230" />
+            <stop offset="55%" stopColor="#3e0f18" />
+            <stop offset="100%" stopColor="#1f0810" />
           </radialGradient>
           <filter id={letterGlowId} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation={size * 0.006} result="b" />
