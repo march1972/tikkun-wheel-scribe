@@ -23,7 +23,7 @@ export function SkyShell({
               to="/"
               style={{
                 fontFamily: BODY,
-                color: C_MUTED,
+                color: "rgba(160, 180, 210, 0.55)",
                 fontSize: "10px",
                 letterSpacing: "0.38em",
                 textTransform: "uppercase",
