@@ -52,6 +52,7 @@ function Snippet() {
   // Inline form state (used on final spin)
   const [dob, setDob] = useState("");
   const [email, setEmail] = useState("");
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [name, setName] = useState("");
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
