@@ -70,7 +70,7 @@ function ReadingPage() {
     const id = signId ?? sessionStorage.getItem("tikkun_real_sign");
     const s = signById(id);
     if (!s) {
-      navigate({ to: "/form" });
+      navigate({ to: "/" });
       return;
     }
     setSign(s);

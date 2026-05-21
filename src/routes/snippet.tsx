@@ -199,7 +199,10 @@ function Snippet() {
             {/* CTA — rectangular red button */}
             <button
               type="button"
-              onClick={() => navigate({ to: "/form" })}
+              onClick={() => {
+                setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
+                setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
+              }}
               className="cta-pulse-glow group mt-[clamp(2rem,5vh,3.5rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
               style={{
                 background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
