@@ -258,7 +258,7 @@ function Landing() {
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
-          <div className="mx-auto max-w-6xl text-center md:text-left">
+          <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-[#fdf7e7]">
             <span
               style={{
                 fontFamily: BODY,
@@ -604,7 +604,7 @@ function Landing() {
                   fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
-                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
+                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth.&nbsp;You see&nbsp;<span style={{ color: C_GOLD, fontStyle: "italic" }}>your life's recurring purpose patterns</span>&nbsp;that influence your path in relationships, career, and finances, and fulfilment, and what to correct.
               </p>
             </Reveal>
             <Reveal delay={280}>
