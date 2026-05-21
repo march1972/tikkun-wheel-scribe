@@ -447,25 +447,31 @@ function Landing() {
         >
           <StarField density={140} opacity={0.55} seedOffset={500} />
           <div className="relative mx-auto max-w-2xl text-center">
-            
-            <h2
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
-              style={{ fontFamily: HEAD, color: C_INK }}
-            >
-              Ancient{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
-            </h2>
-            <p
-              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
-              style={{
-                fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
-              }}
-            >
-              Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
-            </p>
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: HEAD, color: C_INK,
+                  fontSize: "clamp(30px, 4.5vw, 52px)",
+                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                }}
+              >
+                Ancient{" "}
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p
+                className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
+                style={{
+                  fontFamily: BODY, color: C_INK_SOFT,
+                  lineHeight: 1.75,
+                  maxWidth: "38rem",
+                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                }}
+              >
+                Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
+              </p>
+            </Reveal>
           </div>
         </section>
 
