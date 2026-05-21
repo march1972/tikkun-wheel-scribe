@@ -283,7 +283,7 @@ function Snippet() {
                   htmlFor="newsletter"
                   style={{
                     display: "flex", alignItems: "flex-start", gap: "10px",
-                    fontFamily: BODY, color: C_INK_SOFT, fontSize: "13px",
+                    fontFamily: BODY, color: C_INK, fontSize: "13px",
                     lineHeight: 1.4, cursor: "pointer", marginTop: "4px",
                   }}
                 >
