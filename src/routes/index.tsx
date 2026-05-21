@@ -291,9 +291,9 @@ function Landing() {
               className="mt-[clamp(3.25rem,6.5vh,5rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 maxWidth: "36rem",
-                fontSize: "clamp(14px, 1.5vw, 17px)",
+                fontSize: "15px",
               }}
             >
               Kabbalistic Astrology maps your{" "}
@@ -342,8 +342,8 @@ function Landing() {
               className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] text-left"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.6,
-                fontSize: "clamp(14px, 1.5vw, 17px)",
+                lineHeight: 1.7,
+                fontSize: "15px",
                 listStyle: "none",
                 padding: 0,
               }}
@@ -411,9 +411,9 @@ function Landing() {
               className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 maxWidth: "36rem",
-                fontSize: "clamp(14px, 1.5vw, 17px)",
+                fontSize: "15px",
               }}
             >
               Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
@@ -439,9 +439,9 @@ function Landing() {
               className="mx-auto mt-[clamp(1rem,2vh,1.5rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 maxWidth: "36rem",
-                fontSize: "clamp(14px, 1.5vw, 17px)",
+                fontSize: "15px",
               }}
             >
               Kabbalists accept the signals or influence of the celestial
@@ -474,9 +474,9 @@ function Landing() {
               className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 maxWidth: "36rem",
-                fontSize: "clamp(14px, 1.5vw, 17px)",
+                fontSize: "15px",
               }}
             >
               Fulfilling your{" "}
@@ -528,9 +528,9 @@ function Landing() {
               className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 maxWidth: "36rem",
-                fontSize: "clamp(14px, 1.5vw, 17px)",
+                fontSize: "15px",
               }}
             >
               A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.

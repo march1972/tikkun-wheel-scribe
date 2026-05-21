@@ -69,7 +69,7 @@ function HistoryPage() {
         <div className="relative mx-auto max-w-2xl">
           <p
             className=""
-            style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.7 }}
+            style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7 }}
           >
             Kabbalah Astrology dates back to{" "}
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span> and is found in many ancient texts and commentaries — the{" "}
@@ -79,7 +79,7 @@ function HistoryPage() {
           </p>
           <p
             className="mt-6"
-            style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.7 }}
+            style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7 }}
           >
             Kabbalists accept the signals or influence of the celestial constellations ({" "}
             <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span> ), but reject astrology as{" "}
@@ -87,7 +87,7 @@ function HistoryPage() {
           </p>
           <p
             className="mt-6"
-            style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.7 }}
+            style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7 }}
           >
             Fulfilling your{" "}
             <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> serves a greater purpose —{" "}
