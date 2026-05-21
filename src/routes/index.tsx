@@ -210,7 +210,7 @@ function PrimaryCTA({
 
 function Landing() {
   const navigate = useNavigate();
-  const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
+  const wheelSize = useResponsiveWheelSize(0.72, 240, 360);
   const haloRef = useRef<HTMLDivElement | null>(null);
 
   // Reset spin counter on each fresh visit to the landing page.
@@ -278,7 +278,7 @@ function Landing() {
         </header>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
+        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(2rem,4vh,3.5rem)]">
           <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
             <div
               ref={haloRef}
@@ -303,7 +303,7 @@ function Landing() {
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(48px, 9vw, 112px)",
+                fontSize: "clamp(40px, 6.5vw, 84px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.035em",
               }}
@@ -333,7 +333,7 @@ function Landing() {
             </div>
 
             <p
-              className="relative mt-[clamp(3.25rem,6.5vh,5rem)]"
+              className="relative mt-[clamp(1.5rem,3vh,2.25rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.55,
