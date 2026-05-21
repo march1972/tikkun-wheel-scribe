@@ -237,7 +237,7 @@ function Snippet() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK, fontWeight: 500,
-                  fontSize: "clamp(22px, 6vw, 32px)", lineHeight: 1.2,
+                  fontSize: "clamp(25px, 6.9vw, 37px)", lineHeight: 1.2,
                   letterSpacing: "-0.02em",
                 }}
               >
@@ -253,7 +253,7 @@ function Snippet() {
                   textTransform: "uppercase",
                 }}
               >
-                (Free reading + PDF workbook)
+                (Free reading + workbook)
               </p>
 
               <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
