@@ -522,33 +522,40 @@ function Landing() {
           <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
           
           <div className="relative mx-auto max-w-3xl text-center">
-            
-            
-            <h2
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
-              style={{ fontFamily: HEAD, color: C_INK }}
-            >
-              A greater purpose.
-            </h2>
-            <p
-              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
-              style={{
-                fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
-              }}
-            >
-              Fulfilling your{" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>{" "}
-              serves a greater purpose —{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
-              — sharing your light to build a better world.
-            </p>
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: HEAD, color: C_INK,
+                  fontSize: "clamp(30px, 4.5vw, 52px)",
+                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                }}
+              >
+                A greater purpose.
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p
+                className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
+                style={{
+                  fontFamily: BODY, color: C_INK_SOFT,
+                  lineHeight: 1.75,
+                  maxWidth: "38rem",
+                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                }}
+              >
+                Fulfilling your{" "}
+                <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>{" "}
+                serves a greater purpose —{" "}
+                <span style={{ color: C_GOLD, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
+                — sharing your light to build a better world.
+              </p>
+            </Reveal>
 
-            <div className="mt-[clamp(2.5rem,5vh,4rem)] flex justify-center">
-              <SefirotTree min={120} max={200} vwFraction={0.32} />
-            </div>
+            <Reveal delay={280}>
+              <div className="mt-[clamp(2.5rem,5vh,4rem)] flex justify-center">
+                <SefirotTree min={120} max={200} vwFraction={0.32} />
+              </div>
+            </Reveal>
           </div>
         </section>
 
