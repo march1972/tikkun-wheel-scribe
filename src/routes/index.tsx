@@ -210,7 +210,7 @@ function PrimaryCTA({
 
 function Landing() {
   const navigate = useNavigate();
-  const wheelSize = useResponsiveWheelSize(0.72, 240, 360);
+  const wheelSize = useResponsiveWheelSize(0.85, 280, 440);
   const haloRef = useRef<HTMLDivElement | null>(null);
 
   // Reset spin counter on each fresh visit to the landing page.
@@ -303,7 +303,7 @@ function Landing() {
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(40px, 6.5vw, 84px)",
+                fontSize: "clamp(44px, 7.5vw, 96px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.035em",
               }}
