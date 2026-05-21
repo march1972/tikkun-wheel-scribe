@@ -333,7 +333,7 @@ function Landing() {
             </div>
 
             <p
-              className="relative mt-[clamp(3.25rem,6.5vh,5rem)]"
+              className="relative mt-[clamp(1.5rem,3vh,2.25rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.55,
