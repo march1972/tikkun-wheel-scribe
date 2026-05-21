@@ -1,18 +1,41 @@
-# Match `/spinning` to the new `/` type scale
+# Match `/snippet` to the new `/` and `/reading` type scale
 
-Apply the same editorial / magazine-bold scale (intensity 4/5) used on `/` to the `/spinning` route so it reads as the same page. Frontend only — no new content, no new elements, no copy or layout structure changes.
+Apply the same editorial / magazine-bold scale (intensity 4/5) used on `/` and `/reading` to `/snippet` so the three pages read as one. Frontend only — no new content, no new elements, no copy or layout structure changes.
 
-## Scale changes (src/routes/spinning.tsx)
+## Scale changes (src/routes/snippet.tsx)
+
+### Pre-form state (snippet card view)
 
 | Element | Current | New |
 |---|---|---|
-| H1 ("Reveal your Tikkun") | clamp(30px, 5vw, 56px), letter-spacing −0.025em | clamp(48px, 9vw, 112px), letter-spacing −0.035em, line-height 1.0 |
-| "Searching Tikkun patterns…" eyebrow | clamp(10px, 1.4vw, 13px), letter-spacing 0.32em | unchanged — matches eyebrow micro-type that stayed untouched on `/` |
+| "Sound like you?" eyebrow | clamp(10px, 2.6vw, 13px), tracking 0.22em | unchanged — matches eyebrow micro-type left untouched on `/` and `/reading` |
+| Hebrew letter (sign.hebrewLetter) | clamp(50px, 10vw, 90px) | clamp(72px, 13vw, 120px), keep glow |
+| Snippet body paragraph (sign.screen3.spinSnippet) | 15px, line-height 1.7 | clamp(17px, 1.9vw, 21px), line-height 1.7 |
+| "Spin again" button label | 11px / 0.22em | unchanged — button micro-type |
+| Primary CTA label | 12px / 0.24em | unchanged — button micro-type |
+| "Free Full Birth Chart Reading" caption | clamp(12px, 1.3vw, 14px) | unchanged — meta caption |
 
-The wheel size, halo glow, spacing rhythm (mt clamps), and `SkyShell` header all stay as-is.
+### Form state (after final free spin)
+
+| Element | Current | New |
+|---|---|---|
+| H2 "See your actual Tikkun chart" | clamp(25px, 6.9vw, 37px), letter-spacing −0.02em, line-height 1.2 | clamp(34px, 6.2vw, 60px), letter-spacing −0.025em, line-height 1.1 (slightly tempered vs section H2s on `/` because it sits inside the narrow form column) |
+| "(Free reading + workbook)" eyebrow | 12px / 0.18em | unchanged — eyebrow micro-type |
+| Field labels | 10px / 0.22em | unchanged — form micro-type |
+| Inputs | 15px | unchanged — input affordance, changing this breaks 16px iOS zoom rule |
+| Newsletter checkbox label | 13px | unchanged — UI affordance |
+| Submit button label | 12px / 0.24em | unchanged — button micro-type |
+| Footer "Email used to send…" line | 15px | unchanged — fine print |
+
+## Rationale
+
+- Hebrew letter and snippet body paragraph carry the "reveal" moment — bumping them up matches the editorial weight of the H1 and body bumps on `/` and `/reading`.
+- Form H2 gets bumped but capped lower than a full section H2 (76px) because the form card is narrow (max-w-2xl) and a 76px headline would wrap awkwardly above the inputs.
+- Everything else on `/snippet` is either eyebrow / form chrome / button micro-type that was deliberately left alone on `/` and `/reading`.
 
 ## Verification
 
-- Visual check at 778px (current viewport) and at desktop ≥1280px to confirm the H1 doesn't break the layout above the wheel or push the wheel off-screen.
+- Visual check at 778px (current viewport) and at desktop ≥1280px for both pre-form and form states.
+- Confirm Hebrew letter still sits cleanly inside the snippet card with no clipping.
+- Confirm the form H2 doesn't push the inputs below the fold on a 530-tall viewport.
 - Confirm no horizontal scroll on mobile widths.
-- Confirm the H1 visually matches the hero H1 on `/`.
