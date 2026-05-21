@@ -1,62 +1,66 @@
-# Standardize body text size + line-height to match /terms
+# Make /reading feel inspirational, luminous, and centered
 
-## What's wrong today
+The page today reads like a long dim scroll: same dark band repeating, eyebrows + paragraphs stacked at the same rhythm, the hero letter is left-of-center, and the "Kabbalah Astrology" tag in the header sits flush-left. It lacks a "wow" moment and the visual contrast a reveal deserves.
 
-/terms and /privacy use a single, fixed body style: `fontSize: 15px`, `lineHeight: 1.7`, `fontFamily: BODY` (General Sans), `color: C_INK_SOFT`.
+## Goals
+- Center "Kabbalah Astrology" header chip (site-wide via SkyShell, not just /reading).
+- Turn the reveal hero into a real moment — bigger Hebrew letter, glow halo, soft animation on mount.
+- Lift the palette: warmer cream ink, brighter gold accents, dawn-rose highlights, more luminous gradients between bands. Keep the night-sky DNA but add light.
+- Rebalance type scale: tighter hierarchy between eyebrows, headings, mantras, and body. Mantras and section names should sing; body should breathe.
+- Break the monotony of identical bands: alternate dark / luminous / dark, vary inner composition (centered prose, two-column letter teaching, full-bleed mantra card), add ornamental hairlines and a small celestial divider glyph.
+- Give the page a clear emotional arc: Arrival → Pattern → Archetype → Work → Letter → Mantra → Reflection → Share → Deeper.
 
-Every other route uses a different (and inconsistent) body size and line-height, so the body text on /, /snippet, /history, /reading does not match Terms — it's larger and tighter at desktop.
+## What changes (visual only, zero copy edits)
 
-Concrete drift:
+1. Site header (`SkyShell.tsx`)
+   - Center the "Kabbalah Astrology" eyebrow horizontally. Slightly brighter color so it's legible without shouting.
 
-| Page | Body fontSize | lineHeight |
-|---|---|---|
-| /terms, /privacy (target) | 15px | 1.7 |
-| /history — 3 body paragraphs | clamp(14px, 1.6vw, 17px) | 1.7 |
-| /reading — Paragraphs helper, Tikkun-letter teaching | clamp(14px, 1.6vw, 17px) | 1.7 |
-| /reading — Reflection prompt | clamp(15px, 1.8vw, 18px) | 1.65 |
-| /reading — Share sub, "deeper" sub | 14px | default |
-| /index — intro + origins/free-will/greater-purpose + "What you receive" list | clamp(14px, 1.5vw, 17px) | 1.6 |
-| /snippet — spin snippet body | clamp(14px, 1.7vw, 17px) | 1.6 |
-| /snippet — "Email used to send…" footnote | 13px | 1.5 |
+2. Reading hero
+   - Center the Hebrew letter + label + sign as a true stacked composition (letter on top, label below, sign italic underneath) instead of inline baseline row.
+   - Add a soft radial glow halo behind the letter (dawn-rose + gold mix), gentle fade-in.
+   - Add a thin gold hairline + small star/asterisk glyph above and below the mantra quote — turns the blockquote into a framed "first light" moment.
+   - Tighten top padding; add more breathing room around the mantra.
 
-## Fix
+3. Band rhythm
+   - Alternate three band treatments instead of two: deep night, mid-lift (current), and a new "dawn lift" band with a warm radial highlight (subtle peach/gold center) for Archetype and Daily Mantra. Creates light/dark cadence.
+   - Insert a tiny centered celestial divider (✦ or hairline + dot + hairline) between bands so the page reads as movement, not repetition.
 
-Normalize **prose / body paragraphs** site-wide to the Terms spec:
+4. Section headers
+   - Add a centered hairline above each eyebrow label and a small numeral (I–VIII) in gold serif to give chapter feel.
 
-- `fontSize: 15px` (fixed, not clamp)
-- `lineHeight: 1.7`
-- `fontFamily: BODY`
-- color unchanged (already `C_INK_SOFT` / `C_INK` per page)
+5. Mantra & Archetype emphasis
+   - Daily Mantra: render inside a softly-bordered card with gold corner accents, larger serif italic (clamp 24–34px), letter-spacing tightened. Make it the visual peak.
+   - Archetype lines: increase size and add generous line gap; treat each line as its own stanza.
 
-Apply to these specific paragraphs only:
+6. Letter teaching block
+   - Two-column on desktop: oversized Hebrew letter + name on the left, teaching paragraph on the right; stacks centered on mobile. Breaks the all-centered monotony.
 
-- `src/routes/index.tsx` — hero intro paragraph; "What you receive" list items; Ancient roots paragraph; Influence not prediction paragraph; greater purpose paragraph. (5 paragraphs / list block.)
-- `src/routes/snippet.tsx` — spin-snippet body paragraph; "Email used to send you free Tikkun Workbook" footnote (raise from 13px to 15px for prose consistency).
-- `src/routes/history.tsx` — the 3 body paragraphs in the deep band; the newsletter sub-copy paragraph.
-- `src/routes/reading.tsx` — `Paragraphs` helper (used for Life's Pattern and Life's Work); Tikkun-letter teaching paragraph; Reflection prompt paragraph; Share sub paragraph; "deeper" sub paragraph.
+7. Reflection
+   - Render the prompt inside a quiet rounded panel with a subtle inner gold rule, italic serif intro mark.
 
-## Out of scope (intentionally unchanged)
+8. Share row
+   - Lighter pill buttons with gold hover state; add a tiny share icon (inline SVG) before each label for warmth.
 
-These are not "body prose" and stay as-is so the visual hierarchy doesn't collapse:
+9. "Go deeper" closing
+   - Slightly larger Fraunces headline above the CTA, dawn-rose accent on a single word feel via existing gold/dawn tokens; more vertical space so the CTA lands as a finale, not a footer.
 
-- All headings (Fraunces, existing clamp sizes).
-- Eyebrows / section-headers / labels / form labels (11px tracked uppercase).
-- Buttons / CTA labels (12–13px tracked uppercase).
-- Hebrew letter displays (large Fraunces).
-- Italic Fraunces mantra / archetype lines on /reading.
-- Footer link "Kabbalah · Circle" and "← Back to home" links.
-- Tiny meta lines like "Free Tikkun Astrology Reading" (10px tracked uppercase) and error messages (12px).
-- Input fields keep 14–15px as today.
+10. Palette lift (tokens in `landing-style.ts`)
+    - Brighten C_INK_SOFT a touch; introduce one new band gradient `C_BAND_DAWN` (warm peach-gold radial over deep navy). No new font, no new component library.
+
+## Out of scope
+- No copy / content changes.
+- No routing or data changes.
+- No new dependencies. Animations done with CSS or existing framer-motion if already installed; otherwise pure CSS keyframes.
 
 ## Files touched
+- `src/components/landing/SkyShell.tsx` — center header chip.
+- `src/lib/landing-style.ts` — add `C_BAND_DAWN`, slightly warmer ink.
+- `src/routes/reading.tsx` — hero composition, band alternation, dividers, numerals, mantra card, two-column letter block, reflection panel, share pills, closing spacing.
 
-- `src/routes/index.tsx`
-- `src/routes/snippet.tsx`
-- `src/routes/history.tsx`
-- `src/routes/reading.tsx`
-
-No content / copy / color / layout / component changes. Only `fontSize` + `lineHeight` of the body-prose paragraphs listed above.
-
-## QA after the change
-
-Screenshot /, /snippet (both pre-form and form states), /history, /reading at desktop (1366) and mobile (390) and confirm body text matches /terms in size and rhythm.
+## QA
+Screenshot /reading at 390 and 1366 after changes; confirm:
+- Header chip centered site-wide.
+- Clear light/dark band cadence.
+- Mantra reads as the page's emotional peak.
+- Body text still matches /terms (15px / 1.7).
+- Mobile layout stacks cleanly with no horizontal scroll.
