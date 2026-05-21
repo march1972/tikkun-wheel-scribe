@@ -85,21 +85,8 @@ function ReadingPage() {
   return (
     <SkyShell starDensity={260}>
       {/* ── Reveal hero ── */}
-      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        <div className="flex w-full items-center gap-3">
-          <span className="h-px flex-1" style={{ background: C_RULE }} />
-          <span
-            style={{
-              fontFamily: BODY, color: C_INK_SOFT, fontSize: "11px",
-              letterSpacing: "0.36em", textTransform: "uppercase", fontWeight: 600,
-            }}
-          >
-            {sc.eyebrow}
-          </span>
-          <span className="h-px flex-1" style={{ background: C_RULE }} />
-        </div>
-
-        <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex flex-wrap items-baseline justify-center gap-[clamp(10px,2vw,20px)]">
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2.5vh,2rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
+        <div className="flex flex-wrap items-baseline justify-center gap-[clamp(10px,2vw,20px)]">
           <span
             style={{
               fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(64px, 13vw, 130px)",
@@ -120,6 +107,7 @@ function ReadingPage() {
             <span style={{ fontStyle: "italic" }}>{sign.sign}</span>
           </span>
         </div>
+
 
         <blockquote
           className="mt-[clamp(2rem,4vh,3rem)] italic"
