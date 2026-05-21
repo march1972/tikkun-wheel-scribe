@@ -1,45 +1,33 @@
-# History + Landing polish
+# Bigger, bolder type on `/`
 
-Two surgical changes. No copy edits anywhere.
+Push the landing page toward an editorial / magazine-bold scale (intensity 4/5). Frontend-only — no copy, no content, no color, no layout structure changes.
 
-## 1. `/history` — remove "A Brief History" eyebrow
+## Scale changes (src/routes/index.tsx)
 
-Delete the hairline-flanked "A Brief History" pill above the hero headline (the `hist-fade` block, lines 89–100 of `src/routes/history.tsx`). The H1 "Ancient roots, living work." becomes the first element in the hero. Remove its `mt-[clamp(2rem,4vh,3rem)]` top margin so it sits naturally below the shell header.
+| Element | Current | New |
+|---|---|---|
+| Hero H1 | clamp(40px, 7.5vw, 84px) | clamp(48px, 9vw, 112px), letter-spacing −0.035em |
+| Hero intro paragraph | clamp(17px, 1.6vw, 20px) | clamp(20px, 2vw, 26px), line-height 1.55 |
+| Section H2s (×4) | clamp(30px, 4.5vw, 52px) | clamp(38px, 6.5vw, 76px), letter-spacing −0.025em, line-height 1.1 |
+| Section body paragraphs | clamp(16px, 1.5vw, 19px) | clamp(18px, 1.9vw, 23px), line-height 1.7, max-width 42rem |
+| "What you receive" list items | clamp(15px, 1.4vw, 17px) | clamp(17px, 1.7vw, 21px), line-height 1.65 |
+| Closing CTA H2 | matches hero | matches new hero (clamp(48px, 9vw, 112px)) |
 
-Nothing else on `/history` changes — halo, prose, pull quote, newsletter, footer all stay.
+Eyebrow micro-type, header label, CTA button, Hebrew letters, and footer stay untouched.
 
-## 2. `/` — same scroll-life treatment as `/reading` and `/history`
+## Pull-quote treatment
 
-No content, copy, ordering, palette, or layout changes. Add only the two motion patterns the other two pages use:
+For each of the 4 sections, promote the **first sentence** of the lead paragraph into an oversized pull-quote rendered above the rest of the body copy:
 
-a. **Scroll-reveal fades.** Import `Reveal` from `@/components/landing/Reveal` and wrap the headings + body paragraphs of each existing section so they fade up as they enter the viewport:
-   - "What you receive" — heading, then each of the 3 list items with staggered delays (0 / 120 / 240ms)
-   - "Ancient roots" — heading + paragraph (stagger 0 / 140ms)
-   - "Influence, not prediction" — heading + paragraph (stagger 0 / 140ms)
-   - "A greater purpose." — heading + paragraph + SefirotTree (stagger 0 / 140 / 280ms)
-   - "Who you are." closing — heading + paragraph + CTA (stagger 0 / 140 / 280ms)
+- Font size: clamp(26px, 3.2vw, 38px)
+- Weight: light (300), letter-spacing −0.015em, line-height 1.25
+- Color: `text-foreground` (full strength) vs. the body's muted tone
+- Margin-bottom: 1.25rem
+- Wrapped in `<Reveal>` with delay 80ms; the remaining body copy reveals at 200ms
 
-   Hero block (H1, wheel, intro paragraph, CTA) is **not** wrapped — it's above the fold and should appear immediately.
+The remaining sentences of that paragraph render below at the new body size, slightly muted, creating a clear lede → body hierarchy.
 
-b. **Scroll-linked hero halo drift.** Add a soft radial halo behind the TikkunWheel (same `radial-gradient(circle, C_GOLD33 → C_DAWN1f → transparent)` recipe as `/history`), positioned absolutely behind the wheel. A `useEffect` with rAF-throttled scroll listener translates it upward at 0.3× scrollY. Respects `prefers-reduced-motion`.
+## Verification
 
-All existing structure, StarField instances, copy, colors, band gradients, and the footer stay byte-identical.
-
-c. **Larger typography across `/`.** Bump every text size on the landing one notch up so it feels bolder and more editorial — content stays identical:
-   - Hero H1: `clamp(30px, 5vw, 56px)` → `clamp(40px, 7.5vw, 84px)`, letter-spacing tightened to `-0.03em` (matches `/history` headline scale).
-   - Hero intro paragraph: `15px` → `clamp(17px, 1.6vw, 20px)`, line-height 1.7.
-   - Section H2s ("What you receive", "Ancient roots", "Influence, not prediction", "A greater purpose."): replace `text-2xl` with inline `fontSize: clamp(30px, 4.5vw, 52px)`, letter-spacing `-0.02em`, line-height 1.15.
-   - Section body paragraphs: `15px` → `clamp(16px, 1.5vw, 19px)`, line-height 1.75, maxWidth bumped to `38rem`.
-   - "What you receive" list items: body text `15px` → `clamp(15px, 1.4vw, 17px)`; Hebrew letter stays as-is (already `clamp(32px, 4.5vw, 44px)`).
-   - Closing CTA H2: same scale as hero H1 (already matches — no change).
-   - Closing CTA paragraph: matches new section body scale.
-   - Eyebrow + footer micro-type unchanged.
-
-## Files
-
-- `src/routes/history.tsx` — remove eyebrow block.
-- `src/routes/index.tsx` — add Reveal wraps + halo + scroll effect.
-
-## Out of scope
-
-No new routes, no new components, no dependency changes, no copy edits, no changes to `/reading`, `SkyShell`, `PrimaryCTA`, `Reveal`, or any shared module.
+- Visual check at 778px (current viewport) and at desktop ≥1280px to confirm H1/H2 don't break the grid or overflow.
+- Confirm no horizontal scroll on mobile widths.
