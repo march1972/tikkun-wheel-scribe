@@ -278,7 +278,7 @@ function Landing() {
         </header>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
+        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(2rem,4vh,3.5rem)]">
           <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
             <div
               ref={haloRef}
