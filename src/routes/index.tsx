@@ -276,15 +276,33 @@ function Landing() {
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+            <div
+              ref={haloRef}
+              aria-hidden
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "clamp(360px, 70vw, 680px)",
+                height: "clamp(360px, 70vw, 680px)",
+                background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
+                filter: "blur(10px)",
+                pointerEvents: "none",
+                willChange: "transform",
+                zIndex: 0,
+              }}
+            />
             <h1
+              className="relative"
               style={{
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(30px, 5vw, 56px)",
-                lineHeight: 1,
-                letterSpacing: "-0.025em",
+                fontSize: "clamp(40px, 7.5vw, 84px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
               }}
             >
               Reveal your{" "}
@@ -299,7 +317,7 @@ function Landing() {
               </span>
             </h1>
 
-            <div className="mt-[clamp(1.5rem,3.5vh,2.5rem)]">
+            <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]">
               <div
                 className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
                 style={{
@@ -312,12 +330,12 @@ function Landing() {
             </div>
 
             <p
-              className="mt-[clamp(3.25rem,6.5vh,5rem)]"
+              className="relative mt-[clamp(3.25rem,6.5vh,5rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
+                maxWidth: "38rem",
+                fontSize: "clamp(17px, 1.6vw, 20px)",
               }}
             >
               Kabbalistic Astrology maps your{" "}
