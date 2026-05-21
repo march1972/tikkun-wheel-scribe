@@ -332,7 +332,7 @@ function Landing() {
           <div className="relative mx-auto max-w-3xl text-center">
             <h2
               className="text-2xl"
-              style={{ color: C_INK }}
+              style={{ fontFamily: HEAD, color: C_INK }}
             >
               What you{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>.
@@ -402,7 +402,7 @@ function Landing() {
             
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
-              style={{ color: C_INK }}
+              style={{ fontFamily: HEAD, color: C_INK }}
             >
               Ancient{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
@@ -431,7 +431,7 @@ function Landing() {
             
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
-              style={{ color: C_INK }}
+              style={{ fontFamily: HEAD, color: C_INK }}
             >
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
             </h2>
@@ -466,7 +466,7 @@ function Landing() {
             
             <h2
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
-              style={{ color: C_INK }}
+              style={{ fontFamily: HEAD, color: C_INK }}
             >
               A greater purpose.
             </h2>
