@@ -18,14 +18,14 @@ export function SkyShell({
       <StarField density={starDensity} opacity={0.85} />
       <div className="relative">
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-6xl flex justify-center">
             <Link
               to="/"
               style={{
                 fontFamily: BODY,
-                color: "rgba(160, 180, 210, 0.55)",
+                color: "rgba(200, 215, 235, 0.78)",
                 fontSize: "10px",
-                letterSpacing: "0.38em",
+                letterSpacing: "0.42em",
                 textTransform: "uppercase",
                 fontWeight: 600,
               }}
