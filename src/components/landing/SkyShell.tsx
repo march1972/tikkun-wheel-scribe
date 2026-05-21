@@ -21,7 +21,7 @@ export function SkyShell({
           <div className="mx-auto max-w-6xl flex justify-center">
             <Link
               to="/"
-              className="opacity-0"
+              className="border-slate-500 opacity-85 text-lg text-slate-200"
               style={{
                 fontFamily: BODY,
                 color: "rgba(200, 215, 235, 0.78)",
@@ -31,7 +31,7 @@ export function SkyShell({
                 fontWeight: 600,
               }}
             >
-              Kabbalah Astrology
+              K A B B A L A H&nbsp; &nbsp;A S T R O L O G Y
             </Link>
           </div>
         </header>
