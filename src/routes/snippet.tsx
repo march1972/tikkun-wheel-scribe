@@ -194,17 +194,14 @@ function Snippet() {
 
         {!showForm && (
           <>
-            {/* Spin again — transparent, rounded, same width as CTA */}
-            <div className="mt-[clamp(1.25rem,3vh,2rem)]">{spinAgainButton}</div>
-
-            {/* CTA — rectangular red button */}
+            {/* CTA — rectangular red button (above the fold) */}
             <button
               type="button"
               onClick={() => {
                 setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
                 setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
               }}
-              className="cta-pulse-glow group mt-[clamp(2rem,5vh,3.5rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+              className="cta-pulse-glow group mt-[clamp(1.25rem,3vh,2rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
               style={{
                 background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
                 color: C_INK,
@@ -226,6 +223,9 @@ function Snippet() {
             >
               Free Full Birth Chart Reading
             </p>
+
+            {/* Spin again — transparent, rounded, secondary */}
+            <div className="mt-[clamp(1.5rem,3.5vh,2.25rem)]">{spinAgainButton}</div>
           </>
         )}
 
