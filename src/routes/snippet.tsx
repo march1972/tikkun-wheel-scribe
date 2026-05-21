@@ -230,7 +230,7 @@ function Snippet() {
             <div
               className="w-full"
               style={{
-                padding: "clamp(1.75rem,4.5vw,2.75rem)",
+                padding: "clamp(0.5rem,2vw,2.75rem)",
                 textAlign: "center",
               }}
             >
@@ -242,7 +242,7 @@ function Snippet() {
                 }}
               >
                 See your actual{" "}
-                <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
+                <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 700, fontSize: "1.05em" }}>Tikkun</span>{" "}
                 chart
               </h2>
               <p
@@ -279,6 +279,26 @@ function Snippet() {
                   />
                 </div>
 
+                <label
+                  htmlFor="newsletter"
+                  style={{
+                    display: "flex", alignItems: "flex-start", gap: "10px",
+                    fontFamily: BODY, color: C_INK_SOFT, fontSize: "13px",
+                    lineHeight: 1.4, cursor: "pointer", marginTop: "4px",
+                  }}
+                >
+                  <input
+                    id="newsletter" type="checkbox"
+                    checked={newsletterOptIn}
+                    onChange={(e) => setNewsletterOptIn(e.target.checked)}
+                    style={{
+                      marginTop: "2px", width: "16px", height: "16px",
+                      accentColor: C_DAWN, flexShrink: 0, cursor: "pointer",
+                    }}
+                  />
+                  <span>Add me to the Kabbalah Circle mailing list</span>
+                </label>
+
                 {err && (
                   <p style={{ fontFamily: BODY, color: C_DAWN, fontSize: "12px" }}>{err}</p>
                 )}
@@ -286,7 +306,7 @@ function Snippet() {
                 <button
                   type="submit"
                   disabled={busy}
-                  className="cta-pulse-glow group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
+                  className="cta-pulse-glow group mt-2 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
                   style={{
                     background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
                     color: C_INK,
