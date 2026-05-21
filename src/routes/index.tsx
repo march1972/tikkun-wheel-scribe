@@ -260,6 +260,7 @@ function Landing() {
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
           <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-[#fdf7e7]">
             <span
+              className="opacity-0"
               style={{
                 fontFamily: BODY,
                 color: "rgba(160, 180, 210, 0.55)",
