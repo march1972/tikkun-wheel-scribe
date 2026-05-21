@@ -225,8 +225,8 @@ function ReadingPage() {
         <p
           className="text-center"
           style={{
-            fontFamily: BODY, color: C_INK, fontSize: "clamp(15px, 1.8vw, 18px)",
-            lineHeight: 1.65, maxWidth: "32rem", marginLeft: "auto", marginRight: "auto",
+            fontFamily: BODY, color: C_INK, fontSize: "15px",
+            lineHeight: 1.7, maxWidth: "32rem", marginLeft: "auto", marginRight: "auto",
           }}
         >
           {sc.reflectionPrompt}
