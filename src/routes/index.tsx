@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
@@ -553,7 +553,25 @@ function Landing() {
             borderTop: `1px solid ${C_RULE}`,
           }}
         >
-          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2">
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3">
+            <div
+              className="flex items-center gap-4"
+              style={{
+                fontFamily: BODY,
+                fontSize: "11px",
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                fontWeight: 600,
+              }}
+            >
+              <Link to="/terms" style={{ color: C_INK_SOFT, textDecoration: "none" }}>
+                Terms &amp; Conditions
+              </Link>
+              <span style={{ color: C_MUTED }}>·</span>
+              <Link to="/privacy" style={{ color: C_INK_SOFT, textDecoration: "none" }}>
+                Privacy
+              </Link>
+            </div>
             <p
               style={{
                 fontFamily: BODY,
