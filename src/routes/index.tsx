@@ -572,9 +572,9 @@ function Landing() {
                   fontFamily: HEAD,
                   color: C_INK,
                   fontWeight: 500,
-                  fontSize: "clamp(40px, 7.5vw, 84px)",
+                  fontSize: "clamp(48px, 9vw, 112px)",
                   lineHeight: 1.02,
-                  letterSpacing: "-0.03em",
+                  letterSpacing: "-0.035em",
                 }}
               >
                 Who you<br />
@@ -598,9 +598,9 @@ function Landing() {
                 className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
                 style={{
                   fontFamily: BODY, color: C_INK_SOFT,
-                  lineHeight: 1.75,
-                  maxWidth: "38rem",
-                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                  lineHeight: 1.7,
+                  maxWidth: "42rem",
+                  fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
                 A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
