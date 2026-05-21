@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { StarField } from "./StarField";
-import { C_SKY_GRAD, C_INK, C_INK_SOFT, C_GOLD, HEAD } from "@/lib/landing-style";
+import { C_SKY_GRAD, C_INK_SOFT, BODY } from "@/lib/landing-style";
 
 export function SkyShell({
   children,
@@ -21,29 +21,18 @@ export function SkyShell({
           <div className="mx-auto max-w-6xl flex justify-center">
             <Link
               to="/"
-              className="inline-flex items-center gap-3"
+              className="transition-opacity duration-300 hover:opacity-100"
               style={{
-                fontFamily: HEAD,
-                color: C_INK,
-                fontSize: "clamp(15px, 1.6vw, 18px)",
-                letterSpacing: "0.04em",
+                fontFamily: BODY,
+                color: "rgba(241, 233, 213, 0.45)",
+                fontSize: "clamp(11px, 1.1vw, 12px)",
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                fontWeight: 500,
                 lineHeight: 1,
               }}
             >
-              <span style={{ fontStyle: "italic", fontWeight: 400 }}>
-                Kabbalah
-              </span>
-              <span
-                aria-hidden
-                style={{
-                  color: C_GOLD,
-                  fontSize: "0.55em",
-                  transform: "translateY(-1px)",
-                }}
-              >
-                ✦
-              </span>
-              <span style={{ fontWeight: 400 }}>Astrology</span>
+              Kabbalah Astrology
             </Link>
           </div>
         </header>
