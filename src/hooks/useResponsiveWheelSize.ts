@@ -17,7 +17,7 @@ export function useResponsiveWheelSize(
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       // Constrain by both width and height so it never overflows on short screens.
-      const next = Math.min(vw * vwFraction, vh * 0.55, max);
+      const next = Math.min(vw * vwFraction, vh * 0.45, max);
       setSize(Math.max(min, Math.round(next)));
     };
     compute();
