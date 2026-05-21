@@ -372,20 +372,25 @@ function Landing() {
         >
           <StarField density={140} opacity={0.5} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
-            <h2
-              className="text-2xl"
-              style={{ fontFamily: HEAD, color: C_INK }}
-            >
-              What you{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>.
-            </h2>
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: HEAD, color: C_INK,
+                  fontSize: "clamp(30px, 4.5vw, 52px)",
+                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                }}
+              >
+                What you{" "}
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>.
+              </h2>
+            </Reveal>
 
             <ul
               className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] text-left"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.7,
-                fontSize: "15px",
+                lineHeight: 1.75,
+                fontSize: "clamp(15px, 1.4vw, 17px)",
                 listStyle: "none",
                 padding: 0,
               }}
@@ -394,36 +399,37 @@ function Landing() {
                 { letter: "א", letterColor: C_DAWN, accent: C_GOLD, title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(240, 200, 104, 0.06)" },
                 { letter: "מ", letterColor: C_DAWN, accent: C_GOLD, title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(240, 200, 104, 0.06)" },
                 { letter: "ש", letterColor: C_DAWN, accent: C_GOLD, title: "A daily mantra and reflection",   body: "a verse to meditate on for personal change.", tint: "rgba(240, 200, 104, 0.06)" },
-              ].map((item) => {
+              ].map((item, idx) => {
                 return (
-                  <li
-                    key={item.title}
-                    className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full transition-all duration-300 hover:-translate-y-1"
-                    style={{
-                      background: item.tint,
-                      border: `1px solid ${item.accent}33`,
-                      borderRadius: 2,
-                    }}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="leading-none"
+                  <Reveal key={item.title} delay={120 * (idx + 1)}>
+                    <li
+                      className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full transition-all duration-300 hover:-translate-y-1"
                       style={{
-                        fontFamily: HEAD,
-                        color: item.letterColor,
-                        fontSize: "clamp(32px, 4.5vw, 44px)",
-                        textShadow: `0 0 14px ${item.letterColor}66`,
+                        background: item.tint,
+                        border: `1px solid ${item.accent}33`,
+                        borderRadius: 2,
                       }}
                     >
-                      {item.letter}
-                    </span>
-                    <span>
-                      <span style={{ color: item.accent, fontStyle: "italic" }}>
-                        {item.title}
-                      </span>{" "}
-                      — {item.body}
-                    </span>
-                  </li>
+                      <span
+                        aria-hidden="true"
+                        className="leading-none"
+                        style={{
+                          fontFamily: HEAD,
+                          color: item.letterColor,
+                          fontSize: "clamp(32px, 4.5vw, 44px)",
+                          textShadow: `0 0 14px ${item.letterColor}66`,
+                        }}
+                      >
+                        {item.letter}
+                      </span>
+                      <span>
+                        <span style={{ color: item.accent, fontStyle: "italic" }}>
+                          {item.title}
+                        </span>{" "}
+                        — {item.body}
+                      </span>
+                    </li>
+                  </Reveal>
                 );
               })}
             </ul>
