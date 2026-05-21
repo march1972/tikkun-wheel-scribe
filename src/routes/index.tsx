@@ -264,7 +264,7 @@ function Landing() {
               className="transition-opacity duration-300 hover:opacity-100"
               style={{
                 fontFamily: BODY,
-                color: "rgba(178, 190, 230, 0.55)",
+                color: "rgba(241, 233, 213, 0.7)",
                 fontSize: "clamp(11px, 1.1vw, 12px)",
                 letterSpacing: "0.28em",
                 textTransform: "uppercase",
