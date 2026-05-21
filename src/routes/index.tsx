@@ -539,7 +539,7 @@ function Landing() {
             >
               A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
             </p>
-            <div className="mt-[clamp(6rem,11vh,8rem)] flex justify-center">
+            <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex justify-center">
               <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
             </div>
           </div>
