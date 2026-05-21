@@ -1,25 +1,19 @@
-# Right-size the home hero so the CTA sits above the fold
+# Dial hero + wheel back up — middle ground
 
-Bring the homepage hero down a notch and tighten the wheel so the paragraph and CTA aren't pushed below the fold on shorter screens.
+Split the difference between the previous oversized values and the recent too-small values.
 
 ## What changes
 
-`src/routes/index.tsx` — hero section only:
+`src/routes/index.tsx`:
 
+- Line 213, wheel hook call:
+  `useResponsiveWheelSize(0.72, 240, 360)` → `useResponsiveWheelSize(0.85, 280, 440)`
 - Line 306, hero `<h1>` font size:
-  `clamp(48px, 9vw, 112px)` → `clamp(40px, 6.5vw, 84px)`
-- Line 281, hero `<section>` bottom padding:
-  `pb-[clamp(3rem,6vh,5rem)]` → `pb-[clamp(2rem,4vh,3.5rem)]`
-- Line 336, paragraph top margin:
-  `mt-[clamp(3.25rem,6.5vh,5rem)]` → `mt-[clamp(1.5rem,3vh,2.25rem)]`
-
-`src/routes/index.tsx` — wheel sizing hook call:
-
-- Find the `useResponsiveWheelSize(...)` call on the home page and shrink it. Default currently is `(0.8, 240, 420)` with a `vh * 0.55` internal cap. Pass tighter args:
-  `useResponsiveWheelSize(0.72, 240, 360)` and also drop the internal vh cap to 45%.
+  `clamp(40px, 6.5vw, 84px)` → `clamp(44px, 7.5vw, 96px)`
 
 `src/hooks/useResponsiveWheelSize.ts`:
 
-- Change `vh * 0.55` → `vh * 0.45` so the wheel respects shorter viewports across every page that uses the hook.
+- Line 20, internal vh cap:
+  `vh * 0.45` → `vh * 0.5` (between the original 0.55 and the recent 0.45).
 
-Nothing else touched. Other pages' headers stay as-is (already correctly sized).
+Paragraph margin and section padding stay at their tightened values so the CTA remains close to the wheel.
