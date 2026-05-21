@@ -25,6 +25,16 @@ b. **Scroll-linked hero halo drift.** Add a soft radial halo behind the TikkunWh
 
 All existing structure, StarField instances, copy, colors, band gradients, and the footer stay byte-identical.
 
+c. **Larger typography across `/`.** Bump every text size on the landing one notch up so it feels bolder and more editorial — content stays identical:
+   - Hero H1: `clamp(30px, 5vw, 56px)` → `clamp(40px, 7.5vw, 84px)`, letter-spacing tightened to `-0.03em` (matches `/history` headline scale).
+   - Hero intro paragraph: `15px` → `clamp(17px, 1.6vw, 20px)`, line-height 1.7.
+   - Section H2s ("What you receive", "Ancient roots", "Influence, not prediction", "A greater purpose."): replace `text-2xl` with inline `fontSize: clamp(30px, 4.5vw, 52px)`, letter-spacing `-0.02em`, line-height 1.15.
+   - Section body paragraphs: `15px` → `clamp(16px, 1.5vw, 19px)`, line-height 1.75, maxWidth bumped to `38rem`.
+   - "What you receive" list items: body text `15px` → `clamp(15px, 1.4vw, 17px)`; Hebrew letter stays as-is (already `clamp(32px, 4.5vw, 44px)`).
+   - Closing CTA H2: same scale as hero H1 (already matches — no change).
+   - Closing CTA paragraph: matches new section body scale.
+   - Eyebrow + footer micro-type unchanged.
+
 ## Files
 
 - `src/routes/history.tsx` — remove eyebrow block.
