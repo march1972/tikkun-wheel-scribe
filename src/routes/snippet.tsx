@@ -344,12 +344,12 @@ function Snippet() {
                         textTransform: "uppercase", textAlign: "center",
                       }}
                     >
-                      Sound like you?
+                      Tikkun Reading
                     </span>
                     <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
                   </div>
 
-                  <div className="mt-[clamp(0.5rem,1vh,1rem)] flex items-center justify-center">
+                  <div className="mt-[clamp(0.75rem,1.5vh,1.25rem)] flex flex-col items-center justify-center gap-2 text-center">
                     <span
                       style={{
                         fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(50px, 10vw, 90px)",
@@ -358,13 +358,41 @@ function Snippet() {
                     >
                       {sign.hebrewLetter}
                     </span>
+                    <span
+                      style={{
+                        fontFamily: BODY, color: C_MUTED, fontSize: "10px",
+                        letterSpacing: "0.32em", textTransform: "uppercase", fontWeight: 600,
+                      }}
+                    >
+                      {sign.letterName} · {sign.sign}
+                    </span>
                   </div>
 
-                  <p
-                    className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin"
-                    style={{ color: C_INK, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)" }}
+                  <blockquote
+                    className="mt-[clamp(1rem,2vh,1.5rem)] italic"
+                    style={{
+                      fontFamily: HEAD, color: C_INK,
+                      fontSize: "clamp(16px, 4.5vw, 20px)", lineHeight: 1.45,
+                    }}
                   >
-                    {sign.screen3.spinSnippet}
+                    “{sign.screen6.mantraQuote}”
+                  </blockquote>
+
+                  <p
+                    className="mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin text-left"
+                    style={{ color: C_INK_SOFT, lineHeight: 1.7, fontSize: "clamp(13px, 1.6vw, 15px)" }}
+                  >
+                    {sign.screen6.lifesPattern.split("\n\n")[0]}
+                  </p>
+
+                  <p
+                    className="mt-[clamp(1rem,2vh,1.5rem)] italic"
+                    style={{
+                      fontFamily: HEAD, color: C_GOLD,
+                      fontSize: "clamp(15px, 3.5vw, 18px)", lineHeight: 1.4,
+                    }}
+                  >
+                    {sign.screen6.archetype.split("\n")[0]}
                   </p>
                 </div>
 
