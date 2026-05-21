@@ -300,9 +300,9 @@ function Landing() {
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(40px, 7.5vw, 84px)",
+                fontSize: "clamp(48px, 9vw, 112px)",
                 lineHeight: 1.02,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.035em",
               }}
             >
               Reveal your{" "}
@@ -333,9 +333,9 @@ function Landing() {
               className="relative mt-[clamp(3.25rem,6.5vh,5rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "38rem",
-                fontSize: "clamp(17px, 1.6vw, 20px)",
+                lineHeight: 1.55,
+                maxWidth: "42rem",
+                fontSize: "clamp(20px, 2vw, 26px)",
               }}
             >
               Kabbalistic Astrology maps your{" "}
@@ -376,8 +376,8 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(30px, 4.5vw, 52px)",
-                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
                 What you{" "}
@@ -389,8 +389,8 @@ function Landing() {
               className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] text-left"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.75,
-                fontSize: "clamp(15px, 1.4vw, 17px)",
+                lineHeight: 1.65,
+                fontSize: "clamp(17px, 1.7vw, 21px)",
                 listStyle: "none",
                 padding: 0,
               }}
@@ -451,8 +451,8 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(30px, 4.5vw, 52px)",
-                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
                 Ancient{" "}
@@ -464,9 +464,9 @@ function Landing() {
                 className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
                 style={{
                   fontFamily: BODY, color: C_INK_SOFT,
-                  lineHeight: 1.75,
-                  maxWidth: "38rem",
-                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                  lineHeight: 1.7,
+                  maxWidth: "42rem",
+                  fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
                 Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
@@ -486,8 +486,8 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(30px, 4.5vw, 52px)",
-                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
                 <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
@@ -498,9 +498,9 @@ function Landing() {
                 className="mx-auto mt-[clamp(1rem,2vh,1.5rem)]"
                 style={{
                   fontFamily: BODY, color: C_INK_SOFT,
-                  lineHeight: 1.75,
-                  maxWidth: "38rem",
-                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                  lineHeight: 1.7,
+                  maxWidth: "42rem",
+                  fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
                 Kabbalists accept the signals or influence of the celestial
@@ -526,8 +526,8 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(30px, 4.5vw, 52px)",
-                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
                 A greater purpose.
@@ -538,9 +538,9 @@ function Landing() {
                 className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
                 style={{
                   fontFamily: BODY, color: C_INK_SOFT,
-                  lineHeight: 1.75,
-                  maxWidth: "38rem",
-                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                  lineHeight: 1.7,
+                  maxWidth: "42rem",
+                  fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
                 Fulfilling your{" "}
@@ -572,9 +572,9 @@ function Landing() {
                   fontFamily: HEAD,
                   color: C_INK,
                   fontWeight: 500,
-                  fontSize: "clamp(40px, 7.5vw, 84px)",
+                  fontSize: "clamp(48px, 9vw, 112px)",
                   lineHeight: 1.02,
-                  letterSpacing: "-0.03em",
+                  letterSpacing: "-0.035em",
                 }}
               >
                 Who you<br />
@@ -598,9 +598,9 @@ function Landing() {
                 className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
                 style={{
                   fontFamily: BODY, color: C_INK_SOFT,
-                  lineHeight: 1.75,
-                  maxWidth: "38rem",
-                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                  lineHeight: 1.7,
+                  maxWidth: "42rem",
+                  fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
                 A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
