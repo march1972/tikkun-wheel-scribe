@@ -1,19 +1,26 @@
-# Restyle the "Kabbalah Astrology" wordmark — subtle, modern, uppercase
+# Subtle uppercase wordmark — applied everywhere, dedup hidden copies
 
-A quiet masthead that sits above the hero without competing with it.
+A quiet, modern uppercase wordmark that appears on every page and replaces the older hidden/duplicate versions.
 
 ## What changes
 
-File: `src/components/landing/SkyShell.tsx` only.
+### 1. `src/components/landing/SkyShell.tsx` (used by /snippet, /spinning, /reading, /history, /terms, /privacy)
+- Remove the ✦ separator, the slate utility classes, and the serif italic.
+- Render a single uppercase wordmark: `KABBALAH ASTROLOGY`.
+- Font: `BODY` (`var(--font-sans)`), weight 500.
+- Size: ~11px mobile, ~12px desktop.
+- Tracking: `letter-spacing: 0.28em` (moderate, not overdone).
+- Color: `rgba(241, 233, 213, 0.45)` — desaturated parchment, recedes against the night sky. Hover → 0.7 opacity.
+- Centered in the header row.
 
-- **Remove** the gold ✦ separator entirely — no ornament.
-- **Case + spacing:** uppercase, tracked out moderately (`letter-spacing ~0.28em`) — modern, not the previous overdone `0.42em` super-spaced look.
-- **Font:** switch to a modern geometric sans via the system stack already wired through `BODY` (`var(--font-sans)`), weight 500. Distinct from the serif used by the big H1, so it reads as a discreet wordmark rather than a smaller echo of the headline.
-- **Size:** ~11px on mobile, ~12px desktop — small enough to recede.
-- **Color / brightness:** desaturated parchment at low opacity — `rgba(241, 233, 213, 0.45)` (≈ `C_INK_SOFT` @ 45%). No gold, no pure white. On hover, lift to ~0.7 opacity for affordance.
-- **Layout:** keep centered in the header row; a single space between the two words (no double-spacing trick).
-- **Cleanup:** drop the leftover slate/border utility classes.
+### 2. `src/routes/index.tsx` (home page — has its own inline header, not SkyShell)
+- Replace the leftover inline `<span>` wordmark (lines ~260–277) with the same subtle uppercase wordmark, wrapped in a `<Link to="/">` and centered.
+- Remove the leftover `border-slate-500 opacity-85 text-lg text-slate-200` utility classes and the doubled `K A B B A L A H&nbsp; &nbsp;A S T R O L O G Y` letter-spacing trick.
+- Drop the extra `mt-[clamp(1rem,2vh,1.5rem)]` wrapper so spacing matches SkyShell.
+
+### 3. Cleanup
+- After the two edits above, no other files contain a visible "Kabbalah Astrology" header — only metadata, footers, and body copy. Nothing else to remove.
 
 ## Result
 
-A whisper-quiet uppercase wordmark in the page's sans font, low-contrast against the night sky, that frames the hero instead of fighting it.
+Same whisper-quiet uppercase wordmark, centered, on the home page and every other page — one source of truth styling, no hidden duplicates left behind.
