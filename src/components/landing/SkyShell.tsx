@@ -21,6 +21,7 @@ export function SkyShell({
           <div className="mx-auto max-w-6xl flex justify-center">
             <Link
               to="/"
+              className="opacity-0"
               style={{
                 fontFamily: BODY,
                 color: "rgba(200, 215, 235, 0.78)",
