@@ -211,10 +211,33 @@ function PrimaryCTA({
 function Landing() {
   const navigate = useNavigate();
   const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
+  const haloRef = useRef<HTMLDivElement | null>(null);
 
   // Reset spin counter on each fresh visit to the landing page.
   useEffect(() => {
     resetAttempts();
+  }, []);
+
+  // Scroll-linked halo drift behind the hero wheel (matches /history, /reading).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        const el = haloRef.current;
+        if (el) el.style.transform = `translate(-50%, calc(-50% - ${y * 0.3}px))`;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
 
