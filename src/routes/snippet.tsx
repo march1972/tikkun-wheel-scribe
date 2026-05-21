@@ -172,7 +172,7 @@ function Snippet() {
             <div className="mt-[clamp(0.5rem,1vh,1rem)] flex items-center justify-center">
               <span
                 style={{
-                  fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(50px, 10vw, 90px)",
+                  fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(72px, 13vw, 120px)",
                   lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
                 }}
               >
@@ -183,7 +183,8 @@ function Snippet() {
             <p
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)]"
               style={{
-                fontFamily: BODY, color: C_INK, lineHeight: 1.7, fontSize: "15px",
+                fontFamily: BODY, color: C_INK, lineHeight: 1.7,
+                fontSize: "clamp(17px, 1.9vw, 21px)",
               }}
             >
               {sign.screen3.spinSnippet}
