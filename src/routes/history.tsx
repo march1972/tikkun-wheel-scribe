@@ -86,21 +86,8 @@ function HistoryPage() {
           }}
         />
 
-        <div className="hist-fade relative flex w-full items-center gap-3">
-          <span className="h-px flex-1" style={{ background: C_RULE }} />
-          <span
-            style={{
-              fontFamily: BODY, color: C_GOLD, fontSize: "11px",
-              letterSpacing: "0.42em", textTransform: "uppercase", fontWeight: 600,
-            }}
-          >
-            A Brief History
-          </span>
-          <span className="h-px flex-1" style={{ background: C_RULE }} />
-        </div>
-
         <h1
-          className="hist-fade-d1 relative mt-[clamp(2rem,4vh,3rem)]"
+          className="hist-fade relative"
           style={{
             fontFamily: HEAD, color: C_INK, fontWeight: 400,
             fontSize: "clamp(40px, 7.5vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.02em",
