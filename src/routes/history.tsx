@@ -100,7 +100,7 @@ function HistoryPage() {
         </h1>
 
         <p
-          className="hist-fade-d2 relative mt-[clamp(1.5rem,3vh,2.25rem)]"
+          className="hist-fade-d1 relative mt-[clamp(1.5rem,3vh,2.25rem)]"
           style={{
             fontFamily: HEAD, fontStyle: "italic", color: C_INK_SOFT,
             fontSize: "clamp(18px, 2.4vw, 24px)", lineHeight: 1.5,
