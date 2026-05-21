@@ -288,7 +288,7 @@ function Landing() {
             </div>
 
             <p
-              className="mt-[clamp(3.25rem,6.5vh,5rem)] font-mono font-thin"
+              className="mt-[clamp(3.25rem,6.5vh,5rem)]"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.6,
@@ -331,7 +331,7 @@ function Landing() {
           <StarField density={140} opacity={0.5} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
             <h2
-              className="font-mono font-thin text-2xl"
+              className="text-2xl"
               style={{ color: C_INK }}
             >
               What you{" "}
@@ -339,7 +339,7 @@ function Landing() {
             </h2>
 
             <ul
-              className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] font-mono font-thin text-left"
+              className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] text-left"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.6,
@@ -401,14 +401,14 @@ function Landing() {
           <div className="relative mx-auto max-w-2xl text-center">
             
             <h2
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
+              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
               style={{ color: C_INK }}
             >
               Ancient{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
             </h2>
             <p
-              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin"
+              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.6,
@@ -430,13 +430,13 @@ function Landing() {
           <div className="relative mx-auto max-w-3xl text-center">
             
             <h2
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
+              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
               style={{ color: C_INK }}
             >
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
             </h2>
             <p
-              className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] font-mono font-thin"
+              className="mx-auto mt-[clamp(1rem,2vh,1.5rem)]"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.6,
@@ -465,13 +465,13 @@ function Landing() {
             
             
             <h2
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin text-2xl"
+              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
               style={{ color: C_INK }}
             >
               A greater purpose.
             </h2>
             <p
-              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto font-mono font-thin"
+              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.6,
@@ -525,7 +525,7 @@ function Landing() {
               <span style={{ color: C_GOLD }}>.</span>
             </h2>
             <p
-              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin"
+              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.6,

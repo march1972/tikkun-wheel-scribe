@@ -68,7 +68,7 @@ function HistoryPage() {
       >
         <div className="relative mx-auto max-w-2xl">
           <p
-            className="font-mono font-thin"
+            className=""
             style={{ color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.7 }}
           >
             Kabbalah Astrology dates back to{" "}
@@ -78,7 +78,7 @@ function HistoryPage() {
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
           </p>
           <p
-            className="mt-6 font-mono font-thin"
+            className="mt-6"
             style={{ color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.7 }}
           >
             Kabbalists accept the signals or influence of the celestial constellations ({" "}
@@ -86,7 +86,7 @@ function HistoryPage() {
             <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free will always overrides fate.
           </p>
           <p
-            className="mt-6 font-mono font-thin"
+            className="mt-6"
             style={{ color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)", lineHeight: 1.7 }}
           >
             Fulfilling your{" "}
@@ -120,7 +120,7 @@ function HistoryPage() {
             Go <span style={{ color: C_GOLD, fontStyle: "italic" }}>deeper</span>.
           </h2>
           <p
-            className="mx-auto mt-4 font-mono font-thin"
+            className="mx-auto mt-4"
             style={{ color: C_INK_SOFT, fontSize: "14px", lineHeight: 1.6, maxWidth: "30rem" }}
           >
             Free weekly teachings on Kabbalah, Astrology, and the work of becoming. Unsubscribe anytime.
