@@ -1,32 +1,48 @@
-import { BODY, C_DEEP, C_GOLD, C_GOLD_BRIGHT } from "@/lib/landing-style";
+import { BODY, C_DEEP, C_INK, C_GOLD, C_GOLD_BRIGHT } from "@/lib/landing-style";
+
+type Variant = "gold" | "dawn";
 
 export function PrimaryCTA({
   onClick,
   label,
   type = "button",
   disabled = false,
+  variant = "gold",
 }: {
   onClick?: () => void;
   label: string;
   type?: "button" | "submit";
   disabled?: boolean;
+  variant?: Variant;
 }) {
+  const isDawn = variant === "dawn";
+  const background = isDawn
+    ? "linear-gradient(135deg, #ff5a6e 0%, #e63946 55%, #b8262f 100%)"
+    : `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`;
+  const color = isDawn ? C_INK : C_DEEP;
+  const boxShadow = isDawn
+    ? "0 12px 44px -10px rgba(230,57,70,0.6), inset 0 1px 0 rgba(255,255,255,0.18)"
+    : "0 10px 40px -10px rgba(240,200,104,0.55)";
+  const ringColor = isDawn ? "#ff8a96" : "#f0c868";
+
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540] disabled:opacity-50 disabled:cursor-not-allowed"
+      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540] disabled:opacity-50 disabled:cursor-not-allowed"
       style={{
-        background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
-        color: C_DEEP,
+        background,
+        color,
         fontFamily: BODY,
         fontWeight: 700,
         letterSpacing: "0.28em",
         fontSize: "clamp(11px, 1.2vw, 13px)",
         padding: "clamp(14px, 1.9vh, 20px) clamp(24px, 4vw, 44px)",
         borderRadius: "0px",
-        boxShadow: "0 10px 40px -10px rgba(240,200,104,0.55)",
+        boxShadow,
+        // @ts-expect-error CSS var for focus ring
+        "--tw-ring-color": ringColor,
       }}
     >
       <span>{label}</span>
