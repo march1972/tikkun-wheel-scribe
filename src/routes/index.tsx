@@ -1,10 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
+import { Reveal } from "@/components/landing/Reveal";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
 import { resetAttempts, setCurrentSpinNumber } from "@/lib/spinAttempts";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const Route = createFileRoute("/")({
   component: Landing,
