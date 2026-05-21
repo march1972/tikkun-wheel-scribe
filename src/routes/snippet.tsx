@@ -321,9 +321,55 @@ function Snippet() {
             </div>
 
             {canSpinAgain && (
-              <div className="mt-[clamp(2.5rem,6vh,4rem)] w-full max-w-md flex flex-col items-center text-center">
+              <div className="mt-[clamp(2.5rem,6vh,4rem)] w-full flex flex-col items-center text-center">
+                <div
+                  className="w-full"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
+                    border: `1px solid ${C_RULE}`,
+                    borderRadius: "14px",
+                    padding: "clamp(1.75rem,4.5vw,2.75rem)",
+                    boxShadow:
+                      "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
+                    backdropFilter: "blur(8px)",
+                  }}
+                >
+                  <div className="flex items-center justify-center gap-3">
+                    <span style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
+                    <span
+                      style={{
+                        fontFamily: BODY, color: C_GOLD, fontWeight: 600,
+                        fontSize: "clamp(10px, 2.6vw, 13px)", letterSpacing: "0.22em",
+                        textTransform: "uppercase", textAlign: "center",
+                      }}
+                    >
+                      Sound like you?
+                    </span>
+                    <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
+                  </div>
+
+                  <div className="mt-[clamp(0.5rem,1vh,1rem)] flex items-center justify-center">
+                    <span
+                      style={{
+                        fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(50px, 10vw, 90px)",
+                        lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
+                      }}
+                    >
+                      {sign.hebrewLetter}
+                    </span>
+                  </div>
+
+                  <p
+                    className="mt-[clamp(1.25rem,2.5vh,1.75rem)] font-mono font-thin"
+                    style={{ color: C_INK, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)" }}
+                  >
+                    {sign.screen3.spinSnippet}
+                  </p>
+                </div>
+
                 <p
-                  className="font-mono"
+                  className="font-mono mt-[clamp(1.5rem,4vh,2.5rem)]"
                   style={{
                     color: "rgba(236, 227, 207, 0.45)", fontSize: "11px", letterSpacing: "0.04em",
                     lineHeight: 1.5, marginBottom: "1rem", fontWeight: 300,
