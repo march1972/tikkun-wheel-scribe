@@ -1,9 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { Link2 } from "lucide-react";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
+import { Reveal } from "@/components/landing/Reveal";
 import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
@@ -37,15 +38,15 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Hairline() {
+function Hairline({ width = 64, my = "clamp(3rem,6vh,5rem)" }: { width?: number; my?: string }) {
   return (
     <div
       aria-hidden
       style={{
-        width: 64,
+        width,
         height: 1,
         background: C_RULE,
-        margin: "clamp(3rem,6vh,5rem) auto",
+        margin: `${my} auto`,
       }}
     />
   );
@@ -115,6 +116,7 @@ function ReadingPage() {
   const { sign: signId } = Route.useSearch();
   const [sign, setSign] = useState<TikkunSign | null>(null);
   const [copied, setCopied] = useState(false);
+  const haloRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const id = signId ?? sessionStorage.getItem("tikkun_real_sign");
@@ -125,6 +127,30 @@ function ReadingPage() {
     }
     setSign(s);
   }, [signId, navigate]);
+
+  // Hero halo scroll-linked drift
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        const el = haloRef.current;
+        if (el) {
+          el.style.transform = `translate(-50%, calc(-55% - ${y * 0.3}px))`;
+        }
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [sign]);
 
   if (!sign) return null;
   const sc = STATIC_COPY.screen6;
@@ -140,20 +166,21 @@ function ReadingPage() {
     <SkyShell starDensity={280}>
       <style>{`
         @keyframes tikkun-fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-        @keyframes tikkun-glow { 0%, 100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.06); } }
+        @keyframes tikkun-glow { 0%, 100% { opacity: 0.55; transform: translate(-50%, -55%) scale(1); } 50% { opacity: 0.85; transform: translate(-50%, -55%) scale(1.06); } }
         .tk-fade { animation: tikkun-fade-up 1.1s ease-out both; }
         .tk-fade-d1 { animation: tikkun-fade-up 1.1s ease-out 0.25s both; }
         .tk-fade-d2 { animation: tikkun-fade-up 1.1s ease-out 0.5s both; }
         .tk-fade-d3 { animation: tikkun-fade-up 1.1s ease-out 0.8s both; }
-        .tk-halo { animation: tikkun-glow 6s ease-in-out infinite; }
+        .tk-share-pill { transition: transform 220ms cubic-bezier(.2,.7,.3,1.2); }
+        .tk-share-pill:hover { transform: translateY(-2px) scale(1.03); }
       `}</style>
 
       {/* ── Hero ── */}
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,3vh,2rem)] pb-[clamp(2rem,5vh,4rem)] text-center">
         <div className="relative flex flex-col items-center tk-fade">
           <div
+            ref={haloRef}
             aria-hidden
-            className="tk-halo"
             style={{
               position: "absolute",
               top: "50%",
@@ -164,6 +191,7 @@ function ReadingPage() {
               background: `radial-gradient(circle, ${C_DAWN}33 0%, ${C_GOLD}1f 35%, transparent 70%)`,
               filter: "blur(8px)",
               pointerEvents: "none",
+              willChange: "transform",
             }}
           />
           <span
@@ -224,209 +252,226 @@ function ReadingPage() {
       <Hairline />
 
       {/* ── Life's Pattern ── */}
-      <Column>
-        <SectionLabel>{headers[0]}</SectionLabel>
-        <Body text={sign.screen6.lifesPattern} splitOn="\n\n" />
-      </Column>
+      <Reveal>
+        <Column>
+          <SectionLabel>{headers[0]}</SectionLabel>
+          <Body text={sign.screen6.lifesPattern} splitOn="\n\n" />
+        </Column>
+      </Reveal>
 
       <Hairline />
 
       {/* ── Archetype ── */}
-      <Column>
-        <SectionLabel>{headers[1]}</SectionLabel>
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.6em" }}>
-          {sign.screen6.archetype.split("\n").map((line, i) => (
-            <p
-              key={i}
-              style={{
-                fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-                fontSize: "clamp(24px, 3.2vw, 34px)", lineHeight: 1.35,
-                margin: 0, letterSpacing: "-0.005em",
-              }}
-            >
-              {line}
-            </p>
-          ))}
-        </div>
-      </Column>
+      <Reveal>
+        <Column>
+          <SectionLabel>{headers[1]}</SectionLabel>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.6em" }}>
+            {sign.screen6.archetype.split("\n").map((line, i) => (
+              <p
+                key={i}
+                style={{
+                  fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+                  fontSize: "clamp(24px, 3.2vw, 34px)", lineHeight: 1.35,
+                  margin: 0, letterSpacing: "-0.005em",
+                }}
+              >
+                {line}
+              </p>
+            ))}
+          </div>
+        </Column>
+      </Reveal>
 
       <Hairline />
 
       {/* ── Life's Work ── */}
-      <Column>
-        <SectionLabel>{headers[2]}</SectionLabel>
-        <Body text={sign.screen6.lifesWork} splitOn="\n\n" />
-      </Column>
+      <Reveal>
+        <Column>
+          <SectionLabel>{headers[2]}</SectionLabel>
+          <Body text={sign.screen6.lifesWork} splitOn="\n\n" />
+        </Column>
+      </Reveal>
 
       <Hairline />
 
-      {/* ── Tikkun Letter ── */}
-      <Column>
-        <SectionLabel>{headers[3]}</SectionLabel>
-        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-[clamp(1.5rem,4vw,3rem)]">
-          <div className="flex flex-col items-start">
-            <span
+      {/* ── Tikkun Letter — stacked, centered ── */}
+      <Reveal>
+        <Column>
+          <SectionLabel>{headers[3]}</SectionLabel>
+          <div style={{ textAlign: "center" }}>
+            <div
               style={{
-                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(96px, 14vw, 150px)",
-                lineHeight: 1, textShadow: `0 0 32px ${C_DAWN}66, 0 0 60px ${C_GOLD}33`,
+                fontFamily: HEAD, color: C_DAWN,
+                fontSize: "clamp(72px, 11vw, 110px)", lineHeight: 1,
+                textShadow: `0 0 28px ${C_DAWN}55, 0 0 60px ${C_GOLD}22`,
               }}
             >
               {sign.hebrewLetter}
-            </span>
-            <span
+            </div>
+            <div
               style={{
                 fontFamily: HEAD, color: C_INK, fontStyle: "italic",
-                fontSize: "clamp(18px, 2.4vw, 22px)", marginTop: "8px",
+                fontSize: "clamp(20px, 2.4vw, 26px)", marginTop: "8px",
+                letterSpacing: "-0.005em",
               }}
             >
               {sign.letterName}
-            </span>
-            <span
+            </div>
+            <div
               style={{
-                fontFamily: BODY, color: C_GOLD, fontSize: "11px",
-                letterSpacing: "0.28em", textTransform: "uppercase", marginTop: "6px",
+                fontFamily: BODY, color: C_GOLD, fontSize: "10px",
+                letterSpacing: "0.32em", textTransform: "uppercase", marginTop: "6px",
               }}
             >
               {sign.screen6.letterMeaning}
-            </span>
+            </div>
           </div>
+          <Hairline width={32} my="clamp(1.5rem,3vh,2rem)" />
           <p
             style={{
               fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px",
-              lineHeight: 1.7, margin: 0,
+              lineHeight: 1.7, margin: 0, textAlign: "left",
             }}
           >
             {sign.screen6.letterTeaching}
           </p>
-        </div>
-      </Column>
+        </Column>
+      </Reveal>
 
       <Hairline />
 
       {/* ── Daily Mantra (the moment) ── */}
-      <section className="px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3rem,6vh,5rem)] text-center">
-        <h2
-          style={{
-            fontFamily: HEAD, color: C_GOLD, fontSize: "20px",
-            fontWeight: 500, margin: 0, marginBottom: "clamp(1.5rem,3vh,2rem)",
-          }}
-        >
-          {headers[4]}
-        </h2>
-        <p
-          style={{
-            fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-            fontSize: "clamp(32px, 5vw, 56px)", lineHeight: 1.3,
-            maxWidth: "30rem", margin: "0 auto",
-            textShadow: `0 0 40px ${C_DAWN}55, 0 0 90px ${C_DAWN}22`,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {sign.screen6.dailyMantra}
-        </p>
-      </section>
+      <Reveal duration={1100} y={20}>
+        <section className="px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3rem,6vh,5rem)] text-center">
+          <h2
+            style={{
+              fontFamily: HEAD, color: C_GOLD, fontSize: "20px",
+              fontWeight: 500, margin: 0, marginBottom: "clamp(1.5rem,3vh,2rem)",
+            }}
+          >
+            {headers[4]}
+          </h2>
+          <p
+            style={{
+              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+              fontSize: "clamp(32px, 5vw, 56px)", lineHeight: 1.3,
+              maxWidth: "30rem", margin: "0 auto",
+              textShadow: `0 0 40px ${C_DAWN}66, 0 0 100px ${C_DAWN}33`,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {sign.screen6.dailyMantra}
+          </p>
+        </section>
+      </Reveal>
 
       <Hairline />
 
       {/* ── Reflection ── */}
-      <Column>
-        <SectionLabel>{headers[5]}</SectionLabel>
-        <p
-          style={{
-            fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-            fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
-            margin: 0, letterSpacing: "-0.005em",
-          }}
-        >
-          {sc.reflectionPrompt}
-        </p>
-      </Column>
+      <Reveal>
+        <Column>
+          <SectionLabel>{headers[5]}</SectionLabel>
+          <p
+            style={{
+              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+              fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
+              margin: 0, letterSpacing: "-0.005em",
+            }}
+          >
+            {sc.reflectionPrompt}
+          </p>
+        </Column>
+      </Reveal>
 
       <Hairline />
 
       {/* ── Share ── */}
-      <Column>
-        <SectionLabel>{headers[6]}</SectionLabel>
-        <h3
-          style={{
-            fontFamily: HEAD, color: C_INK, fontSize: "clamp(24px, 3.2vw, 32px)",
-            fontWeight: 500, lineHeight: 1.3, margin: 0,
-          }}
-        >
-          {sc.shareHeadline}
-        </h3>
-        <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7, marginTop: "0.75rem" }}>
-          {sc.shareSub}
-        </p>
+      <Reveal>
+        <Column>
+          <SectionLabel>{headers[6]}</SectionLabel>
+          <h3
+            style={{
+              fontFamily: HEAD, color: C_INK, fontSize: "clamp(24px, 3.2vw, 32px)",
+              fontWeight: 500, lineHeight: 1.3, margin: 0,
+            }}
+          >
+            {sc.shareHeadline}
+          </h3>
+          <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7, marginTop: "0.75rem" }}>
+            {sc.shareSub}
+          </p>
 
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <a
-            href={`https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`}
-            target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 transition-transform hover:scale-[1.03]"
-            style={{
-              fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
-              background: "#25D366", padding: "12px 22px", borderRadius: 999,
-              boxShadow: "0 8px 24px -8px rgba(37,211,102,0.55)",
-            }}
-          >
-            <WhatsAppIcon /> WhatsApp
-          </a>
-          <a
-            href="https://www.instagram.com/"
-            target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 transition-transform hover:scale-[1.03]"
-            style={{
-              fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
-              background: "linear-gradient(135deg, #515BD4 0%, #8134AF 25%, #DD2A7B 55%, #FEDA77 100%)",
-              padding: "12px 22px", borderRadius: 999,
-              boxShadow: "0 8px 24px -8px rgba(221,42,123,0.5)",
-            }}
-          >
-            <InstagramIcon /> Instagram
-          </a>
-          <button
-            type="button"
-            onClick={copy}
-            className="inline-flex items-center gap-2 transition-all hover:scale-[1.03]"
-            style={{
-              fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: C_INK,
-              background: "rgba(245,200,104,0.06)",
-              border: `1px solid ${C_GOLD}88`,
-              padding: "12px 22px", borderRadius: 999, cursor: "pointer",
-            }}
-          >
-            <Link2 size={16} />
-            {copied ? "Copied ✓" : "Copy link"}
-          </button>
-        </div>
-      </Column>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href={`https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`}
+              target="_blank" rel="noopener noreferrer"
+              className="tk-share-pill inline-flex items-center gap-2"
+              style={{
+                fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
+                background: "#25D366", padding: "12px 22px", borderRadius: 999,
+                boxShadow: "0 8px 24px -8px rgba(37,211,102,0.55)",
+              }}
+            >
+              <WhatsAppIcon /> WhatsApp
+            </a>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank" rel="noopener noreferrer"
+              className="tk-share-pill inline-flex items-center gap-2"
+              style={{
+                fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
+                background: "linear-gradient(135deg, #515BD4 0%, #8134AF 25%, #DD2A7B 55%, #FEDA77 100%)",
+                padding: "12px 22px", borderRadius: 999,
+                boxShadow: "0 8px 24px -8px rgba(221,42,123,0.5)",
+              }}
+            >
+              <InstagramIcon /> Instagram
+            </a>
+            <button
+              type="button"
+              onClick={copy}
+              className="tk-share-pill inline-flex items-center gap-2"
+              style={{
+                fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: C_INK,
+                background: "rgba(245,200,104,0.06)",
+                border: `1px solid ${C_GOLD}88`,
+                padding: "12px 22px", borderRadius: 999, cursor: "pointer",
+              }}
+            >
+              <Link2 size={16} />
+              {copied ? "Copied ✓" : "Copy link"}
+            </button>
+          </div>
+        </Column>
+      </Reveal>
 
       <Hairline />
 
       {/* ── Closing ── */}
-      <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3rem)] pb-[clamp(5rem,10vh,8rem)] text-center">
-        <h2
-          style={{
-            fontFamily: HEAD, color: C_GOLD, fontSize: "20px",
-            fontWeight: 500, margin: 0, marginBottom: "1.25rem",
-          }}
-        >
-          {headers[7]}
-        </h2>
-        <h3
-          style={{
-            fontFamily: HEAD, color: C_INK, fontSize: "clamp(28px, 4.2vw, 44px)",
-            fontWeight: 500, lineHeight: 1.25, maxWidth: "32rem", margin: "0 auto",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {sc.deeperSub}
-        </h3>
-        <div className="mt-10 flex justify-center">
-          <PrimaryCTA variant="dawn" label={sc.deeperButton} onClick={() => navigate({ to: "/history" })} />
-        </div>
-      </section>
+      <Reveal>
+        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3rem)] pb-[clamp(5rem,10vh,8rem)] text-center">
+          <h2
+            style={{
+              fontFamily: HEAD, color: C_GOLD, fontSize: "20px",
+              fontWeight: 500, margin: 0, marginBottom: "1.25rem",
+            }}
+          >
+            {headers[7]}
+          </h2>
+          <h3
+            style={{
+              fontFamily: HEAD, color: C_INK, fontSize: "clamp(28px, 4.2vw, 44px)",
+              fontWeight: 500, lineHeight: 1.25, maxWidth: "32rem", margin: "0 auto",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {sc.deeperSub}
+          </h3>
+          <div className="mt-10 flex justify-center">
+            <PrimaryCTA variant="dawn" label={sc.deeperButton} onClick={() => navigate({ to: "/history" })} />
+          </div>
+        </section>
+      </Reveal>
     </SkyShell>
   );
 }
