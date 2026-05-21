@@ -5,7 +5,7 @@ type Props = {
   delay?: number;
   duration?: number;
   y?: number;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   className?: string;
   style?: CSSProperties;
 };
