@@ -258,7 +258,7 @@ function Landing() {
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-6xl text-center md:text-left">
             <span
               style={{
                 fontFamily: BODY,
@@ -272,6 +272,7 @@ function Landing() {
               Kabbalah Astrology
             </span>
           </div>
+
         </header>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
