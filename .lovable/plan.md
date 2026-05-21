@@ -15,10 +15,11 @@ Strip the ornamental "ancient mystical" layer (diamonds, stars, roman numerals, 
 
 **Principles**
 - One background, infinite scroll. Drop the band-alternation. Single deep night gradient top→bottom, with a few soft luminous "moments" placed where the eye should stop (hero, mantra, closing).
-- Type does the work. Fraunces (serif) for everything that should breathe; General Sans uppercase micro-labels for section markers. No glyphs, no numerals, no corner brackets.
-- Generous left-aligned columns at ~620px max-width, centered on the page. Stop centering body prose — left alignment reads as modern editorial; centered prose reads as wedding invitation.
-- Section dividers = a single 1px hairline at 64px wide, low-opacity cream. Not gold, not animated, not glyph'd.
-- Gold reserved for accents only: micro-labels, one word in the headline, hover states.
+- Type does the work. Match the /terms voice exactly: section labels use **Fraunces 20px gold** (the same treatment as Terms' sub-headers like "Use of the service"). Body uses General Sans 15px / 1.7. No second type system.
+- Use the **dawn red (`C_DAWN`)** as a deliberate accent — on the Hebrew letter (already), on one italicized word inside the hero sign name, and on the closing headline's emphasized word (matches the `/terms` H1 treatment of "Conditions" in dawn-red italic). Gold stays for labels and hover; red stays for emphasis only.
+- Generous left-aligned columns at ~620px max-width, centered on the page. Stop centering body prose — left alignment reads as modern editorial.
+- Section dividers = a single 1px hairline at 64px wide, low-opacity cream. No glyphs, no numerals.
+- Zero ornament. No ✦, no corner brackets, no card frames, no quote glyphs, no roman numerals.
 
 **Page structure (same content, new shell)**
 
