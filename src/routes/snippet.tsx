@@ -183,7 +183,7 @@ function Snippet() {
             <p
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)]"
               style={{
-                fontFamily: BODY, color: C_INK, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)",
+                fontFamily: BODY, color: C_INK, lineHeight: 1.7, fontSize: "15px",
               }}
             >
               {sign.screen3.spinSnippet}
@@ -331,7 +331,7 @@ function Snippet() {
 
               <p
                 className="mt-3"
-                style={{ fontFamily: BODY, color: C_INK, fontSize: "13px", letterSpacing: "0.03em", lineHeight: 1.5 }}
+                style={{ fontFamily: BODY, color: C_INK, fontSize: "15px", letterSpacing: "0.03em", lineHeight: 1.7 }}
               >
                 Email used to send you free Tikkun Workbook.{" "}
                 <a

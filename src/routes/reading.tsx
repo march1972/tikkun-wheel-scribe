@@ -26,7 +26,7 @@ function Paragraphs({ text, splitOn }: { text: string; splitOn: string }) {
           className=""
           style={{
             fontFamily: BODY, color: C_INK_SOFT,
-            fontSize: "clamp(14px, 1.6vw, 17px)",
+            fontSize: "15px",
             lineHeight: 1.7,
             marginTop: i === 0 ? 0 : "1.25em",
             maxWidth: "38rem",
@@ -196,7 +196,7 @@ function ReadingPage() {
           <p
             className="mt-6"
             style={{
-              fontFamily: BODY, color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)",
+              fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px",
               lineHeight: 1.7, maxWidth: "34rem",
             }}
           >
@@ -225,8 +225,8 @@ function ReadingPage() {
         <p
           className="text-center"
           style={{
-            fontFamily: BODY, color: C_INK, fontSize: "clamp(15px, 1.8vw, 18px)",
-            lineHeight: 1.65, maxWidth: "32rem", marginLeft: "auto", marginRight: "auto",
+            fontFamily: BODY, color: C_INK, fontSize: "15px",
+            lineHeight: 1.7, maxWidth: "32rem", marginLeft: "auto", marginRight: "auto",
           }}
         >
           {sc.reflectionPrompt}
