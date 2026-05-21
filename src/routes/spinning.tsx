@@ -33,9 +33,9 @@ function Spinning() {
               fontFamily: HEAD,
               color: C_INK,
               fontWeight: 500,
-              fontSize: "clamp(30px, 5vw, 56px)",
-              lineHeight: 1,
-              letterSpacing: "-0.025em",
+              fontSize: "clamp(48px, 9vw, 112px)",
+              lineHeight: 1.0,
+              letterSpacing: "-0.035em",
             }}
           >
             Reveal your{" "}
