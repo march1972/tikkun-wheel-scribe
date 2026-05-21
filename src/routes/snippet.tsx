@@ -84,7 +84,7 @@ function Snippet() {
     if (!email) return setErr("Please enter your email.");
     setBusy(true);
     try {
-      const res = await submit({ data: { name: name || undefined, dob, email, newsletterOptIn: false } });
+      const res = await submit({ data: { name: name || undefined, dob, email, newsletterOptIn } });
       if (!res.ok || !res.signId) {
         setErr(res.error ?? "Something went wrong.");
         setBusy(false);
