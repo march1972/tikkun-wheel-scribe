@@ -23,9 +23,9 @@ function Paragraphs({ text, splitOn }: { text: string; splitOn: string }) {
       {parts.map((p, i) => (
         <p
           key={i}
-          className="font-mono font-thin"
+          className=""
           style={{
-            color: C_INK_SOFT,
+            fontFamily: BODY, color: C_INK_SOFT,
             fontSize: "clamp(14px, 1.6vw, 17px)",
             lineHeight: 1.7,
             marginTop: i === 0 ? 0 : "1.25em",
@@ -132,8 +132,8 @@ function ReadingPage() {
         </blockquote>
 
         <p
-          className="mt-[clamp(2rem,4vh,3rem)] font-mono"
-          style={{ color: C_MUTED, fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase" }}
+          className="mt-[clamp(2rem,4vh,3rem)]"
+          style={{ fontFamily: BODY, color: C_MUTED, fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase" }}
         >
           {sc.scrollHint}
         </p>
@@ -194,9 +194,9 @@ function ReadingPage() {
             </span>
           </div>
           <p
-            className="mt-6 font-mono font-thin"
+            className="mt-6"
             style={{
-              color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)",
+              fontFamily: BODY, color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)",
               lineHeight: 1.7, maxWidth: "34rem",
             }}
           >
@@ -223,9 +223,9 @@ function ReadingPage() {
       <ReadingBand bg={C_BAND_MID}>
         <SectionHeader>{headers[5]}</SectionHeader>
         <p
-          className="text-center font-mono font-thin"
+          className="text-center"
           style={{
-            color: C_INK, fontSize: "clamp(15px, 1.8vw, 18px)",
+            fontFamily: BODY, color: C_INK, fontSize: "clamp(15px, 1.8vw, 18px)",
             lineHeight: 1.65, maxWidth: "32rem", marginLeft: "auto", marginRight: "auto",
           }}
         >
@@ -246,8 +246,8 @@ function ReadingPage() {
           {sc.shareHeadline}
         </h3>
         <p
-          className="mt-3 text-center font-mono font-thin"
-          style={{ color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
+          className="mt-3 text-center"
+          style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
         >
           {sc.shareSub}
         </p>
@@ -291,8 +291,8 @@ function ReadingPage() {
       >
         <SectionHeader>{headers[7]}</SectionHeader>
         <p
-          className="mt-2 font-mono font-thin"
-          style={{ color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
+          className="mt-2"
+          style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
         >
           {sc.deeperSub}
         </p>
