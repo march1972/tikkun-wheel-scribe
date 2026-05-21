@@ -241,8 +241,8 @@ function Snippet() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK, fontWeight: 500,
-                  fontSize: "clamp(25px, 6.9vw, 37px)", lineHeight: 1.2,
-                  letterSpacing: "-0.02em",
+                  fontSize: "clamp(34px, 6.2vw, 60px)", lineHeight: 1.1,
+                  letterSpacing: "-0.025em",
                 }}
               >
                 See your actual{" "}
