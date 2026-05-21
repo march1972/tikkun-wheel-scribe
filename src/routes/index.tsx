@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Kabbalah Astrology maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's potential in relationships, finances, and career.",
+          "Kabbalah Astrology maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's purpose in relationships, finances, and career.",
       },
       { property: "og:title", content: "Kabbalah Astrology — Reveal Your Tikkun" },
       {
@@ -343,7 +343,7 @@ function Landing() {
               <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>
               : the soul's recurring pattern of correction that signals how to{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>
-                fulfill your life's potential
+                fulfill your life's purpose
               </span>{" "}
               — in relationships, finances, and career.
             </p>
