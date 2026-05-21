@@ -347,7 +347,7 @@ function Landing() {
               — in relationships, finances, and career.
             </p>
 
-            <div className="mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
+            <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
               <PrimaryCTA onClick={handleSpin} />
               <p
                 style={{
