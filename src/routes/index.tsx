@@ -539,7 +539,7 @@ function Landing() {
             >
               A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
             </p>
-            <div className="mt-[clamp(12rem,22vh,16rem)] flex justify-center">
+            <div className="mt-[clamp(6rem,11vh,8rem)] flex justify-center">
               <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
             </div>
           </div>
@@ -547,33 +547,32 @@ function Landing() {
 
         {/* ── FOOTER ───────────────────────────────────────────── */}
         <footer
-          className="px-[clamp(1.25rem,5vw,3rem)] py-[clamp(1.5rem,3vh,2.5rem)] mt-[clamp(6rem,12vh,9rem)]"
-          style={{
-            background: "#1b2740",
-            borderTop: `1px solid ${C_RULE}`,
-          }}
+          className="px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(6rem,12vh,9rem)] pb-[clamp(1.5rem,3vh,2.5rem)]"
         >
-          <div className="mx-auto flex max-w-6xl justify-center">
-            <div
-              className="flex flex-col items-center gap-2 md:flex-row md:gap-0"
-              style={{
-                fontFamily: BODY,
-                fontSize: "10px",
-                letterSpacing: "0.12em",
-                fontWeight: 500,
-              }}
-            >
-              <Link to="/terms" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
-                Terms &amp; Conditions
-              </Link>
-              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-              <Link to="/privacy" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
-                Privacy
-              </Link>
-              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-              <span style={{ color: C_INK_SOFT }}>Kabbalah Astrology</span>
-              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-              <span style={{ color: C_INK_SOFT }}>Kabbalah Circle © 2026</span>
+          <div className="mx-auto max-w-6xl">
+            <div style={{ borderTop: `1px solid ${C_RULE}` }} className="mb-[clamp(1.5rem,3vh,2.5rem)]" />
+            <div className="flex justify-center">
+              <div
+                className="flex flex-col items-center gap-2 md:flex-row md:gap-0"
+                style={{
+                  fontFamily: BODY,
+                  fontSize: "10px",
+                  letterSpacing: "0.12em",
+                  fontWeight: 500,
+                }}
+              >
+                <Link to="/terms" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                  Terms &amp; Conditions
+                </Link>
+                <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
+                <Link to="/privacy" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                  Privacy
+                </Link>
+                <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
+                <span style={{ color: C_INK_SOFT }}>Kabbalah Astrology</span>
+                <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
+                <span style={{ color: C_INK_SOFT }}>Kabbalah Circle © 2026</span>
+              </div>
             </div>
           </div>
         </footer>
