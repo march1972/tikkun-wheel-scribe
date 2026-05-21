@@ -258,7 +258,7 @@ function Landing() {
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-6xl text-center md:text-left">
             <span
               style={{
                 fontFamily: BODY,
@@ -272,6 +272,7 @@ function Landing() {
               Kabbalah Astrology
             </span>
           </div>
+
         </header>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
@@ -469,7 +470,7 @@ function Landing() {
                   fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
-                Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
+                Kabbalah Astrology dates back to <span style={{ color: C_DAWN, fontStyle: "italic" }}>Abraham</span> and many ancient texts — the Talmud (the Oral Torah), Sefer Yetzirah (Book of Formation), and Zohar (Book of Splendor).
               </p>
             </Reveal>
           </div>
