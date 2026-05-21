@@ -25,7 +25,7 @@ function Paragraphs({ text, splitOn }: { text: string; splitOn: string }) {
           key={i}
           className=""
           style={{
-            color: C_INK_SOFT,
+            fontFamily: BODY, color: C_INK_SOFT,
             fontSize: "clamp(14px, 1.6vw, 17px)",
             lineHeight: 1.7,
             marginTop: i === 0 ? 0 : "1.25em",
@@ -133,7 +133,7 @@ function ReadingPage() {
 
         <p
           className="mt-[clamp(2rem,4vh,3rem)]"
-          style={{ color: C_MUTED, fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase" }}
+          style={{ fontFamily: BODY, color: C_MUTED, fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase" }}
         >
           {sc.scrollHint}
         </p>
@@ -196,7 +196,7 @@ function ReadingPage() {
           <p
             className="mt-6"
             style={{
-              color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)",
+              fontFamily: BODY, color: C_INK_SOFT, fontSize: "clamp(14px, 1.6vw, 17px)",
               lineHeight: 1.7, maxWidth: "34rem",
             }}
           >
@@ -225,7 +225,7 @@ function ReadingPage() {
         <p
           className="text-center"
           style={{
-            color: C_INK, fontSize: "clamp(15px, 1.8vw, 18px)",
+            fontFamily: BODY, color: C_INK, fontSize: "clamp(15px, 1.8vw, 18px)",
             lineHeight: 1.65, maxWidth: "32rem", marginLeft: "auto", marginRight: "auto",
           }}
         >
@@ -247,7 +247,7 @@ function ReadingPage() {
         </h3>
         <p
           className="mt-3 text-center"
-          style={{ color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
+          style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
         >
           {sc.shareSub}
         </p>
@@ -292,7 +292,7 @@ function ReadingPage() {
         <SectionHeader>{headers[7]}</SectionHeader>
         <p
           className="mt-2"
-          style={{ color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
+          style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "14px", maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
         >
           {sc.deeperSub}
         </p>

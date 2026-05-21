@@ -183,7 +183,7 @@ function Snippet() {
             <p
               className="mt-[clamp(1.25rem,2.5vh,1.75rem)]"
               style={{
-                color: C_INK, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)",
+                fontFamily: BODY, color: C_INK, lineHeight: 1.6, fontSize: "clamp(14px, 1.7vw, 17px)",
               }}
             >
               {sign.screen3.spinSnippet}
@@ -218,7 +218,7 @@ function Snippet() {
             </button>
             <p
               className="mt-3"
-              style={{ color: C_MUTED, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
+              style={{ fontFamily: BODY, color: C_MUTED, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
             >
               Free Full Birth Chart Reading
             </p>
@@ -328,7 +328,7 @@ function Snippet() {
 
               <p
                 className="mt-3"
-                style={{ color: C_INK, fontSize: "13px", letterSpacing: "0.03em", lineHeight: 1.5 }}
+                style={{ fontFamily: BODY, color: C_INK, fontSize: "13px", letterSpacing: "0.03em", lineHeight: 1.5 }}
               >
                 Email used to send you free Tikkun Workbook.{" "}
                 <a

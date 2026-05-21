@@ -290,7 +290,7 @@ function Landing() {
             <p
               className="mt-[clamp(3.25rem,6.5vh,5rem)]"
               style={{
-                color: C_INK_SOFT,
+                fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.6,
                 maxWidth: "36rem",
                 fontSize: "clamp(14px, 1.5vw, 17px)",
@@ -410,7 +410,7 @@ function Landing() {
             <p
               className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
               style={{
-                color: C_INK_SOFT,
+                fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.6,
                 maxWidth: "36rem",
                 fontSize: "clamp(14px, 1.5vw, 17px)",
@@ -438,7 +438,7 @@ function Landing() {
             <p
               className="mx-auto mt-[clamp(1rem,2vh,1.5rem)]"
               style={{
-                color: C_INK_SOFT,
+                fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.6,
                 maxWidth: "36rem",
                 fontSize: "clamp(14px, 1.5vw, 17px)",
@@ -473,7 +473,7 @@ function Landing() {
             <p
               className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
               style={{
-                color: C_INK_SOFT,
+                fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.6,
                 maxWidth: "36rem",
                 fontSize: "clamp(14px, 1.5vw, 17px)",
@@ -527,7 +527,7 @@ function Landing() {
             <p
               className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
               style={{
-                color: C_INK_SOFT,
+                fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.6,
                 maxWidth: "36rem",
                 fontSize: "clamp(14px, 1.5vw, 17px)",
