@@ -1,31 +1,35 @@
-# /history — match /reading polish + tighten the top
+# History + Landing polish
 
-Bring `/history` in line with the editorial rhythm and scroll life we just shipped on `/reading`, and remove the redundant page-header block.
+Two surgical changes. No copy edits anywhere.
 
-## 1. Remove the "A Brief History" header, lift the page
+## 1. `/history` — remove "A Brief History" eyebrow
 
-- Delete the entire intro `<section>` containing the hairline-flanked `A BRIEF HISTORY` eyebrow and the `Ancient roots, living work.` H1.
-- Pull the remaining content up: the prose band becomes the first thing under the global `SkyShell` header (the small "Kabbalah Astrology" link stays — it's part of the shell, not this page).
-- Reduce the top padding of the prose band so it breathes against the shell header but doesn't sit cramped: `pt-[clamp(2.5rem,6vh,4.5rem)]` (was effectively pushed down by the removed hero).
-- Keep the border-top hairline on the prose band so it still reads as a contained passage.
+Delete the hairline-flanked "A Brief History" pill above the hero headline (the `hist-fade` block, lines 89–100 of `src/routes/history.tsx`). The H1 "Ancient roots, living work." becomes the first element in the hero. Remove its `mt-[clamp(2rem,4vh,3rem)]` top margin so it sits naturally below the shell header.
 
-## 2. Scroll life — reuse the same `<Reveal>` primitive
+Nothing else on `/history` changes — halo, prose, pull quote, newsletter, footer all stay.
 
-- Wrap the prose band's three paragraphs in `<Reveal>` with a small stagger (0ms, 120ms, 240ms delays, 700ms duration, y=16) so they fade up sequentially as the section enters view.
-- Wrap the Newsletter block (eyebrow + H2 + supporting copy + form) in a single `<Reveal>` (duration 900ms, y=20) so the whole CTA settles in as one beat.
-- Respects `prefers-reduced-motion` automatically (already handled inside `<Reveal>`).
+## 2. `/` — same scroll-life treatment as `/reading` and `/history`
 
-## 3. Mobile adaptivity check
+No content, copy, ordering, palette, or layout changes. Add only the two motion patterns the other two pages use:
 
-Existing `/history` already uses fluid `clamp()` sizing and a 2xl max-width column, so it is already responsive. After removing the hero, verify:
-- The prose band's first paragraph sits comfortably ~clamp(2.5–4.5rem) below the shell header on a 360–414px viewport.
-- Newsletter form still stacks (`flex-col sm:flex-row`) on phones — unchanged.
+a. **Scroll-reveal fades.** Import `Reveal` from `@/components/landing/Reveal` and wrap the headings + body paragraphs of each existing section so they fade up as they enter the viewport:
+   - "What you receive" — heading, then each of the 3 list items with staggered delays (0 / 120 / 240ms)
+   - "Ancient roots" — heading + paragraph (stagger 0 / 140ms)
+   - "Influence, not prediction" — heading + paragraph (stagger 0 / 140ms)
+   - "A greater purpose." — heading + paragraph + SefirotTree (stagger 0 / 140 / 280ms)
+   - "Who you are." closing — heading + paragraph + CTA (stagger 0 / 140 / 280ms)
 
-## Files touched
+   Hero block (H1, wheel, intro paragraph, CTA) is **not** wrapped — it's above the fold and should appear immediately.
 
-- `src/routes/history.tsx` — remove the intro hero section, adjust the prose band's top padding, wrap paragraphs and the newsletter block in `<Reveal>`.
+b. **Scroll-linked hero halo drift.** Add a soft radial halo behind the TikkunWheel (same `radial-gradient(circle, C_GOLD33 → C_DAWN1f → transparent)` recipe as `/history`), positioned absolutely behind the wheel. A `useEffect` with rAF-throttled scroll listener translates it upward at 0.3× scrollY. Respects `prefers-reduced-motion`.
+
+All existing structure, StarField instances, copy, colors, band gradients, and the footer stay byte-identical.
+
+## Files
+
+- `src/routes/history.tsx` — remove eyebrow block.
+- `src/routes/index.tsx` — add Reveal wraps + halo + scroll effect.
 
 ## Out of scope
 
-- No copy edits, no new routes, no changes to `SkyShell` or `PrimaryCTA`, no new dependencies.
-- No changes to `/reading`, `/`, or any other page.
+No new routes, no new components, no dependency changes, no copy edits, no changes to `/reading`, `SkyShell`, `PrimaryCTA`, `Reveal`, or any shared module.
