@@ -566,45 +566,51 @@ function Landing() {
         >
           <StarField density={120} opacity={0.55} seedOffset={1700} />
           <div className="relative mx-auto max-w-3xl">
-            <h2
-              style={{
-                fontFamily: HEAD,
-                color: C_INK,
-                fontWeight: 500,
-                fontSize: "clamp(30px, 5vw, 56px)",
-                lineHeight: 1,
-                letterSpacing: "-0.025em",
-              }}
-            >
-              Who you<br />
-              <span
+            <Reveal>
+              <h2
                 style={{
-                  fontStyle: "italic",
-                  fontWeight: 400,
-                  background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  fontFamily: HEAD,
+                  color: C_INK,
+                  fontWeight: 500,
+                  fontSize: "clamp(40px, 7.5vw, 84px)",
+                  lineHeight: 1.02,
+                  letterSpacing: "-0.03em",
                 }}
               >
-                are
-              </span>
-              <span style={{ color: C_GOLD }}>.</span>
-            </h2>
-            <p
-              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
-              style={{
-                fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
-              }}
-            >
-              A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
-            </p>
-            <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex justify-center">
-              <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
-            </div>
+                Who you<br />
+                <span
+                  style={{
+                    fontStyle: "italic",
+                    fontWeight: 400,
+                    background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  are
+                </span>
+                <span style={{ color: C_GOLD }}>.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p
+                className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
+                style={{
+                  fontFamily: BODY, color: C_INK_SOFT,
+                  lineHeight: 1.75,
+                  maxWidth: "38rem",
+                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                }}
+              >
+                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
+              </p>
+            </Reveal>
+            <Reveal delay={280}>
+              <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex justify-center">
+                <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
+              </div>
+            </Reveal>
           </div>
         </section>
 
