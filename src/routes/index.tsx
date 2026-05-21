@@ -300,9 +300,9 @@ function Landing() {
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(40px, 7.5vw, 84px)",
+                fontSize: "clamp(48px, 9vw, 112px)",
                 lineHeight: 1.02,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.035em",
               }}
             >
               Reveal your{" "}
