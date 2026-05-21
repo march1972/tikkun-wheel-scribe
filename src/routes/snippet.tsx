@@ -136,7 +136,7 @@ function Snippet() {
         .cta-pulse-glow { animation: cta-pulse-glow 2.5s ease-in-out infinite; }
         .cta-pulse-glow:hover { animation: none; }
       `}</style>
-      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(0.75rem,2vh,2rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
           <div
             className="w-full"
