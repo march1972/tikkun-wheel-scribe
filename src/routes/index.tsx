@@ -100,7 +100,7 @@ function StarField({
       tint > 0.93
         ? "#a8c8e8" // cool moonlight cyan
         : tint > 0.86
-          ? "#ffb8b8" // dawn warmth
+          ? "#ffd6b8" // dawn warmth
           : "#fffdf3";
     return (
       <span
