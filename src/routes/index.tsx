@@ -486,8 +486,8 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(30px, 4.5vw, 52px)",
-                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
                 <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
@@ -498,9 +498,9 @@ function Landing() {
                 className="mx-auto mt-[clamp(1rem,2vh,1.5rem)]"
                 style={{
                   fontFamily: BODY, color: C_INK_SOFT,
-                  lineHeight: 1.75,
-                  maxWidth: "38rem",
-                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                  lineHeight: 1.7,
+                  maxWidth: "42rem",
+                  fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
                 Kabbalists accept the signals or influence of the celestial
