@@ -229,14 +229,7 @@ function Snippet() {
             <div
               className="w-full"
               style={{
-                background:
-                  "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
-                border: `1px solid ${C_RULE}`,
-                borderRadius: "14px",
                 padding: "clamp(1.75rem,4.5vw,2.75rem)",
-                boxShadow:
-                  "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
-                backdropFilter: "blur(8px)",
                 textAlign: "center",
               }}
             >
