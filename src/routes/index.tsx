@@ -303,7 +303,7 @@ function Landing() {
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(40px, 6.5vw, 84px)",
+                fontSize: "clamp(44px, 7.5vw, 96px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.035em",
               }}
