@@ -553,9 +553,10 @@ function Landing() {
             borderTop: `1px solid ${C_RULE}`,
           }}
         >
-          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3">
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-4">
+            {/* Top row: links + text — vertical on mobile, horizontal on desktop */}
             <div
-              className="flex items-center gap-4"
+              className="flex flex-col items-center gap-2 md:flex-row md:gap-0"
               style={{
                 fontFamily: BODY,
                 fontSize: "11px",
@@ -567,11 +568,17 @@ function Landing() {
               <Link to="/terms" style={{ color: C_INK_SOFT, textDecoration: "none" }}>
                 Terms &amp; Conditions
               </Link>
-              <span style={{ color: C_MUTED }}>·</span>
+              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 10px" }}>·</span>
               <Link to="/privacy" style={{ color: C_INK_SOFT, textDecoration: "none" }}>
                 Privacy
               </Link>
+              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 10px" }}>·</span>
+              <span style={{ color: C_INK_SOFT }}>Kabbalah Astrology</span>
+              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 10px" }}>·</span>
+              <span style={{ color: C_INK_SOFT }}>Kabbalah Circle © 2026</span>
             </div>
+
+            {/* Bottom line */}
             <p
               style={{
                 fontFamily: BODY,
@@ -582,7 +589,7 @@ function Landing() {
                 fontWeight: 600,
               }}
             >
-              © {new Date().getFullYear()} · Kabbalah Astrology · Kabbalah Circle
+              © 2026 · KABBALAH ASTROLOGY · KABBALAH CIRCLE
             </p>
           </div>
         </footer>
