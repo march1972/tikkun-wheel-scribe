@@ -451,8 +451,8 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(30px, 4.5vw, 52px)",
-                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
                 Ancient{" "}
@@ -464,9 +464,9 @@ function Landing() {
                 className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
                 style={{
                   fontFamily: BODY, color: C_INK_SOFT,
-                  lineHeight: 1.75,
-                  maxWidth: "38rem",
-                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                  lineHeight: 1.7,
+                  maxWidth: "42rem",
+                  fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
                 Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
