@@ -389,8 +389,8 @@ function Landing() {
               className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] text-left"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.75,
-                fontSize: "clamp(15px, 1.4vw, 17px)",
+                lineHeight: 1.65,
+                fontSize: "clamp(17px, 1.7vw, 21px)",
                 listStyle: "none",
                 padding: 0,
               }}
