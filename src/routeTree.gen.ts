@@ -13,6 +13,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SpinningRouteImport } from './routes/spinning'
 import { Route as SnippetRouteImport } from './routes/snippet'
 import { Route as ReadingRouteImport } from './routes/reading'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as FormRouteImport } from './routes/form'
 import { Route as IndexRouteImport } from './routes/index'
@@ -37,6 +38,11 @@ const ReadingRoute = ReadingRouteImport.update({
   path: '/reading',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HistoryRoute = HistoryRouteImport.update({
   id: '/history',
   path: '/history',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
+  '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
+  '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
+  '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/form'
     | '/history'
+    | '/privacy'
     | '/reading'
     | '/snippet'
     | '/spinning'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/form'
     | '/history'
+    | '/privacy'
     | '/reading'
     | '/snippet'
     | '/spinning'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/form'
     | '/history'
+    | '/privacy'
     | '/reading'
     | '/snippet'
     | '/spinning'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FormRoute: typeof FormRoute
   HistoryRoute: typeof HistoryRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReadingRoute: typeof ReadingRoute
   SnippetRoute: typeof SnippetRoute
   SpinningRoute: typeof SpinningRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReadingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/history': {
       id: '/history'
       path: '/history'
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FormRoute: FormRoute,
   HistoryRoute: HistoryRoute,
+  PrivacyRoute: PrivacyRoute,
   ReadingRoute: ReadingRoute,
   SnippetRoute: SnippetRoute,
   SpinningRoute: SpinningRoute,
