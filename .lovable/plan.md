@@ -1,66 +1,102 @@
-# Make /reading feel inspirational, luminous, and centered
+# /reading — total redesign, modern editorial
 
-The page today reads like a long dim scroll: same dark band repeating, eyebrows + paragraphs stacked at the same rhythm, the hero letter is left-of-center, and the "Kabbalah Astrology" tag in the header sits flush-left. It lacks a "wow" moment and the visual contrast a reveal deserves.
+Strip the ornamental "ancient mystical" layer (diamonds, stars, roman numerals, gold corner brackets, framed cards) and rebuild the page as a modern, editorial, confident scroll. Think contemporary art-book / Apple newsroom / Aesop journal: lots of breathing room, a single strong type voice, restrained color, a clear vertical rhythm carried by typography alone — not decoration.
 
-## Goals
-- Center "Kabbalah Astrology" header chip (site-wide via SkyShell, not just /reading).
-- Turn the reveal hero into a real moment — bigger Hebrew letter, glow halo, soft animation on mount.
-- Lift the palette: warmer cream ink, brighter gold accents, dawn-rose highlights, more luminous gradients between bands. Keep the night-sky DNA but add light.
-- Rebalance type scale: tighter hierarchy between eyebrows, headings, mantras, and body. Mantras and section names should sing; body should breathe.
-- Break the monotony of identical bands: alternate dark / luminous / dark, vary inner composition (centered prose, two-column letter teaching, full-bleed mantra card), add ornamental hairlines and a small celestial divider glyph.
-- Give the page a clear emotional arc: Arrival → Pattern → Archetype → Work → Letter → Mantra → Reflection → Share → Deeper.
+## Diagnosis of current state
 
-## What changes (visual only, zero copy edits)
+- Star/diamond glyphs (✦) feel dated and clip-arty.
+- Roman numerals add noise without hierarchy.
+- Reflection card and Mantra card have inconsistent treatment (one bordered + cornered, the other rounded+quote glyph) — looks unfinished.
+- Body text alignment mixes centered prose and left-aligned letter-teaching column.
+- Alternating dawn/deep band backgrounds feel themed rather than designed; pace is choppy.
+- Hero glow is good; rest of page doesn't live up to it.
 
-1. Site header (`SkyShell.tsx`)
-   - Center the "Kabbalah Astrology" eyebrow horizontally. Slightly brighter color so it's legible without shouting.
+## New design language
 
-2. Reading hero
-   - Center the Hebrew letter + label + sign as a true stacked composition (letter on top, label below, sign italic underneath) instead of inline baseline row.
-   - Add a soft radial glow halo behind the letter (dawn-rose + gold mix), gentle fade-in.
-   - Add a thin gold hairline + small star/asterisk glyph above and below the mantra quote — turns the blockquote into a framed "first light" moment.
-   - Tighten top padding; add more breathing room around the mantra.
+**Principles**
+- One background, infinite scroll. Drop the band-alternation. Single deep night gradient top→bottom, with a few soft luminous "moments" placed where the eye should stop (hero, mantra, closing).
+- Type does the work. Fraunces (serif) for everything that should breathe; General Sans uppercase micro-labels for section markers. No glyphs, no numerals, no corner brackets.
+- Generous left-aligned columns at ~620px max-width, centered on the page. Stop centering body prose — left alignment reads as modern editorial; centered prose reads as wedding invitation.
+- Section dividers = a single 1px hairline at 64px wide, low-opacity cream. Not gold, not animated, not glyph'd.
+- Gold reserved for accents only: micro-labels, one word in the headline, hover states.
 
-3. Band rhythm
-   - Alternate three band treatments instead of two: deep night, mid-lift (current), and a new "dawn lift" band with a warm radial highlight (subtle peach/gold center) for Archetype and Daily Mantra. Creates light/dark cadence.
-   - Insert a tiny centered celestial divider (✦ or hairline + dot + hairline) between bands so the page reads as movement, not repetition.
+**Page structure (same content, new shell)**
 
-4. Section headers
-   - Add a centered hairline above each eyebrow label and a small numeral (I–VIII) in gold serif to give chapter feel.
+```text
+[ hero ]
+  Centered. Oversized Hebrew letter with soft dawn halo (keep).
+  Small uppercase eyebrow under it: "your tikkun sign"
+  Sign name in large Fraunces italic.
+  Below: the mantra quote in big serif, no quote marks, no frame, no glyphs.
+  Tiny "scroll" hint at bottom.
 
-5. Mantra & Archetype emphasis
-   - Daily Mantra: render inside a softly-bordered card with gold corner accents, larger serif italic (clamp 24–34px), letter-spacing tightened. Make it the visual peak.
-   - Archetype lines: increase size and add generous line gap; treat each line as its own stanza.
+[ section: life's pattern ]
+  Left-aligned column, max 620px, centered on page.
+  Eyebrow: "01 — life's pattern" in 10px tracked uppercase cream/60.
+  Heading: short serif title pulled from copy OR repeat eyebrow as title (decision: title = section name in large Fraunces).
+  Body paragraphs in 16px General Sans, line-height 1.75, color cream/85, LEFT-aligned.
 
-6. Letter teaching block
-   - Two-column on desktop: oversized Hebrew letter + name on the left, teaching paragraph on the right; stacks centered on mobile. Breaks the all-centered monotony.
+[ section: archetype ]
+  Same column. Eyebrow "02 — archetype".
+  Archetype lines rendered as a single multi-line serif italic block, large (clamp 28–44px), left-aligned, color cream — feels like a poem stanza, no centering, no glyphs.
 
-7. Reflection
-   - Render the prompt inside a quiet rounded panel with a subtle inner gold rule, italic serif intro mark.
+[ section: life's work ] — same shell as 01.
 
-8. Share row
-   - Lighter pill buttons with gold hover state; add a tiny share icon (inline SVG) before each label for warmth.
+[ section: tikkun letter ]
+  Two-column on desktop: left = oversized Hebrew letter (no glow, just color), letter name in italic + meaning in uppercase micro-label.
+  Right = teaching paragraph, left-aligned body.
+  Stacks on mobile.
 
-9. "Go deeper" closing
-   - Slightly larger Fraunces headline above the CTA, dawn-rose accent on a single word feel via existing gold/dawn tokens; more vertical space so the CTA lands as a finale, not a footer.
+[ section: daily mantra — the moment ]
+  Full-width breathing band. NO box, NO border, NO corners, NO quote marks.
+  Centered, oversized Fraunces italic (clamp 32–56px), color cream-bright with a faint dawn glow behind the text (text-shadow, not a card).
+  Tiny eyebrow above: "daily mantra".
+  This is the page's emotional peak — earned by scale and silence, not ornament.
 
-10. Palette lift (tokens in `landing-style.ts`)
-    - Brighten C_INK_SOFT a touch; introduce one new band gradient `C_BAND_DAWN` (warm peach-gold radial over deep navy). No new font, no new component library.
+[ section: reflection ]
+  Same column shell. Eyebrow "06 — reflection".
+  Prompt as a medium serif (22–28px), left-aligned, italic. No card, no quote glyph.
 
-## Out of scope
-- No copy / content changes.
-- No routing or data changes.
-- No new dependencies. Animations done with CSS or existing framer-motion if already installed; otherwise pure CSS keyframes.
+[ section: share ]
+  Same column. Eyebrow "07 — share".
+  Headline left-aligned serif. Sub paragraph left-aligned.
+  Three minimal text-link buttons in a row: WhatsApp · Instagram · Copy link.
+  Underline-on-hover with gold; no pills, no borders.
+
+[ closing — go deeper ]
+  Centered. Eyebrow "next chapter".
+  Large serif headline.
+  Single PrimaryCTA. Generous vertical space above and below.
+```
+
+**Section numbering**
+- Use plain Arabic digits "01 / 02 / 03" inline with the eyebrow label, not roman numerals stacked above. Format: `01 — life's pattern`. If user dislikes any numbering, easy to drop and keep just the label.
+
+**Removed for good**
+- All ✦ / diamond / star glyphs.
+- All hairline-with-glyph dividers between bands.
+- Roman numerals.
+- Gold corner brackets on the mantra card.
+- The mantra card frame itself.
+- The reflection card frame.
+- Quote glyphs (`"`).
+- Band background alternation.
+
+**Kept**
+- Hero halo on the Hebrew letter (it works).
+- Site header "Kabbalah Astrology" centered (from previous turn).
+- Fraunces + General Sans pairing.
+- Existing colors: cream / gold / dawn-rose / deep navy. Just used with more restraint.
 
 ## Files touched
-- `src/components/landing/SkyShell.tsx` — center header chip.
-- `src/lib/landing-style.ts` — add `C_BAND_DAWN`, slightly warmer ink.
-- `src/routes/reading.tsx` — hero composition, band alternation, dividers, numerals, mantra card, two-column letter block, reflection panel, share pills, closing spacing.
+- `src/routes/reading.tsx` — full rewrite of layout, no copy changes, no data changes.
+- Possibly `src/lib/landing-style.ts` — no new tokens needed; `C_BAND_DAWN` becomes unused (leave defined, harmless).
 
-## QA
-Screenshot /reading at 390 and 1366 after changes; confirm:
-- Header chip centered site-wide.
-- Clear light/dark band cadence.
-- Mantra reads as the page's emotional peak.
-- Body text still matches /terms (15px / 1.7).
-- Mobile layout stacks cleanly with no horizontal scroll.
+## Out of scope
+- No copy edits.
+- No routing / data / component-library changes.
+- Other pages (/index, /history, /snippet, /terms, /privacy) untouched in this pass.
+
+## QA after change
+- Screenshot /reading at 390 and 1366.
+- Confirm: zero glyph ornaments anywhere; consistent left-aligned column rhythm; single mantra moment lands as the peak; no inconsistent card treatments; mobile stacks cleanly.
