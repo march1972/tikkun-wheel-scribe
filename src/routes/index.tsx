@@ -260,7 +260,7 @@ function Landing() {
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
           <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-[#fdf7e7]">
             <span
-              className="opacity-0"
+              className="border-slate-500 opacity-85 text-lg text-slate-200"
               style={{
                 fontFamily: BODY,
                 color: "rgba(160, 180, 210, 0.55)",
@@ -270,7 +270,7 @@ function Landing() {
                 fontWeight: 600,
               }}
             >
-              Kabbalah Astrology
+              K A B B A L A H&nbsp; &nbsp;A S T R O L O G Y
             </span>
           </div>
 
