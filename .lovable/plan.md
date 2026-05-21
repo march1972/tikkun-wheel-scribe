@@ -1,23 +1,19 @@
-# Fix flash-of-huge-wheel on / and /spinning
+# Brighten the "Kabbalah Astrology" wordmark
 
-The `useResponsiveWheelSize` hook initializes its `useState` with `max` (440 on home, 760 on spinning). On SSR the HTML ships with the wheel at max size; on the client it stays huge until the post-mount `useEffect` runs and re-measures. On slow hydrations it can even appear to get stuck.
+The small "Kabbalah Astrology" eyebrow that sits in the page header (and a matching one on the home page) is currently a dusty blue: `rgba(178, 190, 230, 0.55)`. Shift it toward warm white so it reads less blue and a touch brighter, while staying subtle against the night-sky background.
 
-## Fix
+## Change
 
-`src/hooks/useResponsiveWheelSize.ts`:
+Replace the color in both spots with a warm cream-white at slightly higher opacity:
 
-- Replace the bare `useState(max)` with a lazy initializer that computes the real size synchronously when `window` is available, and falls back to `min` (not `max`) during SSR. This way the first client paint already has the correct size, and the SSR/no-window fallback is small (better to grow than to shrink-from-giant).
+- From: `rgba(178, 190, 230, 0.55)` (blue-leaning)
+- To:   `rgba(241, 233, 213, 0.7)` (matches `C_INK_SOFT` cream, more white, less blue)
 
-```ts
-const [size, setSize] = useState(() => {
-  if (typeof window === "undefined") return min;
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
-  const next = Math.min(vw * vwFraction, vh * 0.5, max);
-  return Math.max(min, Math.round(next));
-});
-```
+## Files
 
-The existing `useEffect` resize listener stays — it just no longer has to correct an oversized first paint.
+- `src/components/landing/SkyShell.tsx` — header wordmark link (appears on every page using SkyShell).
+- `src/routes/index.tsx` (line ~267) — the same wordmark rendered inline on the landing page.
 
-That's the whole change. No other files affected.
+The other "Kabbalah Astrology" mentions on the site already use the cream token (`C_INK_SOFT`) and need no change.
+
+No layout, font, size, or spacing changes — color only.
