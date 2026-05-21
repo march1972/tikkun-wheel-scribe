@@ -1,23 +1,19 @@
-# Restyle the "Kabbalah Astrology" header
+# Restyle the "Kabbalah Astrology" wordmark — subtle, modern, uppercase
 
-Refresh the small wordmark at the top of the homepage so it feels intentional and matches the cosmic, editorial tone of the landing page — and center it cleanly.
+A quiet masthead that sits above the hero without competing with it.
 
 ## What changes
 
-- **File:** `src/components/landing/SkyShell.tsx` (the header rendered above every landing section).
-- **Centering:** keep the link horizontally centered in the header row.
-- **Typography:** switch from the tiny uppercase sans label to the page's serif display font (`HEAD` / `var(--font-serif)`), using small caps-style letterspacing for an elegant masthead feel.
-- **Sizing:** bump from 10px to roughly 13–15px so it reads as a real wordmark, not a utility label.
-- **Color:** use the warm parchment ink (`C_INK` / `C_INK_SOFT`) at full opacity instead of the dim slate gray, with a subtle gold (`C_GOLD`) accent option for the divider/dot between the two words.
-- **Spacing:** add a touch more top padding and a thin hairline rule or gold dot separator between "Kabbalah" and "Astrology" instead of the current wide spaced-letter trick.
-- **Cleanup:** remove the leftover `border-slate-500 opacity-85 text-lg text-slate-200` classes that conflict with the inline styles.
+File: `src/components/landing/SkyShell.tsx` only.
 
-## Design direction options
+- **Remove** the gold ✦ separator entirely — no ornament.
+- **Case + spacing:** uppercase, tracked out moderately (`letter-spacing ~0.28em`) — modern, not the previous overdone `0.42em` super-spaced look.
+- **Font:** switch to a modern geometric sans via the system stack already wired through `BODY` (`var(--font-sans)`), weight 500. Distinct from the serif used by the big H1, so it reads as a discreet wordmark rather than a smaller echo of the headline.
+- **Size:** ~11px on mobile, ~12px desktop — small enough to recede.
+- **Color / brightness:** desaturated parchment at low opacity — `rgba(241, 233, 213, 0.45)` (≈ `C_INK_SOFT` @ 45%). No gold, no pure white. On hover, lift to ~0.7 opacity for affordance.
+- **Layout:** keep centered in the header row; a single space between the two words (no double-spacing trick).
+- **Cleanup:** drop the leftover slate/border utility classes.
 
-I'll generate 3 rendered directions so you can pick the exact look:
+## Result
 
-1. **Serif masthead** — italic serif "Kabbalah" + roman "Astrology" separated by a small gold star/dot, centered.
-2. **Refined spaced caps** — keep the spaced-uppercase idea but in the serif face, larger, in warm ink with a thin gold underline.
-3. **Two-line monogram** — small "KABBALAH" eyebrow above a slightly larger serif "Astrology", tightly centered.
-
-After you pick one, I'll implement it in `SkyShell.tsx` only — no other files touched.
+A whisper-quiet uppercase wordmark in the page's sans font, low-contrast against the night sky, that frames the hero instead of fighting it.
