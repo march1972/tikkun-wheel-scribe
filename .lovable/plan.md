@@ -1,64 +1,62 @@
-# Site-wide font consistency + /reading duplicate header
+# Standardize body text size + line-height to match /terms
 
-## Root cause (why earlier "font" edits had no visible effect)
+## What's wrong today
 
-`src/styles.css` contains a global override that forces every text element on every page to monospace + ultra-thin, regardless of inline `fontFamily` styles:
+/terms and /privacy use a single, fixed body style: `fontSize: 15px`, `lineHeight: 1.7`, `fontFamily: BODY` (General Sans), `color: C_INK_SOFT`.
 
-```css
-html, body {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, ...;
-  font-weight: 100;
-}
+Every other route uses a different (and inconsistent) body size and line-height, so the body text on /, /snippet, /history, /reading does not match Terms — it's larger and tighter at desktop.
 
-h1, h2, h3, h4, h5, h6, p, span, a, button, li, em, strong {
-  font-family: inherit !important;
-  font-weight: 100 !important;
-}
-```
+Concrete drift:
 
-The `!important` rules beat every `style={{ fontFamily: HEAD }}` / `BODY` inline style in the codebase (index, snippet, history, reading, spinning, form, terms, privacy — all of them). That's why nothing previously "took" — including the Terms page, which is actually rendering in monospace today, not Fraunces. Confirmed via screenshot: the homepage hero "Reveal your Tikkun", the wheel's "ENTER" label, body copy, and CTA all render in monospace.
+| Page | Body fontSize | lineHeight |
+|---|---|---|
+| /terms, /privacy (target) | 15px | 1.7 |
+| /history — 3 body paragraphs | clamp(14px, 1.6vw, 17px) | 1.7 |
+| /reading — Paragraphs helper, Tikkun-letter teaching | clamp(14px, 1.6vw, 17px) | 1.7 |
+| /reading — Reflection prompt | clamp(15px, 1.8vw, 18px) | 1.65 |
+| /reading — Share sub, "deeper" sub | 14px | default |
+| /index — intro + origins/free-will/greater-purpose + "What you receive" list | clamp(14px, 1.5vw, 17px) | 1.6 |
+| /snippet — spin snippet body | clamp(14px, 1.7vw, 17px) | 1.6 |
+| /snippet — "Email used to send…" footnote | 13px | 1.5 |
 
-## What I'll change (CSS only, no content edits)
+## Fix
 
-Edit `src/styles.css`:
+Normalize **prose / body paragraphs** site-wide to the Terms spec:
 
-1. Change `html, body` default `font-family` from `ui-monospace, …` to `var(--font-sans)` (General Sans), and remove the forced `font-weight: 100`.
-2. Delete the `h1, h2, … strong { font-family: inherit !important; font-weight: 100 !important; }` block entirely so inline `fontFamily: HEAD` (Fraunces) and `fontFamily: BODY` (General Sans) actually apply.
-3. Keep the top header chip "KABBALAH ASTROLOGY" in General Sans uppercase as it is today — it already uses `fontFamily: BODY` inline, so it stays consistent.
+- `fontSize: 15px` (fixed, not clamp)
+- `lineHeight: 1.7`
+- `fontFamily: BODY`
+- color unchanged (already `C_INK_SOFT` / `C_INK` per page)
 
-That single file change makes every page match the Terms/Privacy spec automatically (since every route already uses the same `HEAD` / `BODY` tokens from `src/lib/landing-style.ts`).
+Apply to these specific paragraphs only:
 
-## Per-page audit after the CSS fix
+- `src/routes/index.tsx` — hero intro paragraph; "What you receive" list items; Ancient roots paragraph; Influence not prediction paragraph; greater purpose paragraph. (5 paragraphs / list block.)
+- `src/routes/snippet.tsx` — spin-snippet body paragraph; "Email used to send you free Tikkun Workbook" footnote (raise from 13px to 15px for prose consistency).
+- `src/routes/history.tsx` — the 3 body paragraphs in the deep band; the newsletter sub-copy paragraph.
+- `src/routes/reading.tsx` — `Paragraphs` helper (used for Life's Pattern and Life's Work); Tikkun-letter teaching paragraph; Reflection prompt paragraph; Share sub paragraph; "deeper" sub paragraph.
 
-After the override is removed I will visually QA each route at desktop (1366) and mobile (390):
+## Out of scope (intentionally unchanged)
 
-- `/` — hero "Reveal your Tikkun" in Fraunces; body in General Sans; CTA pill unchanged.
-- `/spinning` — heading in Fraunces; "Searching Tikkun patterns…" in General Sans uppercase.
-- `/snippet` — Hebrew letter (Fraunces), snippet body (General Sans), inline form labels (General Sans uppercase tracking), "See your actual Tikkun chart" heading in Fraunces.
-- `/reading` — eyebrow, mantra quote, archetype lines, daily mantra in Fraunces italic; section headers + body in General Sans.
-- `/history` — H1 + "Go deeper" in Fraunces; body + newsletter form in General Sans.
-- `/terms`, `/privacy` — already the visual target; verify nothing regresses.
-- `/form` — redirect-only, no UI, nothing to do.
+These are not "body prose" and stay as-is so the visual hierarchy doesn't collapse:
 
-No copy, layout, spacing, color, or component changes — only the global font override is removed.
-
-## /reading duplicate "Kabbalah Astrology"
-
-Searching the codebase, the only on-screen "Kabbalah Astrology" text on `/reading` comes from the shared `SkyShell` header (`src/components/landing/SkyShell.tsx`, the small chip at the very top-left). There is no second literal occurrence in `reading.tsx`.
-
-Possibilities for what you're seeing as a duplicate:
-- The browser tab title "Your Tikkun Reading — Kabbalah Astrology" alongside the on-page chip.
-- The share blurb sentence ("…in Kabbalah Astrology") inside the Share section.
-- A different page (e.g. `/history` body copy starts with "Kabbalah Astrology dates back to Abraham…").
-
-Rather than guess and delete the wrong thing, I'll ask you to point at it once the font fix is live — a screenshot or "the one in the [section name] section" is enough.
+- All headings (Fraunces, existing clamp sizes).
+- Eyebrows / section-headers / labels / form labels (11px tracked uppercase).
+- Buttons / CTA labels (12–13px tracked uppercase).
+- Hebrew letter displays (large Fraunces).
+- Italic Fraunces mantra / archetype lines on /reading.
+- Footer link "Kabbalah · Circle" and "← Back to home" links.
+- Tiny meta lines like "Free Tikkun Astrology Reading" (10px tracked uppercase) and error messages (12px).
+- Input fields keep 14–15px as today.
 
 ## Files touched
 
-- `src/styles.css` — only file edited.
+- `src/routes/index.tsx`
+- `src/routes/snippet.tsx`
+- `src/routes/history.tsx`
+- `src/routes/reading.tsx`
 
-## Out of scope
+No content / copy / color / layout / component changes. Only `fontSize` + `lineHeight` of the body-prose paragraphs listed above.
 
-- No content / copy / editorial changes.
-- No layout, spacing, color, or component changes.
-- No route or navigation changes.
+## QA after the change
+
+Screenshot /, /snippet (both pre-form and form states), /history, /reading at desktop (1366) and mobile (390) and confirm body text matches /terms in size and rhythm.
