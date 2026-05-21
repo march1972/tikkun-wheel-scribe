@@ -136,7 +136,7 @@ function Snippet() {
         .cta-pulse-glow { animation: cta-pulse-glow 2.5s ease-in-out infinite; }
         .cta-pulse-glow:hover { animation: none; }
       `}</style>
-      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(0.75rem,2vh,2rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1.5rem,4vh,3rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
           <div
             className="w-full"
@@ -181,7 +181,7 @@ function Snippet() {
             </div>
 
             <p
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)]"
+              className="mt-[clamp(0.5rem,1vh,0.875rem)]"
               style={{
                 fontFamily: BODY, color: C_INK, lineHeight: 1.7,
                 fontSize: "clamp(17px, 1.9vw, 21px)",
@@ -194,17 +194,14 @@ function Snippet() {
 
         {!showForm && (
           <>
-            {/* Spin again — transparent, rounded, same width as CTA */}
-            <div className="mt-[clamp(1.25rem,3vh,2rem)]">{spinAgainButton}</div>
-
-            {/* CTA — rectangular red button */}
+            {/* CTA — rectangular red button (above the fold) */}
             <button
               type="button"
               onClick={() => {
                 setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
                 setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
               }}
-              className="cta-pulse-glow group mt-[clamp(2rem,5vh,3.5rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+              className="cta-pulse-glow group mt-[clamp(1.25rem,3vh,2rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
               style={{
                 background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
                 color: C_INK,
@@ -226,6 +223,9 @@ function Snippet() {
             >
               Free Full Birth Chart Reading
             </p>
+
+            {/* Spin again — transparent, rounded, secondary */}
+            <div className="mt-[clamp(1.5rem,3.5vh,2.25rem)]">{spinAgainButton}</div>
           </>
         )}
 
