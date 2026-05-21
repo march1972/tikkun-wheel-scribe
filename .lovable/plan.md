@@ -60,13 +60,18 @@ Strip the ornamental "ancient mystical" layer (diamonds, stars, roman numerals, 
 [ section: share ]
   Same column. Label "Share" (Fraunces 20px gold).
   Headline left-aligned Fraunces. Sub paragraph left-aligned body.
-  Three minimal text links in a row: WhatsApp · Instagram · Copy link.
-  Underlined on hover in gold; no pills, no borders.
+  Three explicit, obvious share buttons — pills with brand-recognizable icons + labels:
+    • WhatsApp — green brand color background (#25D366), white icon + "WhatsApp" label.
+    • Instagram — Instagram brand gradient background (purple → pink → orange), white icon + "Instagram" label.
+    • Copy link — cream/gold outlined pill with link icon + "Copy link" label (toggles to "Copied ✓"). Slightly larger / equal weight so it's not a second-class option.
+  Icons from `lucide-react` (Link2 for copy). For WhatsApp + Instagram we use inline brand SVGs since lucide doesn't ship brand marks — small inline components in the same file.
+  All three pills are the same size and sit in a single flex row, wrap on mobile.
 
 [ closing — go deeper ]
   Centered. Label "Next Chapter" (Fraunces 20px gold).
-  Large Fraunces headline with one word in **dawn-red italic** — mirrors /terms H1 ("Terms & Conditions" with "Conditions" in red).
-  Single PrimaryCTA. Generous vertical space above and below.
+  Large Fraunces headline with one word in **dawn-red italic** — mirrors /terms H1.
+  CTA at the bottom rendered in **dawn red** (`C_DAWN`) — solid red pill button, cream text, gentle red glow on hover. Replaces the gold PrimaryCTA only at this single spot; PrimaryCTA elsewhere on the site is unchanged.
+  Generous vertical space above and below.
 ```
 
 **No section numbering** — user disliked the numerals. Labels alone, in the /terms Fraunces-gold treatment, carry the rhythm.
