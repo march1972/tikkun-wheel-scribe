@@ -1,11 +1,11 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
+import { Link2 } from "lucide-react";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import {
-  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_GOLD_BRIGHT, C_DAWN,
-  C_RULE, C_RULE_SOFT, C_BAND_DEEP, C_BAND_MID, C_BAND_DAWN,
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
 
@@ -17,9 +17,41 @@ export const Route = createFileRoute("/reading")({
   head: () => ({ meta: [{ title: "Your Tikkun Reading — Kabbalah Astrology" }] }),
 });
 
-const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+/* ---------- shared bits ---------- */
 
-function Paragraphs({ text, splitOn }: { text: string; splitOn: string }) {
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <h2
+      style={{
+        fontFamily: HEAD,
+        color: C_GOLD,
+        fontSize: "20px",
+        fontWeight: 500,
+        margin: 0,
+        marginBottom: "1rem",
+        letterSpacing: "-0.005em",
+      }}
+    >
+      {children}
+    </h2>
+  );
+}
+
+function Hairline() {
+  return (
+    <div
+      aria-hidden
+      style={{
+        width: 64,
+        height: 1,
+        background: C_RULE,
+        margin: "clamp(3rem,6vh,5rem) auto",
+      }}
+    />
+  );
+}
+
+function Body({ text, splitOn }: { text: string; splitOn: string }) {
   const parts = text.split(splitOn).filter(Boolean);
   return (
     <>
@@ -27,14 +59,13 @@ function Paragraphs({ text, splitOn }: { text: string; splitOn: string }) {
         <p
           key={i}
           style={{
-            fontFamily: BODY, color: C_INK_SOFT,
+            fontFamily: BODY,
+            color: C_INK_SOFT,
             fontSize: "15px",
             lineHeight: 1.7,
-            marginTop: i === 0 ? 0 : "1.25em",
-            maxWidth: "38rem",
-            marginLeft: "auto",
-            marginRight: "auto",
-            textAlign: "center",
+            marginTop: i === 0 ? 0 : "1.1em",
+            marginBottom: 0,
+            textAlign: "left",
           }}
         >
           {p}
@@ -44,56 +75,40 @@ function Paragraphs({ text, splitOn }: { text: string; splitOn: string }) {
   );
 }
 
-function SectionHeader({ children, numeral }: { children: React.ReactNode; numeral?: string }) {
+function Column({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col items-center" style={{ marginBottom: "clamp(1.5rem,3vh,2.25rem)" }}>
-      <span
-        aria-hidden
-        style={{
-          display: "block",
-          width: "44px",
-          height: "1px",
-          background: `linear-gradient(90deg, transparent, ${C_GOLD}aa, transparent)`,
-          marginBottom: "14px",
-        }}
-      />
-      {numeral && (
-        <span
-          style={{
-            fontFamily: HEAD, fontStyle: "italic", color: C_GOLD_BRIGHT,
-            fontSize: "13px", letterSpacing: "0.18em", marginBottom: "8px", opacity: 0.85,
-          }}
-        >
-          {numeral}
-        </span>
-      )}
-      <h2
-        className="text-center"
-        style={{
-          fontFamily: BODY,
-          color: C_GOLD,
-          fontSize: "11px",
-          letterSpacing: "0.42em",
-          textTransform: "uppercase",
-          fontWeight: 600,
-          margin: 0,
-        }}
-      >
-        {children}
-      </h2>
+    <div
+      className="mx-auto"
+      style={{
+        maxWidth: "620px",
+        paddingLeft: "clamp(1.25rem,5vw,2rem)",
+        paddingRight: "clamp(1.25rem,5vw,2rem)",
+      }}
+    >
+      {children}
     </div>
   );
 }
 
-function Divider() {
+/* ---------- brand share icons ---------- */
+
+function WhatsAppIcon({ size = 18 }: { size?: number }) {
   return (
-    <div className="flex items-center justify-center gap-4" aria-hidden style={{ padding: "0" }}>
-      <span style={{ width: 60, height: 1, background: `linear-gradient(90deg, transparent, ${C_RULE})` }} />
-      <span style={{ color: C_GOLD, fontSize: 10, opacity: 0.7, letterSpacing: "0.3em" }}>✦</span>
-      <span style={{ width: 60, height: 1, background: `linear-gradient(90deg, ${C_RULE}, transparent)` }} />
-    </div>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.695.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.04 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.36-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
   );
 }
+
+function InstagramIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.974-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.975-1.246-2.242-1.308-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.974 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0 1.838c-3.155 0-3.515.012-4.756.069-.945.043-1.504.198-1.857.33-.467.181-.8.398-1.15.748-.35.35-.567.683-.748 1.15-.132.353-.287.912-.33 1.857-.057 1.241-.069 1.601-.069 4.756s.012 3.515.069 4.756c.043.945.198 1.504.33 1.857.181.467.398.8.748 1.15.35.35.683.567 1.15.748.353.132.912.287 1.857.33 1.241.057 1.601.069 4.756.069s3.515-.012 4.756-.069c.945-.043 1.504-.198 1.857-.33.467-.181.8-.398 1.15-.748.35-.35.567-.683.748-1.15.132-.353.287-.912.33-1.857.057-1.241.069-1.601.069-4.756s-.012-3.515-.069-4.756c-.043-.945-.198-1.504-.33-1.857-.181-.467-.398-.8-.748-1.15-.35-.35-.683-.567-1.15-.748-.353-.132-.912-.287-1.857-.33C15.515 4.013 15.155 4.001 12 4.001zm0 3.281a4.718 4.718 0 110 9.436 4.718 4.718 0 010-9.436zm0 1.838a2.88 2.88 0 100 5.76 2.88 2.88 0 000-5.76zm5.013-2.034a1.102 1.102 0 110 2.205 1.102 1.102 0 010-2.205z" />
+    </svg>
+  );
+}
+
+/* ---------- page ---------- */
 
 function ReadingPage() {
   const navigate = useNavigate();
@@ -114,8 +129,12 @@ function ReadingPage() {
   if (!sign) return null;
   const sc = STATIC_COPY.screen6;
   const headers = sc.sectionHeaders;
-  const shareUrl = typeof window !== "undefined" ? window.location.origin : "";
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareText = `Discover your Tikkun — your soul's pattern of correction in Kabbalah Astrology.`;
+
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
+  };
 
   return (
     <SkyShell starDensity={280}>
@@ -129,10 +148,9 @@ function ReadingPage() {
         .tk-halo { animation: tikkun-glow 6s ease-in-out infinite; }
       `}</style>
 
-      {/* ── Reveal hero ── */}
-      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(0.5rem,2vh,1.5rem)] pb-[clamp(3rem,7vh,5rem)] text-center">
+      {/* ── Hero ── */}
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,3vh,2rem)] pb-[clamp(2rem,5vh,4rem)] text-center">
         <div className="relative flex flex-col items-center tk-fade">
-          {/* Halo */}
           <div
             aria-hidden
             className="tk-halo"
@@ -172,40 +190,29 @@ function ReadingPage() {
         <h1
           className="tk-fade-d1"
           style={{
-            fontFamily: HEAD, color: C_INK, fontSize: "clamp(32px, 6vw, 56px)",
+            fontFamily: HEAD, color: C_INK, fontSize: "clamp(34px, 6vw, 60px)",
             fontWeight: 400, fontStyle: "italic", marginTop: "12px", lineHeight: 1.1,
+            letterSpacing: "-0.01em",
           }}
         >
           {sign.sign}
         </h1>
 
-        {/* Framed mantra */}
-        <div className="tk-fade-d2 flex flex-col items-center" style={{ marginTop: "clamp(2.5rem,5vh,3.5rem)" }}>
-          <div className="flex items-center gap-3" aria-hidden>
-            <span style={{ width: 50, height: 1, background: `linear-gradient(90deg, transparent, ${C_GOLD}aa)` }} />
-            <span style={{ color: C_GOLD_BRIGHT, fontSize: 11 }}>✦</span>
-            <span style={{ width: 50, height: 1, background: `linear-gradient(90deg, ${C_GOLD}aa, transparent)` }} />
-          </div>
-          <blockquote
-            className="italic"
-            style={{
-              fontFamily: HEAD, color: C_INK, fontSize: "clamp(20px, 3vw, 30px)",
-              lineHeight: 1.45, maxWidth: "34rem", margin: "1.25rem 0",
-            }}
-          >
-            “{sign.screen6.mantraQuote}”
-          </blockquote>
-          <div className="flex items-center gap-3" aria-hidden>
-            <span style={{ width: 50, height: 1, background: `linear-gradient(90deg, transparent, ${C_GOLD}aa)` }} />
-            <span style={{ color: C_GOLD_BRIGHT, fontSize: 11 }}>✦</span>
-            <span style={{ width: 50, height: 1, background: `linear-gradient(90deg, ${C_GOLD}aa, transparent)` }} />
-          </div>
-        </div>
+        <p
+          className="tk-fade-d2"
+          style={{
+            fontFamily: HEAD, color: C_INK, fontSize: "clamp(22px, 3.2vw, 32px)",
+            fontStyle: "italic", lineHeight: 1.45, maxWidth: "34rem",
+            marginTop: "clamp(2rem,4vh,3rem)",
+          }}
+        >
+          {sign.screen6.mantraQuote}
+        </p>
 
         <p
           className="tk-fade-d3"
           style={{
-            fontFamily: BODY, color: C_MUTED, fontSize: "11px",
+            fontFamily: BODY, color: C_MUTED, fontSize: "10px",
             letterSpacing: "0.32em", textTransform: "uppercase",
             marginTop: "clamp(2.5rem,5vh,3.5rem)",
           }}
@@ -214,45 +221,53 @@ function ReadingPage() {
         </p>
       </section>
 
-      {/* ── Life's Pattern ── */}
-      <ReadingBand bg={C_BAND_DEEP}>
-        <SectionHeader numeral={ROMAN[0]}>{headers[0]}</SectionHeader>
-        <Paragraphs text={sign.screen6.lifesPattern} splitOn="\n\n" />
-      </ReadingBand>
+      <Hairline />
 
-      {/* ── Archetype ── (dawn lift) */}
-      <ReadingBand bg={C_BAND_DAWN}>
-        <SectionHeader numeral={ROMAN[1]}>{headers[1]}</SectionHeader>
-        <div className="text-center" style={{ display: "flex", flexDirection: "column", gap: "0.75em" }}>
+      {/* ── Life's Pattern ── */}
+      <Column>
+        <SectionLabel>{headers[0]}</SectionLabel>
+        <Body text={sign.screen6.lifesPattern} splitOn="\n\n" />
+      </Column>
+
+      <Hairline />
+
+      {/* ── Archetype ── */}
+      <Column>
+        <SectionLabel>{headers[1]}</SectionLabel>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.6em" }}>
           {sign.screen6.archetype.split("\n").map((line, i) => (
             <p
               key={i}
-              className="italic"
               style={{
-                fontFamily: HEAD, color: C_INK, fontSize: "clamp(22px, 3.4vw, 34px)",
-                lineHeight: 1.4, margin: 0,
+                fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+                fontSize: "clamp(24px, 3.2vw, 34px)", lineHeight: 1.35,
+                margin: 0, letterSpacing: "-0.005em",
               }}
             >
               {line}
             </p>
           ))}
         </div>
-      </ReadingBand>
+      </Column>
+
+      <Hairline />
 
       {/* ── Life's Work ── */}
-      <ReadingBand bg={C_BAND_MID}>
-        <SectionHeader numeral={ROMAN[2]}>{headers[2]}</SectionHeader>
-        <Paragraphs text={sign.screen6.lifesWork} splitOn="\n\n" />
-      </ReadingBand>
+      <Column>
+        <SectionLabel>{headers[2]}</SectionLabel>
+        <Body text={sign.screen6.lifesWork} splitOn="\n\n" />
+      </Column>
 
-      {/* ── Tikkun Letter (two column on desktop) ── */}
-      <ReadingBand bg={C_BAND_DEEP}>
-        <SectionHeader numeral={ROMAN[3]}>{headers[3]}</SectionHeader>
-        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-center gap-[clamp(1.5rem,4vw,3rem)] max-w-3xl mx-auto">
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+      <Hairline />
+
+      {/* ── Tikkun Letter ── */}
+      <Column>
+        <SectionLabel>{headers[3]}</SectionLabel>
+        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-[clamp(1.5rem,4vw,3rem)]">
+          <div className="flex flex-col items-start">
             <span
               style={{
-                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(96px, 14vw, 160px)",
+                fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(96px, 14vw, 150px)",
                 lineHeight: 1, textShadow: `0 0 32px ${C_DAWN}66, 0 0 60px ${C_GOLD}33`,
               }}
             >
@@ -261,7 +276,7 @@ function ReadingPage() {
             <span
               style={{
                 fontFamily: HEAD, color: C_INK, fontStyle: "italic",
-                fontSize: "clamp(18px, 2.4vw, 24px)", marginTop: "12px",
+                fontSize: "clamp(18px, 2.4vw, 22px)", marginTop: "8px",
               }}
             >
               {sign.letterName}
@@ -269,7 +284,7 @@ function ReadingPage() {
             <span
               style={{
                 fontFamily: BODY, color: C_GOLD, fontSize: "11px",
-                letterSpacing: "0.32em", textTransform: "uppercase", marginTop: "6px",
+                letterSpacing: "0.28em", textTransform: "uppercase", marginTop: "6px",
               }}
             >
               {sign.screen6.letterMeaning}
@@ -278,173 +293,140 @@ function ReadingPage() {
           <p
             style={{
               fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px",
-              lineHeight: 1.7, maxWidth: "34rem",
+              lineHeight: 1.7, margin: 0,
             }}
           >
             {sign.screen6.letterTeaching}
           </p>
         </div>
-      </ReadingBand>
+      </Column>
 
-      {/* ── Daily Mantra (peak — dawn band with framed card) ── */}
-      <ReadingBand bg={C_BAND_DAWN}>
-        <SectionHeader numeral={ROMAN[4]}>{headers[4]}</SectionHeader>
-        <div
-          className="relative mx-auto"
+      <Hairline />
+
+      {/* ── Daily Mantra (the moment) ── */}
+      <section className="px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3rem,6vh,5rem)] text-center">
+        <h2
           style={{
-            maxWidth: "36rem",
-            padding: "clamp(2rem,4vw,3rem) clamp(1.5rem,3vw,2.5rem)",
-            border: `1px solid ${C_GOLD}55`,
-            borderRadius: "2px",
-            background: "rgba(20, 28, 50, 0.35)",
-            boxShadow: `0 0 60px ${C_GOLD}15, inset 0 0 40px rgba(255,220,180,0.04)`,
+            fontFamily: HEAD, color: C_GOLD, fontSize: "20px",
+            fontWeight: 500, margin: 0, marginBottom: "clamp(1.5rem,3vh,2rem)",
           }}
         >
-          {/* corner ornaments */}
-          {[
-            { top: -6, left: -6 }, { top: -6, right: -6 },
-            { bottom: -6, left: -6 }, { bottom: -6, right: -6 },
-          ].map((pos, i) => (
-            <span key={i} aria-hidden style={{
-              position: "absolute", ...pos, width: 12, height: 12,
-              borderTop: pos.top !== undefined ? `1px solid ${C_GOLD}` : "none",
-              borderBottom: pos.bottom !== undefined ? `1px solid ${C_GOLD}` : "none",
-              borderLeft: pos.left !== undefined ? `1px solid ${C_GOLD}` : "none",
-              borderRight: pos.right !== undefined ? `1px solid ${C_GOLD}` : "none",
-            }} />
-          ))}
-          <p
-            className="text-center italic"
-            style={{
-              fontFamily: HEAD, color: C_GOLD_BRIGHT, fontSize: "clamp(24px, 3.8vw, 36px)",
-              lineHeight: 1.4, margin: 0, letterSpacing: "-0.005em",
-            }}
-          >
-            “{sign.screen6.dailyMantra}”
-          </p>
-        </div>
-      </ReadingBand>
+          {headers[4]}
+        </h2>
+        <p
+          style={{
+            fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+            fontSize: "clamp(32px, 5vw, 56px)", lineHeight: 1.3,
+            maxWidth: "30rem", margin: "0 auto",
+            textShadow: `0 0 40px ${C_DAWN}55, 0 0 90px ${C_DAWN}22`,
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {sign.screen6.dailyMantra}
+        </p>
+      </section>
+
+      <Hairline />
 
       {/* ── Reflection ── */}
-      <ReadingBand bg={C_BAND_MID}>
-        <SectionHeader numeral={ROMAN[5]}>{headers[5]}</SectionHeader>
-        <div
-          className="mx-auto"
+      <Column>
+        <SectionLabel>{headers[5]}</SectionLabel>
+        <p
           style={{
-            maxWidth: "34rem",
-            padding: "clamp(1.75rem,3.5vw,2.5rem)",
-            border: `1px solid ${C_RULE}`,
-            borderRadius: "2px",
-            background: "rgba(15, 23, 41, 0.3)",
+            fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+            fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
+            margin: 0, letterSpacing: "-0.005em",
           }}
         >
-          <span aria-hidden style={{
-            display: "block", textAlign: "center", color: C_GOLD,
-            fontFamily: HEAD, fontStyle: "italic", fontSize: 22, lineHeight: 1, marginBottom: 8,
-          }}>“</span>
-          <p
-            className="text-center"
-            style={{
-              fontFamily: BODY, color: C_INK, fontSize: "15px",
-              lineHeight: 1.7, margin: 0,
-            }}
-          >
-            {sc.reflectionPrompt}
-          </p>
-        </div>
-      </ReadingBand>
+          {sc.reflectionPrompt}
+        </p>
+      </Column>
+
+      <Hairline />
 
       {/* ── Share ── */}
-      <ReadingBand bg={C_BAND_DEEP}>
-        <SectionHeader numeral={ROMAN[6]}>{headers[6]}</SectionHeader>
+      <Column>
+        <SectionLabel>{headers[6]}</SectionLabel>
         <h3
-          className="text-center"
           style={{
-            fontFamily: HEAD, color: C_INK, fontSize: "clamp(24px, 3.4vw, 34px)",
-            fontWeight: 500, lineHeight: 1.3,
+            fontFamily: HEAD, color: C_INK, fontSize: "clamp(24px, 3.2vw, 32px)",
+            fontWeight: 500, lineHeight: 1.3, margin: 0,
           }}
         >
           {sc.shareHeadline}
         </h3>
-        <p
-          className="mt-3 text-center"
-          style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7, maxWidth: "30rem", marginLeft: "auto", marginRight: "auto" }}
-        >
+        <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7, marginTop: "0.75rem" }}>
           {sc.shareSub}
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          {[
-            { label: "WhatsApp", href: `https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}` },
-            { label: "Instagram", href: "https://www.instagram.com/" },
-          ].map((b) => (
-            <a
-              key={b.label}
-              href={b.href} target="_blank" rel="noopener noreferrer"
-              className="uppercase transition-all hover:opacity-100"
-              style={{
-                fontFamily: BODY, fontSize: "11px", letterSpacing: "0.28em", color: C_INK,
-                border: `1px solid ${C_GOLD}55`, padding: "11px 22px", borderRadius: 999,
-                background: "rgba(245,200,104,0.04)",
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = C_GOLD; e.currentTarget.style.background = "rgba(245,200,104,0.1)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = `${C_GOLD}55`; e.currentTarget.style.background = "rgba(245,200,104,0.04)"; }}
-            >
-              {b.label}
-            </a>
-          ))}
+
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`}
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 transition-transform hover:scale-[1.03]"
+            style={{
+              fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
+              background: "#25D366", padding: "12px 22px", borderRadius: 999,
+              boxShadow: "0 8px 24px -8px rgba(37,211,102,0.55)",
+            }}
+          >
+            <WhatsAppIcon /> WhatsApp
+          </a>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 transition-transform hover:scale-[1.03]"
+            style={{
+              fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
+              background: "linear-gradient(135deg, #515BD4 0%, #8134AF 25%, #DD2A7B 55%, #FEDA77 100%)",
+              padding: "12px 22px", borderRadius: 999,
+              boxShadow: "0 8px 24px -8px rgba(221,42,123,0.5)",
+            }}
+          >
+            <InstagramIcon /> Instagram
+          </a>
           <button
             type="button"
-            onClick={async () => {
-              try { await navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
-            }}
-            className="uppercase transition-all"
+            onClick={copy}
+            className="inline-flex items-center gap-2 transition-all hover:scale-[1.03]"
             style={{
-              fontFamily: BODY, fontSize: "11px", letterSpacing: "0.28em", color: C_INK,
-              border: `1px solid ${C_GOLD}55`, padding: "11px 22px", borderRadius: 999,
-              background: "rgba(245,200,104,0.04)", cursor: "pointer",
+              fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: C_INK,
+              background: "rgba(245,200,104,0.06)",
+              border: `1px solid ${C_GOLD}88`,
+              padding: "12px 22px", borderRadius: 999, cursor: "pointer",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = C_GOLD; e.currentTarget.style.background = "rgba(245,200,104,0.1)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = `${C_GOLD}55`; e.currentTarget.style.background = "rgba(245,200,104,0.04)"; }}
           >
+            <Link2 size={16} />
             {copied ? "Copied ✓" : "Copy link"}
           </button>
         </div>
-      </ReadingBand>
+      </Column>
 
-      {/* ── Want to go deeper → /history ── */}
-      <section
-        className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
-        style={{ background: C_BAND_DAWN, borderTop: `1px solid ${C_RULE_SOFT}` }}
-      >
-        <SectionHeader numeral={ROMAN[7]}>{headers[7]}</SectionHeader>
+      <Hairline />
+
+      {/* ── Closing ── */}
+      <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3rem)] pb-[clamp(5rem,10vh,8rem)] text-center">
+        <h2
+          style={{
+            fontFamily: HEAD, color: C_GOLD, fontSize: "20px",
+            fontWeight: 500, margin: 0, marginBottom: "1.25rem",
+          }}
+        >
+          {headers[7]}
+        </h2>
         <h3
           style={{
-            fontFamily: HEAD, color: C_INK, fontSize: "clamp(26px, 4vw, 40px)",
-            fontWeight: 500, lineHeight: 1.25, marginTop: "0.5rem",
+            fontFamily: HEAD, color: C_INK, fontSize: "clamp(28px, 4.2vw, 44px)",
+            fontWeight: 500, lineHeight: 1.25, maxWidth: "32rem", margin: "0 auto",
+            letterSpacing: "-0.01em",
           }}
         >
           {sc.deeperSub}
         </h3>
         <div className="mt-10 flex justify-center">
-          <PrimaryCTA label={sc.deeperButton} onClick={() => navigate({ to: "/history" })} />
+          <PrimaryCTA variant="dawn" label={sc.deeperButton} onClick={() => navigate({ to: "/history" })} />
         </div>
       </section>
     </SkyShell>
-  );
-}
-
-function ReadingBand({ bg, children }: { bg: string; children: React.ReactNode }) {
-  return (
-    <>
-      <div style={{ background: bg, padding: "clamp(1.5rem,3vh,2.5rem) 0" }}>
-        <Divider />
-      </div>
-      <section
-        className="relative px-[clamp(1.25rem,5vw,3rem)] pb-[clamp(4rem,8vh,6.5rem)] pt-[clamp(1rem,2vh,2rem)]"
-        style={{ background: bg }}
-      >
-        <div className="relative mx-auto max-w-3xl">{children}</div>
-      </section>
-    </>
   );
 }
