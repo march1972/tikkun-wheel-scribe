@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 type Props = {
