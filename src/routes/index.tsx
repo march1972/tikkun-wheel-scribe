@@ -1,10 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
+import { Reveal } from "@/components/landing/Reveal";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
 import { resetAttempts, setCurrentSpinNumber } from "@/lib/spinAttempts";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -210,10 +211,33 @@ function PrimaryCTA({
 function Landing() {
   const navigate = useNavigate();
   const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
+  const haloRef = useRef<HTMLDivElement | null>(null);
 
   // Reset spin counter on each fresh visit to the landing page.
   useEffect(() => {
     resetAttempts();
+  }, []);
+
+  // Scroll-linked halo drift behind the hero wheel (matches /history, /reading).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        const el = haloRef.current;
+        if (el) el.style.transform = `translate(-50%, calc(-50% - ${y * 0.3}px))`;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
 
@@ -252,15 +276,33 @@ function Landing() {
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+            <div
+              ref={haloRef}
+              aria-hidden
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "clamp(360px, 70vw, 680px)",
+                height: "clamp(360px, 70vw, 680px)",
+                background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
+                filter: "blur(10px)",
+                pointerEvents: "none",
+                willChange: "transform",
+                zIndex: 0,
+              }}
+            />
             <h1
+              className="relative"
               style={{
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(30px, 5vw, 56px)",
-                lineHeight: 1,
-                letterSpacing: "-0.025em",
+                fontSize: "clamp(40px, 7.5vw, 84px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
               }}
             >
               Reveal your{" "}
@@ -275,7 +317,7 @@ function Landing() {
               </span>
             </h1>
 
-            <div className="mt-[clamp(1.5rem,3.5vh,2.5rem)]">
+            <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]">
               <div
                 className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
                 style={{
@@ -288,12 +330,12 @@ function Landing() {
             </div>
 
             <p
-              className="mt-[clamp(3.25rem,6.5vh,5rem)]"
+              className="relative mt-[clamp(3.25rem,6.5vh,5rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
+                maxWidth: "38rem",
+                fontSize: "clamp(17px, 1.6vw, 20px)",
               }}
             >
               Kabbalistic Astrology maps your{" "}
@@ -305,7 +347,7 @@ function Landing() {
               — in relationships, finances, and career.
             </p>
 
-            <div className="mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
+            <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
               <PrimaryCTA onClick={handleSpin} />
               <p
                 style={{
@@ -330,20 +372,25 @@ function Landing() {
         >
           <StarField density={140} opacity={0.5} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
-            <h2
-              className="text-2xl"
-              style={{ fontFamily: HEAD, color: C_INK }}
-            >
-              What you{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>.
-            </h2>
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: HEAD, color: C_INK,
+                  fontSize: "clamp(30px, 4.5vw, 52px)",
+                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                }}
+              >
+                What you{" "}
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>.
+              </h2>
+            </Reveal>
 
             <ul
               className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] text-left"
               style={{
                 color: C_INK_SOFT,
-                lineHeight: 1.7,
-                fontSize: "15px",
+                lineHeight: 1.75,
+                fontSize: "clamp(15px, 1.4vw, 17px)",
                 listStyle: "none",
                 padding: 0,
               }}
@@ -352,36 +399,37 @@ function Landing() {
                 { letter: "א", letterColor: C_DAWN, accent: C_GOLD, title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(240, 200, 104, 0.06)" },
                 { letter: "מ", letterColor: C_DAWN, accent: C_GOLD, title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(240, 200, 104, 0.06)" },
                 { letter: "ש", letterColor: C_DAWN, accent: C_GOLD, title: "A daily mantra and reflection",   body: "a verse to meditate on for personal change.", tint: "rgba(240, 200, 104, 0.06)" },
-              ].map((item) => {
+              ].map((item, idx) => {
                 return (
-                  <li
-                    key={item.title}
-                    className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full transition-all duration-300 hover:-translate-y-1"
-                    style={{
-                      background: item.tint,
-                      border: `1px solid ${item.accent}33`,
-                      borderRadius: 2,
-                    }}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="leading-none"
+                  <Reveal key={item.title} delay={120 * (idx + 1)}>
+                    <li
+                      className="flex flex-col gap-3 p-[clamp(1.25rem,2.5vw,1.75rem)] h-full transition-all duration-300 hover:-translate-y-1"
                       style={{
-                        fontFamily: HEAD,
-                        color: item.letterColor,
-                        fontSize: "clamp(32px, 4.5vw, 44px)",
-                        textShadow: `0 0 14px ${item.letterColor}66`,
+                        background: item.tint,
+                        border: `1px solid ${item.accent}33`,
+                        borderRadius: 2,
                       }}
                     >
-                      {item.letter}
-                    </span>
-                    <span>
-                      <span style={{ color: item.accent, fontStyle: "italic" }}>
-                        {item.title}
-                      </span>{" "}
-                      — {item.body}
-                    </span>
-                  </li>
+                      <span
+                        aria-hidden="true"
+                        className="leading-none"
+                        style={{
+                          fontFamily: HEAD,
+                          color: item.letterColor,
+                          fontSize: "clamp(32px, 4.5vw, 44px)",
+                          textShadow: `0 0 14px ${item.letterColor}66`,
+                        }}
+                      >
+                        {item.letter}
+                      </span>
+                      <span>
+                        <span style={{ color: item.accent, fontStyle: "italic" }}>
+                          {item.title}
+                        </span>{" "}
+                        — {item.body}
+                      </span>
+                    </li>
+                  </Reveal>
                 );
               })}
             </ul>
@@ -399,25 +447,31 @@ function Landing() {
         >
           <StarField density={140} opacity={0.55} seedOffset={500} />
           <div className="relative mx-auto max-w-2xl text-center">
-            
-            <h2
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
-              style={{ fontFamily: HEAD, color: C_INK }}
-            >
-              Ancient{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
-            </h2>
-            <p
-              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
-              style={{
-                fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
-              }}
-            >
-              Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
-            </p>
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: HEAD, color: C_INK,
+                  fontSize: "clamp(30px, 4.5vw, 52px)",
+                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                }}
+              >
+                Ancient{" "}
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p
+                className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
+                style={{
+                  fontFamily: BODY, color: C_INK_SOFT,
+                  lineHeight: 1.75,
+                  maxWidth: "38rem",
+                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                }}
+              >
+                Kabbalah Astrology dates back to Abraham and many ancient texts — the <span style={{ color: C_DAWN, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), <span style={{ color: C_DAWN, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and <span style={{ color: C_DAWN, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
+              </p>
+            </Reveal>
           </div>
         </section>
 
@@ -428,29 +482,35 @@ function Landing() {
         >
           <StarField density={160} opacity={0.5} seedOffset={900} />
           <div className="relative mx-auto max-w-3xl text-center">
-            
-            <h2
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
-              style={{ fontFamily: HEAD, color: C_INK }}
-            >
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
-            </h2>
-            <p
-              className="mx-auto mt-[clamp(1rem,2vh,1.5rem)]"
-              style={{
-                fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
-              }}
-            >
-              Kabbalists accept the signals or influence of the celestial
-              constellations ({" "}
-              <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
-              ), but reject astrology as fatalistic prediction. A person's{" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic" }}>free will</span>{" "}
-              always overrides fate.
-            </p>
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: HEAD, color: C_INK,
+                  fontSize: "clamp(30px, 4.5vw, 52px)",
+                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                }}
+              >
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>Influence</span>, not prediction
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p
+                className="mx-auto mt-[clamp(1rem,2vh,1.5rem)]"
+                style={{
+                  fontFamily: BODY, color: C_INK_SOFT,
+                  lineHeight: 1.75,
+                  maxWidth: "38rem",
+                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                }}
+              >
+                Kabbalists accept the signals or influence of the celestial
+                constellations ({" "}
+                <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
+                ), but reject astrology as fatalistic prediction. A person's{" "}
+                <span style={{ color: C_DAWN, fontStyle: "italic" }}>free will</span>{" "}
+                always overrides fate.
+              </p>
+            </Reveal>
           </div>
         </section>
 
@@ -462,33 +522,40 @@ function Landing() {
           <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
           
           <div className="relative mx-auto max-w-3xl text-center">
-            
-            
-            <h2
-              className="mt-[clamp(1.25rem,2.5vh,1.75rem)] text-2xl"
-              style={{ fontFamily: HEAD, color: C_INK }}
-            >
-              A greater purpose.
-            </h2>
-            <p
-              className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
-              style={{
-                fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
-              }}
-            >
-              Fulfilling your{" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>{" "}
-              serves a greater purpose —{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
-              — sharing your light to build a better world.
-            </p>
+            <Reveal>
+              <h2
+                style={{
+                  fontFamily: HEAD, color: C_INK,
+                  fontSize: "clamp(30px, 4.5vw, 52px)",
+                  lineHeight: 1.15, letterSpacing: "-0.02em",
+                }}
+              >
+                A greater purpose.
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p
+                className="mt-[clamp(1rem,2vh,1.5rem)] mx-auto"
+                style={{
+                  fontFamily: BODY, color: C_INK_SOFT,
+                  lineHeight: 1.75,
+                  maxWidth: "38rem",
+                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                }}
+              >
+                Fulfilling your{" "}
+                <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>{" "}
+                serves a greater purpose —{" "}
+                <span style={{ color: C_GOLD, fontStyle: "italic", fontSize: "1.25em", fontWeight: 500 }}>Tikkun Olam</span>{" "}
+                — sharing your light to build a better world.
+              </p>
+            </Reveal>
 
-            <div className="mt-[clamp(2.5rem,5vh,4rem)] flex justify-center">
-              <SefirotTree min={120} max={200} vwFraction={0.32} />
-            </div>
+            <Reveal delay={280}>
+              <div className="mt-[clamp(2.5rem,5vh,4rem)] flex justify-center">
+                <SefirotTree min={120} max={200} vwFraction={0.32} />
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -499,45 +566,51 @@ function Landing() {
         >
           <StarField density={120} opacity={0.55} seedOffset={1700} />
           <div className="relative mx-auto max-w-3xl">
-            <h2
-              style={{
-                fontFamily: HEAD,
-                color: C_INK,
-                fontWeight: 500,
-                fontSize: "clamp(30px, 5vw, 56px)",
-                lineHeight: 1,
-                letterSpacing: "-0.025em",
-              }}
-            >
-              Who you<br />
-              <span
+            <Reveal>
+              <h2
                 style={{
-                  fontStyle: "italic",
-                  fontWeight: 400,
-                  background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  fontFamily: HEAD,
+                  color: C_INK,
+                  fontWeight: 500,
+                  fontSize: "clamp(40px, 7.5vw, 84px)",
+                  lineHeight: 1.02,
+                  letterSpacing: "-0.03em",
                 }}
               >
-                are
-              </span>
-              <span style={{ color: C_GOLD }}>.</span>
-            </h2>
-            <p
-              className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
-              style={{
-                fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "36rem",
-                fontSize: "15px",
-              }}
-            >
-              A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
-            </p>
-            <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex justify-center">
-              <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
-            </div>
+                Who you<br />
+                <span
+                  style={{
+                    fontStyle: "italic",
+                    fontWeight: 400,
+                    background: `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  are
+                </span>
+                <span style={{ color: C_GOLD }}>.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p
+                className="mx-auto mt-[clamp(1.25rem,2.5vh,1.75rem)]"
+                style={{
+                  fontFamily: BODY, color: C_INK_SOFT,
+                  lineHeight: 1.75,
+                  maxWidth: "38rem",
+                  fontSize: "clamp(16px, 1.5vw, 19px)",
+                }}
+              >
+                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. To see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your recurring patterns</span>, and what to correct.
+              </p>
+            </Reveal>
+            <Reveal delay={280}>
+              <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex justify-center">
+                <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
+              </div>
+            </Reveal>
           </div>
         </section>
 
