@@ -1,19 +1,23 @@
-# Dial hero + wheel back up — middle ground
+# Fix flash-of-huge-wheel on / and /spinning
 
-Split the difference between the previous oversized values and the recent too-small values.
+The `useResponsiveWheelSize` hook initializes its `useState` with `max` (440 on home, 760 on spinning). On SSR the HTML ships with the wheel at max size; on the client it stays huge until the post-mount `useEffect` runs and re-measures. On slow hydrations it can even appear to get stuck.
 
-## What changes
-
-`src/routes/index.tsx`:
-
-- Line 213, wheel hook call:
-  `useResponsiveWheelSize(0.72, 240, 360)` → `useResponsiveWheelSize(0.85, 280, 440)`
-- Line 306, hero `<h1>` font size:
-  `clamp(40px, 6.5vw, 84px)` → `clamp(44px, 7.5vw, 96px)`
+## Fix
 
 `src/hooks/useResponsiveWheelSize.ts`:
 
-- Line 20, internal vh cap:
-  `vh * 0.45` → `vh * 0.5` (between the original 0.55 and the recent 0.45).
+- Replace the bare `useState(max)` with a lazy initializer that computes the real size synchronously when `window` is available, and falls back to `min` (not `max`) during SSR. This way the first client paint already has the correct size, and the SSR/no-window fallback is small (better to grow than to shrink-from-giant).
 
-Paragraph margin and section padding stay at their tightened values so the CTA remains close to the wheel.
+```ts
+const [size, setSize] = useState(() => {
+  if (typeof window === "undefined") return min;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const next = Math.min(vw * vwFraction, vh * 0.5, max);
+  return Math.max(min, Math.round(next));
+});
+```
+
+The existing `useEffect` resize listener stays — it just no longer has to correct an oversized first paint.
+
+That's the whole change. No other files affected.
