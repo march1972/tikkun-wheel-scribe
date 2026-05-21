@@ -496,10 +496,6 @@ function Landing() {
         {/* ── CLOSING CTA ──────────────────────────────────────── */}
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
-          style={{
-            background:
-              "radial-gradient(60% 80% at 50% 0%, rgba(240,200,104,0.14) 0%, rgba(240,200,104,0) 60%), radial-gradient(50% 60% at 50% 100%, rgba(155,180,220,0.12) 0%, rgba(10,14,28,0) 70%), linear-gradient(180deg, #060a18 0%, #0e1426 50%, #131c34 100%)",
-          }}
         >
           <StarField density={120} opacity={0.55} seedOffset={1700} />
           <div className="relative mx-auto max-w-3xl">
