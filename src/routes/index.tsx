@@ -333,9 +333,9 @@ function Landing() {
               className="relative mt-[clamp(3.25rem,6.5vh,5rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
-                lineHeight: 1.7,
-                maxWidth: "38rem",
-                fontSize: "clamp(17px, 1.6vw, 20px)",
+                lineHeight: 1.55,
+                maxWidth: "42rem",
+                fontSize: "clamp(20px, 2vw, 26px)",
               }}
             >
               Kabbalistic Astrology maps your{" "}
