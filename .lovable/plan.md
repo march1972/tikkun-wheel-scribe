@@ -35,7 +35,8 @@ Apply the same editorial / magazine-bold scale (intensity 4/5) used on `/` and `
 
 ## Verification
 
-- Visual check at 778px (current viewport) and at desktop ≥1280px for both pre-form and form states.
-- Confirm Hebrew letter still sits cleanly inside the snippet card with no clipping.
-- Confirm the form H2 doesn't push the inputs below the fold on a 530-tall viewport.
+- No editorial / copy changes — type scale only.
+- Visual check at 778px and at desktop ≥1280px for both pre-form and form states.
+- Mobile pass at 375px and 414px: confirm Hebrew letter doesn't overflow the snippet card, form H2 wraps cleanly above inputs without pushing the submit button awkwardly far down, and spacing rhythm (mt clamps) still feels balanced after the bumps.
 - Confirm no horizontal scroll on mobile widths.
+- Confirm form H2 doesn't push the inputs below the fold on a 530-tall viewport.
