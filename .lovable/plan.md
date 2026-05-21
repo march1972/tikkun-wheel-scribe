@@ -33,45 +33,43 @@ Strip the ornamental "ancient mystical" layer (diamonds, stars, roman numerals, 
 
 [ section: life's pattern ]
   Left-aligned column, max 620px, centered on page.
-  Eyebrow: "01 — life's pattern" in 10px tracked uppercase cream/60.
-  Heading: short serif title pulled from copy OR repeat eyebrow as title (decision: title = section name in large Fraunces).
-  Body paragraphs in 16px General Sans, line-height 1.75, color cream/85, LEFT-aligned.
+  Section label: "Life's Pattern" rendered in **Fraunces 20px gold** — identical to /terms sub-headers.
+  Body paragraphs: General Sans 15px, line-height 1.7, cream-soft, LEFT-aligned (matches /terms body).
 
 [ section: archetype ]
-  Same column. Eyebrow "02 — archetype".
-  Archetype lines rendered as a single multi-line serif italic block, large (clamp 28–44px), left-aligned, color cream — feels like a poem stanza, no centering, no glyphs.
+  Same column. Label: "Archetype" (Fraunces 20px gold).
+  Archetype lines rendered as a serif italic stanza, large (clamp 26–40px), cream, left-aligned — like a poem.
 
-[ section: life's work ] — same shell as 01.
+[ section: life's work ] — same shell as life's pattern.
 
 [ section: tikkun letter ]
-  Two-column on desktop: left = oversized Hebrew letter (no glow, just color), letter name in italic + meaning in uppercase micro-label.
-  Right = teaching paragraph, left-aligned body.
+  Two-column on desktop: left = oversized Hebrew letter in **dawn red** (the page's signature color), letter name in Fraunces italic cream + meaning in 11px tracked gold uppercase micro-label.
+  Right = teaching paragraph, left-aligned body, /terms style.
   Stacks on mobile.
 
 [ section: daily mantra — the moment ]
   Full-width breathing band. NO box, NO border, NO corners, NO quote marks.
-  Centered, oversized Fraunces italic (clamp 32–56px), color cream-bright with a faint dawn glow behind the text (text-shadow, not a card).
-  Tiny eyebrow above: "daily mantra".
-  This is the page's emotional peak — earned by scale and silence, not ornament.
+  Label "Daily Mantra" (Fraunces 20px gold) centered above.
+  Mantra: oversized Fraunces italic (clamp 32–56px), cream-bright, with a faint **dawn-red text-shadow halo** behind it — ties the moment back to the hero letter. No card, no ornament.
+  This is the page's emotional peak — earned by scale and silence.
 
 [ section: reflection ]
-  Same column shell. Eyebrow "06 — reflection".
-  Prompt as a medium serif (22–28px), left-aligned, italic. No card, no quote glyph.
+  Same column shell. Label "Reflection" (Fraunces 20px gold).
+  Prompt as Fraunces italic 22–28px cream, left-aligned. No card, no quote glyph.
 
 [ section: share ]
-  Same column. Eyebrow "07 — share".
-  Headline left-aligned serif. Sub paragraph left-aligned.
-  Three minimal text-link buttons in a row: WhatsApp · Instagram · Copy link.
-  Underline-on-hover with gold; no pills, no borders.
+  Same column. Label "Share" (Fraunces 20px gold).
+  Headline left-aligned Fraunces. Sub paragraph left-aligned body.
+  Three minimal text links in a row: WhatsApp · Instagram · Copy link.
+  Underlined on hover in gold; no pills, no borders.
 
 [ closing — go deeper ]
-  Centered. Eyebrow "next chapter".
-  Large serif headline.
+  Centered. Label "Next Chapter" (Fraunces 20px gold).
+  Large Fraunces headline with one word in **dawn-red italic** — mirrors /terms H1 ("Terms & Conditions" with "Conditions" in red).
   Single PrimaryCTA. Generous vertical space above and below.
 ```
 
-**Section numbering**
-- Use plain Arabic digits "01 / 02 / 03" inline with the eyebrow label, not roman numerals stacked above. Format: `01 — life's pattern`. If user dislikes any numbering, easy to drop and keep just the label.
+**No section numbering** — user disliked the numerals. Labels alone, in the /terms Fraunces-gold treatment, carry the rhythm.
 
 **Removed for good**
 - All ✦ / diamond / star glyphs.
