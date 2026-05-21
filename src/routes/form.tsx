@@ -73,8 +73,8 @@ function FormPage() {
     <SkyShell starDensity={200}>
       <style>{`
         @keyframes cta-pulse-glow {
-          0%, 100% { box-shadow: 0 10px 40px -10px #e94e2baa; transform: scale(1); }
-          50% { box-shadow: 0 14px 50px -8px #e94e2bcc, 0 0 25px -3px #e94e2b33; transform: scale(1.015); }
+          0%, 100% { box-shadow: 0 10px 40px -10px #d62828aa; transform: scale(1); }
+          50% { box-shadow: 0 14px 50px -8px #d62828cc, 0 0 25px -3px #d6282833; transform: scale(1.015); }
         }
         .cta-pulse-glow {
           animation: cta-pulse-glow 2.5s ease-in-out infinite;
@@ -146,7 +146,7 @@ function FormPage() {
             disabled={busy}
             className="cta-pulse-glow group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
             style={{
-              background: `linear-gradient(135deg, ${C_DAWN} 0%, #b73a1d 100%)`,
+              background: `linear-gradient(135deg, ${C_DAWN} 0%, #a01e1e 100%)`,
               color: C_INK,
               fontFamily: BODY,
               fontWeight: 700,
