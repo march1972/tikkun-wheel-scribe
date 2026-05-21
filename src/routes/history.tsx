@@ -121,7 +121,7 @@ function HistoryPage() {
           </h2>
           <p
             className="mx-auto mt-4"
-            style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "14px", lineHeight: 1.6, maxWidth: "30rem" }}
+            style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7, maxWidth: "30rem" }}
           >
             Free weekly teachings on Kabbalah, Astrology, and the work of becoming. Unsubscribe anytime.
           </p>
