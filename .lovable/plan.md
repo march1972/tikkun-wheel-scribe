@@ -70,7 +70,12 @@ Strip the ornamental "ancient mystical" layer (diamonds, stars, roman numerals, 
 [ closing — go deeper ]
   Centered. Label "Next Chapter" (Fraunces 20px gold).
   Large Fraunces headline with one word in **dawn-red italic** — mirrors /terms H1.
-  CTA at the bottom rendered in **dawn red** (`C_DAWN`) — solid red pill button, cream text, gentle red glow on hover. Replaces the gold PrimaryCTA only at this single spot; PrimaryCTA elsewhere on the site is unchanged.
+  CTA at the bottom = a **Dawn variant of PrimaryCTA** — same shape, same uppercase tracked typography, same arrow, same hover lift/brighten transition as the existing gold PrimaryCTA — but textured in red:
+    • background: `linear-gradient(135deg, #ff5a6e 0%, #e63946 55%, #b8262f 100%)` (a deep dawn red gradient with a brighter highlight at the top-left so it has dimension, not flat).
+    • text color: cream (`C_INK`), not deep navy — keeps contrast and warmth.
+    • boxShadow: `0 12px 44px -10px rgba(230,57,70,0.6)` — red glow drop, same depth recipe as the gold button.
+    • subtle inner highlight: `inset 0 1px 0 rgba(255,255,255,0.18)` for a glossy lift.
+  Implemented as a new `variant="dawn"` prop on `PrimaryCTA` (or a small wrapper) — gold variant on the rest of the site stays untouched.
   Generous vertical space above and below.
 ```
 
