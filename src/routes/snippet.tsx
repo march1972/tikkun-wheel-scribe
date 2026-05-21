@@ -52,6 +52,7 @@ function Snippet() {
   // Inline form state (used on final spin)
   const [dob, setDob] = useState("");
   const [email, setEmail] = useState("");
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [name, setName] = useState("");
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -83,7 +84,7 @@ function Snippet() {
     if (!email) return setErr("Please enter your email.");
     setBusy(true);
     try {
-      const res = await submit({ data: { name: name || undefined, dob, email, newsletterOptIn: false } });
+      const res = await submit({ data: { name: name || undefined, dob, email, newsletterOptIn } });
       if (!res.ok || !res.signId) {
         setErr(res.error ?? "Something went wrong.");
         setBusy(false);
@@ -135,7 +136,7 @@ function Snippet() {
         .cta-pulse-glow { animation: cta-pulse-glow 2.5s ease-in-out infinite; }
         .cta-pulse-glow:hover { animation: none; }
       `}</style>
-      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(0.75rem,2vh,2rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
           <div
             className="w-full"
@@ -229,7 +230,7 @@ function Snippet() {
             <div
               className="w-full"
               style={{
-                padding: "clamp(1.75rem,4.5vw,2.75rem)",
+                padding: "clamp(0.5rem,2vw,2.75rem)",
                 textAlign: "center",
               }}
             >
@@ -241,7 +242,7 @@ function Snippet() {
                 }}
               >
                 See your actual{" "}
-                <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 400 }}>Tikkun</span>{" "}
+                <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 700, fontSize: "1.05em" }}>Tikkun</span>{" "}
                 chart
               </h2>
               <p
@@ -278,6 +279,26 @@ function Snippet() {
                   />
                 </div>
 
+                <label
+                  htmlFor="newsletter"
+                  style={{
+                    display: "flex", alignItems: "flex-start", gap: "10px",
+                    fontFamily: BODY, color: C_INK_SOFT, fontSize: "13px",
+                    lineHeight: 1.4, cursor: "pointer", marginTop: "4px",
+                  }}
+                >
+                  <input
+                    id="newsletter" type="checkbox"
+                    checked={newsletterOptIn}
+                    onChange={(e) => setNewsletterOptIn(e.target.checked)}
+                    style={{
+                      marginTop: "2px", width: "16px", height: "16px",
+                      accentColor: C_DAWN, flexShrink: 0, cursor: "pointer",
+                    }}
+                  />
+                  <span>Add me to the Kabbalah Circle mailing list</span>
+                </label>
+
                 {err && (
                   <p style={{ fontFamily: BODY, color: C_DAWN, fontSize: "12px" }}>{err}</p>
                 )}
@@ -285,7 +306,7 @@ function Snippet() {
                 <button
                   type="submit"
                   disabled={busy}
-                  className="cta-pulse-glow group mt-2 inline-flex items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
+                  className="cta-pulse-glow group mt-2 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
                   style={{
                     background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
                     color: C_INK,
