@@ -53,7 +53,7 @@ const C_INK_SOFT = "#ece3cf";
 const C_MUTED = "rgba(236, 227, 207, 0.62)";
 const C_GOLD = "#f0c868";           // wheel gold (matches TikkunWheel)
 const C_GOLD_BRIGHT = "#FFE9B8";
-const C_DAWN = "#d62828";           // visible red-orange accent
+const C_DAWN = "#e63946";           // visible red-orange accent
 const C_SAGE = "#9bd1bf";           // sage mint — secondary accent
 const C_DEEP = "#0f1729";           // near-black indigo
 const C_RULE = "rgba(253, 246, 230, 0.20)";
@@ -180,9 +180,9 @@ function PrimaryCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d62828] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e63946] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
       style={{
-        background: `linear-gradient(135deg, ${C_DAWN} 0%, #a01e1e 100%)`,
+        background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
         color: C_INK,
         fontFamily: BODY,
         fontWeight: 700,
