@@ -210,7 +210,7 @@ function PrimaryCTA({
 
 function Landing() {
   const navigate = useNavigate();
-  const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
+  const wheelSize = useResponsiveWheelSize(0.72, 220, 460);
   const haloRef = useRef<HTMLDivElement | null>(null);
 
   // Reset spin counter on each fresh visit to the landing page.
