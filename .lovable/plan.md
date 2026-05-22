@@ -1,53 +1,81 @@
-# Stabilize the home → spinning → snippet wheel flow
+# Re-audit and harden the home → spinning → snippet wheel flow
 
-## Audit findings
+## What is actually going wrong
 
-- The wheel size jump is caused by `useResponsiveWheelSize` returning the desktop max size during SSR/first render, then shrinking on the client after `useEffect` runs. On iPhone-sized viewports this creates a visible “huge wheel → actual wheel” layout shift.
-- The spinning page uses a different, much larger wheel sizing range than home (`380–760` vs `280–440`), so the flow feels inconsistent and oversized on mobile.
-- The home page and `SkyShell` duplicate starfield/header/background code. Home also defines its own `StarField` instead of using the shared component, adding excess DOM and making the first route heavier.
-- The home page renders very high star counts across the full page, and the measured mobile preview shows poor CLS, high style recalculation, and many DOM nodes before/around the click.
-- Click handling currently allows repeated taps while navigation is beginning. If the route chunk is still loading on mobile, this can feel like a stutter or failed click.
-- `/spinning` starts with no target until `useEffect` reads session storage. That means the wheel can mount before the target is available, then re-render and start the spin after the page is already visible.
-- `/spinning` waits for the wheel’s internal timeout before going to `/snippet`; if animation/timer cleanup is interrupted or target state is late, the user can remain on the spinning page.
-- Root error/not-found handling currently redirects to `/` with `window.location.replace`, which is heavy and can mask flow errors as “back to home.”
+Do I know what the issue is? Yes: the flow is not failing because of one button handler; it is stuttering because hydration, animation, and routing are fighting each other on the first interaction.
+
+1. **The wheel SVG is causing React hydration mismatches**
+   - Console shows mismatched SVG coordinates such as `y2=27.485979540325758` vs `27.485979540325744`.
+   - That comes from rendering floating-point SVG geometry from `Math.sin` / `Math.cos` during SSR and again in the browser.
+   - React warns that it will not patch those attributes. On mobile this can make the first click feel unreliable because the app is hydrating/reconciling while the user taps.
+
+2. **The wheel size hook is still not SSR-safe**
+   - `useResponsiveWheelSize` now reads `window.innerWidth` inside the `useState` initializer.
+   - That avoids some size flash, but it also means the first browser render can differ from the server render whenever the computed client size is not the SSR fallback.
+   - This is exactly the kind of SSR/client branch React flags as a hydration problem.
+
+3. **The wheel component injects a large dynamic `<style>` tag per wheel render**
+   - `TikkunWheel` creates unique keyframes and inline CSS with size-derived numeric values on every instance.
+   - That increases style recalculation and makes route transitions heavier than they need to be.
+
+4. **The home page is still too heavy for the first tap on a 320px mobile viewport**
+   - Measured mobile profile: ~1,283 elements, 181 layouts, 183 style recalcs before interaction.
+   - Home renders a 360-star field plus multiple additional star fields later in the page. Even if visually nice, it is expensive during the first click.
+
+5. **Navigation waits behind visual animation instead of being guaranteed by route state**
+   - `/spinning` relies on the wheel animation callback plus a timeout fallback.
+   - That usually works, but the user experience still depends on mounting/hydrating another animated SVG page before reaching `/snippet`.
+
+6. **Root error handling can hide real route failures**
+   - The root error boundary still redirects with `window.location.replace('/')`.
+   - If a route error occurs during `/spinning` or `/snippet`, it can look like the wheel “stuttered and stayed home” instead of showing the real issue.
 
 ## Recommended fix
 
-1. **Make wheel sizing deterministic on first paint**
-   - Replace the SSR-first `max` return in `useResponsiveWheelSize` with a stable mobile-safe initial size.
-   - Use the same sizing bounds for home and spinning so refreshes and route changes never show the wheel huge first.
-   - For iPhone 16/mobile, keep the wheel at one stable size from first paint through hydration.
+1. **Make the wheel SSR-deterministic**
+   - Refactor `TikkunWheel` to render in a fixed internal SVG coordinate system, for example `viewBox="0 0 1000 1000"`.
+   - Scale the outer container with CSS width/height only.
+   - Round all generated SVG coordinates to a stable precision before rendering.
+   - Move keyframes to static CSS classes instead of generating a unique `<style>` block with dynamic numbers per render.
 
-2. **Simplify and lock the home click path**
-   - Add a small `isStarting` guard on home so wheel/CTA taps only fire once.
-   - Save the selected target synchronously, then immediately navigate to `/spinning`.
-   - Use `replace: true` only if we want to prevent accidental back-navigation into an already-started home click state; otherwise keep normal history.
+2. **Replace the wheel size hook with CSS-first sizing**
+   - Stop reading `window` during initial render.
+   - Give the wheel wrapper one stable CSS variable like `--wheel-size: clamp(280px, 85vw, 440px)`.
+   - Use the same CSS sizing on `/` and `/spinning` so refreshes and route changes cannot resize the wheel after hydration.
 
-3. **Make `/spinning` target available immediately**
-   - Initialize target state directly from `sessionStorage` instead of waiting for an effect.
-   - If there is no valid target, create one rather than bouncing back to home.
-   - Add a route-level fallback timer that navigates to `/snippet` after the expected spin duration even if the wheel callback does not fire.
+3. **Make the click path immediate and one-way**
+   - On wheel or CTA tap: synchronously choose/store the target and navigate once to `/spinning` with an in-memory guard.
+   - Disable pointer events while the route change is starting so double taps cannot queue duplicate navigation.
+   - Use route preloading for `/spinning` and `/snippet` from home to reduce first-click chunk delay.
 
-4. **Reduce wheel animation and page-render excess**
-   - Remove the duplicate `StarField` implementation from `src/routes/index.tsx` and use the shared `src/components/landing/StarField.tsx`.
-   - Reduce star density on mobile/home enough to cut DOM/style work without changing the visual direction.
-   - Keep the wheel SVG stable and avoid wrapper scale transitions that can contribute to perceived stutter on tap.
+4. **Make `/spinning` a short deterministic transition**
+   - Read/create the target before rendering the wheel.
+   - Start the transition timer at route mount and always navigate to `/snippet` after the fixed duration.
+   - Keep the wheel animation visual-only; it should never be the only thing responsible for advancing the flow.
 
-5. **Clean routing/error behavior**
-   - Replace hard `window.location.replace('/')` error/not-found redirects with lightweight router navigation or a small fallback UI.
-   - Keep the stale-chunk recovery, but do not let general route errors silently dump the user back to home.
+5. **Reduce mobile render cost on home**
+   - Lower star density on the first viewport and remove or defer below-the-fold star layers on mobile.
+   - Remove hover/active scale transitions around the clickable wheel on touch-sized screens.
+   - Keep the visual style, but cut avoidable DOM and style work before the first interaction.
 
-## Files to change
+6. **Stop silent hard redirects for route errors**
+   - Replace `window.location.replace('/')` in error/not-found handling with a lightweight fallback UI or router navigation.
+   - Keep stale chunk recovery only for real chunk-load errors, not general route errors.
 
-- `src/hooks/useResponsiveWheelSize.ts`
+## Files to change after approval
+
+- `src/components/TikkunWheel.tsx`
+- `src/hooks/useResponsiveWheelSize.ts` or remove its usage from this flow
 - `src/routes/index.tsx`
 - `src/routes/spinning.tsx`
 - `src/routes/__root.tsx`
-- optionally `src/components/landing/StarField.tsx` for mobile density/performance polish
+- `src/components/landing/StarField.tsx`
 
-## Validation
+## Validation after implementation
 
-- Test at the iPhone-sized viewport from the report.
-- Refresh home and confirm the wheel does not resize after several seconds.
-- Tap the wheel and the CTA repeatedly; confirm the app immediately routes to `/spinning` once.
-- Confirm `/spinning` always reaches `/snippet`, including after refresh and repeated spins.
+- Test at 320×568 and 390×844 mobile viewports.
+- Confirm there are no React hydration mismatch warnings.
+- Refresh `/` repeatedly and confirm the wheel is the same size on first paint and after hydration.
+- Tap the wheel and CTA repeatedly; confirm one immediate route change to `/spinning`.
+- Confirm `/spinning` always reaches `/snippet`, including on refresh and slow-device simulation.
+- Re-run a mobile performance profile and confirm lower DOM/style work on the first screen.
