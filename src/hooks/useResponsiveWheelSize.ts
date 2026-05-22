@@ -3,10 +3,8 @@ import { useEffect, useState } from "react";
 /**
  * Returns a stable pixel size for the TikkunWheel.
  *
- * To avoid the "huge wheel then shrink" flash on mobile, the first render
- * computes from window dimensions synchronously (when available) instead of
- * returning `max`. On SSR/no-window we use `min` (mobile-safe) as the
- * deterministic placeholder.
+ * The first render is always the mobile-safe minimum so SSR and hydration match.
+ * The browser then measures once mounted and on resize/orientation changes.
  */
 export function useResponsiveWheelSize(
   vwFraction = 0.8,
@@ -21,7 +19,7 @@ export function useResponsiveWheelSize(
     return Math.max(min, Math.round(next));
   };
 
-  const [size, setSize] = useState<number>(compute);
+  const [size, setSize] = useState<number>(min);
 
   useEffect(() => {
     const onResize = () => setSize(compute());
