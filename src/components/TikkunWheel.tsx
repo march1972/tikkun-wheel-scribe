@@ -22,6 +22,8 @@ const SPARKLES: Array<[number, number, number]> = [
   [312, 0.74, 1.3],
 ];
 
+const stable = (n: number) => Math.round(n * 1000) / 1000;
+
 interface TikkunWheelProps {
   size?: number;
   state?: "idle" | "spinning" | "stopped";
@@ -77,14 +79,12 @@ export function TikkunWheel({
     if (state !== "spinning" || resolvedTarget === null) return;
     settledRef.current = false;
     const targetOffset = -resolvedTarget * 30;
-    const id = requestAnimationFrame(() => {
-      setSpinAngle((a) => {
-        const currentMod = ((a % 360) + 360) % 360;
-        const desiredMod = ((targetOffset % 360) + 360) % 360;
-        let delta = desiredMod - currentMod;
-        if (delta <= 0) delta += 360;
-        return a + delta + 360 * 4;
-      });
+    setSpinAngle((a) => {
+      const currentMod = ((a % 360) + 360) % 360;
+      const desiredMod = ((targetOffset % 360) + 360) % 360;
+      let delta = desiredMod - currentMod;
+      if (delta <= 0) delta += 360;
+      return a + delta + 360 * 4;
     });
     const settleId = setTimeout(() => {
       if (settledRef.current) return;
@@ -93,7 +93,6 @@ export function TikkunWheel({
       onSettle?.({ glyph, name: NAMES[glyph] });
     }, 2550);
     return () => {
-      cancelAnimationFrame(id);
       clearTimeout(settleId);
     };
   }, [state, resolvedTarget, onSettle]);
