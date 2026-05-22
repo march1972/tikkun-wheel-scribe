@@ -131,8 +131,8 @@ export function TikkunWheel({
       onKeyDown={handleKey}
       className="tk-wheel"
       style={{
-        width: "clamp(220px, min(78vw, 44vh), 360px)",
-        height: "clamp(220px, min(78vw, 44vh), 360px)",
+        width: size,
+        height: size,
         position: "relative",
         userSelect: "none",
         cursor: onClick ? "pointer" : "default",
