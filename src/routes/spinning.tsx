@@ -1,7 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
-import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { HEAD, BODY, C_INK, C_DAWN } from "@/lib/landing-style";
 import { randomTikkunSign, signById } from "@/lib/tikkun-data";
@@ -11,10 +10,10 @@ export const Route = createFileRoute("/spinning")({
   head: () => ({ meta: [{ title: "Searching your Tikkun…" }] }),
 });
 
-// Match the wheel's internal spin duration (~2.5s) plus a small safety margin.
-const SPIN_FALLBACK_MS = 3200;
+// Deterministic transition duration. Always advance regardless of animation.
+const SPIN_DURATION_MS = 2800;
 
-function readInitialTarget(): string {
+function resolveTarget(): string {
   if (typeof window === "undefined") return "aries";
   const existing = sessionStorage.getItem("tikkun_target_sign");
   if (signById(existing)) return existing as string;
@@ -27,27 +26,27 @@ function readInitialTarget(): string {
 
 function Spinning() {
   const navigate = useNavigate();
-  // Match the home page wheel sizing so the wheel never changes size between routes.
-  const wheelSize = useResponsiveWheelSize(0.85, 280, 440);
-  const [target] = useState<string>(readInitialTarget);
+  const router = useRouter();
+  const targetRef = useRef<string>(typeof window === "undefined" ? "aries" : resolveTarget());
   const navigatedRef = useRef(false);
 
-  const go = () => {
-    if (navigatedRef.current) return;
-    navigatedRef.current = true;
-    navigate({ to: "/snippet" });
-  };
-
-  // Hard fallback — always advance to /snippet even if the wheel onSettle
-  // callback is interrupted (e.g. reduced motion, blurred tab, slow device).
+  // Preload /snippet so the next hop is instant.
   useEffect(() => {
-    const id = setTimeout(go, SPIN_FALLBACK_MS);
+    router.preloadRoute({ to: "/snippet" }).catch(() => {});
+  }, [router]);
+
+  // Single deterministic timer drives the transition — the wheel is visual only.
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (navigatedRef.current) return;
+      navigatedRef.current = true;
+      navigate({ to: "/snippet" });
+    }, SPIN_DURATION_MS);
     return () => clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate]);
 
   return (
-    <SkyShell starDensity={200}>
+    <SkyShell starDensity={140}>
       <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h1
@@ -69,16 +68,13 @@ function Spinning() {
           <div
             className="mt-[clamp(1.5rem,3.5vh,2.5rem)]"
             style={{
+              width: "clamp(280px, 85vw, 440px)",
+              aspectRatio: "1 / 1",
               filter:
                 "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
             }}
           >
-            <TikkunWheel
-              size={wheelSize}
-              state="spinning"
-              targetKey={target}
-              onSettle={go}
-            />
+            <TikkunWheel state="spinning" targetKey={targetRef.current} />
           </div>
 
           <p

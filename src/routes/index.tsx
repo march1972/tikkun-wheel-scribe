@@ -1,9 +1,8 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { Reveal } from "@/components/landing/Reveal";
 import { StarField } from "@/components/landing/StarField";
-import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
 import { resetAttempts, setCurrentSpinNumber } from "@/lib/spinAttempts";
 import { useEffect, useRef, useState } from "react";
@@ -125,13 +124,19 @@ function PrimaryCTA({
 
 function Landing() {
   const navigate = useNavigate();
-  const wheelSize = useResponsiveWheelSize(0.85, 280, 440);
+  const router = useRouter();
   const haloRef = useRef<HTMLDivElement | null>(null);
 
   // Reset spin counter on each fresh visit to the landing page.
   useEffect(() => {
     resetAttempts();
   }, []);
+
+  // Preload the spinning and snippet routes so the first tap navigates instantly.
+  useEffect(() => {
+    router.preloadRoute({ to: "/spinning" }).catch(() => {});
+    router.preloadRoute({ to: "/snippet" }).catch(() => {});
+  }, [router]);
 
   // Scroll-linked halo drift behind the hero wheel (matches /history, /reading).
   useEffect(() => {
@@ -156,9 +161,11 @@ function Landing() {
   }, []);
 
 
+  const startingRef = useRef(false);
   const [isStarting, setIsStarting] = useState(false);
   const handleSpin = () => {
-    if (isStarting) return;
+    if (startingRef.current) return;
+    startingRef.current = true;
     setIsStarting(true);
     setCurrentSpinNumber(1);
     const target = randomTikkunSign();
@@ -171,9 +178,9 @@ function Landing() {
   return (
     <main
       className="relative min-h-screen overflow-hidden"
-      style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
+      style={{ background: C_SKY_GRAD, color: C_INK_SOFT, pointerEvents: isStarting ? "none" : undefined }}
     >
-      <StarField density={360} opacity={0.85} />
+      <StarField density={180} opacity={0.85} />
 
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
@@ -242,13 +249,15 @@ function Landing() {
 
             <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]">
               <div
-                className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+                className="group relative cursor-pointer rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
                 style={{
+                  width: "clamp(280px, 85vw, 440px)",
+                  aspectRatio: "1 / 1",
                   filter:
                     "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
                 }}
               >
-                <TikkunWheel size={wheelSize} state="idle" onClick={handleSpin} />
+                <TikkunWheel state="idle" onClick={handleSpin} />
               </div>
             </div>
 

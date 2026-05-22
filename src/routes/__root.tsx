@@ -18,9 +18,21 @@ function SilentHomeRedirect() {
   return null;
 }
 
-function ErrorComponent({ error }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
-  return <SilentHomeRedirect />;
+  return (
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0c1426", color: "#fdf6e6", fontFamily: "system-ui, sans-serif", padding: "2rem", textAlign: "center" }}>
+      <div>
+        <p style={{ marginBottom: "1rem", opacity: 0.8 }}>Something went off course.</p>
+        <button
+          onClick={() => { reset(); }}
+          style={{ padding: "10px 20px", background: "#e63946", color: "#fdf6e6", border: "none", cursor: "pointer", letterSpacing: "0.2em", textTransform: "uppercase", fontSize: "12px" }}
+        >
+          Try again
+        </button>
+      </div>
+    </div>
+  );
 }
 
 
