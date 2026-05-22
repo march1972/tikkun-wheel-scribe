@@ -51,13 +51,12 @@ export function TikkunWheel({
   const alephHaloId = `tk-aleph-halo-${uid}`;
   const letterGlowId = `tk-letter-glow-${uid}`;
 
-  const cx = size / 2;
-  const cy = size / 2;
-  const ringR = size * 0.464;
-  const letterR = size * 0.393;
-  const alephR = size * 0.10;
-  const letterFontSize = size * 0.075;
-  const alephFontSize = size * 0.042;
+  const cx = stable(size / 2);
+  const cy = stable(size / 2);
+  const ringR = stable(size * 0.464);
+  const letterR = stable(size * 0.393);
+  const alephR = stable(size * 0.10);
+  const letterFontSize = stable(size * 0.075);
 
   // Brand palette (matches src/styles.css tokens).
   const accent = "#f0c868";       // gold-bright
@@ -154,9 +153,9 @@ export function TikkunWheel({
           50%      { opacity: 0.95; transform: scale(1.08); }
         }
         @keyframes tk-ripple-${uid} {
-          0%   { r: ${ringR * 0.98}; opacity: 0; stroke-width: 1.4; }
+          0%   { r: ${stable(ringR * 0.98)}; opacity: 0; stroke-width: 1.4; }
           15%  { opacity: 0.55; }
-          100% { r: ${ringR * 1.32}; opacity: 0; stroke-width: 0.4; }
+          100% { r: ${stable(ringR * 1.32)}; opacity: 0; stroke-width: 0.4; }
         }
         @keyframes tk-twinkle-${uid} {
           0%, 100% { opacity: 0.25; }
@@ -244,7 +243,7 @@ export function TikkunWheel({
             <stop offset="100%" stopColor="#d8c79b" />
           </radialGradient>
           <filter id={letterGlowId} x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation={size * 0.006} result="b" />
+            <feGaussianBlur stdDeviation={stable(size * 0.006)} result="b" />
             <feMerge>
               <feMergeNode in="b" />
               <feMergeNode in="SourceGraphic" />
