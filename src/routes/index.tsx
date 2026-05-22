@@ -3,9 +3,10 @@ import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { Reveal } from "@/components/landing/Reveal";
 import { StarField } from "@/components/landing/StarField";
+import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
 import { resetAttempts, setCurrentSpinNumber } from "@/lib/spinAttempts";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -125,6 +126,7 @@ function PrimaryCTA({
 function Landing() {
   const navigate = useNavigate();
   const router = useRouter();
+  const wheelSize = useResponsiveWheelSize(0.85, 280, 440);
   const haloRef = useRef<HTMLDivElement | null>(null);
 
   // Reset spin counter on each fresh visit to the landing page.
@@ -162,11 +164,9 @@ function Landing() {
 
 
   const startingRef = useRef(false);
-  const [isStarting, setIsStarting] = useState(false);
   const handleSpin = () => {
     if (startingRef.current) return;
     startingRef.current = true;
-    setIsStarting(true);
     setCurrentSpinNumber(1);
     const target = randomTikkunSign();
     try {
@@ -178,9 +178,9 @@ function Landing() {
   return (
     <main
       className="relative min-h-screen overflow-hidden"
-      style={{ background: C_SKY_GRAD, color: C_INK_SOFT, pointerEvents: isStarting ? "none" : undefined }}
+      style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
     >
-      <StarField density={180} opacity={0.85} />
+      <StarField density={360} opacity={0.85} />
 
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
