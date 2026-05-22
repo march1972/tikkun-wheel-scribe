@@ -1,45 +1,33 @@
-# Rename `/snippet` → `/form` (clean, no design changes)
+# Split `/snippet` (teaser) and `/form` (final form)
 
-## Audit of current state
-
-- **`/snippet`** — the actual post-wheel page (teaser + email/DOB form variants).
-- **`/form`** — a stub that seeds sessionStorage and `replace`-redirects to `/snippet`.
-- **`/spinning`** — navigates to `/snippet` when wheel stops; preloads `/snippet`.
-- **`index.tsx`** — preloads `/snippet`.
-- No other references to `/snippet` anywhere in `src/` (verified via ripgrep).
+Restore the two-route flow so `/snippet` is the between-spins teaser and `/form` is the final email/DOB form.
 
 ## Changes
 
-1. **Delete** `src/routes/form.tsx` (the stub redirect — no longer needed).
-2. **Move** the content of `src/routes/snippet.tsx` into a new `src/routes/form.tsx`:
-   - Change `createFileRoute("/snippet")` → `createFileRoute("/form")`.
-   - **No other code or styling changes** — UI, copy, colors, fonts, layout, animations, form fields, CTAs, and the `SkyShell` background remain byte-identical.
-   - Add a small mount-time fallback (taken from the old stub) so direct visits to `/form` still work: if `sessionStorage.tikkun_target_sign` is missing, seed a random sign and set spin number to `FREE_SPINS_BEFORE_FORM + 1`. This is gated on "empty session" so the normal flow from `/spinning` is unaffected.
-3. **Delete** `src/routes/snippet.tsx`.
-4. **Update internal links** (3 spots):
-   - `src/routes/spinning.tsx`: `navigate({ to: "/snippet" })` and `router.preloadRoute({ to: "/snippet" })` → `/form`. Update the comment.
-   - `src/routes/index.tsx`: `router.preloadRoute({ to: "/snippet" })` → `/form`. Update the comment.
+1. **Create `src/routes/snippet.tsx`** — teaser-only screen extracted from current `form.tsx` (`!showForm` branch): SkyShell, hebrew letter card, gold dividers, snippet text, red "See My Real Tikkun" CTA, "Free Full Birth Chart Reading" caption, rounded "Spin again" secondary button. Styling byte-identical.
+   - Red CTA `onClick` → `navigate({ to: "/form" })`.
+   - "Spin again" → increments spin number, picks new target sign, navigates to `/spinning` (hidden when `spinNumber >= MAX_SPINS`).
+   - On mount: if `spinNumber > FREE_SPINS_BEFORE_FORM`, `navigate({ to: "/form", replace: true })`.
+
+2. **Rewrite `src/routes/form.tsx`** — form-only screen (`showForm` branch): heading, name/email/DOB inputs, newsletter checkbox, red "Reveal my Tikkun" submit, T&Cs line, `submitLead` via `useServerFn`. On mount, seed session sign if missing, and `setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1)`.
+
+3. **Update `src/routes/spinning.tsx`** — change `/form` references back to `/snippet` in `router.preloadRoute` and post-spin `navigate`.
+
+4. **Update `src/routes/index.tsx`** — change preload target from `/form` back to `/snippet`.
+
 5. `src/routeTree.gen.ts` regenerates automatically.
 
-## What I will NOT touch
+## Reveal rules for `/form`
 
-- `TikkunWheel.tsx`, `SkyShell`, `StarField`, `landing-style.ts`, all copy/strings, all CSS classes, all inline styles, all animations, the spin/form logic, `lead.functions.ts`, `tikkun-data.ts`, `spinAttempts.ts`.
-- Design tokens, colors, typography, button styles, glow/pulse animations — unchanged.
+- Auto-redirect from `/snippet` after free spins exhausted (`spinNumber > FREE_SPINS_BEFORE_FORM`, i.e. spin 4+).
+- Direct navigation when user clicks red "See My Real Tikkun" CTA on `/snippet`.
 
-## Verification (post-edit)
+## Not touched
 
-1. `rg "snippet"` across `src/` (excluding `routeTree.gen.ts` and unrelated `bundle.ts` data comment) — expect **zero matches**.
-2. Confirm the build/typecheck passes (TanStack regenerates the route tree; `to: "/form"` is type-checked).
-3. Browser check at the preview:
-   - Load `/` → click wheel → wheel spins → lands on `/form` (URL changes from `/snippet` to `/form`).
-   - On `/form`, "Spin again" works and visuals are identical to before.
-   - Exhaust free spins → form variant renders with the same fields, CTAs, and red pulsing button.
-   - Direct visit to `/form` with no session also renders correctly (fallback seed).
-4. Visual spot-check vs. before: hebrew letter, dividers, gold accents, red CTA, "Free Full Birth Chart Reading" caption, secondary "Spin again" button — all unchanged.
+`TikkunWheel.tsx`, `SkyShell`, `StarField`, `landing-style.ts`, copy strings, colors, typography, animations, `lead.functions.ts`, `tikkun-data.ts`, `spinAttempts.ts`. No visual or business-logic changes — purely a route split.
 
-## Files touched
+## Verification
 
-- delete: `src/routes/snippet.tsx`
-- delete + recreate: `src/routes/form.tsx` (now holds the real page)
-- edit: `src/routes/spinning.tsx`
-- edit: `src/routes/index.tsx`
+- `rg "to: \"/snippet\""` and `rg "to: \"/form\""` show only expected references.
+- Flow: `/` → wheel → `/spinning` → `/snippet` (teaser). "Spin again" loops back through `/spinning` → `/snippet` with new sign. After 3 free spins → next attempt auto-redirects `/snippet` → `/form`. Red CTA on `/snippet` jumps to `/form` early. `/form` submit → `/reading`.
+- Visual spot-check: teaser and form pages match current appearance.
