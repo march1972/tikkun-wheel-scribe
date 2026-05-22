@@ -1,45 +1,81 @@
-# Rename `/snippet` → `/form` (clean, no design changes)
+# Re-audit and harden the home → spinning → snippet wheel flow
 
-## Audit of current state
+## What is actually going wrong
 
-- **`/snippet`** — the actual post-wheel page (teaser + email/DOB form variants).
-- **`/form`** — a stub that seeds sessionStorage and `replace`-redirects to `/snippet`.
-- **`/spinning`** — navigates to `/snippet` when wheel stops; preloads `/snippet`.
-- **`index.tsx`** — preloads `/snippet`.
-- No other references to `/snippet` anywhere in `src/` (verified via ripgrep).
+Do I know what the issue is? Yes: the flow is not failing because of one button handler; it is stuttering because hydration, animation, and routing are fighting each other on the first interaction.
 
-## Changes
+1. **The wheel SVG is causing React hydration mismatches**
+   - Console shows mismatched SVG coordinates such as `y2=27.485979540325758` vs `27.485979540325744`.
+   - That comes from rendering floating-point SVG geometry from `Math.sin` / `Math.cos` during SSR and again in the browser.
+   - React warns that it will not patch those attributes. On mobile this can make the first click feel unreliable because the app is hydrating/reconciling while the user taps.
 
-1. **Delete** `src/routes/form.tsx` (the stub redirect — no longer needed).
-2. **Move** the content of `src/routes/snippet.tsx` into a new `src/routes/form.tsx`:
-   - Change `createFileRoute("/snippet")` → `createFileRoute("/form")`.
-   - **No other code or styling changes** — UI, copy, colors, fonts, layout, animations, form fields, CTAs, and the `SkyShell` background remain byte-identical.
-   - Add a small mount-time fallback (taken from the old stub) so direct visits to `/form` still work: if `sessionStorage.tikkun_target_sign` is missing, seed a random sign and set spin number to `FREE_SPINS_BEFORE_FORM + 1`. This is gated on "empty session" so the normal flow from `/spinning` is unaffected.
-3. **Delete** `src/routes/snippet.tsx`.
-4. **Update internal links** (3 spots):
-   - `src/routes/spinning.tsx`: `navigate({ to: "/snippet" })` and `router.preloadRoute({ to: "/snippet" })` → `/form`. Update the comment.
-   - `src/routes/index.tsx`: `router.preloadRoute({ to: "/snippet" })` → `/form`. Update the comment.
-5. `src/routeTree.gen.ts` regenerates automatically.
+2. **The wheel size hook is still not SSR-safe**
+   - `useResponsiveWheelSize` now reads `window.innerWidth` inside the `useState` initializer.
+   - That avoids some size flash, but it also means the first browser render can differ from the server render whenever the computed client size is not the SSR fallback.
+   - This is exactly the kind of SSR/client branch React flags as a hydration problem.
 
-## What I will NOT touch
+3. **The wheel component injects a large dynamic `<style>` tag per wheel render**
+   - `TikkunWheel` creates unique keyframes and inline CSS with size-derived numeric values on every instance.
+   - That increases style recalculation and makes route transitions heavier than they need to be.
 
-- `TikkunWheel.tsx`, `SkyShell`, `StarField`, `landing-style.ts`, all copy/strings, all CSS classes, all inline styles, all animations, the spin/form logic, `lead.functions.ts`, `tikkun-data.ts`, `spinAttempts.ts`.
-- Design tokens, colors, typography, button styles, glow/pulse animations — unchanged.
+4. **The home page is still too heavy for the first tap on a 320px mobile viewport**
+   - Measured mobile profile: ~1,283 elements, 181 layouts, 183 style recalcs before interaction.
+   - Home renders a 360-star field plus multiple additional star fields later in the page. Even if visually nice, it is expensive during the first click.
 
-## Verification (post-edit)
+5. **Navigation waits behind visual animation instead of being guaranteed by route state**
+   - `/spinning` relies on the wheel animation callback plus a timeout fallback.
+   - That usually works, but the user experience still depends on mounting/hydrating another animated SVG page before reaching `/snippet`.
 
-1. `rg "snippet"` across `src/` (excluding `routeTree.gen.ts` and unrelated `bundle.ts` data comment) — expect **zero matches**.
-2. Confirm the build/typecheck passes (TanStack regenerates the route tree; `to: "/form"` is type-checked).
-3. Browser check at the preview:
-   - Load `/` → click wheel → wheel spins → lands on `/form` (URL changes from `/snippet` to `/form`).
-   - On `/form`, "Spin again" works and visuals are identical to before.
-   - Exhaust free spins → form variant renders with the same fields, CTAs, and red pulsing button.
-   - Direct visit to `/form` with no session also renders correctly (fallback seed).
-4. Visual spot-check vs. before: hebrew letter, dividers, gold accents, red CTA, "Free Full Birth Chart Reading" caption, secondary "Spin again" button — all unchanged.
+6. **Root error handling can hide real route failures**
+   - The root error boundary still redirects with `window.location.replace('/')`.
+   - If a route error occurs during `/spinning` or `/snippet`, it can look like the wheel “stuttered and stayed home” instead of showing the real issue.
 
-## Files touched
+## Recommended fix
 
-- delete: `src/routes/snippet.tsx`
-- delete + recreate: `src/routes/form.tsx` (now holds the real page)
-- edit: `src/routes/spinning.tsx`
-- edit: `src/routes/index.tsx`
+1. **Make the wheel SSR-deterministic**
+   - Refactor `TikkunWheel` to render in a fixed internal SVG coordinate system, for example `viewBox="0 0 1000 1000"`.
+   - Scale the outer container with CSS width/height only.
+   - Round all generated SVG coordinates to a stable precision before rendering.
+   - Move keyframes to static CSS classes instead of generating a unique `<style>` block with dynamic numbers per render.
+
+2. **Replace the wheel size hook with CSS-first sizing**
+   - Stop reading `window` during initial render.
+   - Give the wheel wrapper one stable CSS variable like `--wheel-size: clamp(280px, 85vw, 440px)`.
+   - Use the same CSS sizing on `/` and `/spinning` so refreshes and route changes cannot resize the wheel after hydration.
+
+3. **Make the click path immediate and one-way**
+   - On wheel or CTA tap: synchronously choose/store the target and navigate once to `/spinning` with an in-memory guard.
+   - Disable pointer events while the route change is starting so double taps cannot queue duplicate navigation.
+   - Use route preloading for `/spinning` and `/snippet` from home to reduce first-click chunk delay.
+
+4. **Make `/spinning` a short deterministic transition**
+   - Read/create the target before rendering the wheel.
+   - Start the transition timer at route mount and always navigate to `/snippet` after the fixed duration.
+   - Keep the wheel animation visual-only; it should never be the only thing responsible for advancing the flow.
+
+5. **Reduce mobile render cost on home**
+   - Lower star density on the first viewport and remove or defer below-the-fold star layers on mobile.
+   - Remove hover/active scale transitions around the clickable wheel on touch-sized screens.
+   - Keep the visual style, but cut avoidable DOM and style work before the first interaction.
+
+6. **Stop silent hard redirects for route errors**
+   - Replace `window.location.replace('/')` in error/not-found handling with a lightweight fallback UI or router navigation.
+   - Keep stale chunk recovery only for real chunk-load errors, not general route errors.
+
+## Files to change after approval
+
+- `src/components/TikkunWheel.tsx`
+- `src/hooks/useResponsiveWheelSize.ts` or remove its usage from this flow
+- `src/routes/index.tsx`
+- `src/routes/spinning.tsx`
+- `src/routes/__root.tsx`
+- `src/components/landing/StarField.tsx`
+
+## Validation after implementation
+
+- Test at 320×568 and 390×844 mobile viewports.
+- Confirm there are no React hydration mismatch warnings.
+- Refresh `/` repeatedly and confirm the wheel is the same size on first paint and after hydration.
+- Tap the wheel and CTA repeatedly; confirm one immediate route change to `/spinning`.
+- Confirm `/spinning` always reaches `/snippet`, including on refresh and slow-device simulation.
+- Re-run a mobile performance profile and confirm lower DOM/style work on the first screen.

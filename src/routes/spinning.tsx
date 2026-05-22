@@ -32,9 +32,9 @@ function Spinning() {
   const targetRef = useRef<string>(typeof window === "undefined" ? "aries" : resolveTarget());
   const navigatedRef = useRef(false);
 
-  // Preload /form so the next hop is instant.
+  // Preload /snippet so the next hop is instant.
   useEffect(() => {
-    router.preloadRoute({ to: "/form" }).catch(() => {});
+    router.preloadRoute({ to: "/snippet" }).catch(() => {});
   }, [router]);
 
   // Single deterministic timer drives the transition — the wheel is visual only.
@@ -42,7 +42,7 @@ function Spinning() {
     const id = setTimeout(() => {
       if (navigatedRef.current) return;
       navigatedRef.current = true;
-      navigate({ to: "/form" });
+      navigate({ to: "/snippet" });
     }, SPIN_DURATION_MS);
     return () => clearTimeout(id);
   }, [navigate]);
