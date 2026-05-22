@@ -1,31 +1,53 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { HEAD, BODY, C_INK, C_DAWN } from "@/lib/landing-style";
+import { randomTikkunSign, signById } from "@/lib/tikkun-data";
 
 export const Route = createFileRoute("/spinning")({
   component: Spinning,
   head: () => ({ meta: [{ title: "Searching your Tikkun…" }] }),
 });
 
+// Match the wheel's internal spin duration (~2.5s) plus a small safety margin.
+const SPIN_FALLBACK_MS = 3200;
+
+function readInitialTarget(): string {
+  if (typeof window === "undefined") return "aries";
+  const existing = sessionStorage.getItem("tikkun_target_sign");
+  if (signById(existing)) return existing as string;
+  const fresh = randomTikkunSign().id;
+  try {
+    sessionStorage.setItem("tikkun_target_sign", fresh);
+  } catch {}
+  return fresh;
+}
+
 function Spinning() {
   const navigate = useNavigate();
-  const [target, setTarget] = useState<string | null>(null);
-  const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
+  // Match the home page wheel sizing so the wheel never changes size between routes.
+  const wheelSize = useResponsiveWheelSize(0.85, 280, 440);
+  const [target] = useState<string>(readInitialTarget);
+  const navigatedRef = useRef(false);
 
+  const go = () => {
+    if (navigatedRef.current) return;
+    navigatedRef.current = true;
+    navigate({ to: "/snippet" });
+  };
+
+  // Hard fallback — always advance to /snippet even if the wheel onSettle
+  // callback is interrupted (e.g. reduced motion, blurred tab, slow device).
   useEffect(() => {
-    const t = sessionStorage.getItem("tikkun_target_sign");
-    if (!t) {
-      navigate({ to: "/" });
-      return;
-    }
-    setTarget(t);
-  }, [navigate]);
+    const id = setTimeout(go, SPIN_FALLBACK_MS);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <SkyShell starDensity={360}>
+    <SkyShell starDensity={200}>
       <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h1
@@ -33,7 +55,7 @@ function Spinning() {
               fontFamily: HEAD,
               color: C_INK,
               fontWeight: 500,
-              fontSize: "clamp(48px, 9vw, 112px)",
+              fontSize: "clamp(40px, 8vw, 96px)",
               lineHeight: 1.0,
               letterSpacing: "-0.035em",
             }}
@@ -55,7 +77,7 @@ function Spinning() {
               size={wheelSize}
               state="spinning"
               targetKey={target}
-              onSettle={() => navigate({ to: "/snippet" })}
+              onSettle={go}
             />
           </div>
 
