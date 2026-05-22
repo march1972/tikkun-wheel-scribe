@@ -19,7 +19,7 @@ export function useResponsiveWheelSize(
     return Math.max(min, Math.round(next));
   };
 
-  const [size, setSize] = useState<number>(min);
+  const [size, setSize] = useState<number>(() => compute());
 
   useEffect(() => {
     const onResize = () => setSize(compute());
