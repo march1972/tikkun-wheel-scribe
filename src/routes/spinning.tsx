@@ -26,6 +26,22 @@ function Spinning() {
 
   return (
     <SkyShell starDensity={360}>
+      <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
+        <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-center">
+          <span
+            style={{
+              fontFamily: BODY,
+              color: "rgba(200, 215, 235, 0.78)",
+              fontSize: "10px",
+              letterSpacing: "0.42em",
+              textTransform: "uppercase",
+              fontWeight: 600,
+            }}
+          >
+            Kabbalah Astrology
+          </span>
+        </div>
+      </header>
       <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h1
