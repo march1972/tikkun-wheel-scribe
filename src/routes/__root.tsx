@@ -11,7 +11,9 @@ import appCss from "../styles.css?url";
 
 function SilentHomeRedirect() {
   useEffect(() => {
-    if (typeof window !== "undefined") window.location.replace("/");
+    if (typeof window !== "undefined" && window.location.pathname !== "/") {
+      window.location.replace("/");
+    }
   }, []);
   return null;
 }
