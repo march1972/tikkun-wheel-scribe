@@ -1,8 +1,7 @@
-import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { Reveal } from "@/components/landing/Reveal";
-import { StarField } from "@/components/landing/StarField";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
 import { resetAttempts, setCurrentSpinNumber } from "@/lib/spinAttempts";
@@ -62,7 +61,93 @@ const C_RULE = "rgba(253, 246, 230, 0.20)";
 const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";
 
 
-// StarField now imported from "@/components/landing/StarField" (shared).
+/** Scattered stars with twinkle + slow parallax drift. */
+function StarField({
+  density = 90,
+  opacity = 0.7,
+  seedOffset = 0,
+  driftSeconds = 90,
+}: {
+  density?: number;
+  opacity?: number;
+  seedOffset?: number;
+  driftSeconds?: number;
+}) {
+  // Mulberry32 PRNG — produces well-distributed pseudo-random values
+  // so stars truly scatter instead of forming visible diagonal bands.
+  const mulberry32 = (a: number) => {
+    let t = a >>> 0;
+    return () => {
+      t = (t + 0x6d2b79f5) >>> 0;
+      let x = t;
+      x = Math.imul(x ^ (x >>> 15), x | 1);
+      x ^= x + Math.imul(x ^ (x >>> 7), x | 61);
+      return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+    };
+  };
+  const stars = Array.from({ length: density }).map((_, i) => {
+    const rng = mulberry32((i + 1) * 2654435761 + seedOffset * 97);
+    // Burn a few values to decorrelate adjacent indices.
+    rng(); rng();
+    const left = rng() * 100;
+    const top = rng() * 100;
+    const v = rng();
+    const big = v > 0.92;
+    const mid = v > 0.78 && !big;
+    const size = big ? 2.5 : mid ? 1.6 : 1;
+    const o = 0.45 + rng() * 0.55;
+    const tint = rng();
+    const bg =
+      tint > 0.93
+        ? "#a8c8e8" // cool moonlight cyan
+        : tint > 0.86
+          ? "#ffd6b8" // dawn warmth
+          : "#fffdf3";
+    return (
+      <span
+        key={i}
+        className="absolute rounded-full"
+        style={{
+          left: `${left}%`,
+          top: `${top}%`,
+          width: `${size}px`,
+          height: `${size}px`,
+          backgroundColor: bg,
+          opacity: o * opacity,
+          boxShadow: big
+            ? "0 0 8px rgba(245,207,122,0.85), 0 0 14px rgba(255,176,136,0.4)"
+            : mid
+              ? "0 0 4px rgba(253,246,230,0.6)"
+              : undefined,
+        }}
+      />
+    );
+  });
+  const driftName = `tk-drift-${seedOffset}`;
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      aria-hidden="true"
+    >
+      <style>{`
+        @keyframes ${driftName} {
+          0%   { transform: translate3d(0, 0, 0); }
+          50%  { transform: translate3d(-2%, -1.2%, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+      `}</style>
+      <div
+        className="absolute inset-0"
+        style={{
+          animation: `${driftName} ${driftSeconds}s ease-in-out infinite`,
+          willChange: "transform",
+        }}
+      >
+        {stars}
+      </div>
+    </div>
+  );
+}
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -125,21 +210,13 @@ function PrimaryCTA({
 
 function Landing() {
   const navigate = useNavigate();
-  const router = useRouter();
-  const wheelSize = useResponsiveWheelSize(0.85, 280, 440);
+  const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
   const haloRef = useRef<HTMLDivElement | null>(null);
 
   // Reset spin counter on each fresh visit to the landing page.
   useEffect(() => {
     resetAttempts();
   }, []);
-
-  // Preload the spinning and snippet routes so the first tap navigates instantly.
-  useEffect(() => {
-    router.preloadRoute({ to: "/spinning" }).catch(() => {});
-    router.preloadRoute({ to: "/snippet" }).catch(() => {});
-  }, [router]);
-
 
   // Scroll-linked halo drift behind the hero wheel (matches /history, /reading).
   useEffect(() => {
@@ -164,15 +241,10 @@ function Landing() {
   }, []);
 
 
-  const startingRef = useRef(false);
   const handleSpin = () => {
-    if (startingRef.current) return;
-    startingRef.current = true;
     setCurrentSpinNumber(1);
     const target = randomTikkunSign();
-    try {
-      sessionStorage.setItem("tikkun_target_sign", target.id);
-    } catch {}
+    sessionStorage.setItem("tikkun_target_sign", target.id);
     navigate({ to: "/spinning" });
   };
 
@@ -185,28 +257,26 @@ function Landing() {
 
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
-        <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.25rem,2.5vh,2rem)]">
-          <div className="mx-auto max-w-6xl flex justify-center">
-            <Link
-              to="/"
-              className="transition-opacity duration-300 hover:opacity-100"
+        <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
+          <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-[#fdf7e7]">
+            <span
               style={{
                 fontFamily: BODY,
-                color: "rgba(241, 233, 213, 0.7)",
-                fontSize: "clamp(11px, 1.1vw, 12px)",
-                letterSpacing: "0.28em",
+                color: "rgba(160, 180, 210, 0.55)",
+                fontSize: "10px",
+                letterSpacing: "0.38em",
                 textTransform: "uppercase",
-                fontWeight: 500,
-                lineHeight: 1,
+                fontWeight: 600,
               }}
             >
               Kabbalah Astrology
-            </Link>
+            </span>
           </div>
+
         </header>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(2rem,4vh,3.5rem)]">
+        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
           <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
             <div
               ref={haloRef}
@@ -231,7 +301,7 @@ function Landing() {
                 fontFamily: HEAD,
                 color: C_INK,
                 fontWeight: 500,
-                fontSize: "clamp(44px, 7.5vw, 96px)",
+                fontSize: "clamp(48px, 9vw, 112px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.035em",
               }}
@@ -261,7 +331,7 @@ function Landing() {
             </div>
 
             <p
-              className="relative mt-[clamp(1.5rem,3vh,2.25rem)]"
+              className="relative mt-[clamp(3.25rem,6.5vh,5rem)]"
               style={{
                 fontFamily: BODY, color: C_INK_SOFT,
                 lineHeight: 1.55,
@@ -534,7 +604,7 @@ function Landing() {
                   fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
-                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth. <br />You see&nbsp;<span style={{ color: C_GOLD, fontStyle: "italic" }}>your life's recurring purpose patterns</span>&nbsp;that influence your path in relationships, career, finances, and personal fulfilment.
+                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth.&nbsp;You see&nbsp;<span style={{ color: C_GOLD, fontStyle: "italic" }}>your life's recurring purpose patterns</span>&nbsp;that influence your path in relationships, career, and finances, and fulfilment, and what to correct.
               </p>
             </Reveal>
             <Reveal delay={280}>

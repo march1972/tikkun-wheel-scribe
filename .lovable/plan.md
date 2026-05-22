@@ -1,34 +1,42 @@
-# Fix 1 — Wheel doesn't visibly spin on /spinning
+# Match `/snippet` to the new `/` and `/reading` type scale
 
-**Root cause:** `TikkunWheel` triggers rotation inside `useIsomorphicLayoutEffect` (= `useLayoutEffect` in browser). It fires before paint and immediately calls `setSpinAngle(target + 1440)`. React commits the new angle in the same frame, so the browser never paints the 0° starting angle — the CSS `transform 2.5s` transition has no "from" state and the wheel snaps to its final angle (visually: sits still).
+Apply the same editorial / magazine-bold scale (intensity 4/5) used on `/` and `/reading` to `/snippet` so the three pages read as one. Frontend only — no new content, no new elements, no copy or layout structure changes.
 
-**Fix:** in `src/components/TikkunWheel.tsx`, change the spin-trigger effect from `useIsomorphicLayoutEffect` to `useEffect`. `useEffect` fires after paint, so the 0° angle paints first, then the state update triggers the 2.5s transition. Remove the now-unused `useIsomorphicLayoutEffect` helper. No other wheel changes.
+## Scale changes (src/routes/snippet.tsx)
 
-# Fix 2 — /spinning must look identical to / at the top
+### Pre-form state (snippet card view)
 
-**Root cause:** `/` uses its own `<main>` + locally-declared `C_SKY_GRAD` + `<StarField density={360}>` + header link + h1, while `/spinning` uses `SkyShell` with `starDensity={200}` and a different h1 wrapper. Result: visibly different gradient feel (fewer stars, and the SkyShell wrapper composes differently).
+| Element | Current | New |
+|---|---|---|
+| "Sound like you?" eyebrow | clamp(10px, 2.6vw, 13px), tracking 0.22em | unchanged — matches eyebrow micro-type left untouched on `/` and `/reading` |
+| Hebrew letter (sign.hebrewLetter) | clamp(50px, 10vw, 90px) | clamp(72px, 13vw, 120px), keep glow |
+| Snippet body paragraph (sign.screen3.spinSnippet) | 15px, line-height 1.7 | clamp(17px, 1.9vw, 21px), line-height 1.7 |
+| "Spin again" button label | 11px / 0.22em | unchanged — button micro-type |
+| Primary CTA label | 12px / 0.24em | unchanged — button micro-type |
+| "Free Full Birth Chart Reading" caption | clamp(12px, 1.3vw, 14px) | unchanged — meta caption |
 
-**Fix:** rewrite `src/routes/spinning.tsx` so its top half is byte-equivalent to `/`'s top half:
+### Form state (after final free spin)
 
-1. Drop `SkyShell`. Render bare `<main className="relative min-h-screen overflow-hidden" style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}>` using the same `C_SKY_GRAD` from `src/lib/landing-style.ts` that `/` uses (already identical strings — confirmed).
-2. Render `<StarField density={360} opacity={0.85} />` (same as `/`).
-3. Render the same header block as `/`: centered "Kabbalah Astrology" `<Link to="/">` with identical font/size/letter-spacing/color.
-4. Render the same hero `<h1>` block as `/`: "Reveal your *Tikkun*" with identical fontFamily (HEAD), color (C_INK), size (`clamp(44px, 7.5vw, 96px)`), line-height, letter-spacing, and the italic dawn-red "Tikkun" span.
-5. Keep the existing wheel underneath in `state="spinning"`, same `useResponsiveWheelSize(0.85, 280, 440)`, same drop-shadow filter, same target/timer logic, same "Searching Tikkun patterns…" caption.
+| Element | Current | New |
+|---|---|---|
+| H2 "See your actual Tikkun chart" | clamp(25px, 6.9vw, 37px), letter-spacing −0.02em, line-height 1.2 | clamp(34px, 6.2vw, 60px), letter-spacing −0.025em, line-height 1.1 (slightly tempered vs section H2s on `/` because it sits inside the narrow form column) |
+| "(Free reading + workbook)" eyebrow | 12px / 0.18em | unchanged — eyebrow micro-type |
+| Field labels | 10px / 0.22em | unchanged — form micro-type |
+| Inputs | 15px | unchanged — input affordance, changing this breaks 16px iOS zoom rule |
+| Newsletter checkbox label | 13px | unchanged — UI affordance |
+| Submit button label | 12px / 0.24em | unchanged — button micro-type |
+| Footer "Email used to send…" line | 15px | unchanged — fine print |
 
-Net effect: the top of `/spinning` (background gradient, stars, header link, headline) is pixel-equivalent to `/`. Only the wheel below switches from idle to spinning and the caption swaps in.
+## Rationale
 
-# What I will NOT do
+- Hebrew letter and snippet body paragraph carry the "reveal" moment — bumping them up matches the editorial weight of the H1 and body bumps on `/` and `/reading`.
+- Form H2 gets bumped but capped lower than a full section H2 (76px) because the form card is narrow (max-w-2xl) and a 76px headline would wrap awkwardly above the inputs.
+- Everything else on `/snippet` is either eyebrow / form chrome / button micro-type that was deliberately left alone on `/` and `/reading`.
 
-- No change to wheel size, easing, duration, target logic, or settle timing.
-- No change to `/`, `/snippet`, `/form`, routes, or business logic.
-- No change to `spinAttempts.ts`, sessionStorage keys, or counters.
-- No edit to `SkyShell` itself (left in place for any other future use; `/spinning` simply stops using it).
-- No new gradients, palette tokens, or font changes.
-- No change to `useResponsiveWheelSize` or `StarField`.
+## Verification
 
-# Verification
-
-- `/` and `/spinning` show the same gradient, same star density, same centered "Kabbalah Astrology" link, same "Reveal your *Tikkun*" headline at the same size and position.
-- Clicking any CTA on `/` → `/spinning` → wheel visibly rotates ~4 turns over 2.5s → `/snippet`.
-- "Spin again" on `/snippet` → same visible rotation on `/spinning`.
+- No editorial / copy changes — type scale only.
+- Visual check at 778px and at desktop ≥1280px for both pre-form and form states.
+- Mobile pass at 375px and 414px: confirm Hebrew letter doesn't overflow the snippet card, form H2 wraps cleanly above inputs without pushing the submit button awkwardly far down, and spacing rhythm (mt clamps) still feels balanced after the bumps.
+- Confirm no horizontal scroll on mobile widths.
+- Confirm form H2 doesn't push the inputs below the fold on a 530-tall viewport.

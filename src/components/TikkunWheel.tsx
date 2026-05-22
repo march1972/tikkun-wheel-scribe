@@ -22,9 +22,6 @@ const SPARKLES: Array<[number, number, number]> = [
   [312, 0.74, 1.3],
 ];
 
-const stable = (n: number) => Math.round(n * 1000) / 1000;
-
-
 interface TikkunWheelProps {
   size?: number;
   state?: "idle" | "spinning" | "stopped";
@@ -52,12 +49,13 @@ export function TikkunWheel({
   const alephHaloId = `tk-aleph-halo-${uid}`;
   const letterGlowId = `tk-letter-glow-${uid}`;
 
-  const cx = stable(size / 2);
-  const cy = stable(size / 2);
-  const ringR = stable(size * 0.464);
-  const letterR = stable(size * 0.393);
-  const alephR = stable(size * 0.10);
-  const letterFontSize = stable(size * 0.075);
+  const cx = size / 2;
+  const cy = size / 2;
+  const ringR = size * 0.464;
+  const letterR = size * 0.393;
+  const alephR = size * 0.10;
+  const letterFontSize = size * 0.075;
+  const alephFontSize = size * 0.042;
 
   // Brand palette (matches src/styles.css tokens).
   const accent = "#f0c868";       // gold-bright
@@ -79,12 +77,14 @@ export function TikkunWheel({
     if (state !== "spinning" || resolvedTarget === null) return;
     settledRef.current = false;
     const targetOffset = -resolvedTarget * 30;
-    setSpinAngle((a) => {
-      const currentMod = ((a % 360) + 360) % 360;
-      const desiredMod = ((targetOffset % 360) + 360) % 360;
-      let delta = desiredMod - currentMod;
-      if (delta <= 0) delta += 360;
-      return a + delta + 360 * 4;
+    const id = requestAnimationFrame(() => {
+      setSpinAngle((a) => {
+        const currentMod = ((a % 360) + 360) % 360;
+        const desiredMod = ((targetOffset % 360) + 360) % 360;
+        let delta = desiredMod - currentMod;
+        if (delta <= 0) delta += 360;
+        return a + delta + 360 * 4;
+      });
     });
     const settleId = setTimeout(() => {
       if (settledRef.current) return;
@@ -93,6 +93,7 @@ export function TikkunWheel({
       onSettle?.({ glyph, name: NAMES[glyph] });
     }, 2550);
     return () => {
+      cancelAnimationFrame(id);
       clearTimeout(settleId);
     };
   }, [state, resolvedTarget, onSettle]);
@@ -154,9 +155,9 @@ export function TikkunWheel({
           50%      { opacity: 0.95; transform: scale(1.08); }
         }
         @keyframes tk-ripple-${uid} {
-          0%   { r: ${stable(ringR * 0.98)}; opacity: 0; stroke-width: 1.4; }
+          0%   { r: ${ringR * 0.98}; opacity: 0; stroke-width: 1.4; }
           15%  { opacity: 0.55; }
-          100% { r: ${stable(ringR * 1.32)}; opacity: 0; stroke-width: 0.4; }
+          100% { r: ${ringR * 1.32}; opacity: 0; stroke-width: 0.4; }
         }
         @keyframes tk-twinkle-${uid} {
           0%, 100% { opacity: 0.25; }
@@ -244,7 +245,7 @@ export function TikkunWheel({
             <stop offset="100%" stopColor="#d8c79b" />
           </radialGradient>
           <filter id={letterGlowId} x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation={stable(size * 0.006)} result="b" />
+            <feGaussianBlur stdDeviation={size * 0.006} result="b" />
             <feMerge>
               <feMergeNode in="b" />
               <feMergeNode in="SourceGraphic" />
@@ -253,7 +254,7 @@ export function TikkunWheel({
         </defs>
 
         {/* Outer aura outside the gold ring */}
-        <circle cx={cx} cy={cy} r={stable(ringR * 1.18)} fill={`url(#${auraId})`} />
+        <circle cx={cx} cy={cy} r={ringR * 1.18} fill={`url(#${auraId})`} />
 
         {/* Tap-affordance ripples */}
         <circle
@@ -294,7 +295,7 @@ export function TikkunWheel({
         />
 
         {/* Central glow */}
-        <circle cx={cx} cy={cy} r={stable(size * 0.3)} fill={`url(#${glowId})`} />
+        <circle cx={cx} cy={cy} r={size * 0.3} fill={`url(#${glowId})`} />
 
         {/* Outer gold ring (static, doesn't rotate) */}
         <circle
@@ -303,20 +304,20 @@ export function TikkunWheel({
           r={ringR}
           fill="none"
           stroke={`url(#${ringGradId})`}
-          strokeWidth={stable(size * 0.011)}
+          strokeWidth={size * 0.011}
         />
 
         {/* Rotating group: inner rings, spokes, sparkles, letters */}
         <g style={{ ...ringTransform, transformOrigin: `${cx}px ${cy}px` }}>
-          <circle cx={cx} cy={cy} r={stable(ringR * 0.28)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.32} />
-          <circle cx={cx} cy={cy} r={stable(ringR * 0.42)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.36} />
-          <circle cx={cx} cy={cy} r={stable(ringR * 0.56)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.3} />
-          <circle cx={cx} cy={cy} r={stable(ringR * 0.72)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.24} />
+          <circle cx={cx} cy={cy} r={ringR * 0.28} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.32} />
+          <circle cx={cx} cy={cy} r={ringR * 0.42} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.36} />
+          <circle cx={cx} cy={cy} r={ringR * 0.56} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.3} />
+          <circle cx={cx} cy={cy} r={ringR * 0.72} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.24} />
 
           {LETTERS.map((_, i) => {
             const angleRad = (-90 + i * 30) * (Math.PI / 180);
-            const x2 = stable(cx + ringR * Math.cos(angleRad));
-            const y2 = stable(cy + ringR * Math.sin(angleRad));
+            const x2 = cx + ringR * Math.cos(angleRad);
+            const y2 = cy + ringR * Math.sin(angleRad);
             return (
               <line
                 key={`spoke-${i}`}
@@ -334,8 +335,8 @@ export function TikkunWheel({
           {/* Mystical sparkles */}
           {SPARKLES.map(([deg, rFrac, dotR], i) => {
             const a = (deg - 90) * (Math.PI / 180);
-            const sx = stable(cx + ringR * rFrac * Math.cos(a));
-            const sy = stable(cy + ringR * rFrac * Math.sin(a));
+            const sx = cx + ringR * rFrac * Math.cos(a);
+            const sy = cy + ringR * rFrac * Math.sin(a);
             return (
               <circle
                 key={`spark-${i}`}
@@ -353,8 +354,8 @@ export function TikkunWheel({
           {LETTERS.map((letter, i) => {
             const angleDeg = -90 + i * 30 + 15; // +15° centers letter between spokes
             const angleRad = angleDeg * (Math.PI / 180);
-            const lx = stable(cx + letterR * Math.cos(angleRad));
-            const ly = stable(cy + letterR * Math.sin(angleRad));
+            const lx = cx + letterR * Math.cos(angleRad);
+            const ly = cy + letterR * Math.sin(angleRad);
             const isHighlighted = highlightLetter === letter && state === "stopped";
             const isAccentSlot = i % 3 === 2;
             const baseColor = isAccentSlot ? accentBright : text;
@@ -365,7 +366,7 @@ export function TikkunWheel({
                 x={lx}
                 y={ly}
                 fill={isHighlighted ? accentBright : baseColor}
-                fontSize={isHighlighted ? stable(letterFontSize * 1.35) : letterFontSize}
+                fontSize={isHighlighted ? letterFontSize * 1.35 : letterFontSize}
                 fontFamily="'Frank Ruhl Libre', 'Fraunces', serif"
                 fontWeight={isHighlighted ? 600 : isAccentSlot ? 500 : 400}
                 textAnchor="middle"
@@ -384,7 +385,7 @@ export function TikkunWheel({
           className={`tk-aleph-halo-${uid}`}
           cx={cx}
           cy={cy}
-          r={stable(alephR * 1.55)}
+          r={alephR * 1.55}
           fill={`url(#${alephHaloId})`}
         />
 
@@ -395,10 +396,10 @@ export function TikkunWheel({
             className={`tk-cta-shine-${uid}`}
             cx={cx}
             cy={cy}
-            r={stable(alephR * 1.4)}
+            r={alephR * 1.4}
             fill="none"
             stroke="rgba(255, 252, 235, 0.55)"
-            strokeWidth={stable(size * 0.01)}
+            strokeWidth={size * 0.01}
             style={{ filter: "blur(3px)" }}
           />
           {/* Main medallion — soft moonlight white */}
@@ -416,7 +417,7 @@ export function TikkunWheel({
           />
           <text
             x={cx}
-            y={stable(cy - size * 0.005)}
+            y={cy - size * 0.005}
             fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
@@ -432,7 +433,7 @@ export function TikkunWheel({
           </text>
           <text
             x={cx}
-            y={stable(cy + size * 0.032)}
+            y={cy + size * 0.032}
             fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",

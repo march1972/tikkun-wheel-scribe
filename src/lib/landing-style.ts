@@ -4,11 +4,6 @@ export const BODY = "var(--font-sans)";
 export const C_SKY_GRAD =
   "radial-gradient(55% 35% at 88% 0%, rgba(245,207,122,0.22) 0%, rgba(245,207,122,0) 60%), radial-gradient(70% 45% at 10% 100%, rgba(120,150,190,0.22) 0%, rgba(120,150,190,0) 65%), radial-gradient(60% 50% at 50% 35%, rgba(120,150,200,0.18) 0%, rgba(10,14,28,0) 70%), linear-gradient(180deg, #0c1426 0%, #1b2540 28%, #233055 55%, #2a3a5e 80%, #324468 100%)";
 
-// Reveal screen — distinct warmer gradient for /snippet so it reads as a new moment.
-// Deep plum/indigo base with a warm gold-dawn glow at the top-center behind the Hebrew letter.
-export const C_REVEAL_GRAD =
-  "radial-gradient(60% 40% at 50% 10%, rgba(245,207,122,0.32) 0%, rgba(230,57,70,0.12) 35%, rgba(20,12,30,0) 75%), radial-gradient(75% 55% at 50% 55%, rgba(180,120,160,0.14) 0%, rgba(10,8,20,0) 70%), radial-gradient(50% 40% at 15% 100%, rgba(230,57,70,0.10) 0%, rgba(230,57,70,0) 70%), linear-gradient(180deg, #1a0f24 0%, #221432 30%, #2a1a3e 60%, #1f1330 90%, #150a20 100%)";
-
 export const C_BAND_DEEP =
   "radial-gradient(70% 55% at 50% 40%, rgba(120,150,200,0.14) 0%, rgba(10,14,28,0) 70%), radial-gradient(40% 30% at 15% 85%, rgba(245,207,122,0.06) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #0a1020 0%, #060a18 50%, #0a1020 100%)";
 export const C_BAND_MID =

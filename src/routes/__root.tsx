@@ -11,28 +11,14 @@ import appCss from "../styles.css?url";
 
 function SilentHomeRedirect() {
   useEffect(() => {
-    if (typeof window !== "undefined" && window.location.pathname !== "/") {
-      window.location.replace("/");
-    }
+    if (typeof window !== "undefined") window.location.replace("/");
   }, []);
   return null;
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error }: { error: Error; reset: () => void }) {
   console.error(error);
-  return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0c1426", color: "#fdf6e6", fontFamily: "system-ui, sans-serif", padding: "2rem", textAlign: "center" }}>
-      <div>
-        <p style={{ marginBottom: "1rem", opacity: 0.8 }}>Something went off course.</p>
-        <button
-          onClick={() => { reset(); }}
-          style={{ padding: "10px 20px", background: "#e63946", color: "#fdf6e6", border: "none", cursor: "pointer", letterSpacing: "0.2em", textTransform: "uppercase", fontSize: "12px" }}
-        >
-          Try again
-        </button>
-      </div>
-    </div>
-  );
+  return <SilentHomeRedirect />;
 }
 
 
@@ -79,42 +65,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-
-  // Recover from stale-chunk errors after a redeploy. When the browser is
-  // holding an old index.html, lazy module imports 404 and clicks appear
-  // to do nothing. Detect that and hard-reload once to pick up fresh assets.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const RELOAD_KEY = "tk_chunk_reload_ts";
-    const isChunkError = (msg?: string) =>
-      !!msg &&
-      (msg.includes("Importing a module script failed") ||
-        msg.includes("Failed to fetch dynamically imported module") ||
-        msg.includes("error loading dynamically imported module") ||
-        msg.includes("ChunkLoadError"));
-
-    const maybeReload = () => {
-      const last = Number(sessionStorage.getItem(RELOAD_KEY) || 0);
-      if (Date.now() - last < 10_000) return; // avoid reload loops
-      sessionStorage.setItem(RELOAD_KEY, String(Date.now()));
-      window.location.reload();
-    };
-
-    const onError = (e: ErrorEvent) => {
-      if (isChunkError(e.message) || isChunkError(e.error?.message)) maybeReload();
-    };
-    const onRejection = (e: PromiseRejectionEvent) => {
-      const reason: any = e.reason;
-      const msg = typeof reason === "string" ? reason : reason?.message;
-      if (isChunkError(msg)) maybeReload();
-    };
-    window.addEventListener("error", onError);
-    window.addEventListener("unhandledrejection", onRejection);
-    return () => {
-      window.removeEventListener("error", onError);
-      window.removeEventListener("unhandledrejection", onRejection);
-    };
-  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
