@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useId, useRef, useState, useCallback } from "react";
 
 // Order matches the original prototype data.js: TIKKUN_LETTERS
 const LETTERS = ["ה", "ו", "ז", "ח", "ט", "י", "ל", "נ", "ס", "ע", "צ", "ק"];
@@ -23,7 +23,7 @@ const SPARKLES: Array<[number, number, number]> = [
 ];
 
 const stable = (n: number) => Math.round(n * 1000) / 1000;
-const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 
 interface TikkunWheelProps {
   size?: number;
@@ -75,7 +75,7 @@ export function TikkunWheel({
   const settledRef = useRef(false);
 
   // Trigger the spin: rotate to target letter + 4 extra turns, ease-out.
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     if (state !== "spinning" || resolvedTarget === null) return;
     settledRef.current = false;
     const targetOffset = -resolvedTarget * 30;
