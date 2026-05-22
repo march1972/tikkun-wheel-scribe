@@ -1,32 +1,38 @@
 import { useEffect, useState } from "react";
 
 /**
- * Returns a pixel size for the TikkunWheel that scales with viewport:
- *   min(vwFraction * 100vw, max) clamped to [min, max].
- * SSR-safe (returns max on first render).
+ * Returns a stable pixel size for the TikkunWheel.
+ *
+ * To avoid the "huge wheel then shrink" flash on mobile, the first render
+ * computes from window dimensions synchronously (when available) instead of
+ * returning `max`. On SSR/no-window we use `min` (mobile-safe) as the
+ * deterministic placeholder.
  */
 export function useResponsiveWheelSize(
   vwFraction = 0.8,
   min = 240,
   max = 420,
 ): number {
-  const [size, setSize] = useState(max);
+  const compute = () => {
+    if (typeof window === "undefined") return min;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const next = Math.min(vw * vwFraction, vh * 0.5, max);
+    return Math.max(min, Math.round(next));
+  };
+
+  const [size, setSize] = useState<number>(compute);
 
   useEffect(() => {
-    const compute = () => {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      // Constrain by both width and height so it never overflows on short screens.
-      const next = Math.min(vw * vwFraction, vh * 0.5, max);
-      setSize(Math.max(min, Math.round(next)));
-    };
-    compute();
-    window.addEventListener("resize", compute);
-    window.addEventListener("orientationchange", compute);
+    const onResize = () => setSize(compute());
+    onResize();
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
     return () => {
-      window.removeEventListener("resize", compute);
-      window.removeEventListener("orientationchange", compute);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vwFraction, min, max]);
 
   return size;
