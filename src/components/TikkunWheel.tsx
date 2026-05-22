@@ -314,8 +314,8 @@ export function TikkunWheel({
 
           {LETTERS.map((_, i) => {
             const angleRad = (-90 + i * 30) * (Math.PI / 180);
-            const x2 = cx + ringR * Math.cos(angleRad);
-            const y2 = cy + ringR * Math.sin(angleRad);
+            const x2 = stable(cx + ringR * Math.cos(angleRad));
+            const y2 = stable(cy + ringR * Math.sin(angleRad));
             return (
               <line
                 key={`spoke-${i}`}
@@ -333,8 +333,8 @@ export function TikkunWheel({
           {/* Mystical sparkles */}
           {SPARKLES.map(([deg, rFrac, dotR], i) => {
             const a = (deg - 90) * (Math.PI / 180);
-            const sx = cx + ringR * rFrac * Math.cos(a);
-            const sy = cy + ringR * rFrac * Math.sin(a);
+            const sx = stable(cx + ringR * rFrac * Math.cos(a));
+            const sy = stable(cy + ringR * rFrac * Math.sin(a));
             return (
               <circle
                 key={`spark-${i}`}
@@ -352,8 +352,8 @@ export function TikkunWheel({
           {LETTERS.map((letter, i) => {
             const angleDeg = -90 + i * 30 + 15; // +15° centers letter between spokes
             const angleRad = angleDeg * (Math.PI / 180);
-            const lx = cx + letterR * Math.cos(angleRad);
-            const ly = cy + letterR * Math.sin(angleRad);
+            const lx = stable(cx + letterR * Math.cos(angleRad));
+            const ly = stable(cy + letterR * Math.sin(angleRad));
             const isHighlighted = highlightLetter === letter && state === "stopped";
             const isAccentSlot = i % 3 === 2;
             const baseColor = isAccentSlot ? accentBright : text;
@@ -364,7 +364,7 @@ export function TikkunWheel({
                 x={lx}
                 y={ly}
                 fill={isHighlighted ? accentBright : baseColor}
-                fontSize={isHighlighted ? letterFontSize * 1.35 : letterFontSize}
+                fontSize={isHighlighted ? stable(letterFontSize * 1.35) : letterFontSize}
                 fontFamily="'Frank Ruhl Libre', 'Fraunces', serif"
                 fontWeight={isHighlighted ? 600 : isAccentSlot ? 500 : 400}
                 textAnchor="middle"
