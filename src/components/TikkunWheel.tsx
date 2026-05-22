@@ -383,7 +383,7 @@ export function TikkunWheel({
           className={`tk-aleph-halo-${uid}`}
           cx={cx}
           cy={cy}
-          r={alephR * 1.55}
+          r={stable(alephR * 1.55)}
           fill={`url(#${alephHaloId})`}
         />
 
@@ -394,10 +394,10 @@ export function TikkunWheel({
             className={`tk-cta-shine-${uid}`}
             cx={cx}
             cy={cy}
-            r={alephR * 1.4}
+            r={stable(alephR * 1.4)}
             fill="none"
             stroke="rgba(255, 252, 235, 0.55)"
-            strokeWidth={size * 0.01}
+            strokeWidth={stable(size * 0.01)}
             style={{ filter: "blur(3px)" }}
           />
           {/* Main medallion — soft moonlight white */}
@@ -415,7 +415,7 @@ export function TikkunWheel({
           />
           <text
             x={cx}
-            y={cy - size * 0.005}
+            y={stable(cy - size * 0.005)}
             fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
@@ -431,7 +431,7 @@ export function TikkunWheel({
           </text>
           <text
             x={cx}
-            y={cy + size * 0.032}
+            y={stable(cy + size * 0.032)}
             fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
