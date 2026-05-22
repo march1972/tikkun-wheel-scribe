@@ -258,7 +258,7 @@ function Landing() {
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
-          <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-[#fdf7e7]">
+          <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-center text-[#fdf7e7]">
             <span
               style={{
                 fontFamily: BODY,
