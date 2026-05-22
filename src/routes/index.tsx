@@ -249,15 +249,13 @@ function Landing() {
 
             <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]">
               <div
-                className="group relative cursor-pointer rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+                className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
                 style={{
-                  width: "clamp(280px, 85vw, 440px)",
-                  aspectRatio: "1 / 1",
                   filter:
                     "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
                 }}
               >
-                <TikkunWheel state="idle" onClick={handleSpin} />
+                <TikkunWheel size={wheelSize} state="idle" onClick={handleSpin} />
               </div>
             </div>
 
