@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SpinningRouteImport } from './routes/spinning'
-import { Route as SnippetRouteImport } from './routes/snippet'
 import { Route as ReadingRouteImport } from './routes/reading'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as HistoryRouteImport } from './routes/history'
@@ -26,11 +25,6 @@ const TermsRoute = TermsRouteImport.update({
 const SpinningRoute = SpinningRouteImport.update({
   id: '/spinning',
   path: '/spinning',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SnippetRoute = SnippetRouteImport.update({
-  id: '/snippet',
-  path: '/snippet',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReadingRoute = ReadingRouteImport.update({
@@ -65,7 +59,6 @@ export interface FileRoutesByFullPath {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
-  '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
 }
@@ -75,7 +68,6 @@ export interface FileRoutesByTo {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
-  '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
 }
@@ -86,7 +78,6 @@ export interface FileRoutesById {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
-  '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
 }
@@ -98,7 +89,6 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/reading'
-    | '/snippet'
     | '/spinning'
     | '/terms'
   fileRoutesByTo: FileRoutesByTo
@@ -108,7 +98,6 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/reading'
-    | '/snippet'
     | '/spinning'
     | '/terms'
   id:
@@ -118,7 +107,6 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/reading'
-    | '/snippet'
     | '/spinning'
     | '/terms'
   fileRoutesById: FileRoutesById
@@ -129,7 +117,6 @@ export interface RootRouteChildren {
   HistoryRoute: typeof HistoryRoute
   PrivacyRoute: typeof PrivacyRoute
   ReadingRoute: typeof ReadingRoute
-  SnippetRoute: typeof SnippetRoute
   SpinningRoute: typeof SpinningRoute
   TermsRoute: typeof TermsRoute
 }
@@ -148,13 +135,6 @@ declare module '@tanstack/react-router' {
       path: '/spinning'
       fullPath: '/spinning'
       preLoaderRoute: typeof SpinningRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/snippet': {
-      id: '/snippet'
-      path: '/snippet'
-      fullPath: '/snippet'
-      preLoaderRoute: typeof SnippetRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reading': {
@@ -201,7 +181,6 @@ const rootRouteChildren: RootRouteChildren = {
   HistoryRoute: HistoryRoute,
   PrivacyRoute: PrivacyRoute,
   ReadingRoute: ReadingRoute,
-  SnippetRoute: SnippetRoute,
   SpinningRoute: SpinningRoute,
   TermsRoute: TermsRoute,
 }
