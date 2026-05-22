@@ -258,14 +258,13 @@ function Landing() {
       <div className="relative">
         {/* ── TOP MARGIN HEADER ──────────────────────────────── */}
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
-          <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-[#fdf7e7]">
+          <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-center">
             <span
-              className="opacity-0"
               style={{
                 fontFamily: BODY,
-                color: "rgba(160, 180, 210, 0.55)",
+                color: "rgba(200, 215, 235, 0.78)",
                 fontSize: "10px",
-                letterSpacing: "0.38em",
+                letterSpacing: "0.42em",
                 textTransform: "uppercase",
                 fontWeight: 600,
               }}
@@ -273,7 +272,6 @@ function Landing() {
               Kabbalah Astrology
             </span>
           </div>
-
         </header>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
