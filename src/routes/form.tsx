@@ -6,7 +6,7 @@ import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { signById, randomTikkunSign } from "@/lib/tikkun-data";
-import { FREE_SPINS_BEFORE_FORM, setCurrentSpinNumber } from "@/lib/spinAttempts";
+
 import { submitLead } from "@/lib/lead.functions";
 
 const inputStyle: React.CSSProperties = {
@@ -62,8 +62,6 @@ function FormPage() {
       const seeded = randomTikkunSign(null).id;
       sessionStorage.setItem("tikkun_target_sign", seeded);
     }
-    // Mark spin counter as "in form mode" so /snippet auto-redirects here.
-    setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
     setReady(true);
   }, []);
 
