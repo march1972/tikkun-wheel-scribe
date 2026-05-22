@@ -318,7 +318,7 @@ function Landing() {
               </span>
             </h1>
 
-            <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]">
+            <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)] flex w-full justify-center">
               <div
                 className="group relative cursor-pointer rounded-full transition-transform duration-700 ease-out hover:scale-[1.015] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c868] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
                 style={{
