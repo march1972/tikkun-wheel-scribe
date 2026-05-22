@@ -10,7 +10,13 @@ export function useResponsiveWheelSize(
   min = 240,
   max = 420,
 ): number {
-  const [size, setSize] = useState(max);
+  const [size, setSize] = useState(() => {
+    if (typeof window === "undefined") return min;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const next = Math.min(vw * vwFraction, vh * 0.55, max);
+    return Math.max(min, Math.round(next));
+  });
 
   useEffect(() => {
     const compute = () => {
