@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, useCallback } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, useCallback } from "react";
 
 // Order matches the original prototype data.js: TIKKUN_LETTERS
 const LETTERS = ["ה", "ו", "ז", "ח", "ט", "י", "ל", "נ", "ס", "ע", "צ", "ק"];
@@ -7,35 +7,25 @@ const NAMES: Record<string, string> = {
   "ל": "Lamed", "נ": "Nun", "ס": "Samekh", "ע": "Ayin", "צ": "Tsadi", "ק": "Qof",
 };
 
+// Sign keys map to a letter index (kept for the existing routes).
 const SIGN_KEY_TO_INDEX: Record<string, number> = {
   aries: 0, taurus: 1, gemini: 2, cancer: 3, leo: 4, virgo: 5,
   libra: 6, scorpio: 7, sagittarius: 8, capricorn: 9, aquarius: 10, pisces: 11,
 };
 
-// All geometry below uses a fixed 1000x1000 viewBox so SSR and CSR agree
-// on every numeric SVG attribute. The container scales via CSS.
-const VB = 1000;
-const CX = 500;
-const CY = 500;
-const RING_R = 464;
-const LETTER_R = 393;
-const ALEPH_R = 100;
-const LETTER_FS = 75;
-
-// Round helper to keep SVG attribute strings byte-identical between SSR/CSR.
-const r2 = (n: number) => Math.round(n * 100) / 100;
-
-// Fixed sparkle positions inside the wheel — polar (angle deg, radius fraction of RING_R, dot radius units).
+// Fixed sparkle positions inside the wheel — polar (angle deg, radius fraction of ringR).
 const SPARKLES: Array<[number, number, number]> = [
-  [22, 0.78, 6],
-  [108, 0.6, 5],
-  [165, 0.82, 7],
-  [248, 0.55, 4],
-  [312, 0.74, 6],
+  [22, 0.78, 1.4],
+  [108, 0.6, 1.1],
+  [165, 0.82, 1.6],
+  [248, 0.55, 1.0],
+  [312, 0.74, 1.3],
 ];
 
+const stable = (n: number) => Math.round(n * 1000) / 1000;
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 interface TikkunWheelProps {
-  /** Optional pixel size. When omitted, the wheel fills its parent (parent must size it). */
   size?: number;
   state?: "idle" | "spinning" | "stopped";
   targetKey?: string | null;
@@ -45,50 +35,8 @@ interface TikkunWheelProps {
   onSettle?: (letter: { glyph: string; name: string }) => void;
 }
 
-// Inject the wheel stylesheet once per page. Animations use fixed numbers
-// (the viewBox is constant), so there is nothing dynamic to template.
-let stylesInjected = false;
-function ensureStyles() {
-  if (stylesInjected || typeof document === "undefined") return;
-  stylesInjected = true;
-  const css = `
-    .tk-wheel { user-select: none; -webkit-tap-highlight-color: transparent; outline: none; transition: transform 320ms ease; display: inline-block; }
-    .tk-wheel:hover { transform: scale(1.02); }
-    .tk-wheel:focus-visible { box-shadow: 0 0 0 2px #f0c868, 0 0 0 8px rgba(240,200,104,0.22); border-radius: 9999px; }
-    .tk-wheel svg { display: block; overflow: visible; width: 100%; height: 100%; }
-
-    @keyframes tk-slow-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes tk-breath { 0%,100%{transform:scale(1);opacity:.95} 50%{transform:scale(1.045);opacity:1} }
-    @keyframes tk-halo { 0%,100%{opacity:.55;transform:scale(1)} 50%{opacity:.95;transform:scale(1.08)} }
-    @keyframes tk-ripple { 0%{r:454;opacity:0;stroke-width:1.4} 15%{opacity:.55} 100%{r:612;opacity:0;stroke-width:.4} }
-    @keyframes tk-twinkle { 0%,100%{opacity:.25} 50%{opacity:.95} }
-    @keyframes tk-shine { 0%,100%{opacity:.35;transform:scale(1)} 50%{opacity:.9;transform:scale(1.08)} }
-
-    .tk-rot-idle { animation: tk-slow-spin 20s linear infinite; transform-origin: 500px 500px; }
-    .tk-aleph-idle { transform-origin: 500px 500px; animation: tk-breath 2.4s ease-in-out infinite; }
-    .tk-halo-idle { transform-origin: 500px 500px; animation: tk-halo 3.6s ease-in-out .6s infinite; }
-    .tk-halo-static { transform-origin: 500px 500px; opacity: .7; }
-    .tk-ripple { animation: tk-ripple 3.2s ease-out infinite; }
-    .tk-ripple.d1 { animation-delay: .8s; }
-    .tk-ripple.d2 { animation-delay: 1.6s; }
-    .tk-ripple.d3 { animation-delay: 2.4s; }
-    .tk-spark { animation: tk-twinkle 3.4s ease-in-out infinite; }
-    .tk-shine { transform-origin: 500px 500px; animation: tk-shine 2.4s ease-in-out infinite; }
-    .tk-wheel:hover .tk-cta-bg { filter: drop-shadow(0 0 32px rgba(255,252,235,1)) drop-shadow(0 0 60px rgba(255,246,214,.85)); transform: scale(1.06); transform-origin: 500px 500px; }
-    .tk-cta-bg { transition: filter 220ms ease, transform 220ms ease; transform-origin: 500px 500px; filter: drop-shadow(0 0 16px rgba(255,252,235,.85)) drop-shadow(0 0 34px rgba(255,246,214,.55)); }
-
-    @media (prefers-reduced-motion: reduce) {
-      .tk-rot-idle, .tk-aleph-idle, .tk-halo-idle, .tk-ripple, .tk-spark, .tk-shine { animation: none !important; }
-    }
-  `;
-  const tag = document.createElement("style");
-  tag.setAttribute("data-tk", "wheel");
-  tag.appendChild(document.createTextNode(css));
-  document.head.appendChild(tag);
-}
-
 export function TikkunWheel({
-  size,
+  size = 240,
   state = "idle",
   targetKey,
   targetIndex,
@@ -96,18 +44,25 @@ export function TikkunWheel({
   onClick,
   onSettle,
 }: TikkunWheelProps) {
-  ensureStyles();
   const uid = useId().replace(/[:]/g, "");
-  const glowId = `g-${uid}`;
-  const auraId = `a-${uid}`;
-  const ringGradId = `rg-${uid}`;
-  const alephId = `al-${uid}`;
-  const alephHaloId = `ah-${uid}`;
-  const letterGlowId = `lg-${uid}`;
+  const glowId = `tk-glow-${uid}`;
+  const auraId = `tk-aura-${uid}`;
+  const ringGradId = `tk-ring-${uid}`;
+  const alephId = `tk-aleph-${uid}`;
+  const alephHaloId = `tk-aleph-halo-${uid}`;
+  const letterGlowId = `tk-letter-glow-${uid}`;
 
-  const accent = "#f0c868";
-  const accentBright = "#FFE9B8";
-  const text = "#f4ecdb";
+  const cx = stable(size / 2);
+  const cy = stable(size / 2);
+  const ringR = stable(size * 0.464);
+  const letterR = stable(size * 0.393);
+  const alephR = stable(size * 0.10);
+  const letterFontSize = stable(size * 0.075);
+
+  // Brand palette (matches src/styles.css tokens).
+  const accent = "#f0c868";       // gold-bright
+  const accentBright = "#FFE9B8"; // soft gold highlight
+  const text = "#f4ecdb";         // cream
 
   const resolvedTarget =
     typeof targetIndex === "number"
@@ -119,18 +74,17 @@ export function TikkunWheel({
   const [spinAngle, setSpinAngle] = useState(0);
   const settledRef = useRef(false);
 
-  useEffect(() => {
+  // Trigger the spin: rotate to target letter + 4 extra turns, ease-out.
+  useIsomorphicLayoutEffect(() => {
     if (state !== "spinning" || resolvedTarget === null) return;
     settledRef.current = false;
     const targetOffset = -resolvedTarget * 30;
-    const id = requestAnimationFrame(() => {
-      setSpinAngle((a) => {
-        const currentMod = ((a % 360) + 360) % 360;
-        const desiredMod = ((targetOffset % 360) + 360) % 360;
-        let delta = desiredMod - currentMod;
-        if (delta <= 0) delta += 360;
-        return a + delta + 360 * 4;
-      });
+    setSpinAngle((a) => {
+      const currentMod = ((a % 360) + 360) % 360;
+      const desiredMod = ((targetOffset % 360) + 360) % 360;
+      let delta = desiredMod - currentMod;
+      if (delta <= 0) delta += 360;
+      return a + delta + 360 * 4;
     });
     const settleId = setTimeout(() => {
       if (settledRef.current) return;
@@ -139,10 +93,19 @@ export function TikkunWheel({
       onSettle?.({ glyph, name: NAMES[glyph] });
     }, 2550);
     return () => {
-      cancelAnimationFrame(id);
       clearTimeout(settleId);
     };
   }, [state, resolvedTarget, onSettle]);
+
+  const ringTransform =
+    state === "spinning"
+      ? {
+          transform: `rotate(${spinAngle}deg)`,
+          transition: "transform 2.5s cubic-bezier(0.17, 0.67, 0.16, 0.99)",
+        }
+      : state === "idle"
+        ? { animation: `tk-slow-spin-${uid} 20s linear infinite` }
+        : {};
 
   const handleActivate = useCallback(() => {
     if (state === "spinning") return;
@@ -157,19 +120,6 @@ export function TikkunWheel({
   };
 
   const isIdle = state === "idle";
-  const isSpinning = state === "spinning";
-
-  const rotStyle: React.CSSProperties = isSpinning
-    ? {
-        transform: `rotate(${spinAngle}deg)`,
-        transition: "transform 2.5s cubic-bezier(0.17, 0.67, 0.16, 0.99)",
-        transformOrigin: `${CX}px ${CY}px`,
-      }
-    : { transformOrigin: `${CX}px ${CY}px` };
-
-  const containerStyle: React.CSSProperties = size
-    ? { width: size, height: size }
-    : { width: "100%", height: "100%" };
 
   return (
     <div
@@ -180,12 +130,93 @@ export function TikkunWheel({
       onKeyDown={handleKey}
       className="tk-wheel"
       style={{
-        ...containerStyle,
+        width: size,
+        height: size,
         position: "relative",
+        userSelect: "none",
         cursor: onClick ? "pointer" : "default",
+        WebkitTapHighlightColor: "transparent",
+        outline: "none",
+        transition: "transform 400ms ease",
       }}
     >
-      <svg viewBox={`0 0 ${VB} ${VB}`} preserveAspectRatio="xMidYMid meet">
+      <style>{`
+        @keyframes tk-slow-spin-${uid} {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes tk-breath-${uid} {
+          0%, 100% { transform: scale(1); opacity: 0.95; }
+          50%      { transform: scale(1.045); opacity: 1; }
+        }
+        @keyframes tk-halo-${uid} {
+          0%, 100% { opacity: 0.55; transform: scale(1); }
+          50%      { opacity: 0.95; transform: scale(1.08); }
+        }
+        @keyframes tk-ripple-${uid} {
+          0%   { r: ${stable(ringR * 0.98)}; opacity: 0; stroke-width: 1.4; }
+          15%  { opacity: 0.55; }
+          100% { r: ${stable(ringR * 1.32)}; opacity: 0; stroke-width: 0.4; }
+        }
+        @keyframes tk-twinkle-${uid} {
+          0%, 100% { opacity: 0.25; }
+          50%      { opacity: 0.95; }
+        }
+        @keyframes tk-shine-${uid} {
+          0%, 100% { opacity: 0.35; transform: scale(1); }
+          50%      { opacity: 0.9;  transform: scale(1.08); }
+        }
+        .tk-cta-shine-${uid} {
+          transform-origin: ${cx}px ${cy}px;
+          animation: tk-shine-${uid} 2.4s ease-in-out infinite;
+        }
+        .tk-wheel:hover { transform: scale(1.02); }
+        .tk-wheel:hover .tk-cta-bg-${uid} {
+          filter: drop-shadow(0 0 32px rgba(255,252,235,1)) drop-shadow(0 0 60px rgba(255,246,214,0.85));
+          transform: scale(1.06);
+          transform-origin: ${cx}px ${cy}px;
+        }
+        .tk-wheel:hover .tk-cta-shine-${uid} {
+          opacity: 1 !important;
+          transform: scale(1.15);
+          transform-origin: ${cx}px ${cy}px;
+        }
+        .tk-cta-bg-${uid} { transition: filter 220ms ease, transform 220ms ease; transform-origin: ${cx}px ${cy}px; }
+        .tk-wheel:focus-visible {
+          box-shadow: 0 0 0 2px ${accent}, 0 0 0 8px rgba(240,200,104,0.22);
+          border-radius: 9999px;
+        }
+        .tk-aleph-${uid} {
+          transform-origin: ${cx}px ${cy}px;
+          ${isIdle ? `animation: tk-breath-${uid} 2.4s ease-in-out infinite;` : ""}
+        }
+        .tk-aleph-halo-${uid} {
+          transform-origin: ${cx}px ${cy}px;
+          ${isIdle ? `animation: tk-halo-${uid} 3.6s ease-in-out 0.6s infinite;` : "opacity: 0.7;"}
+        }
+        .tk-ripple-${uid} {
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out infinite;` : "opacity: 0;"}
+        }
+        .tk-ripple2-${uid} {
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 0.8s infinite;` : "opacity: 0;"}
+        }
+        .tk-ripple3-${uid} {
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 1.6s infinite;` : "opacity: 0;"}
+        }
+        .tk-ripple4-${uid} {
+          ${isIdle ? `animation: tk-ripple-${uid} 3.2s ease-out 2.4s infinite;` : "opacity: 0;"}
+        }
+        .tk-spark-${uid} {
+          ${isIdle ? `animation: tk-twinkle-${uid} 3.4s ease-in-out infinite;` : ""}
+        }
+      `}</style>
+
+      <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        style={{ overflow: "visible", display: "block" }}
+      >
         <defs>
           <radialGradient id={glowId} cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor={accentBright} stopOpacity="0.7" />
@@ -213,7 +244,7 @@ export function TikkunWheel({
             <stop offset="100%" stopColor="#d8c79b" />
           </radialGradient>
           <filter id={letterGlowId} x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="6" result="b" />
+            <feGaussianBlur stdDeviation={stable(size * 0.006)} result="b" />
             <feMerge>
               <feMergeNode in="b" />
               <feMergeNode in="SourceGraphic" />
@@ -221,70 +252,120 @@ export function TikkunWheel({
           </filter>
         </defs>
 
-        <circle cx={CX} cy={CY} r={r2(RING_R * 1.18)} fill={`url(#${auraId})`} />
+        {/* Outer aura outside the gold ring */}
+        <circle cx={cx} cy={cy} r={stable(ringR * 1.18)} fill={`url(#${auraId})`} />
 
-        {isIdle && (
-          <>
-            <circle className="tk-ripple" cx={CX} cy={CY} r={RING_R} fill="none" stroke={accentBright} strokeWidth={1.2} />
-            <circle className="tk-ripple d1" cx={CX} cy={CY} r={RING_R} fill="none" stroke="#f4b5be" strokeWidth={1.2} />
-            <circle className="tk-ripple d2" cx={CX} cy={CY} r={RING_R} fill="none" stroke={accent} strokeWidth={1.2} />
-            <circle className="tk-ripple d3" cx={CX} cy={CY} r={RING_R} fill="none" stroke="#f4b5be" strokeWidth={1.2} />
-          </>
-        )}
+        {/* Tap-affordance ripples */}
+        <circle
+          className={`tk-ripple-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke={accentBright}
+          strokeWidth={1.2}
+        />
+        <circle
+          className={`tk-ripple2-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke="#f4b5be"
+          strokeWidth={1.2}
+        />
+        <circle
+          className={`tk-ripple3-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke={accent}
+          strokeWidth={1.2}
+        />
+        <circle
+          className={`tk-ripple4-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke="#f4b5be"
+          strokeWidth={1.2}
+        />
 
-        <circle cx={CX} cy={CY} r={300} fill={`url(#${glowId})`} />
+        {/* Central glow */}
+        <circle cx={cx} cy={cy} r={stable(size * 0.3)} fill={`url(#${glowId})`} />
 
-        <circle cx={CX} cy={CY} r={RING_R} fill="none" stroke={`url(#${ringGradId})`} strokeWidth={11} />
+        {/* Outer gold ring (static, doesn't rotate) */}
+        <circle
+          cx={cx}
+          cy={cy}
+          r={ringR}
+          fill="none"
+          stroke={`url(#${ringGradId})`}
+          strokeWidth={stable(size * 0.011)}
+        />
 
-        <g className={isIdle ? "tk-rot-idle" : ""} style={rotStyle}>
-          <circle cx={CX} cy={CY} r={r2(RING_R * 0.28)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.32} />
-          <circle cx={CX} cy={CY} r={r2(RING_R * 0.42)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.36} />
-          <circle cx={CX} cy={CY} r={r2(RING_R * 0.56)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.3} />
-          <circle cx={CX} cy={CY} r={r2(RING_R * 0.72)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.24} />
+        {/* Rotating group: inner rings, spokes, sparkles, letters */}
+        <g style={{ ...ringTransform, transformOrigin: `${cx}px ${cy}px` }}>
+          <circle cx={cx} cy={cy} r={stable(ringR * 0.28)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.32} />
+          <circle cx={cx} cy={cy} r={stable(ringR * 0.42)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.36} />
+          <circle cx={cx} cy={cy} r={stable(ringR * 0.56)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.3} />
+          <circle cx={cx} cy={cy} r={stable(ringR * 0.72)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.24} />
 
           {LETTERS.map((_, i) => {
             const angleRad = (-90 + i * 30) * (Math.PI / 180);
-            const x2 = r2(CX + RING_R * Math.cos(angleRad));
-            const y2 = r2(CY + RING_R * Math.sin(angleRad));
+            const x2 = stable(cx + ringR * Math.cos(angleRad));
+            const y2 = stable(cy + ringR * Math.sin(angleRad));
             return (
-              <line key={`spoke-${i}`} x1={CX} y1={CY} x2={x2} y2={y2} stroke={accent} strokeWidth={0.5} opacity={0.18} />
+              <line
+                key={`spoke-${i}`}
+                x1={cx}
+                y1={cy}
+                x2={x2}
+                y2={y2}
+                stroke={accent}
+                strokeWidth={0.5}
+                opacity={0.18}
+              />
             );
           })}
 
+          {/* Mystical sparkles */}
           {SPARKLES.map(([deg, rFrac, dotR], i) => {
             const a = (deg - 90) * (Math.PI / 180);
-            const sx = r2(CX + RING_R * rFrac * Math.cos(a));
-            const sy = r2(CY + RING_R * rFrac * Math.sin(a));
+            const sx = stable(cx + ringR * rFrac * Math.cos(a));
+            const sy = stable(cy + ringR * rFrac * Math.sin(a));
             return (
               <circle
                 key={`spark-${i}`}
-                className={isIdle ? "tk-spark" : undefined}
+                className={`tk-spark-${uid}`}
                 cx={sx}
                 cy={sy}
                 r={dotR}
                 fill={accentBright}
-                style={isIdle ? { animationDelay: `${i * 0.45}s` } : undefined}
+                style={{ animationDelay: `${i * 0.45}s` }}
                 filter={`url(#${letterGlowId})`}
               />
             );
           })}
 
           {LETTERS.map((letter, i) => {
-            const angleDeg = -90 + i * 30 + 15;
+            const angleDeg = -90 + i * 30 + 15; // +15° centers letter between spokes
             const angleRad = angleDeg * (Math.PI / 180);
-            const lx = r2(CX + LETTER_R * Math.cos(angleRad));
-            const ly = r2(CY + LETTER_R * Math.sin(angleRad));
+            const lx = stable(cx + letterR * Math.cos(angleRad));
+            const ly = stable(cy + letterR * Math.sin(angleRad));
             const isHighlighted = highlightLetter === letter && state === "stopped";
             const isAccentSlot = i % 3 === 2;
             const baseColor = isAccentSlot ? accentBright : text;
-            const rotation = r2(angleDeg + 90);
+            const rotation = angleDeg + 90; // top of letter points outward
             return (
               <text
                 key={`${letter}-${i}`}
                 x={lx}
                 y={ly}
                 fill={isHighlighted ? accentBright : baseColor}
-                fontSize={isHighlighted ? r2(LETTER_FS * 1.35) : LETTER_FS}
+                fontSize={isHighlighted ? stable(letterFontSize * 1.35) : letterFontSize}
                 fontFamily="'Frank Ruhl Libre', 'Fraunces', serif"
                 fontWeight={isHighlighted ? 600 : isAccentSlot ? 500 : 400}
                 textAnchor="middle"
@@ -298,36 +379,49 @@ export function TikkunWheel({
           })}
         </g>
 
+        {/* Aleph halo (pulses) */}
         <circle
-          className={isIdle ? "tk-halo-idle" : "tk-halo-static"}
-          cx={CX}
-          cy={CY}
-          r={r2(ALEPH_R * 1.55)}
+          className={`tk-aleph-halo-${uid}`}
+          cx={cx}
+          cy={cy}
+          r={stable(alephR * 1.55)}
           fill={`url(#${alephHaloId})`}
         />
 
-        <g className={isIdle ? "tk-aleph-idle" : ""} style={{ cursor: "pointer", transformOrigin: `${CX}px ${CY}px` }}>
-          {isIdle && (
-            <circle
-              className="tk-shine"
-              cx={CX}
-              cy={CY}
-              r={r2(ALEPH_R * 1.4)}
-              fill="none"
-              stroke="rgba(255, 252, 235, 0.55)"
-              strokeWidth={10}
-              style={{ filter: "blur(3px)" }}
-            />
-          )}
-          <circle className="tk-cta-bg" cx={CX} cy={CY} r={ALEPH_R} fill={`url(#${alephId})`} />
+        {/* Central CTA medallion (breathes) */}
+        <g className={`tk-aleph-${uid} tk-cta-${uid}`} style={{ cursor: "pointer" }}>
+          {/* Outer radiant glow — pulses like emanating white light */}
+          <circle
+            className={`tk-cta-shine-${uid}`}
+            cx={cx}
+            cy={cy}
+            r={stable(alephR * 1.4)}
+            fill="none"
+            stroke="rgba(255, 252, 235, 0.55)"
+            strokeWidth={stable(size * 0.01)}
+            style={{ filter: "blur(3px)" }}
+          />
+          {/* Main medallion — soft moonlight white */}
+          <circle
+            className={`tk-cta-bg-${uid}`}
+            cx={cx}
+            cy={cy}
+            r={alephR}
+            fill={`url(#${alephId})`}
+            stroke="none"
+            style={{
+              transition: "filter 200ms ease",
+              filter: "drop-shadow(0 0 16px rgba(255,252,235,0.85)) drop-shadow(0 0 34px rgba(255,246,214,0.55))",
+            }}
+          />
           <text
-            x={CX}
-            y={CY - 5}
+            x={cx}
+            y={stable(cy - size * 0.005)}
             fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
               fontWeight: 500,
-              fontSize: "28px",
+              fontSize: `${Math.max(9, Math.min(15, size * 0.028))}px`,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
             }}
@@ -337,13 +431,13 @@ export function TikkunWheel({
             enter
           </text>
           <text
-            x={CX}
-            y={CY + 32}
+            x={cx}
+            y={stable(cy + size * 0.032)}
             fill="#1b2540"
             style={{
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
               fontWeight: 500,
-              fontSize: "22px",
+              fontSize: `${Math.max(8, Math.min(12, size * 0.022))}px`,
               letterSpacing: "0.2em",
             }}
             textAnchor="middle"
