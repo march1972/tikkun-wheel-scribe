@@ -13,7 +13,7 @@ export const Route = createFileRoute("/spinning")({
 function Spinning() {
   const navigate = useNavigate();
   const [target, setTarget] = useState<string | null>(null);
-  const wheelSize = useResponsiveWheelSize(1.1, 380, 760);
+  const wheelSize = useResponsiveWheelSize(0.72, 220, 460);
 
   useEffect(() => {
     const t = sessionStorage.getItem("tikkun_target_sign");
