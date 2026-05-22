@@ -134,10 +134,10 @@ function Landing() {
     resetAttempts();
   }, []);
 
-  // Preload the spinning and snippet routes so the first tap navigates instantly.
+  // Preload the spinning and form routes so the first tap navigates instantly.
   useEffect(() => {
     router.preloadRoute({ to: "/spinning" }).catch(() => {});
-    router.preloadRoute({ to: "/snippet" }).catch(() => {});
+    router.preloadRoute({ to: "/form" }).catch(() => {});
   }, [router]);
 
   // Scroll-linked halo drift behind the hero wheel (matches /history, /reading).
