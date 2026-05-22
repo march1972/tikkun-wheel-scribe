@@ -252,7 +252,7 @@ export function TikkunWheel({
         </defs>
 
         {/* Outer aura outside the gold ring */}
-        <circle cx={cx} cy={cy} r={ringR * 1.18} fill={`url(#${auraId})`} />
+        <circle cx={cx} cy={cy} r={stable(ringR * 1.18)} fill={`url(#${auraId})`} />
 
         {/* Tap-affordance ripples */}
         <circle
@@ -293,7 +293,7 @@ export function TikkunWheel({
         />
 
         {/* Central glow */}
-        <circle cx={cx} cy={cy} r={size * 0.3} fill={`url(#${glowId})`} />
+        <circle cx={cx} cy={cy} r={stable(size * 0.3)} fill={`url(#${glowId})`} />
 
         {/* Outer gold ring (static, doesn't rotate) */}
         <circle
@@ -302,15 +302,15 @@ export function TikkunWheel({
           r={ringR}
           fill="none"
           stroke={`url(#${ringGradId})`}
-          strokeWidth={size * 0.011}
+          strokeWidth={stable(size * 0.011)}
         />
 
         {/* Rotating group: inner rings, spokes, sparkles, letters */}
         <g style={{ ...ringTransform, transformOrigin: `${cx}px ${cy}px` }}>
-          <circle cx={cx} cy={cy} r={ringR * 0.28} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.32} />
-          <circle cx={cx} cy={cy} r={ringR * 0.42} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.36} />
-          <circle cx={cx} cy={cy} r={ringR * 0.56} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.3} />
-          <circle cx={cx} cy={cy} r={ringR * 0.72} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.24} />
+          <circle cx={cx} cy={cy} r={stable(ringR * 0.28)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.32} />
+          <circle cx={cx} cy={cy} r={stable(ringR * 0.42)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.36} />
+          <circle cx={cx} cy={cy} r={stable(ringR * 0.56)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.3} />
+          <circle cx={cx} cy={cy} r={stable(ringR * 0.72)} fill="none" stroke={accent} strokeWidth={0.5} opacity={0.24} />
 
           {LETTERS.map((_, i) => {
             const angleRad = (-90 + i * 30) * (Math.PI / 180);
