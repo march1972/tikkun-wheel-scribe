@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
+import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { HEAD, BODY, C_INK, C_DAWN } from "@/lib/landing-style";
 import { randomTikkunSign, signById } from "@/lib/tikkun-data";
@@ -27,6 +28,7 @@ function resolveTarget(): string {
 function Spinning() {
   const navigate = useNavigate();
   const router = useRouter();
+  const wheelSize = useResponsiveWheelSize(0.85, 280, 440);
   const targetRef = useRef<string>(typeof window === "undefined" ? "aries" : resolveTarget());
   const navigatedRef = useRef(false);
 
@@ -68,13 +70,11 @@ function Spinning() {
           <div
             className="mt-[clamp(1.5rem,3.5vh,2.5rem)]"
             style={{
-              width: "clamp(280px, 85vw, 440px)",
-              aspectRatio: "1 / 1",
               filter:
                 "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
             }}
           >
-            <TikkunWheel state="spinning" targetKey={targetRef.current} />
+            <TikkunWheel size={wheelSize} state="spinning" targetKey={targetRef.current} />
           </div>
 
           <p
