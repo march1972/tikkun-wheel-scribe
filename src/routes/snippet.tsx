@@ -352,7 +352,7 @@ function Snippet() {
                 </label>
 
                 {err && (
-                  <p style={{ fontFamily: BODY, color: C_DAWN, fontSize: "12px" }}>{err}</p>
+                  <p style={{ fontFamily: BODY, color: "#c44553", fontSize: "12px", fontWeight: 500, letterSpacing: "0.02em" }}>{err}</p>
                 )}
 
                 <button
