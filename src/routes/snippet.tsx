@@ -130,11 +130,14 @@ function Snippet() {
     <SkyShell starDensity={360}>
       <style>{`
         @keyframes cta-pulse-glow {
-          0%, 100% { box-shadow: 0 10px 40px -10px #e63946aa; transform: scale(1); }
-          50% { box-shadow: 0 14px 50px -8px #e63946cc, 0 0 25px -3px #e6394633; transform: scale(1.015); }
+          0%, 100% { box-shadow: inset 0 0 0 1px rgba(240,200,104,0.25), 0 10px 40px -10px #e63946aa; transform: scale(1); }
+          50% { box-shadow: inset 0 0 0 1px rgba(240,200,104,0.35), 0 14px 50px -8px #e63946cc, 0 0 25px -3px #e6394633; transform: scale(1.015); }
         }
         .cta-pulse-glow { animation: cta-pulse-glow 2.5s ease-in-out infinite; }
-        .cta-pulse-glow:hover { animation: none; }
+        .cta-pulse-glow:hover {
+          animation: none;
+          background: linear-gradient(135deg, #ff4d5c 0%, #d11e2b 100%) !important;
+        }
       `}</style>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1rem,2.5vh,1.75rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
