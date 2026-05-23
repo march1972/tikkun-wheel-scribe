@@ -13,8 +13,13 @@ export function SkyShell({
   return (
     <main
       className="relative min-h-screen overflow-hidden"
-      style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
+      style={{ color: C_INK_SOFT }}
     >
+      <div
+        aria-hidden
+        className="fixed inset-0 -z-10"
+        style={{ background: C_SKY_GRAD }}
+      />
       <StarField density={starDensity} opacity={0.85} />
       <div className="relative">
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
