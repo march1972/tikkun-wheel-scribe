@@ -220,7 +220,7 @@ function Snippet() {
                 setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
                 setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
               }}
-              className="cta-pulse-glow group mt-[clamp(0.9rem,2vh,1.4rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+              className="cta-pulse-glow group mt-[clamp(1.4rem,3.2vh,2rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
               style={{
                 background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
                 color: C_INK,
