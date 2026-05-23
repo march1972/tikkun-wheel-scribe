@@ -155,22 +155,26 @@ function Snippet() {
             <div
               className="w-full mt-[clamp(0.75rem,2vh,1.25rem)]"
               style={{
-                background: "rgba(240, 200, 104, 0.06)",
-                border: `1px solid ${C_GOLD}33`,
+                background: "rgba(220, 228, 240, 0.05)",
+                border: "1px solid rgba(220, 228, 240, 0.28)",
                 borderRadius: 2,
                 padding: "clamp(1.25rem,2.5vw,1.75rem)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
               }}
             >
               <div
                 className="relative flex items-center justify-center"
-                style={{ minHeight: "clamp(60px, 11vw, 100px)" }}
+                style={{
+                  minHeight: "clamp(52px, 9.5vw, 88px)",
+                  marginTop: "clamp(-10px, -1vh, -6px)",
+                }}
               >
                 <span
                   aria-hidden
                   style={{
                     position: "absolute",
-                    width: "clamp(80px, 14vw, 130px)",
-                    height: "clamp(80px, 14vw, 130px)",
+                    width: "clamp(72px, 12.5vw, 117px)",
+                    height: "clamp(72px, 12.5vw, 117px)",
                     background: `radial-gradient(circle, ${C_GOLD}40 0%, ${C_DAWN}20 45%, transparent 72%)`,
                     filter: "blur(6px)",
                     pointerEvents: "none",
