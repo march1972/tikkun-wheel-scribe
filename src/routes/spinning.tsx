@@ -31,7 +31,7 @@ function Spinning() {
           <span
             style={{
               fontFamily: BODY,
-              color: "rgba(80, 105, 150, 0.28)",
+              color: "rgba(80, 105, 150, 0.35)",
               fontSize: "10px",
               letterSpacing: "0.42em",
               textTransform: "uppercase",
@@ -49,7 +49,7 @@ function Spinning() {
               fontFamily: HEAD,
               color: C_INK,
               fontWeight: 500,
-              fontSize: "clamp(48px, 9vw, 112px)",
+              fontSize: "clamp(41px, 7.65vw, 95px)",
               lineHeight: 1.0,
               letterSpacing: "-0.035em",
             }}
