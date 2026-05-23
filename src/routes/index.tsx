@@ -388,12 +388,12 @@ function Landing() {
                 }}
               >
                 What you{" "}
-                <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>.
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>
               </h2>
             </Reveal>
 
             <ul
-              className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] text-left"
+              className="mt-[clamp(2.5rem,5vh,3rem)] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-[clamp(1.25rem,2vw,1.5rem)] text-left"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.65,
