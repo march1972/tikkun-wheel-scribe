@@ -216,43 +216,52 @@ function Snippet() {
 
         {!showForm && (
           <>
-            {/* CTA — rectangular red button with value prop inside */}
+            {/* CTA — matte oxblood, no pulse */}
             <button
               type="button"
               onClick={() => {
                 setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
                 setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
               }}
-              className="cta-pulse-glow group mt-[clamp(1.4rem,3.2vh,2rem)] inline-flex w-auto min-w-[260px] max-w-[320px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02]"
+              className="group mt-[clamp(1.4rem,3.2vh,2rem)] inline-flex w-auto min-w-[260px] max-w-[320px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px"
               style={{
-                background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
+                background: "#5c1a24",
                 color: C_INK,
                 fontFamily: BODY,
-                fontWeight: 700,
-                letterSpacing: "0.22em",
+                fontWeight: 600,
+                letterSpacing: "0.18em",
                 fontSize: "12px",
-                padding: "18px 32px",
+                padding: "20px 36px",
                 borderRadius: "3px",
-                boxShadow: `inset 0 0 0 1px rgba(240,200,104,0.25), 0 10px 40px -10px ${C_DAWN}aa`,
+                border: "1px solid rgba(240,200,104,0.35)",
+                boxShadow: "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#6b1f2b";
+                e.currentTarget.style.boxShadow = "0 12px 32px -12px rgba(92,26,36,0.55), inset 0 1px 0 rgba(255,255,255,0.04)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#5c1a24";
+                e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)";
               }}
             >
-              <span>Get My Free Birth Chart</span>
-              <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
+              <span>Reveal My Actual Tikkun Chart</span>
+              <span aria-hidden="true" style={{ fontWeight: 700 }}>→</span>
             </button>
 
-            {/* Trust micro-line */}
+            {/* Subline — value prop whisper */}
             <p
               className="mt-3"
               style={{
                 fontFamily: BODY,
-                color: C_MUTED,
-                fontSize: "10px",
-                letterSpacing: "0.16em",
+                color: "rgba(240,200,104,0.78)",
+                fontSize: "11px",
+                letterSpacing: "0.22em",
                 fontWeight: 500,
                 textTransform: "uppercase",
               }}
             >
-              Free · No card needed · 60 seconds
+              Free Lunar Reading & Workbook
             </p>
 
             {/* Spin again — quiet text link */}
