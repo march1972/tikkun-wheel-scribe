@@ -18,11 +18,11 @@ export function PrimaryCTA({
   const isDawn = variant === "dawn";
   const background = isDawn
     ? "linear-gradient(135deg, #ff5a6e 0%, #e63946 55%, #b8262f 100%)"
-    : `linear-gradient(135deg, ${C_GOLD_BRIGHT} 0%, ${C_GOLD} 100%)`;
+    : `linear-gradient(135deg, ${C_GOLD} 0%, #c9a14a 100%)`;
   const color = isDawn ? C_INK : C_DEEP;
   const boxShadow = isDawn
     ? "0 12px 44px -10px rgba(230,57,70,0.6), inset 0 1px 0 rgba(255,255,255,0.18)"
-    : "0 10px 40px -10px rgba(240,200,104,0.55)";
+    : "0 8px 22px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)";
   const ringColor = isDawn ? "#ff8a96" : "#f0c868";
 
   return (
@@ -30,7 +30,7 @@ export function PrimaryCTA({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540] disabled:opacity-50 disabled:cursor-not-allowed"
+      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540] disabled:opacity-50 disabled:cursor-not-allowed"
       style={{
         background,
         color,
