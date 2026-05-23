@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { SkyShell } from "@/components/landing/SkyShell";
-import { HEAD, BODY, C_INK, C_DAWN } from "@/lib/landing-style";
+import { HEAD, BODY, C_INK, C_DAWN, C_GOLD } from "@/lib/landing-style";
 
 export const Route = createFileRoute("/spinning")({
   component: Spinning,
@@ -43,8 +43,24 @@ function Spinning() {
         </div>
       </header>
       <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "clamp(360px, 70vw, 680px)",
+              height: "clamp(360px, 70vw, 680px)",
+              background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
+              filter: "blur(10px)",
+              pointerEvents: "none",
+              zIndex: 0,
+            }}
+          />
           <h1
+            className="relative"
             style={{
               fontFamily: HEAD,
               color: C_INK,
@@ -61,7 +77,7 @@ function Spinning() {
           </h1>
 
           <div
-            className="mt-[clamp(1.5rem,3.5vh,2.5rem)]"
+            className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]"
             style={{
               filter:
                 "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",

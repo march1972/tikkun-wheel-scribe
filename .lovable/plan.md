@@ -1,34 +1,46 @@
-# Fix initial oversized wheel flash on mobile
+## Goal
+Make the background on `/spinning` visually identical to `/` in the hero area.
 
-## Problem
-`useResponsiveWheelSize` initializes state to `max` (460px) and only computes the real size inside `useEffect` after mount. On mobile, the user sees a 460px wheel for one paint, then it snaps down to the correct ~280px — the "few seconds" of resize they noticed.
+## Why they look different today
+- Same `C_SKY_GRAD` string, but it's applied to `<main className="min-h-screen">` on both pages. Page heights differ, so the 180° gradient stretches over different total heights and the visible color at any scroll position differs.
+- `/` has a warm gold/dawn radial-halo `<div>` behind the wheel (`haloRef`). `/spinning` has no halo, only the wheel's drop-shadow.
 
-Root cause is in `src/hooks/useResponsiveWheelSize.ts`:
-```ts
-const [size, setSize] = useState(max);   // always starts at max
-useEffect(() => { compute(); ... }, ...) // corrects after mount
+## Changes
+
+### 1. Lock the sky gradient to the viewport (both pages)
+Move the gradient from the scrolling `<main>` to a `fixed inset-0` layer sized to the viewport, so the gradient progression `#0c1426 → #324468` always spans exactly 100vh and renders identically regardless of page length.
+
+- `src/components/landing/SkyShell.tsx`: replace the `style={{ background: C_SKY_GRAD }}` on `<main>` with a `<div className="fixed inset-0 -z-10" style={{ background: C_SKY_GRAD }} />` rendered before content. Keep `<main className="relative min-h-screen overflow-hidden">` for layout.
+- `src/routes/index.tsx`: same treatment on its `<main>` (lines 252–256) — move `background: C_SKY_GRAD` onto a `fixed inset-0 -z-10` div, keep `StarField` and content layered above.
+
+StarField stays absolutely positioned inside each `<main>` as today (so stars still scroll with content; only the base gradient is viewport-locked, matching what the user sees at any one moment).
+
+### 2. Add the gold halo behind the wheel on /spinning
+Copy the halo block from `src/routes/index.tsx` (lines 280–296) into `src/routes/spinning.tsx` inside the centered hero `<div>`, just before the `<h1>`. Drop the `ref={haloRef}` (spinning has no parallax handler) but keep all visual styles identical:
+
+```tsx
+<div
+  aria-hidden
+  style={{
+    position: "absolute",
+    top: "50%", left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "clamp(360px, 70vw, 680px)",
+    height: "clamp(360px, 70vw, 680px)",
+    background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
+    filter: "blur(10px)",
+    pointerEvents: "none",
+    zIndex: 0,
+  }}
+/>
 ```
 
-## Change
-Update `src/hooks/useResponsiveWheelSize.ts` only. Use a lazy initializer that computes the correct size synchronously on the first client render, falling back to `min` (not `max`) during SSR so hydration on small screens doesn't flash huge.
+Add `C_GOLD` to the `@/lib/landing-style` import in `spinning.tsx`. Ensure the parent `<div>` is `relative` (it already is via the section/flex wrapper; add `relative` to the inner centered div if needed) and the `<h1>` + wheel wrapper get `position: relative` so they sit above the halo.
 
-```ts
-const [size, setSize] = useState(() => {
-  if (typeof window === "undefined") return min;
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
-  const next = Math.min(vw * vwFraction, vh * 0.55, max);
-  return Math.max(min, Math.round(next));
-});
-```
+## Files touched
+- `src/components/landing/SkyShell.tsx`
+- `src/routes/index.tsx`
+- `src/routes/spinning.tsx`
 
-The existing `useEffect` resize listener stays as-is so orientation changes still work.
-
-## Why `min` for SSR fallback
-- SSR HTML is the same for all viewports; we can't know the real width.
-- Starting at `min` means mobile (the failure case) renders correctly on first paint; desktop briefly shows a smaller wheel for one frame before the effect runs, which is far less jarring than the current mobile flash.
-- Once mounted, the lazy initializer takes over and there is no flash at all on client navigation.
-
-## Scope
-- Only `src/hooks/useResponsiveWheelSize.ts`.
-- No changes to `TikkunWheel`, `index.tsx`, `spinning.tsx`, or anything else.
+## Out of scope
+No changes to wheel size, copy, header text, fonts, or any other route.
