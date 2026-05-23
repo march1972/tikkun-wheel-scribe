@@ -199,10 +199,14 @@ function Snippet() {
             </div>
 
             <p
-              className="mt-[10px]"
+              className="mt-[14px]"
               style={{
-                fontFamily: BODY, color: C_INK, lineHeight: 1.55,
-                fontSize: "clamp(15px, 1.7vw, 18px)",
+                fontFamily: HEAD,
+                color: C_INK,
+                lineHeight: 1.7,
+                fontSize: "clamp(16px, 1.9vw, 20px)",
+                letterSpacing: "0.01em",
+                fontWeight: 400,
               }}
             >
               {sign.screen3.spinSnippet}
