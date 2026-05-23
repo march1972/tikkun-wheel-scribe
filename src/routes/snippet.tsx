@@ -244,7 +244,7 @@ function Snippet() {
             </p>
 
             {/* Spin again — transparent, rounded, secondary */}
-            <div className="mt-[clamp(1.5rem,3.5vh,2.25rem)]">{spinAgainButton}</div>
+            <div className="mt-[clamp(1rem,2.5vh,1.5rem)]">{spinAgainButton}</div>
           </>
         )}
 
