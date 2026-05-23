@@ -296,16 +296,8 @@ function Snippet() {
                 <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 700, fontSize: "1.05em" }}>Tikkun</span>{" "}
                 chart
               </h2>
-              <p
-                className="mt-3"
-                style={{
-                  fontFamily: BODY, color: "rgba(180,200,230,0.85)", fontWeight: 400,
-                  fontSize: "12px", letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                }}
-              >
-                (Free reading + workbook)
-              </p>
+
+
 
               <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
                 <div>
@@ -391,14 +383,15 @@ function Snippet() {
                 className="mt-3"
                 style={{ fontFamily: BODY, color: C_INK, fontSize: "15px", letterSpacing: "0.03em", lineHeight: 1.7 }}
               >
-                Email used to send you free Tikkun Workbook.{" "}
+                Email used for full Tikkun Birth Chart.{" "}
                 <a
                   href="/terms"
-                  style={{ color: C_GOLD, textDecoration: "underline" }}
+                  style={{ color: C_MUTED, textDecoration: "underline", fontSize: "11px" }}
                 >
                   T&Cs
                 </a>
               </p>
+
             </div>
 
           </>

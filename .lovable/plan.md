@@ -1,9 +1,12 @@
-In `src/routes/snippet.tsx` form submit button (lines 357–387):
+# Plan: Snippet Form Copy & Style Tweaks
 
-1. Remove `border: "1px solid rgba(240,200,104,0.35)"` → `border: "none"`.
-2. Change background from `#5c1a24` → `#7a1f2b` (match `PrimaryCTA` dawn); update hover bg from `#6b1f2b` → `#8a2533`; update hover shadow tint from `rgba(92,26,36,0.55)` → `rgba(155,40,55,0.55)` to match dawn.
-3. Set `borderRadius: 0` (match `/` landing red pill).
-4. Bump `letterSpacing` to `0.28em` and `fontWeight` to 700 so the type matches the landing pill.
-5. Change label text `"Reveal my Tikkun"` → `"Reveal my free Tikkun Reading"` (busy state stays `"Revealing…"`).
+## Summary
+Update the `/snippet` page form: remove the sub-headline, revise the bottom legal line, and de-emphasise the T&Cs link.
 
-No other files touched.
+## Changes
+1. **Remove sub-headline** — delete the `(Free reading + workbook)` line above the form inputs.
+2. **Update legal copy** — change bottom text from `Email used to send you free Tikkun Workbook.` to `Email used for full Tikkun Birth Chart.`
+3. **De-emphasise T&Cs** — make the `T&Cs` link smaller and use a muted colour instead of gold.
+
+## Files
+- `src/routes/snippet.tsx` only.
