@@ -153,12 +153,12 @@ function Snippet() {
             </h2>
 
             <div
-              className="w-full mt-[clamp(0.75rem,2vh,1.25rem)]"
+              className="w-full mt-[clamp(1.25rem,3vh,2rem)] mb-[clamp(1.25rem,3vh,2rem)]"
               style={{
                 background: "rgba(220, 228, 240, 0.05)",
                 border: "1px solid rgba(220, 228, 240, 0.28)",
                 borderRadius: 2,
-                padding: "clamp(1.25rem,2.5vw,1.75rem)",
+                padding: "clamp(1.75rem,3.5vw,2.5rem)",
                 boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
               }}
             >
