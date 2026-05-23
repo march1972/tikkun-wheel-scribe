@@ -17,13 +17,13 @@ export function PrimaryCTA({
 }) {
   const isDawn = variant === "dawn";
   const background = isDawn
-    ? "linear-gradient(135deg, #ff5a6e 0%, #e63946 55%, #b8262f 100%)"
+    ? "#7a1f2b"
     : `linear-gradient(135deg, ${C_GOLD} 0%, #c9a14a 100%)`;
   const color = isDawn ? C_INK : C_DEEP;
   const boxShadow = isDawn
-    ? "0 12px 44px -10px rgba(230,57,70,0.6), inset 0 1px 0 rgba(255,255,255,0.18)"
+    ? "0 10px 30px -10px rgba(155,40,55,0.55), inset 0 1px 0 rgba(255,255,255,0.06)"
     : "0 8px 22px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)";
-  const ringColor = isDawn ? "#ff8a96" : "#f0c868";
+  const ringColor = isDawn ? "#b8333f" : "#f0c868";
 
   return (
     <button
