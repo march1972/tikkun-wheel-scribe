@@ -55,7 +55,7 @@ const C_INK_SOFT = "#ece3cf";
 const C_MUTED = "rgba(236, 227, 207, 0.62)";
 const C_GOLD = "#f0c868";           // wheel gold (matches TikkunWheel)
 const C_GOLD_BRIGHT = "#FFE9B8";
-const C_DAWN = "#e63946";           // visible red-orange accent
+const C_DAWN = "#b8333f";           // rich oxblood accent (was fire red #e63946)
 const C_SAGE = "#9bd1bf";           // sage mint — secondary accent
 const C_DEEP = "#0f1729";           // near-black indigo
 const C_RULE = "rgba(253, 246, 230, 0.20)";
@@ -182,26 +182,26 @@ function OxbloodCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex w-auto min-w-[260px] max-w-[340px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(240,200,104,0.5)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+      className="group inline-flex w-auto min-w-[260px] max-w-[340px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(184,51,63,0.55)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
       style={{
-        background: "#5c1a24",
+        background: "#7a1f2b",
         color: C_INK,
         fontFamily: BODY,
         fontWeight: 600,
-        letterSpacing: "0.18em",
+        letterSpacing: "0.2em",
         fontSize: "12px",
         padding: "20px 36px",
         borderRadius: "3px",
-        border: "1px solid rgba(240,200,104,0.35)",
-        boxShadow: "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)",
+        border: "1px solid rgba(255,255,255,0.06)",
+        boxShadow: "0 10px 30px -10px rgba(155,40,55,0.55), inset 0 1px 0 rgba(255,255,255,0.06)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = "#6b1f2b";
-        e.currentTarget.style.boxShadow = "0 12px 32px -12px rgba(92,26,36,0.55), inset 0 1px 0 rgba(255,255,255,0.04)";
+        e.currentTarget.style.background = "#9b2837";
+        e.currentTarget.style.boxShadow = "0 14px 38px -10px rgba(184,51,63,0.7), inset 0 1px 0 rgba(255,255,255,0.08)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = "#5c1a24";
-        e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)";
+        e.currentTarget.style.background = "#7a1f2b";
+        e.currentTarget.style.boxShadow = "0 10px 30px -10px rgba(155,40,55,0.55), inset 0 1px 0 rgba(255,255,255,0.06)";
       }}
     >
       <span>{label}</span>
