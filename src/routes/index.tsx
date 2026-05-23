@@ -484,7 +484,7 @@ function Landing() {
 
         {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-14 sm:py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
           <StarField density={160} opacity={0.5} seedOffset={900} />
