@@ -631,7 +631,7 @@ function Landing() {
             <div style={{ borderTop: `1px solid ${C_RULE}` }} className="mb-[clamp(1.5rem,3vh,2.5rem)]" />
             <div className="flex justify-center">
               <div
-                className="flex flex-col items-center gap-2 md:flex-row md:gap-0"
+                className="mb-[clamp(1.5rem,3vh,2.5rem)] bg-[#05132e]/0"
                 style={{
                   fontFamily: BODY,
                   fontSize: "10px",
