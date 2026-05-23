@@ -440,6 +440,14 @@ function Landing() {
                 );
               })}
             </ul>
+            <Reveal delay={480}>
+              <p
+                className="mt-[clamp(1.5rem,3vh,2.5rem)] text-sm"
+                style={{ fontFamily: BODY, color: C_MUTED }}
+              >
+                Drawn from your birth chart.
+              </p>
+            </Reveal>
           </div>
         </section>
 
