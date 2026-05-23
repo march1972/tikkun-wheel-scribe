@@ -201,7 +201,8 @@ function Snippet() {
             <p
               className="mt-[14px]"
               style={{
-                fontFamily: HEAD,
+                fontFamily: BODY,
+                fontStyle: "italic",
                 color: C_INK,
                 lineHeight: 1.7,
                 fontSize: "clamp(16px, 1.9vw, 20px)",
