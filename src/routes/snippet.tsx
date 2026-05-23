@@ -127,7 +127,7 @@ function Snippet() {
   ) : null;
 
   return (
-    <SkyShell starDensity={200}>
+    <SkyShell starDensity={360}>
       <style>{`
         @keyframes cta-pulse-glow {
           0%, 100% { box-shadow: 0 10px 40px -10px #e63946aa; transform: scale(1); }
