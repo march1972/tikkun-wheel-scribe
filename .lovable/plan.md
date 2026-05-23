@@ -1,15 +1,12 @@
-# Plan: Snippet form spacing & date-input polish
+# Plan: Snippet form spacing + CTA label tweak
 
 All changes in `src/routes/snippet.tsx`.
 
-1. **More space between fields** — change form `gap-3` → `gap-5` so name/email/dob fields breathe.
+1. **Tighten field spacing, keep CTA breathing room** — current `gap-5` (20px) between every form row makes the fields feel floaty and pushes the CTA below the fold on small viewports. Best practice for short lead forms:
+   - Form `gap-5` → `gap-4` (16px) — tight, grouped, scannable.
+   - Newsletter checkbox: add `marginTop: 8px` so it visually separates from the input cluster (it's a different control type).
+   - Submit button: keep `mt-6` (24px) — clear separation between inputs and primary action drives conversion.
 
-2. **More space above red CTA** — bump button `mt-2` → `mt-6` (plus the form gap) so the submit pill sits clearly apart from the newsletter checkbox.
-
-3. **Date input greys** — the native `<input type="date">` shows `mm/dd/yyyy` and the calendar icon in default black. Match the placeholder grey used by name/email by:
-   - Adding a CSS rule (scoped via a small `<style>` block in the route, or inline targeting `#dob`) so:
-     - `#dob::-webkit-datetime-edit-text`, `::-webkit-datetime-edit-month-field`, `::-webkit-datetime-edit-day-field`, `::-webkit-datetime-edit-year-field` → use the muted ink colour `rgba(236,227,207,0.45)` when empty (matches placeholder).
-     - `#dob::-webkit-calendar-picker-indicator` → `filter: invert(0.7) opacity(0.5)` so the icon reads as soft grey on the dark field.
-   - Once a date is chosen, the text shifts to the normal `C_INK` colour for legibility.
+2. **CTA label** — change button text from `Reveal my free Tikkun Reading` → `Reveal my free Tikkun astrology reading` (busy state stays `Revealing…`).
 
 No other files touched.
