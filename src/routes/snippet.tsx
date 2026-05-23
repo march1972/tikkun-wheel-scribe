@@ -178,7 +178,7 @@ function Snippet() {
                     position: "absolute",
                     width: "clamp(72px, 12.5vw, 117px)",
                     height: "clamp(72px, 12.5vw, 117px)",
-                    background: `radial-gradient(circle, ${C_GOLD}40 0%, ${C_DAWN}20 45%, transparent 72%)`,
+                    background: `radial-gradient(circle, ${C_GOLD}55 0%, ${C_DAWN}35 45%, transparent 72%)`,
                     filter: "blur(6px)",
                     pointerEvents: "none",
                   }}
