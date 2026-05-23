@@ -374,8 +374,8 @@ function Landing() {
 
         {/* ── WHAT YOU RECEIVE ─────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,8vh,7rem)]"
-          style={{ background: "radial-gradient(70% 55% at 50% 25%, rgba(180,200,235,0.16) 0%, rgba(10,14,28,0) 70%), radial-gradient(45% 35% at 90% 100%, rgba(245,207,122,0.08) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #14203c 0%, #1c2848 40%, #22304f 70%, #1c2848 100%)", boxShadow: "inset 0 -100px 100px -60px rgba(10,16,32,0.55)" }}
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          style={{ background: "radial-gradient(70% 55% at 50% 25%, rgba(180,200,235,0.16) 0%, rgba(10,14,28,0) 70%), radial-gradient(45% 35% at 90% 100%, rgba(245,207,122,0.08) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #14203c 0%, #1c2848 40%, #22304f 70%, #1c2848 100%)" }}
         >
           <StarField density={140} opacity={0.5} seedOffset={2100} />
           <div className="relative mx-auto max-w-3xl text-center">
@@ -388,12 +388,12 @@ function Landing() {
                 }}
               >
                 What you{" "}
-                <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>receive</span>.
               </h2>
             </Reveal>
 
             <ul
-              className="mt-[clamp(2.5rem,5vh,3rem)] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-[clamp(1.25rem,2vw,1.5rem)] text-left"
+              className="mt-[clamp(2rem,4vh,3rem)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-[clamp(1rem,2vw,1.5rem)] text-left"
               style={{
                 color: C_INK_SOFT,
                 lineHeight: 1.65,
@@ -440,20 +440,12 @@ function Landing() {
                 );
               })}
             </ul>
-            <Reveal delay={480}>
-              <p
-                className="mt-[clamp(1.5rem,3vh,2.5rem)] text-sm"
-                style={{ fontFamily: BODY, color: C_MUTED }}
-              >
-                Drawn from your birth chart.
-              </p>
-            </Reveal>
           </div>
         </section>
 
         {/* ── ORIGINS ──────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,8vh,7rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{
             background: C_BAND_DEEP,
             borderTop: `1px solid ${C_RULE_SOFT}`,
@@ -492,7 +484,7 @@ function Landing() {
 
         {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,8vh,7rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
           <StarField density={160} opacity={0.5} seedOffset={900} />
@@ -531,7 +523,7 @@ function Landing() {
 
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,8vh,7rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
           <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
