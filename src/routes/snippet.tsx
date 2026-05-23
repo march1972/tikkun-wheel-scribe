@@ -336,7 +336,7 @@ function Snippet() {
                   style={{
                     display: "flex", alignItems: "flex-start", gap: "10px",
                     fontFamily: BODY, color: C_INK, fontSize: "13px",
-                    lineHeight: 1.4, cursor: "pointer", marginTop: "4px",
+                    lineHeight: 1.4, cursor: "pointer", marginTop: "clamp(2px, 1vw, 8px)",
                   }}
                 >
                   <input
