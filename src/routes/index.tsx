@@ -355,7 +355,7 @@ function Landing() {
             </p>
 
             <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
-              <GoldCTA onClick={handleSpin} label="Who you are" />
+              <GoldCTA onClick={handleSpin} label="Your tikkun chart" />
               <p
                 style={{
                   fontFamily: BODY,
@@ -584,7 +584,7 @@ function Landing() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Who you<br />
+                Your tikkun<br />
                 <span
                   style={{
                     fontStyle: "italic",
@@ -597,7 +597,7 @@ function Landing() {
                     marginRight: "-0.08em",
                   }}
                 >
-                  are
+                  chart
                 </span>
                 <span style={{ color: C_GOLD }}>.</span>
               </h2>
