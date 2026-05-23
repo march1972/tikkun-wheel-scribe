@@ -149,7 +149,7 @@ function Snippet() {
               }}
             >
               Sound like{" "}
-              <span style={{ color: C_INK, fontStyle: "italic", textShadow: "0 0 20px rgba(200,210,230,0.45)" }}>you?</span>
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>you?</span>
             </h2>
 
             <div
