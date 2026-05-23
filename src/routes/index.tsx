@@ -584,7 +584,7 @@ function Landing() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Who you<br />
+                Your tikkun<br />
                 <span
                   style={{
                     fontStyle: "italic",
@@ -597,7 +597,7 @@ function Landing() {
                     marginRight: "-0.08em",
                   }}
                 >
-                  are
+                  chart
                 </span>
                 <span style={{ color: C_GOLD }}>.</span>
               </h2>
