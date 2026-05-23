@@ -389,18 +389,24 @@ function Snippet() {
               </form>
 
                 <p
-                  className="mt-3 text-center"
-                  style={{ fontFamily: BODY, color: "rgba(236,227,207,0.55)", fontSize: "12px", letterSpacing: "0.03em", lineHeight: 1.6 }}
+                  className="footnote-text mt-3 text-center"
+                  style={{ fontFamily: BODY, color: "rgba(236,227,207,0.70)", fontSize: "12px", letterSpacing: "0.03em", lineHeight: 1.6 }}
                 >
                   Birth date and email for full Tikkun Birth Chart.{" "}
                   <a
                     href="/terms"
-                    style={{ fontFamily: BODY, color: "rgba(236,227,207,0.75)", textDecoration: "underline", textDecorationColor: "rgba(236,227,207,0.7)", textUnderlineOffset: "3px", fontSize: "11px" }}
+                    className="terms-link"
+                    style={{ fontFamily: BODY, color: "rgba(236,227,207,0.85)", textDecoration: "underline", textDecorationColor: "rgba(236,227,207,0.85)", textUnderlineOffset: "3px", fontSize: "11px" }}
                   >
                     terms and conditions
                   </a>
-
                 </p>
+                <style>{`
+                  @media (max-width: 640px) {
+                    .footnote-text { color: rgba(236,227,207,0.80) !important; }
+                    .terms-link { color: rgba(236,227,207,0.95) !important; text-decoration-color: rgba(236,227,207,0.95) !important; }
+                  }
+                `}</style>
               </div>
 
 
