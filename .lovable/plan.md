@@ -1,40 +1,44 @@
-Single file: `src/routes/snippet.tsx`, `!showForm` branch only.
+# CTA refinement: gold invitation, matte-red commitment
 
-## 1. CTA copy
-- Label: `Reveal My Actual Tikkun Chart` + `→`
-- (Replaces current "Get My Free Birth Chart")
+Pattern: **Gold = invitation. Red = commitment.** One of each per page, treated with restraint. Red stays as an accent color (Hebrew letters, italicized words) — untouched.
 
-## 2. Subline (replaces trust micro-line)
-- Text: `Free Lunar Reading & Workbook`
-- Style: `BODY`, color `C_GOLD` at reduced opacity (~75%) so it whispers rather than competes — `color: rgba(240,200,104,0.78)`, `fontSize: "11px"`, `letterSpacing: "0.22em"`, `fontWeight: 500`, `textTransform: "uppercase"`, `mt-3`.
-- Removes "Free · No card needed · 60 seconds" entirely.
+## 1. `/` hero "Who you are" → GOLD
+First impression. Swap the local red `PrimaryCTA` usage at line 356 of `src/routes/index.tsx` to use the shared gold component from `@/components/landing/PrimaryCTA` (variant `gold`, default).
 
-## 3. Button — matte oxblood, no pulse
-Strip the promo/SaaS cues. Specific changes:
+## 2. `/` bottom "Receive your reading" → MATTE OXBLOOD
+Line 618 of `src/routes/index.tsx`. Currently uses the shared gold `PrimaryCTA`. Replace with the same matte-oxblood treatment we used on `/snippet`:
+- Background: solid `#5c1a24`, hover `#6b1f2b`
+- Border: `1px solid rgba(240,200,104,0.35)` (gold hairline)
+- Shadow: `0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)`; hover bumps to `0 12px 32px -12px rgba(92,26,36,0.55)`
+- `borderRadius: 3px`, `padding: 20px 36px`, `fontWeight: 600`, `letterSpacing: 0.18em`, `fontSize: 12px`
+- Hover: `translate-y-[-1px]` only — no scale, no brightness, no glow
 
-- **Background**: solid `#5c1a24` (deep sacramental red). No gradient. On hover: `#6b1f2b` (one shade lighter, no warming-up gradient).
-- **Border**: 1px hairline `rgba(240,200,104,0.35)` — gold whisper, not the current 1px inset gold that fights the red.
-- **Animation**: remove `cta-pulse-glow` class and the `@keyframes cta-pulse-glow` block + the `:hover` override entirely. Replace with a still, subtle resting shadow: `box-shadow: 0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)`. On hover: lift via `hover:translate-y-[-1px]` and shadow bump to `0 12px 32px -12px rgba(92,26,36,0.55)`. No scale, no brightness, no glow pulse.
-- **Border-radius**: keep `3px`.
-- **Padding**: `20px 36px` (slightly more breathing room — premium feel).
-- **Typography**: `fontWeight: 600` (down from 700), `letterSpacing: "0.18em"` (down from 0.22em), `fontSize: "12px"`. Tighter, less shouty.
-- **Color**: keep `C_INK` (off-white).
-- **Width**: keep `min-w-[260px] max-w-[320px]`.
-- **Transitions**: `transition-all duration-300 ease-out`.
+## 3. `/form` submit "Reveal my Tikkun" → MATTE OXBLOOD
+`src/routes/snippet.tsx`, the `showForm` branch submit button (currently uses `cta-pulse-glow` with the saturated red gradient). Replace with the same matte-oxblood treatment as above. Keep the `busy` disabled state ("Revealing…") and the arrow.
 
-## 4. Cleanup
-- Delete the `<style>` block containing `@keyframes cta-pulse-glow` and `.cta-pulse-glow:hover`. (Still used by the `showForm` submit button — verify and keep keyframes if so, just don't apply to this button. **Decision: keep the keyframes block intact since `showForm` submit still uses `cta-pulse-glow`; just remove the class from this button.**)
+## 4. Kill `cta-pulse-glow` entirely
+With both red buttons converted, the `<style>` block in `src/routes/snippet.tsx` containing `@keyframes cta-pulse-glow` and `.cta-pulse-glow:hover` becomes dead code. Delete the entire block.
 
-## Final stack (no-form branch)
-```text
-[ Sound like you? ]
-[ silver box: Hebrew letter + snippet ]
-[ OXBLOOD BUTTON: Reveal My Actual Tikkun Chart → ]   (matte, still, gold hairline)
-[ Free Lunar Reading & Workbook ]                      (gold whisper, uppercase)
-[ (or spin again) ]                                    (unchanged)
-```
+## 5. Local red `PrimaryCTA` in `src/routes/index.tsx`
+After step 1 (hero → gold) and step 2 (bottom → matte oxblood), the local red `PrimaryCTA` function at line 173 has zero call sites. Delete the function.
 
 ## Out of scope
-- `showForm` branch and its submit button — untouched.
-- No token, copy file, or data changes.
-- No mobile-layout changes beyond the existing min/max width.
+- `C_DAWN` as an accent color (Hebrew letters, italicized "Tikkun" / "Abraham" / "free will" / "Influence") — **stays red, untouched**. That's where red is doing sacred work, not sales work.
+- The shared `PrimaryCTA` component at `src/components/landing/PrimaryCTA.tsx` — untouched (still supports gold + dawn variants for future use).
+- `/snippet` teaser CTA — already gold from previous turn, untouched.
+- No copy changes on `/` or `/form`.
+
+## Final state per page
+
+```text
+/  (home)
+  hero            → GOLD   "Who you are →"           (invitation)
+  bottom          → OXBLOOD "Receive your reading →"  (commitment)
+  accent reds     → unchanged (Hebrew letters, italics)
+
+/snippet  (teaser)
+  CTA             → GOLD   "Reveal My Actual Chart"   (already done)
+
+/form → /snippet (form mode)
+  submit          → OXBLOOD "Reveal my Tikkun →"      (commitment)
+```

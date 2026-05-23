@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { Reveal } from "@/components/landing/Reveal";
+import { PrimaryCTA as GoldCTA } from "@/components/landing/PrimaryCTA";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
 import { resetAttempts, setCurrentSpinNumber } from "@/lib/spinAttempts";
@@ -170,40 +171,41 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-function PrimaryCTA({
+function OxbloodCTA({
   onClick,
-  label = "Who you are",
+  label,
 }: {
   onClick: () => void;
-  label?: string;
+  label: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 hover:scale-[1.04] hover:brightness-110 hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e63946] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+      className="group inline-flex w-auto min-w-[260px] max-w-[340px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(240,200,104,0.5)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
       style={{
-        background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
+        background: "#5c1a24",
         color: C_INK,
         fontFamily: BODY,
-        fontWeight: 700,
-        letterSpacing: "0.28em",
-        fontSize: "clamp(11px, 1.2vw, 13px)",
-        padding: "clamp(16px, 1.9vh, 20px) clamp(28px, 4vw, 44px)",
-        borderRadius: "0px",
-        boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+        fontWeight: 600,
+        letterSpacing: "0.18em",
+        fontSize: "12px",
+        padding: "20px 36px",
+        borderRadius: "3px",
+        border: "1px solid rgba(240,200,104,0.35)",
+        boxShadow: "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = `0 18px 60px -10px ${C_DAWN}, 0 0 0 1px ${C_DAWN}99`;
+        e.currentTarget.style.background = "#6b1f2b";
+        e.currentTarget.style.boxShadow = "0 12px 32px -12px rgba(92,26,36,0.55), inset 0 1px 0 rgba(255,255,255,0.04)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = `0 10px 40px -10px ${C_DAWN}aa`;
+        e.currentTarget.style.background = "#5c1a24";
+        e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)";
       }}
     >
       <span>{label}</span>
-      <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" style={{ fontWeight: 800 }}>
-        →
-      </span>
+      <span aria-hidden="true" style={{ fontWeight: 700 }}>→</span>
     </button>
   );
 }
@@ -353,7 +355,7 @@ function Landing() {
             </p>
 
             <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
-              <PrimaryCTA onClick={handleSpin} />
+              <GoldCTA onClick={handleSpin} label="Who you are" />
               <p
                 style={{
                   fontFamily: BODY,
@@ -615,7 +617,7 @@ function Landing() {
             </Reveal>
             <Reveal delay={280}>
               <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex justify-center">
-                <PrimaryCTA onClick={handleSpin} label="Receive your reading" />
+                <OxbloodCTA onClick={handleSpin} label="Receive your reading" />
               </div>
             </Reveal>
           </div>

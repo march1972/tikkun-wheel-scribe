@@ -129,17 +129,6 @@ function Snippet() {
 
   return (
     <SkyShell starDensity={360}>
-      <style>{`
-        @keyframes cta-pulse-glow {
-          0%, 100% { box-shadow: inset 0 0 0 1px rgba(240,200,104,0.25), 0 10px 40px -10px #e63946aa; transform: scale(1); }
-          50% { box-shadow: inset 0 0 0 1px rgba(240,200,104,0.35), 0 14px 50px -8px #e63946cc, 0 0 25px -3px #e6394633; transform: scale(1.015); }
-        }
-        .cta-pulse-glow { animation: cta-pulse-glow 2.5s ease-in-out infinite; }
-        .cta-pulse-glow:hover {
-          animation: none;
-          background: linear-gradient(135deg, #ff4d5c 0%, #d11e2b 100%) !important;
-        }
-      `}</style>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1rem,2.5vh,1.75rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
           <>
@@ -368,22 +357,32 @@ function Snippet() {
                 <button
                   type="submit"
                   disabled={busy}
-                  className="cta-pulse-glow group mt-2 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110 disabled:opacity-60 disabled:animate-none"
+                  className="group mt-2 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
                   style={{
-                    background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
+                    background: "#5c1a24",
                     color: C_INK,
                     fontFamily: BODY,
-                    fontWeight: 700,
-                    letterSpacing: "0.24em",
+                    fontWeight: 600,
+                    letterSpacing: "0.18em",
                     fontSize: "12px",
-                    padding: "18px 32px",
-                    borderRadius: "0px",
-                    boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+                    padding: "20px 36px",
+                    borderRadius: "3px",
+                    border: "1px solid rgba(240,200,104,0.35)",
+                    boxShadow: "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (busy) return;
+                    e.currentTarget.style.background = "#6b1f2b";
+                    e.currentTarget.style.boxShadow = "0 12px 32px -12px rgba(92,26,36,0.55), inset 0 1px 0 rgba(255,255,255,0.04)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#5c1a24";
+                    e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)";
                   }}
                 >
                   <span>{busy ? "Revealing…" : "Reveal my Tikkun"}</span>
                   {!busy && (
-                    <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
+                    <span aria-hidden="true" style={{ fontWeight: 700 }}>→</span>
                   )}
                 </button>
               </form>
