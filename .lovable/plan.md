@@ -1,8 +1,13 @@
-Refactor `src/routes/spinning.tsx` to remove the `SkyShell` wrapper (which adds a hidden duplicate "Kabbalah Astrology" header that pushes everything down) and use the same `<main>` shell as `src/routes/index.tsx`:
+Reduce the H1 "Reveal your Tikkun" font size by 7% on both the landing page and the /spinning page.
 
-- Drop `import { SkyShell }` and `<SkyShell>` wrapper.
-- Add imports: `StarField` from `@/components/landing/StarField`; `C_SKY_GRAD`, `C_INK_SOFT` from `@/lib/landing-style`.
-- Render `<main className="relative min-h-screen overflow-hidden" style={{ color: C_INK_SOFT }}>` containing the fixed gradient div, `<StarField density={360} opacity={0.85} />`, then the existing header + section unchanged (header padding, halo, h1, wheel wrapper, paragraph kept identical).
-- Bump h1 `lineHeight` from `1.0` → `1.02` to match index exactly.
+Current value on both pages:
+- `fontSize: "clamp(41px, 7.65vw, 95px)"`
 
-Result: eyebrow and "Reveal your Tikkun" sit at the exact same Y on `/` and `/spinning`. No other files touched. `SkyShell.tsx` left intact for other routes.
+New value (each term × 0.93):
+- `fontSize: "clamp(38px, 7.1vw, 88px)"`
+
+Files to edit:
+- `src/routes/index.tsx` — line 308
+- `src/routes/spinning.tsx` — line 87
+
+No other changes needed.
