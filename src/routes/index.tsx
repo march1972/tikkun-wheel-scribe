@@ -612,7 +612,7 @@ function Landing() {
                   fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
-                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> astrology chart based on the lunar nodes at your date of birth. You see <span style={{ color: C_GOLD, fontStyle: "italic" }}>your life's purpose patterns</span> that influence your path in relationships, career, finances, and personal fulfilment.
+                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth.&nbsp;You see&nbsp;<span style={{ color: C_GOLD, fontStyle: "italic" }}>your life's recurring purpose patterns</span>&nbsp;that influence your path in relationships, career, finances, and personal fulfilment.
               </p>
             </Reveal>
             <Reveal delay={280}>
@@ -631,7 +631,7 @@ function Landing() {
             <div style={{ borderTop: `1px solid ${C_RULE}` }} className="mb-[clamp(1.5rem,3vh,2.5rem)]" />
             <div className="flex justify-center">
               <div
-                className="mb-[clamp(1.5rem,3vh,2.5rem)] bg-[#05132e]/0"
+                className="flex flex-col items-center gap-2 md:flex-row md:gap-0"
                 style={{
                   fontFamily: BODY,
                   fontSize: "10px",
