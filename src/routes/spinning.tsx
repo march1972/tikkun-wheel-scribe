@@ -61,7 +61,7 @@ function Spinning() {
         </div>
       </header>
 
-      <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
+      <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.25rem,2.5vh,2.25rem)] pb-[clamp(3rem,6vh,5rem)]">
         <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
           <div
             aria-hidden
