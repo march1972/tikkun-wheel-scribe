@@ -307,7 +307,7 @@ function Snippet() {
                   #dob::-webkit-datetime-edit-year-field { color: ${dob ? C_INK : "rgba(236,227,207,0.45)"}; }
                   #dob::-webkit-calendar-picker-indicator { filter: invert(0.7) opacity(0.55); cursor: pointer; }
                 `}</style>
-                <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-5 text-left">
+                <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-4 text-left">
 
                 <div>
                   <label style={labelStyle} htmlFor="name">Name (optional)</label>
@@ -336,7 +336,7 @@ function Snippet() {
                   style={{
                     display: "flex", alignItems: "flex-start", gap: "10px",
                     fontFamily: BODY, color: C_INK, fontSize: "13px",
-                    lineHeight: 1.4, cursor: "pointer", marginTop: "4px",
+                    lineHeight: 1.4, cursor: "pointer", marginTop: "8px",
                   }}
                 >
                   <input
@@ -381,7 +381,7 @@ function Snippet() {
                     e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)";
                   }}
                 >
-                  <span>{busy ? "Revealing…" : "Reveal my free Tikkun Reading"}</span>
+                  <span>{busy ? "Revealing…" : "Reveal my free Tikkun astrology reading"}</span>
                   {!busy && (
                     <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
                   )}
