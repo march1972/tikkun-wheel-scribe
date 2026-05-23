@@ -213,14 +213,28 @@ function Snippet() {
 
         {!showForm && (
           <>
-            {/* CTA — rectangular red button (above the fold) */}
+            {/* Gold kicker — labels the CTA */}
+            <p
+              className="mt-[clamp(1.4rem,3.2vh,2rem)] uppercase"
+              style={{
+                fontFamily: BODY,
+                color: C_GOLD,
+                fontSize: "11px",
+                letterSpacing: "0.24em",
+                fontWeight: 600,
+              }}
+            >
+              Your Free Full Birth Chart Reading
+            </p>
+
+            {/* CTA — rectangular red button */}
             <button
               type="button"
               onClick={() => {
                 setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
                 setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
               }}
-              className="cta-pulse-glow group mt-[clamp(1.4rem,3.2vh,2rem)] inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+              className="cta-pulse-glow group mt-2 inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
               style={{
                 background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
                 color: C_INK,
@@ -230,23 +244,40 @@ function Snippet() {
                 fontSize: "12px",
                 padding: "18px 32px",
                 borderRadius: "0px",
-                boxShadow: `0 10px 40px -10px ${C_DAWN}aa`,
+                boxShadow: `inset 0 0 0 1px rgba(240,200,104,0.25), 0 10px 40px -10px ${C_DAWN}aa`,
               }}
             >
               <span>{copy.primaryButton}</span>
               <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
             </button>
-            <p
-              className="mt-3"
-              style={{ fontFamily: BODY, color: C_MUTED, fontSize: "clamp(12px, 1.3vw, 14px)", letterSpacing: "0.02em" }}
-            >
-              Free Full Birth Chart Reading
-            </p>
 
-            {/* Spin again — transparent, rounded, secondary */}
-            <div className="mt-[clamp(1rem,2.5vh,1.5rem)]">{spinAgainButton}</div>
+            {/* Spin again — quiet text link */}
+            {canSpinAgain && (
+              <button
+                type="button"
+                onClick={handleSpinAgain}
+                className="mt-3 uppercase transition-opacity duration-200 hover:opacity-100"
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  color: C_MUTED,
+                  fontFamily: BODY,
+                  fontSize: "11px",
+                  letterSpacing: "0.22em",
+                  fontWeight: 500,
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                  textDecorationColor: "rgba(236,227,207,0.3)",
+                  cursor: "pointer",
+                  padding: "6px 8px",
+                }}
+              >
+                or spin again
+              </button>
+            )}
           </>
         )}
+
 
         {showForm && (
           <>
