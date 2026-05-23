@@ -591,6 +591,8 @@ function Landing() {
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
+                    paddingRight: "0.08em",
+                    marginRight: "-0.08em",
                   }}
                 >
                   are
