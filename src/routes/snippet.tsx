@@ -215,13 +215,13 @@ function Snippet() {
           <>
             {/* Gold kicker — labels the CTA */}
             <p
-              className="mt-[clamp(1.4rem,3.2vh,2rem)] uppercase"
+              className="mt-[clamp(1.4rem,3.2vh,2rem)]"
               style={{
                 fontFamily: BODY,
-                color: C_GOLD,
-                fontSize: "11px",
-                letterSpacing: "0.24em",
-                fontWeight: 600,
+                color: "rgba(240,200,104,0.72)",
+                fontSize: "10px",
+                letterSpacing: "0.22em",
+                fontWeight: 500,
               }}
             >
               Your Free Full Birth Chart Reading
