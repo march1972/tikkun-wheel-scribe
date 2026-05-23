@@ -251,8 +251,13 @@ function Landing() {
   return (
     <main
       className="relative min-h-screen overflow-hidden"
-      style={{ background: C_SKY_GRAD, color: C_INK_SOFT }}
+      style={{ color: C_INK_SOFT }}
     >
+      <div
+        aria-hidden
+        className="fixed inset-0 -z-10"
+        style={{ background: C_SKY_GRAD }}
+      />
       <StarField density={360} opacity={0.85} />
 
       <div className="relative">
