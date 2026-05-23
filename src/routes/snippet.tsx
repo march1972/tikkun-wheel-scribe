@@ -307,7 +307,7 @@ function Snippet() {
                   #dob::-webkit-datetime-edit-year-field { color: ${dob ? C_INK : "rgba(236,227,207,0.45)"}; }
                   #dob::-webkit-calendar-picker-indicator { filter: invert(0.7) opacity(0.55); cursor: pointer; }
                 `}</style>
-                <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-5 text-left">
+                <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-4 text-left">
 
                 <div>
                   <label style={labelStyle} htmlFor="name">Name (optional)</label>
