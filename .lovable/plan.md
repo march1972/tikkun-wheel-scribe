@@ -1,11 +1,12 @@
-# Plan: Replace native browser validation popup with our oxblood red
+# Plan: Snippet form spacing + CTA label tweak
 
-The orange "Please fill out this field" tooltip is the browser's native HTML5 validation chrome — it can't be restyled cross-browser. We already have a custom error path in `onSubmit` (sets `err` and renders a `<p>` with `color: C_DAWN`). We just need to (a) suppress the native popup and (b) make sure our custom message uses the oxblood red (`#7a1f2b`) matching the CTA pill.
+All changes in `src/routes/snippet.tsx`.
 
-## Changes (`src/routes/snippet.tsx`)
+1. **Tighten field spacing, keep CTA breathing room** — current `gap-5` (20px) between every form row makes the fields feel floaty and pushes the CTA below the fold on small viewports. Best practice for short lead forms:
+   - Form `gap-5` → `gap-4` (16px) — tight, grouped, scannable.
+   - Newsletter checkbox: add `marginTop: 8px` so it visually separates from the input cluster (it's a different control type).
+   - Submit button: keep `mt-6` (24px) — clear separation between inputs and primary action drives conversion.
 
-1. **Disable native validation** — add `noValidate` to the `<form>` element. The existing `onSubmit` already validates `dob` and `email` and sets `err`.
-2. **Keep `required`** on email/dob inputs for accessibility/autofill semantics — they're harmless once `noValidate` is set.
-3. **Restyle the error `<p>`** — change `color: C_DAWN` → `color: "#c44553"` (a readable lighter oxblood that meets contrast on the dark bg, in the same red family as the `#7a1f2b` CTA). Also add `fontWeight: 500` and `letterSpacing: 0.02em` so it reads clearly.
+2. **CTA label** — change button text from `Reveal my free Tikkun Reading` → `Reveal my free Tikkun astrology reading` (busy state stays `Revealing…`).
 
 No other files touched.
