@@ -383,14 +383,15 @@ function Snippet() {
                 className="mt-3"
                 style={{ fontFamily: BODY, color: C_INK, fontSize: "15px", letterSpacing: "0.03em", lineHeight: 1.7 }}
               >
-                Email used to send you free Tikkun Workbook.{" "}
+                Email used for full Tikkun Birth Chart.{" "}
                 <a
                   href="/terms"
-                  style={{ color: C_GOLD, textDecoration: "underline" }}
+                  style={{ color: C_MUTED, textDecoration: "underline", fontSize: "11px" }}
                 >
                   T&Cs
                 </a>
               </p>
+
             </div>
 
           </>
