@@ -523,7 +523,7 @@ function Landing() {
 
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-14 sm:py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
           <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
