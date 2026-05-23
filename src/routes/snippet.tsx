@@ -358,7 +358,7 @@ function Snippet() {
                 <button
                   type="submit"
                   disabled={busy}
-                  className="group mt-6 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
+                  className="group mt-3 sm:mt-6 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
                   style={{
                     background: "#7a1f2b",
                     color: C_INK,
