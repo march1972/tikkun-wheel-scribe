@@ -219,7 +219,7 @@ function Snippet() {
 
             {/* Subline — value prop */}
             <p
-              className="mt-3"
+              className="mt-3 bg-[#e3bb5f]/0 text-slate-300 font-normal text-xs"
               style={{
                 fontFamily: BODY,
                 color: "rgba(240,200,104,0.78)",
@@ -229,7 +229,7 @@ function Snippet() {
                 textTransform: "uppercase",
               }}
             >
-              (Free Tikkun Birth Chart & Reading)
+              spin again
             </p>
 
             {/* OR / spin again */}
