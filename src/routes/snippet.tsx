@@ -153,12 +153,12 @@ function Snippet() {
             </h2>
 
             <div
-              className="w-full mt-[clamp(0.75rem,2vh,1.25rem)]"
+              className="w-full mt-[clamp(1.25rem,3vh,2rem)] mb-[clamp(1.25rem,3vh,2rem)]"
               style={{
                 background: "rgba(220, 228, 240, 0.05)",
                 border: "1px solid rgba(220, 228, 240, 0.28)",
                 borderRadius: 2,
-                padding: "clamp(1.25rem,2.5vw,1.75rem)",
+                padding: "clamp(1.75rem,3.5vw,2.5rem)",
                 boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
               }}
             >
@@ -215,13 +215,13 @@ function Snippet() {
           <>
             {/* Gold kicker — labels the CTA */}
             <p
-              className="mt-[clamp(1.4rem,3.2vh,2rem)] uppercase"
+              className="mt-[clamp(1.4rem,3.2vh,2rem)]"
               style={{
                 fontFamily: BODY,
-                color: C_GOLD,
-                fontSize: "11px",
-                letterSpacing: "0.24em",
-                fontWeight: 600,
+                color: "rgba(240,200,104,0.72)",
+                fontSize: "10px",
+                letterSpacing: "0.22em",
+                fontWeight: 500,
               }}
             >
               Your Free Full Birth Chart Reading
@@ -256,23 +256,23 @@ function Snippet() {
               <button
                 type="button"
                 onClick={handleSpinAgain}
-                className="mt-3 uppercase transition-opacity duration-200 hover:opacity-100"
+                className="mt-3 transition-opacity duration-200 hover:opacity-100"
                 style={{
                   background: "transparent",
                   border: "none",
                   color: C_MUTED,
                   fontFamily: BODY,
-                  fontSize: "11px",
-                  letterSpacing: "0.22em",
-                  fontWeight: 500,
+                  fontSize: "10px",
+                  letterSpacing: "0.18em",
+                  fontWeight: 400,
                   textDecoration: "underline",
                   textUnderlineOffset: "4px",
-                  textDecorationColor: "rgba(236,227,207,0.3)",
+                  textDecorationColor: "rgba(236,227,207,0.25)",
                   cursor: "pointer",
-                  padding: "6px 8px",
+                  padding: "4px 6px",
                 }}
               >
-                or spin again
+                (or spin again)
               </button>
             )}
           </>
