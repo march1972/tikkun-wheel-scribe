@@ -77,7 +77,7 @@ function Spinning() {
           </h1>
 
           <div
-            className="mt-[clamp(1.5rem,3.5vh,2.5rem)]"
+            className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]"
             style={{
               filter:
                 "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
