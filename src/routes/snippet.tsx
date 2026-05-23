@@ -138,82 +138,73 @@ function Snippet() {
       `}</style>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1rem,2.5vh,1.75rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
-          <div
-            className="w-full"
-            style={{
-              background:
-                "radial-gradient(120% 80% at 50% 0%, rgba(201,168,76,0.10), rgba(10,14,28,0.78) 55%, rgba(8,10,22,0.92))",
-              border: "1px solid rgba(201,168,76,0.45)",
-              borderRadius: "16px",
-              padding: "clamp(1.1rem,3vw,1.75rem)",
-              boxShadow:
-                "0 30px 80px -25px rgba(0,0,0,0.7), 0 0 60px -10px rgba(201,168,76,0.18), inset 0 1px 0 rgba(255,255,255,0.05)",
-              backdropFilter: "blur(8px)",
-            }}
-          >
+          <>
             <h2
               style={{
                 fontFamily: HEAD,
-                fontStyle: "italic",
-                fontWeight: 500,
-                fontSize: "clamp(26px, 5.2vw, 38px)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.01em",
-                backgroundImage:
-                  "linear-gradient(135deg, #f0d78c 0%, #c9a84c 60%, #b8923a 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-                textShadow: "0 0 22px rgba(201,168,76,0.35)",
-                paddingRight: "0.08em",
-                marginRight: "-0.08em",
+                color: C_INK,
+                fontSize: "clamp(38px, 6.5vw, 76px)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.025em",
               }}
             >
-              Sound like you?
+              Sound like{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>you?</span>
             </h2>
 
             <div
-              className="relative mt-[12px] flex items-center justify-center"
-              style={{ minHeight: "clamp(60px, 11vw, 100px)" }}
-            >
-              <span
-                aria-hidden
-                style={{
-                  position: "absolute",
-                  width: "clamp(80px, 14vw, 130px)",
-                  height: "clamp(80px, 14vw, 130px)",
-                  background: `radial-gradient(circle, ${C_GOLD}40 0%, ${C_DAWN}20 45%, transparent 72%)`,
-                  filter: "blur(6px)",
-                  pointerEvents: "none",
-                }}
-              />
-              <span
-                className="relative"
-                style={{
-                  fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 10vw, 92px)",
-                  lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}66`,
-                }}
-              >
-                {sign.hebrewLetter}
-              </span>
-            </div>
-
-            <p
-              className="mt-[14px]"
+              className="w-full mt-[clamp(0.75rem,2vh,1.25rem)]"
               style={{
-                fontFamily: BODY,
-                fontStyle: "italic",
-                color: C_INK,
-                lineHeight: 1.7,
-                fontSize: "clamp(16px, 1.9vw, 20px)",
-                letterSpacing: "0.01em",
-                fontWeight: 400,
+                background: "rgba(240, 200, 104, 0.06)",
+                border: `1px solid ${C_GOLD}33`,
+                borderRadius: 2,
+                padding: "clamp(1.25rem,2.5vw,1.75rem)",
               }}
             >
-              {sign.screen3.spinSnippet}
-            </p>
-          </div>
+              <div
+                className="relative flex items-center justify-center"
+                style={{ minHeight: "clamp(60px, 11vw, 100px)" }}
+              >
+                <span
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    width: "clamp(80px, 14vw, 130px)",
+                    height: "clamp(80px, 14vw, 130px)",
+                    background: `radial-gradient(circle, ${C_GOLD}40 0%, ${C_DAWN}20 45%, transparent 72%)`,
+                    filter: "blur(6px)",
+                    pointerEvents: "none",
+                  }}
+                />
+                <span
+                  className="relative"
+                  style={{
+                    fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 10vw, 92px)",
+                    lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}66`,
+                  }}
+                >
+                  {sign.hebrewLetter}
+                </span>
+              </div>
+
+              <p
+                className="mt-[14px]"
+                style={{
+                  fontFamily: BODY,
+                  fontStyle: "italic",
+                  color: C_INK,
+                  lineHeight: 1.7,
+                  fontSize: "clamp(16px, 1.9vw, 20px)",
+                  letterSpacing: "0.01em",
+                  fontWeight: 400,
+                }}
+              >
+                {sign.screen3.spinSnippet}
+              </p>
+            </div>
+          </>
         )}
+
 
 
         {!showForm && (
