@@ -625,7 +625,7 @@ function Landing() {
 
         {/* ── FOOTER ───────────────────────────────────────────── */}
         <footer
-          className="px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(6rem,12vh,9rem)] pb-[clamp(1.5rem,3vh,2.5rem)]"
+          className="px-[clamp(1.25rem,5vw,3rem)] pt-14 sm:pt-[clamp(6rem,12vh,9rem)] pb-[clamp(1.5rem,3vh,2.5rem)]"
         >
           <div className="mx-auto max-w-6xl">
             <div style={{ borderTop: `1px solid ${C_RULE}` }} className="mb-[clamp(1.5rem,3vh,2.5rem)]" />
