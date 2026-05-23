@@ -1,47 +1,34 @@
-## Goal
+Scope: `src/routes/snippet.tsx` only, `!showForm` block (lines ~140–290) plus the pulse-glow keyframes. No new tokens, no new files, no copy file edits (CTA copy hardcoded inline since `copy.primaryButton` is shared).
 
-Demote "Spin again" to a text link and give the red CTA a clear, grounded primary role with a gold kicker caption above it.
+## A — CTA copy + trust micro-line
+- **Replace the gold kicker** ("Your Free Full Birth Chart Reading") entirely. Value prop moves *into* the button.
+- **New CTA label** (hardcoded, overrides `copy.primaryButton` for this screen): `Get My Free Birth Chart` + `→`. One clear promise, action verb, possessive ("My") for ownership framing.
+- **Add trust micro-line directly under the CTA**, above `(or spin again)`:
+  - Text: `Free · No card needed · 60 seconds`
+  - Style: `fontFamily: BODY`, `color: C_MUTED`, `fontSize: "10px"`, `letterSpacing: "0.16em"`, `fontWeight: 500`, `mt-3`, uppercase via inline `textTransform`.
 
-## Layout (top → bottom)
+## B — Consolidate kicker into CTA
+- Remove the `<p>` gold kicker block (lines 216–228).
+- CTA now sits directly under the silver box with `mt-[clamp(1.4rem,3.2vh,2rem)]` (inherits the kicker's old top margin).
+- Order becomes: silver box → CTA → trust line → `(or spin again)`.
 
-1. Headline "Sound like *you?*" (unchanged)
-2. Silver snippet box (unchanged)
-3. **Gold kicker caption** — `YOUR FREE FULL BIRTH CHART READING`
-   - small caps, gold (`C_GOLD`), 10–11px, letter-spacing 0.24em
-   - sits *directly above* the CTA as its label
-   - replaces the current grey caption that sat below the CTA
-4. **Primary CTA** — red rectangular button
-   - Keep red gradient, sharp corners, pulse glow
-   - Add subtle gold inner stroke: `boxShadow: inset 0 0 0 1px rgba(240,200,104,0.25), 0 10px 40px -10px ${C_DAWN}aa`
-   - Width: keep 280px (don't go full-width — preserves "press me" affordance)
-   - Label stays `copy.primaryButton` ("See my full reading" or current text)
-   - Keep `→` arrow for now (can refine later)
-5. **"or spin again" text link** — small, muted, underlined
-   - `fontFamily: BODY`, color `C_MUTED`, fontSize 12px, letter-spacing 0.18em, uppercase
-   - Underlined on hover only (or always, subtle)
-   - No border, no pill, no background
-   - Sits ~16px below the CTA
-   - Only renders when `canSpinAgain` is true
+## C — Polish pass
+1. **CTA radius**: `borderRadius: "0px"` → `"3px"`. Keeps architectural feel, removes brittleness.
+2. **Warmer hover**: extend pulse-glow CSS — on `:hover` apply `background: linear-gradient(135deg, #ff4d5c 0%, #d11e2b 100%)` (warmer, hotter red) via a new `.cta-pulse-glow:hover` rule. Keep existing `hover:scale-[1.02]` and `hover:brightness-110`.
+3. **Snippet hierarchy**: reduce snippet `<p>` (line 194–207) `fontSize` from `clamp(16px,1.9vw,20px)` → `clamp(15px,1.7vw,18px)`, `lineHeight` 1.7 → 1.6. CTA stack wins the page.
+4. **Letter inner glow tie-in**: the radial gradient behind the Hebrew letter (line 178) already uses `C_DAWN`. Bump its intensity slightly — `${C_GOLD}40` → `${C_GOLD}55`, `${C_DAWN}20` → `${C_DAWN}35`. Ties silver box to red CTA via shared warm undertone.
+5. **Mobile-friendly CTA width**: `w-[280px]` → `min-w-[260px] max-w-[320px] w-auto`, add horizontal padding buffer (keep `padding: "18px 32px"`).
 
-## Vertical rhythm
+## Final vertical stack
+```text
+[ Sound like you? ]
+[ silver box: Hebrew letter (warmer glow) + smaller snippet ]
+[ RED CTA: "Get My Free Birth Chart →" ]   (3px radius, hot-red hover)
+[ Free · No card needed · 60 seconds ]      (muted micro-trust)
+[ (or spin again) ]                          (only if canSpinAgain)
+```
 
-- Box → kicker caption: `mt-[clamp(1.4rem, 3.2vh, 2rem)]` (the existing CTA gap, now applied to the caption)
-- Kicker → CTA: `mt-2` (8px) — they're a pair, tight grouping
-- CTA → text link: `mt-3` (12px) — minor separation, escape hatch quietly available
-
-## Remove
-
-- The grey caption below the CTA ("Free Full Birth Chart Reading") — replaced by the gold kicker above
-- The pill-shaped "Spin again" button (`spinAgainButton` JSX in the `!showForm` block only — form-state button stays untouched if any)
-
-## Scope
-
-Single file: `src/routes/snippet.tsx`, only the `!showForm` block. No new tokens, no new fonts. The `spinAgainButton` const can stay defined (still readable) but is no longer rendered in the `!showForm` branch — replaced by an inline text-link.
-
-## Verification
-
-Load `/snippet` at 672×530:
-- One obvious red button with a gold uppercase label above it
-- "or spin again" reads as a quiet text link, not a button
-- All content fits above the fold
-- Visual hierarchy: snippet (contemplate) → CTA (act) → text link (escape)
+## Out of scope
+- `showForm` branch untouched.
+- No changes to `src/lib/tikkun-data.ts` or `STATIC_COPY` — CTA label override is local to this screen.
+- No new design tokens.
