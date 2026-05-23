@@ -1,34 +1,40 @@
-Scope: `src/routes/snippet.tsx` only, `!showForm` block (lines ~140–290) plus the pulse-glow keyframes. No new tokens, no new files, no copy file edits (CTA copy hardcoded inline since `copy.primaryButton` is shared).
+Single file: `src/routes/snippet.tsx`, `!showForm` branch only.
 
-## A — CTA copy + trust micro-line
-- **Replace the gold kicker** ("Your Free Full Birth Chart Reading") entirely. Value prop moves *into* the button.
-- **New CTA label** (hardcoded, overrides `copy.primaryButton` for this screen): `Get My Free Birth Chart` + `→`. One clear promise, action verb, possessive ("My") for ownership framing.
-- **Add trust micro-line directly under the CTA**, above `(or spin again)`:
-  - Text: `Free · No card needed · 60 seconds`
-  - Style: `fontFamily: BODY`, `color: C_MUTED`, `fontSize: "10px"`, `letterSpacing: "0.16em"`, `fontWeight: 500`, `mt-3`, uppercase via inline `textTransform`.
+## 1. CTA copy
+- Label: `Reveal My Actual Tikkun Chart` + `→`
+- (Replaces current "Get My Free Birth Chart")
 
-## B — Consolidate kicker into CTA
-- Remove the `<p>` gold kicker block (lines 216–228).
-- CTA now sits directly under the silver box with `mt-[clamp(1.4rem,3.2vh,2rem)]` (inherits the kicker's old top margin).
-- Order becomes: silver box → CTA → trust line → `(or spin again)`.
+## 2. Subline (replaces trust micro-line)
+- Text: `Free Lunar Reading & Workbook`
+- Style: `BODY`, color `C_GOLD` at reduced opacity (~75%) so it whispers rather than competes — `color: rgba(240,200,104,0.78)`, `fontSize: "11px"`, `letterSpacing: "0.22em"`, `fontWeight: 500`, `textTransform: "uppercase"`, `mt-3`.
+- Removes "Free · No card needed · 60 seconds" entirely.
 
-## C — Polish pass
-1. **CTA radius**: `borderRadius: "0px"` → `"3px"`. Keeps architectural feel, removes brittleness.
-2. **Warmer hover**: extend pulse-glow CSS — on `:hover` apply `background: linear-gradient(135deg, #ff4d5c 0%, #d11e2b 100%)` (warmer, hotter red) via a new `.cta-pulse-glow:hover` rule. Keep existing `hover:scale-[1.02]` and `hover:brightness-110`.
-3. **Snippet hierarchy**: reduce snippet `<p>` (line 194–207) `fontSize` from `clamp(16px,1.9vw,20px)` → `clamp(15px,1.7vw,18px)`, `lineHeight` 1.7 → 1.6. CTA stack wins the page.
-4. **Letter inner glow tie-in**: the radial gradient behind the Hebrew letter (line 178) already uses `C_DAWN`. Bump its intensity slightly — `${C_GOLD}40` → `${C_GOLD}55`, `${C_DAWN}20` → `${C_DAWN}35`. Ties silver box to red CTA via shared warm undertone.
-5. **Mobile-friendly CTA width**: `w-[280px]` → `min-w-[260px] max-w-[320px] w-auto`, add horizontal padding buffer (keep `padding: "18px 32px"`).
+## 3. Button — matte oxblood, no pulse
+Strip the promo/SaaS cues. Specific changes:
 
-## Final vertical stack
+- **Background**: solid `#5c1a24` (deep sacramental red). No gradient. On hover: `#6b1f2b` (one shade lighter, no warming-up gradient).
+- **Border**: 1px hairline `rgba(240,200,104,0.35)` — gold whisper, not the current 1px inset gold that fights the red.
+- **Animation**: remove `cta-pulse-glow` class and the `@keyframes cta-pulse-glow` block + the `:hover` override entirely. Replace with a still, subtle resting shadow: `box-shadow: 0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)`. On hover: lift via `hover:translate-y-[-1px]` and shadow bump to `0 12px 32px -12px rgba(92,26,36,0.55)`. No scale, no brightness, no glow pulse.
+- **Border-radius**: keep `3px`.
+- **Padding**: `20px 36px` (slightly more breathing room — premium feel).
+- **Typography**: `fontWeight: 600` (down from 700), `letterSpacing: "0.18em"` (down from 0.22em), `fontSize: "12px"`. Tighter, less shouty.
+- **Color**: keep `C_INK` (off-white).
+- **Width**: keep `min-w-[260px] max-w-[320px]`.
+- **Transitions**: `transition-all duration-300 ease-out`.
+
+## 4. Cleanup
+- Delete the `<style>` block containing `@keyframes cta-pulse-glow` and `.cta-pulse-glow:hover`. (Still used by the `showForm` submit button — verify and keep keyframes if so, just don't apply to this button. **Decision: keep the keyframes block intact since `showForm` submit still uses `cta-pulse-glow`; just remove the class from this button.**)
+
+## Final stack (no-form branch)
 ```text
 [ Sound like you? ]
-[ silver box: Hebrew letter (warmer glow) + smaller snippet ]
-[ RED CTA: "Get My Free Birth Chart →" ]   (3px radius, hot-red hover)
-[ Free · No card needed · 60 seconds ]      (muted micro-trust)
-[ (or spin again) ]                          (only if canSpinAgain)
+[ silver box: Hebrew letter + snippet ]
+[ OXBLOOD BUTTON: Reveal My Actual Tikkun Chart → ]   (matte, still, gold hairline)
+[ Free Lunar Reading & Workbook ]                      (gold whisper, uppercase)
+[ (or spin again) ]                                    (unchanged)
 ```
 
 ## Out of scope
-- `showForm` branch untouched.
-- No changes to `src/lib/tikkun-data.ts` or `STATIC_COPY` — CTA label override is local to this screen.
-- No new design tokens.
+- `showForm` branch and its submit button — untouched.
+- No token, copy file, or data changes.
+- No mobile-layout changes beyond the existing min/max width.
