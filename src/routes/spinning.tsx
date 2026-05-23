@@ -43,8 +43,24 @@ function Spinning() {
         </div>
       </header>
       <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "clamp(360px, 70vw, 680px)",
+              height: "clamp(360px, 70vw, 680px)",
+              background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
+              filter: "blur(10px)",
+              pointerEvents: "none",
+              zIndex: 0,
+            }}
+          />
           <h1
+            className="relative"
             style={{
               fontFamily: HEAD,
               color: C_INK,
