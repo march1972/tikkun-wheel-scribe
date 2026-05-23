@@ -445,7 +445,7 @@ function Landing() {
 
         {/* ── ORIGINS ──────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-14 sm:py-[clamp(6rem,12vh,9rem)]"
           style={{
             background: C_BAND_DEEP,
             borderTop: `1px solid ${C_RULE_SOFT}`,
