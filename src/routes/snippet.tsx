@@ -216,43 +216,44 @@ function Snippet() {
 
         {!showForm && (
           <>
-            {/* Gold kicker — labels the CTA */}
-            <p
-              className="mt-[clamp(1.4rem,3.2vh,2rem)]"
-              style={{
-                fontFamily: BODY,
-                color: "rgba(240,200,104,0.72)",
-                fontSize: "10px",
-                letterSpacing: "0.22em",
-                fontWeight: 500,
-              }}
-            >
-              Your Free Full Birth Chart Reading
-            </p>
-
-            {/* CTA — rectangular red button */}
+            {/* CTA — rectangular red button with value prop inside */}
             <button
               type="button"
               onClick={() => {
                 setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
                 setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
               }}
-              className="cta-pulse-glow group mt-2 inline-flex w-[280px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02] hover:brightness-110"
+              className="cta-pulse-glow group mt-[clamp(1.4rem,3.2vh,2rem)] inline-flex w-auto min-w-[260px] max-w-[320px] items-center justify-center gap-3 uppercase transition-all duration-300 hover:scale-[1.02]"
               style={{
                 background: `linear-gradient(135deg, ${C_DAWN} 0%, #c1121f 100%)`,
                 color: C_INK,
                 fontFamily: BODY,
                 fontWeight: 700,
-                letterSpacing: "0.24em",
+                letterSpacing: "0.22em",
                 fontSize: "12px",
                 padding: "18px 32px",
-                borderRadius: "0px",
+                borderRadius: "3px",
                 boxShadow: `inset 0 0 0 1px rgba(240,200,104,0.25), 0 10px 40px -10px ${C_DAWN}aa`,
               }}
             >
-              <span>{copy.primaryButton}</span>
+              <span>Get My Free Birth Chart</span>
               <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
             </button>
+
+            {/* Trust micro-line */}
+            <p
+              className="mt-3"
+              style={{
+                fontFamily: BODY,
+                color: C_MUTED,
+                fontSize: "10px",
+                letterSpacing: "0.16em",
+                fontWeight: 500,
+                textTransform: "uppercase",
+              }}
+            >
+              Free · No card needed · 60 seconds
+            </p>
 
             {/* Spin again — quiet text link */}
             {canSpinAgain && (
