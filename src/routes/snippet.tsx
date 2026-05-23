@@ -220,6 +220,7 @@ function Snippet() {
               {sign.screen3.spinSnippet}
             </p>
           </div>
+        </div>
         )}
 
 
