@@ -296,16 +296,8 @@ function Snippet() {
                 <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 700, fontSize: "1.05em" }}>Tikkun</span>{" "}
                 chart
               </h2>
-              <p
-                className="mt-3"
-                style={{
-                  fontFamily: BODY, color: "rgba(180,200,230,0.85)", fontWeight: 400,
-                  fontSize: "12px", letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                }}
-              >
-                (Free reading + workbook)
-              </p>
+
+
 
               <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
                 <div>
