@@ -141,16 +141,23 @@ function Snippet() {
           <div
             className="w-full"
             style={{
+              padding: "1.5px",
               background:
-                "radial-gradient(120% 80% at 50% 0%, rgba(201,168,76,0.10), rgba(10,14,28,0.78) 55%, rgba(8,10,22,0.92))",
-              border: "1px solid rgba(201,168,76,0.45)",
+                "linear-gradient(135deg, #FFE9B8 0%, #f0c868 50%, #C99245 100%)",
               borderRadius: "16px",
-              padding: "clamp(1.1rem,3vw,1.75rem)",
-              boxShadow:
-                "0 30px 80px -25px rgba(0,0,0,0.7), 0 0 60px -10px rgba(201,168,76,0.18), inset 0 1px 0 rgba(255,255,255,0.05)",
-              backdropFilter: "blur(8px)",
             }}
           >
+            <div
+              style={{
+                background:
+                  "radial-gradient(120% 80% at 50% 0%, rgba(201,168,76,0.10), rgba(10,14,28,0.78) 55%, rgba(8,10,22,0.92))",
+                borderRadius: "14.5px",
+                padding: "clamp(1.1rem,3vw,1.75rem)",
+                boxShadow:
+                  "0 30px 80px -25px rgba(0,0,0,0.7), 0 0 60px -10px rgba(201,168,76,0.18), inset 0 1px 0 rgba(255,255,255,0.05)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
             <h2
               style={{
                 fontFamily: HEAD,
@@ -213,6 +220,7 @@ function Snippet() {
               {sign.screen3.spinSnippet}
             </p>
           </div>
+        </div>
         )}
 
 
