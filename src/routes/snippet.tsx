@@ -137,78 +137,127 @@ function Snippet() {
         .cta-pulse-glow:hover { animation: none; }
       `}</style>
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1rem,2.5vh,1.75rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        {!showForm && (
-          <div
-            className="w-full"
-            style={{
-              background:
-                "radial-gradient(120% 80% at 50% 0%, rgba(201,168,76,0.10), rgba(10,14,28,0.78) 55%, rgba(8,10,22,0.92))",
-              border: "1px solid rgba(201,168,76,0.45)",
-              borderRadius: "16px",
-              padding: "clamp(1.1rem,3vw,1.75rem)",
-              boxShadow:
-                "0 30px 80px -25px rgba(0,0,0,0.7), 0 0 60px -10px rgba(201,168,76,0.18), inset 0 1px 0 rgba(255,255,255,0.05)",
-              backdropFilter: "blur(8px)",
-            }}
-          >
-            <h2
+        {!showForm && (() => {
+          const WHEEL_LETTERS = ["ה","ו","ז","ח","ט","י","ל","נ","ס","ע","צ","ק"];
+          const idx = WHEEL_LETTERS.indexOf(sign.hebrewLetter);
+          const rotated = idx >= 0
+            ? [...WHEEL_LETTERS.slice(idx), ...WHEEL_LETTERS.slice(0, idx)]
+            : WHEEL_LETTERS;
+          // 12 slots clockwise from top-center, 3 per edge.
+          const SLOTS: Array<{ edge: "top" | "right" | "bottom" | "left"; t: number }> = [
+            { edge: "top",    t: 0.5  }, // chosen
+            { edge: "top",    t: 0.8  },
+            { edge: "right",  t: 0.25 },
+            { edge: "right",  t: 0.5  },
+            { edge: "right",  t: 0.75 },
+            { edge: "bottom", t: 0.8  },
+            { edge: "bottom", t: 0.5  },
+            { edge: "bottom", t: 0.2  },
+            { edge: "left",   t: 0.75 },
+            { edge: "left",   t: 0.5  },
+            { edge: "left",   t: 0.25 },
+            { edge: "top",    t: 0.2  },
+          ];
+          const PLATE_BG = "#0a0e1c";
+          return (
+            <div
+              className="w-full"
               style={{
-                fontFamily: HEAD,
-                fontStyle: "italic",
-                fontWeight: 500,
-                fontSize: "clamp(26px, 5.2vw, 38px)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.01em",
-                backgroundImage:
-                  "linear-gradient(135deg, #f0d78c 0%, #c9a84c 60%, #b8923a 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-                textShadow: "0 0 22px rgba(201,168,76,0.35)",
-                paddingRight: "0.08em",
-                marginRight: "-0.08em",
+                position: "relative",
+                background:
+                  "radial-gradient(120% 80% at 50% 0%, rgba(201,168,76,0.10), rgba(10,14,28,0.78) 55%, rgba(8,10,22,0.92))",
+                border: "1.5px solid #c9a84c",
+                borderRadius: "16px",
+                padding: "clamp(1.5rem,4vw,2rem) clamp(1.25rem,3.5vw,1.75rem) clamp(1.25rem,3.5vw,1.75rem)",
+                boxShadow:
+                  "0 30px 80px -25px rgba(0,0,0,0.7), 0 0 60px -10px rgba(201,168,76,0.18), inset 0 1px 0 rgba(255,255,255,0.05)",
+                backdropFilter: "blur(8px)",
+                overflow: "visible",
               }}
             >
-              Sound like you?
-            </h2>
+              {/* 12 Hebrew letters along the perimeter */}
+              {rotated.map((letter, i) => {
+                const slot = SLOTS[i];
+                const isChosen = i === 0;
+                // Match the wheel's rhythm: every 3rd original-order slot is gold accent.
+                const isAccentSlot = ((idx + i) % 3) === 2;
+                const pos: React.CSSProperties = { position: "absolute" };
+                if (slot.edge === "top") {
+                  pos.top = 0;
+                  pos.left = `${slot.t * 100}%`;
+                  pos.transform = "translate(-50%, -50%)";
+                } else if (slot.edge === "bottom") {
+                  pos.bottom = 0;
+                  pos.left = `${slot.t * 100}%`;
+                  pos.transform = "translate(-50%, 50%)";
+                } else if (slot.edge === "left") {
+                  pos.left = 0;
+                  pos.top = `${slot.t * 100}%`;
+                  pos.transform = "translate(-50%, -50%)";
+                } else {
+                  pos.right = 0;
+                  pos.top = `${slot.t * 100}%`;
+                  pos.transform = "translate(50%, -50%)";
+                }
+                return (
+                  <span
+                    key={`${letter}-${i}`}
+                    aria-hidden
+                    style={{
+                      ...pos,
+                      fontFamily: "'Frank Ruhl Libre', 'Fraunces', serif",
+                      fontSize: isChosen ? "22px" : "13px",
+                      fontWeight: isChosen ? 600 : isAccentSlot ? 500 : 400,
+                      color: isChosen ? "#FFE9B8" : isAccentSlot ? "#FFE9B8" : "#f4ecdb",
+                      background: PLATE_BG,
+                      padding: isChosen ? "0 10px" : "0 6px",
+                      lineHeight: 1,
+                      textShadow: isChosen
+                        ? "0 0 14px rgba(240,200,104,0.7), 0 0 28px rgba(240,200,104,0.35)"
+                        : undefined,
+                      pointerEvents: "none",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {letter}
+                  </span>
+                );
+              })}
 
-            <div
-              className="relative mt-[12px] flex items-center justify-center"
-              style={{ minHeight: "clamp(60px, 11vw, 100px)" }}
-            >
-              <span
-                aria-hidden
+              <h2
                 style={{
-                  position: "absolute",
-                  width: "clamp(80px, 14vw, 130px)",
-                  height: "clamp(80px, 14vw, 130px)",
-                  background: `radial-gradient(circle, ${C_GOLD}40 0%, ${C_DAWN}20 45%, transparent 72%)`,
-                  filter: "blur(6px)",
-                  pointerEvents: "none",
-                }}
-              />
-              <span
-                className="relative"
-                style={{
-                  fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 10vw, 92px)",
-                  lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}66`,
+                  fontFamily: HEAD,
+                  fontStyle: "italic",
+                  fontWeight: 500,
+                  fontSize: "clamp(24px, 5vw, 36px)",
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.01em",
+                  backgroundImage:
+                    "linear-gradient(135deg, #f0d78c 0%, #c9a84c 60%, #b8923a 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  textShadow: "0 0 22px rgba(201,168,76,0.35)",
+                  paddingRight: "0.08em",
+                  marginRight: "-0.08em",
                 }}
               >
-                {sign.hebrewLetter}
-              </span>
-            </div>
+                Sound like you?
+              </h2>
 
-            <p
-              className="mt-[10px]"
-              style={{
-                fontFamily: BODY, color: C_INK, lineHeight: 1.55,
-                fontSize: "clamp(15px, 1.7vw, 18px)",
-              }}
-            >
-              {sign.screen3.spinSnippet}
-            </p>
-          </div>
-        )}
+              <p
+                className="mt-[14px]"
+                style={{
+                  fontFamily: BODY, color: C_INK, lineHeight: 1.55,
+                  fontSize: "clamp(15px, 1.7vw, 18px)",
+                }}
+              >
+                {sign.screen3.spinSnippet}
+              </p>
+            </div>
+          );
+        })()}
+
 
 
         {!showForm && (
