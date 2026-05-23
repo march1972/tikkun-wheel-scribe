@@ -359,30 +359,30 @@ function Snippet() {
                   disabled={busy}
                   className="group mt-2 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
                   style={{
-                    background: "#5c1a24",
+                    background: "#7a1f2b",
                     color: C_INK,
                     fontFamily: BODY,
-                    fontWeight: 600,
-                    letterSpacing: "0.18em",
+                    fontWeight: 700,
+                    letterSpacing: "0.28em",
                     fontSize: "12px",
                     padding: "20px 36px",
-                    borderRadius: "3px",
-                    border: "1px solid rgba(240,200,104,0.35)",
-                    boxShadow: "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)",
+                    borderRadius: 0,
+                    border: "none",
+                    boxShadow: "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)",
                   }}
                   onMouseEnter={(e) => {
                     if (busy) return;
-                    e.currentTarget.style.background = "#6b1f2b";
-                    e.currentTarget.style.boxShadow = "0 12px 32px -12px rgba(92,26,36,0.55), inset 0 1px 0 rgba(255,255,255,0.04)";
+                    e.currentTarget.style.background = "#8a2533";
+                    e.currentTarget.style.boxShadow = "0 12px 32px -12px rgba(155,40,55,0.55), inset 0 1px 0 rgba(255,255,255,0.06)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "#5c1a24";
-                    e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)";
+                    e.currentTarget.style.background = "#7a1f2b";
+                    e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)";
                   }}
                 >
-                  <span>{busy ? "Revealing…" : "Reveal my Tikkun"}</span>
+                  <span>{busy ? "Revealing…" : "Reveal my free Tikkun Reading"}</span>
                   {!busy && (
-                    <span aria-hidden="true" style={{ fontWeight: 700 }}>→</span>
+                    <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
                   )}
                 </button>
               </form>
