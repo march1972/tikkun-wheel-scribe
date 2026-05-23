@@ -453,7 +453,7 @@ function Landing() {
 
         {/* ── ORIGINS ──────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,8vh,7rem)]"
           style={{
             background: C_BAND_DEEP,
             borderTop: `1px solid ${C_RULE_SOFT}`,
@@ -492,7 +492,7 @@ function Landing() {
 
         {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,8vh,7rem)]"
           style={{ background: C_BAND_MID }}
         >
           <StarField density={160} opacity={0.5} seedOffset={900} />
@@ -531,7 +531,7 @@ function Landing() {
 
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,8vh,7rem)]"
           style={{ background: C_BAND_LIFT }}
         >
           <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
