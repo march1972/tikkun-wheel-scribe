@@ -217,40 +217,18 @@ function Snippet() {
 
         {!showForm && (
           <>
-            {/* CTA — matte oxblood, no pulse */}
-            <button
-              type="button"
-              onClick={() => {
-                setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
-                setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
-              }}
-              className="group mt-[clamp(1.4rem,3.2vh,2rem)] inline-flex w-auto min-w-[260px] max-w-[320px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px"
-              style={{
-                background: "#5c1a24",
-                color: C_INK,
-                fontFamily: BODY,
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                fontSize: "12px",
-                padding: "20px 36px",
-                borderRadius: "3px",
-                border: "1px solid rgba(240,200,104,0.35)",
-                boxShadow: "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#6b1f2b";
-                e.currentTarget.style.boxShadow = "0 12px 32px -12px rgba(92,26,36,0.55), inset 0 1px 0 rgba(255,255,255,0.04)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "#5c1a24";
-                e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)";
-              }}
-            >
-              <span>Reveal My Actual Tikkun Chart</span>
-              <span aria-hidden="true" style={{ fontWeight: 700 }}>→</span>
-            </button>
+            {/* CTA — gold, matches home page */}
+            <div className="mt-[clamp(1.4rem,3.2vh,2rem)]">
+              <PrimaryCTA
+                onClick={() => {
+                  setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
+                  setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
+                }}
+                label="Reveal My Actual Chart"
+              />
+            </div>
 
-            {/* Subline — value prop whisper */}
+            {/* Subline — value prop */}
             <p
               className="mt-3"
               style={{
@@ -262,32 +240,48 @@ function Snippet() {
                 textTransform: "uppercase",
               }}
             >
-              Free Lunar Reading & Workbook
+              (Free Tikkun Birth Chart & Reading)
             </p>
 
-            {/* Spin again — quiet text link */}
+            {/* OR / spin again */}
             {canSpinAgain && (
-              <button
-                type="button"
-                onClick={handleSpinAgain}
-                className="mt-3 transition-opacity duration-200 hover:opacity-100"
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  color: C_MUTED,
-                  fontFamily: BODY,
-                  fontSize: "10px",
-                  letterSpacing: "0.18em",
-                  fontWeight: 400,
-                  textDecoration: "underline",
-                  textUnderlineOffset: "4px",
-                  textDecorationColor: "rgba(236,227,207,0.25)",
-                  cursor: "pointer",
-                  padding: "4px 6px",
-                }}
-              >
-                (or spin again)
-              </button>
+              <>
+                <p
+                  className="mt-5"
+                  style={{
+                    fontFamily: BODY,
+                    color: C_MUTED,
+                    fontSize: "10px",
+                    letterSpacing: "0.3em",
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  or
+                </p>
+                <button
+                  type="button"
+                  onClick={handleSpinAgain}
+                  className="mt-2 transition-opacity duration-200 hover:opacity-100"
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    color: C_INK_SOFT,
+                    fontFamily: BODY,
+                    fontSize: "11px",
+                    letterSpacing: "0.22em",
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    textDecoration: "underline",
+                    textUnderlineOffset: "4px",
+                    textDecorationColor: "rgba(236,227,207,0.35)",
+                    cursor: "pointer",
+                    padding: "4px 6px",
+                  }}
+                >
+                  Spin again
+                </button>
+              </>
             )}
           </>
         )}
