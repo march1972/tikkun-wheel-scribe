@@ -2,8 +2,16 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
-import { SkyShell } from "@/components/landing/SkyShell";
-import { HEAD, BODY, C_INK, C_DAWN, C_GOLD } from "@/lib/landing-style";
+import { StarField } from "@/components/landing/StarField";
+import {
+  HEAD,
+  BODY,
+  C_INK,
+  C_INK_SOFT,
+  C_DAWN,
+  C_GOLD,
+  C_SKY_GRAD,
+} from "@/lib/landing-style";
 
 export const Route = createFileRoute("/spinning")({
   component: Spinning,
@@ -25,7 +33,17 @@ function Spinning() {
   }, [navigate]);
 
   return (
-    <SkyShell starDensity={360}>
+    <main
+      className="relative min-h-screen overflow-hidden"
+      style={{ color: C_INK_SOFT }}
+    >
+      <div
+        aria-hidden
+        className="fixed inset-0 -z-10"
+        style={{ background: C_SKY_GRAD }}
+      />
+      <StarField density={360} opacity={0.85} />
+
       <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
         <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-center">
           <span
@@ -42,6 +60,7 @@ function Spinning() {
           </span>
         </div>
       </header>
+
       <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3.5rem)] pb-[clamp(3rem,6vh,5rem)]">
         <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
           <div
@@ -66,7 +85,7 @@ function Spinning() {
               color: C_INK,
               fontWeight: 500,
               fontSize: "clamp(41px, 7.65vw, 95px)",
-              lineHeight: 1.0,
+              lineHeight: 1.02,
               letterSpacing: "-0.035em",
             }}
           >
@@ -104,6 +123,6 @@ function Spinning() {
           </p>
         </div>
       </section>
-    </SkyShell>
+    </main>
   );
 }
