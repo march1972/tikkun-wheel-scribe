@@ -1,51 +1,40 @@
 ## Goal
 
-Restyle the `/snippet` card so its header and frame visually match the "What you receive" section on the landing page. Keep the red CTA visible above the fold.
+Refine the `/snippet` card so the excerpt frame reads as a precious, silver-leaf artifact — and tighten the vertical rhythm so the eye flows letter → words → CTA with intent.
 
-## Header — "Sound like you?"
+## Box — silver, not gold
 
-Match the landing "What you receive." headline exactly:
-- Font: `HEAD`, `fontSize: clamp(38px, 6.5vw, 76px)`, `lineHeight: 1.1`, `letterSpacing: -0.025em`
-- "Sound like" in white (`C_INK`, upright)
-- "you?" in yellow (`C_GOLD`, italic) — same treatment as "receive."
-- Centered, sits above the rectangle (not inside it)
-- Remove the current gold gradient text-clip, italic-on-whole-phrase, and gold glow
+Swap the faint gold tint for a cool silver treatment:
+- `background: rgba(220, 228, 240, 0.05)` (very faint cool tint, almost glass)
+- `border: 1px solid rgba(220, 228, 240, 0.28)` (silver, ~2x stronger than the gold 0x33 was — silver needs more presence on dark sky to not vanish)
+- Subtle inner highlight via `boxShadow: inset 0 1px 0 rgba(255,255,255,0.06)` so the top edge catches light (a lead-gen polish move — frames the content as a "card object")
+- Keep `borderRadius: 2`, padding unchanged
 
-## Rectangle — transparent, like the receive cards
+Rationale: silver reads cooler/more sacred against the indigo sky than gold, and it stops competing with the gold "you?" in the headline. The headline owns the warm accent; the box becomes a quiet vessel.
 
-Replace the current dark radial-gradient + heavy gold border + blur with the landing card recipe:
-- `background: rgba(240, 200, 104, 0.06)` (faint gold tint)
-- `border: 1px solid ${C_GOLD}33`
-- `borderRadius: 2` (sharp, not 16px)
-- Drop `backdropFilter` and the heavy `boxShadow` stack
-- Padding: `clamp(1.25rem, 2.5vw, 1.75rem)` (matches landing cards)
+## Hebrew letter — nudge up
 
-## Inside the rectangle
+- Reduce top padding inside the box OR pull the letter container up with negative `marginTop: clamp(-6px, -1vh, -10px)`
+- Trim the letter container `minHeight` from `clamp(60px,11vw,100px)` → `clamp(52px, 9.5vw, 88px)` so the letter sits higher and closer to the headline gravitationally
+- Halo stays, but reduce halo size ~10% so it doesn't fill the freed space
 
-- Hebrew letter centered (kept), keep the soft gold/red radial halo, size `clamp(56px, 10vw, 92px)`
-- Below the letter: the italic snippet copy (unchanged styling — `BODY`, italic, `clamp(16px,1.9vw,20px)`, lh 1.7)
-- No header inside the box (header now lives above it)
+Rationale: with a silver frame the letter feels like a relic in a reliquary — it should sit near the top third, not centered. Classic museum-label composition.
 
-## Vertical budget
+## CTA — nudge down
 
-Bigger header eats space. To keep the red CTA above the fold at 672×530:
-- Section top padding stays `clamp(1rem, 2.5vh, 1.75rem)`
-- Header → rectangle gap: `clamp(0.75rem, 2vh, 1.25rem)`
-- Rectangle → CTA gap: `clamp(0.9rem, 2vh, 1.4rem)` (unchanged)
-- CTA → "Spin again" gap: `clamp(1rem, 2.5vh, 1.5rem)` (unchanged)
-- If still tight, the header `clamp` min can be nudged down to `32px` — flag during verification.
+- Increase `mt-[clamp(0.9rem,2vh,1.4rem)]` → `mt-[clamp(1.4rem, 3.2vh, 2rem)]`
+- Creates a clear "pause" between the artifact (box) and the action (CTA) — separates contemplation from decision
 
-## What stays the same
-
-- Red rectangular CTA + glow pulse + "Free Full Birth Chart Reading" caption
-- "Spin again" pill
-- SkyShell background and stars
-- Form state (`showForm`) flow — untouched
-
-## Scope
-
-Single file: `src/routes/snippet.tsx`, only the `!showForm` block (~lines 138–193). Uses existing tokens from `@/lib/landing-style` — no new tokens, no new fonts.
+Rationale (UX): in lead-gen, the CTA needs a visual moat. When it's too close to content above, users scan past it. A larger gap + the existing pulse glow makes it feel like a deliberate next step, not a footer to the box.
 
 ## Verification
 
-Load `/snippet` at 672×530 and confirm: (a) headline reads identically in scale/treatment to landing "What you receive.", (b) rectangle is a translucent gold-tinted card matching the receive cards, (c) red CTA is fully visible without scrolling.
+Load `/snippet` at 672×530:
+- Box reads as silver/glass, not gold
+- Hebrew letter sits visibly higher in the box (top third, not center)
+- Red CTA has clear breathing room above it but still fully visible above the fold
+- "Spin again" pill remains visible
+
+## Scope
+
+Single file: `src/routes/snippet.tsx`, only the `!showForm` block. No new tokens.
