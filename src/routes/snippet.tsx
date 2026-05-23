@@ -200,8 +200,8 @@ function Snippet() {
                   fontFamily: BODY,
                   fontStyle: "italic",
                   color: C_INK,
-                  lineHeight: 1.7,
-                  fontSize: "clamp(16px, 1.9vw, 20px)",
+                  lineHeight: 1.6,
+                  fontSize: "clamp(15px, 1.7vw, 18px)",
                   letterSpacing: "0.01em",
                   fontWeight: 400,
                 }}
