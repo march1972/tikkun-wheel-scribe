@@ -136,44 +136,62 @@ function Snippet() {
         .cta-pulse-glow { animation: cta-pulse-glow 2.5s ease-in-out infinite; }
         .cta-pulse-glow:hover { animation: none; }
       `}</style>
-      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1.5rem,4vh,3rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1rem,2.5vh,1.75rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
           <div
             className="w-full"
             style={{
               background:
-                "linear-gradient(180deg, rgba(27, 37, 64, 0.55) 0%, rgba(15, 23, 41, 0.55) 100%)",
-              border: `1px solid ${C_RULE}`,
-              borderRadius: "14px",
-              padding: "clamp(1.75rem,4.5vw,2.75rem)",
+                "radial-gradient(120% 80% at 50% 0%, rgba(201,168,76,0.10), rgba(10,14,28,0.78) 55%, rgba(8,10,22,0.92))",
+              border: "1px solid rgba(201,168,76,0.45)",
+              borderRadius: "16px",
+              padding: "clamp(1.1rem,3vw,1.75rem)",
               boxShadow:
-                "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
+                "0 30px 80px -25px rgba(0,0,0,0.7), 0 0 60px -10px rgba(201,168,76,0.18), inset 0 1px 0 rgba(255,255,255,0.05)",
               backdropFilter: "blur(8px)",
             }}
           >
-            <div className="flex items-center justify-center gap-3">
-              <span style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
-              <span
-                style={{
-                  fontFamily: BODY,
-                  color: C_GOLD,
-                  fontWeight: 600,
-                  fontSize: "clamp(10px, 2.6vw, 13px)",
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  textAlign: "center",
-                }}
-              >
-                Sound like you?
-              </span>
-              <span style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${C_GOLD}55)`, minWidth: 12 }} />
-            </div>
+            <h2
+              style={{
+                fontFamily: HEAD,
+                fontStyle: "italic",
+                fontWeight: 500,
+                fontSize: "clamp(26px, 5.2vw, 38px)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.01em",
+                backgroundImage:
+                  "linear-gradient(135deg, #f0d78c 0%, #c9a84c 60%, #b8923a 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+                textShadow: "0 0 22px rgba(201,168,76,0.35)",
+                paddingRight: "0.08em",
+                marginRight: "-0.08em",
+              }}
+            >
+              Sound like you?
+            </h2>
 
-            <div className="mt-[clamp(0.5rem,1vh,1rem)] flex items-center justify-center">
+            <div
+              className="relative mt-[12px] flex items-center justify-center"
+              style={{ minHeight: "clamp(60px, 11vw, 100px)" }}
+            >
               <span
+                aria-hidden
                 style={{
-                  fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(72px, 13vw, 120px)",
-                  lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}55`,
+                  position: "absolute",
+                  width: "clamp(80px, 14vw, 130px)",
+                  height: "clamp(80px, 14vw, 130px)",
+                  background: `radial-gradient(circle, ${C_GOLD}40 0%, ${C_DAWN}20 45%, transparent 72%)`,
+                  filter: "blur(6px)",
+                  pointerEvents: "none",
+                }}
+              />
+              <span
+                className="relative"
+                style={{
+                  fontFamily: HEAD, color: C_DAWN, fontSize: "clamp(56px, 10vw, 92px)",
+                  lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}66`,
                 }}
               >
                 {sign.hebrewLetter}
@@ -181,16 +199,17 @@ function Snippet() {
             </div>
 
             <p
-              className="mt-0"
+              className="mt-[10px]"
               style={{
-                fontFamily: BODY, color: C_INK, lineHeight: 1.7,
-                fontSize: "clamp(17px, 1.9vw, 21px)",
+                fontFamily: BODY, color: C_INK, lineHeight: 1.55,
+                fontSize: "clamp(15px, 1.7vw, 18px)",
               }}
             >
               {sign.screen3.spinSnippet}
             </p>
           </div>
         )}
+
 
         {!showForm && (
           <>
