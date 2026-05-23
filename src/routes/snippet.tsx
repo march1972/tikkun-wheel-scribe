@@ -299,7 +299,8 @@ function Snippet() {
 
 
 
-              <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
+              <div style={{ maxWidth: 380, margin: "0 auto", width: "100%" }}>
+                <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
                 <div>
                   <label style={labelStyle} htmlFor="name">Name (optional)</label>
                   <input
@@ -379,18 +380,20 @@ function Snippet() {
                 </button>
               </form>
 
-              <p
-                className="mt-3"
-                style={{ fontFamily: BODY, color: C_INK, fontSize: "15px", letterSpacing: "0.03em", lineHeight: 1.7 }}
-              >
-                Email used for full Tikkun Birth Chart.{" "}
-                <a
-                  href="/terms"
-                  style={{ color: C_MUTED, textDecoration: "underline", fontSize: "11px" }}
+                <p
+                  className="mt-3 text-center"
+                  style={{ fontFamily: BODY, color: "rgba(236,227,207,0.55)", fontSize: "12px", letterSpacing: "0.03em", lineHeight: 1.6 }}
                 >
-                  T&Cs
-                </a>
-              </p>
+                  Birth date and email for full Tikkun Birth Chart.{" "}
+                  <a
+                    href="/terms"
+                    style={{ color: "rgba(236,227,207,0.5)", textDecoration: "underline", fontSize: "10px" }}
+                  >
+                    T&Cs
+                  </a>
+                </p>
+              </div>
+
 
             </div>
 
