@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Kabbalah Astrology maps your Tikkun — the soul's pattern of correction that signals how to fulfill your life's purpose in relationships, finances, and career.",
+          "A free Tikkun astrology chart based on the lunar nodes at your date of birth. You see the purpose patterns that influence your path in relationships, career, finances, and personal fulfilment.",
       },
       { property: "og:title", content: "Kabbalah Astrology — Reveal Your Tikkun" },
       {
@@ -612,7 +612,7 @@ function Landing() {
                   fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
-                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> reading based on the lunar nodes at your date of birth.&nbsp;You see&nbsp;<span style={{ color: C_GOLD, fontStyle: "italic" }}>your life's recurring purpose patterns</span>&nbsp;that influence your path in relationships, career, finances, and personal fulfilment.
+                A free <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> astrology chart based on the lunar nodes at your date of birth.&nbsp;You see the&nbsp;<span style={{ color: C_GOLD, fontStyle: "italic" }}>purpose patterns</span>&nbsp;that influence your path in relationships, career, finances, and personal fulfilment.
               </p>
             </Reveal>
             <Reveal delay={280}>
