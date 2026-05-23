@@ -256,23 +256,23 @@ function Snippet() {
               <button
                 type="button"
                 onClick={handleSpinAgain}
-                className="mt-3 uppercase transition-opacity duration-200 hover:opacity-100"
+                className="mt-3 transition-opacity duration-200 hover:opacity-100"
                 style={{
                   background: "transparent",
                   border: "none",
                   color: C_MUTED,
                   fontFamily: BODY,
-                  fontSize: "11px",
-                  letterSpacing: "0.22em",
-                  fontWeight: 500,
+                  fontSize: "10px",
+                  letterSpacing: "0.18em",
+                  fontWeight: 400,
                   textDecoration: "underline",
                   textUnderlineOffset: "4px",
-                  textDecorationColor: "rgba(236,227,207,0.3)",
+                  textDecorationColor: "rgba(236,227,207,0.25)",
                   cursor: "pointer",
-                  padding: "6px 8px",
+                  padding: "4px 6px",
                 }}
               >
-                or spin again
+                (or spin again)
               </button>
             )}
           </>
