@@ -84,7 +84,7 @@ function Spinning() {
               fontFamily: HEAD,
               color: C_INK,
               fontWeight: 500,
-              fontSize: "clamp(41px, 7.65vw, 95px)",
+              fontSize: "clamp(38px, 7.1vw, 88px)",
               lineHeight: 1.02,
               letterSpacing: "-0.035em",
             }}
