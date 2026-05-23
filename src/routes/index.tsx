@@ -282,7 +282,7 @@ function Landing() {
         </header>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.25rem,2.5vh,2.25rem)] pb-8 sm:pb-[clamp(3rem,6vh,5rem)]">
+        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1.25rem,2.5vh,2.25rem)] pb-[clamp(3rem,6vh,5rem)]">
           <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
             <div
               ref={haloRef}
@@ -374,7 +374,7 @@ function Landing() {
 
         {/* ── WHAT YOU RECEIVE ─────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-14 sm:py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: "radial-gradient(70% 55% at 50% 25%, rgba(180,200,235,0.16) 0%, rgba(10,14,28,0) 70%), radial-gradient(45% 35% at 90% 100%, rgba(245,207,122,0.08) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #14203c 0%, #1c2848 40%, #22304f 70%, #1c2848 100%)" }}
         >
           <StarField density={140} opacity={0.5} seedOffset={2100} />
@@ -445,7 +445,7 @@ function Landing() {
 
         {/* ── ORIGINS ──────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-14 sm:py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{
             background: C_BAND_DEEP,
             borderTop: `1px solid ${C_RULE_SOFT}`,
@@ -484,7 +484,7 @@ function Landing() {
 
         {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-14 sm:py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
           <StarField density={160} opacity={0.5} seedOffset={900} />
@@ -523,7 +523,7 @@ function Landing() {
 
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-14 sm:py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
           <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
@@ -569,7 +569,7 @@ function Landing() {
 
         {/* ── CLOSING CTA ──────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-14 sm:py-[clamp(5rem,10vh,8rem)] text-center"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
         >
           <StarField density={120} opacity={0.55} seedOffset={1700} />
           <div className="relative mx-auto max-w-3xl">
@@ -625,7 +625,7 @@ function Landing() {
 
         {/* ── FOOTER ───────────────────────────────────────────── */}
         <footer
-          className="px-[clamp(1.25rem,5vw,3rem)] pt-14 sm:pt-[clamp(6rem,12vh,9rem)] pb-[clamp(1.5rem,3vh,2.5rem)]"
+          className="px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(6rem,12vh,9rem)] pb-[clamp(1.5rem,3vh,2.5rem)]"
         >
           <div className="mx-auto max-w-6xl">
             <div style={{ borderTop: `1px solid ${C_RULE}` }} className="mb-[clamp(1.5rem,3vh,2.5rem)]" />
