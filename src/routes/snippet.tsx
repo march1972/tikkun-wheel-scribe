@@ -358,7 +358,7 @@ function Snippet() {
                 <button
                   type="submit"
                   disabled={busy}
-                  className="group mt-3 sm:mt-6 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
+                  className="group mt-5 sm:mt-6 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
                   style={{
                     background: "#7a1f2b",
                     color: C_INK,
@@ -395,10 +395,11 @@ function Snippet() {
                   Birth date and email for full Tikkun Birth Chart.{" "}
                   <a
                     href="/terms"
-                    style={{ color: "rgba(236,227,207,0.5)", textDecoration: "underline", fontSize: "10px" }}
+                    style={{ fontFamily: BODY, color: "rgba(236,227,207,0.75)", textDecoration: "underline", textDecorationColor: "rgba(236,227,207,0.7)", textUnderlineOffset: "3px", fontSize: "11px" }}
                   >
-                    T&Cs
+                    terms and conditions
                   </a>
+
                 </p>
               </div>
 
