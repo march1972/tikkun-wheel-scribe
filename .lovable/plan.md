@@ -1,16 +1,15 @@
-# Plan: Tighten `/snippet` form layout & polish legal copy
+# Plan: Snippet form spacing & date-input polish
 
-## Changes (all in `src/routes/snippet.tsx`)
+All changes in `src/routes/snippet.tsx`.
 
-1. **Update legal copy text**
-   - From: `Email used for full Tikkun Birth Chart.`
-   - To: `Birth date and email for full Tikkun Birth Chart.`
+1. **More space between fields** — change form `gap-3` → `gap-5` so name/email/dob fields breathe.
 
-2. **Darken legal copy** — currently `color: C_INK` (bright). Drop to a dimmer muted tone (e.g. `rgba(236,227,207,0.55)`) and reduce size to ~12px so it reads as fine print. T&Cs link stays muted/underlined, slightly smaller still.
+2. **More space above red CTA** — bump button `mt-2` → `mt-6` (plus the form gap) so the submit pill sits clearly apart from the newsletter checkbox.
 
-3. **Constrain form width for better UX** — standard single-column lead/auth form width is ~360–400px. Wrap the `<form>` plus the legal `<p>` in a centered container with `maxWidth: 380px` and `margin: 0 auto`. The outer heading stays full-width.
+3. **Date input greys** — the native `<input type="date">` shows `mm/dd/yyyy` and the calendar icon in default black. Match the placeholder grey used by name/email by:
+   - Adding a CSS rule (scoped via a small `<style>` block in the route, or inline targeting `#dob`) so:
+     - `#dob::-webkit-datetime-edit-text`, `::-webkit-datetime-edit-month-field`, `::-webkit-datetime-edit-day-field`, `::-webkit-datetime-edit-year-field` → use the muted ink colour `rgba(236,227,207,0.45)` when empty (matches placeholder).
+     - `#dob::-webkit-calendar-picker-indicator` → `filter: invert(0.7) opacity(0.5)` so the icon reads as soft grey on the dark field.
+   - Once a date is chosen, the text shifts to the normal `C_INK` colour for legibility.
 
-4. **Match red CTA button width to inputs** — button currently `w-full` inside the wider section. Once the form is constrained to 380px, the button auto-matches input width (both fill the 380px column). Keep its existing styling (oxblood, square, 0.28em tracking).
-
-## Files
-- `src/routes/snippet.tsx` only.
+No other files touched.

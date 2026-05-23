@@ -300,7 +300,15 @@ function Snippet() {
 
 
               <div style={{ maxWidth: 380, margin: "0 auto", width: "100%" }}>
-                <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-3 text-left">
+                <style>{`
+                  #dob::-webkit-datetime-edit-text,
+                  #dob::-webkit-datetime-edit-month-field,
+                  #dob::-webkit-datetime-edit-day-field,
+                  #dob::-webkit-datetime-edit-year-field { color: ${dob ? C_INK : "rgba(236,227,207,0.45)"}; }
+                  #dob::-webkit-calendar-picker-indicator { filter: invert(0.7) opacity(0.55); cursor: pointer; }
+                `}</style>
+                <form onSubmit={onSubmit} className="mt-5 flex w-full flex-col gap-5 text-left">
+
                 <div>
                   <label style={labelStyle} htmlFor="name">Name (optional)</label>
                   <input
@@ -350,7 +358,7 @@ function Snippet() {
                 <button
                   type="submit"
                   disabled={busy}
-                  className="group mt-2 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
+                  className="group mt-6 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
                   style={{
                     background: "#7a1f2b",
                     color: C_INK,
