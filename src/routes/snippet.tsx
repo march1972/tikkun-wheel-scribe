@@ -348,7 +348,7 @@ function Snippet() {
                       accentColor: C_DAWN, flexShrink: 0, cursor: "pointer",
                     }}
                   />
-                  <span>Add me to the Kabbalah Circle mailing list</span>
+                  <span>Add me to The Kabbalah Letter mailing list</span>
                 </label>
 
                 {err && (
@@ -381,7 +381,7 @@ function Snippet() {
                     e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)";
                   }}
                 >
-                  <span>{busy ? "Revealing…" : "Reveal my free Tikkun astrology reading"}</span>
+                  <span>{busy ? "Revealing…" : "Reveal my free Kabbalah Astrology Reading"}</span>
                   {!busy && (
                     <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
                   )}
@@ -392,13 +392,13 @@ function Snippet() {
                   className="footnote-text mt-3 text-center"
                   style={{ fontFamily: BODY, color: "rgba(236,227,207,0.70)", fontSize: "12px", letterSpacing: "0.03em", lineHeight: 1.6 }}
                 >
-                  Birth date and email for full Tikkun Birth Chart.{" "}
+                  Email & birth date for free Tikkun Chart.{" "}
                   <a
                     href="/terms"
                     className="terms-link"
                     style={{ fontFamily: BODY, color: "rgba(236,227,207,0.85)", textDecoration: "underline", textDecorationColor: "rgba(236,227,207,0.85)", textUnderlineOffset: "3px", fontSize: "11px" }}
                   >
-                    terms and conditions
+                    T&Cs
                   </a>
                 </p>
                 <style>{`
