@@ -322,6 +322,7 @@ function Landing() {
               >
                 Tikkun
               </span>
+              .
             </h1>
 
             <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]">
