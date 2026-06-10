@@ -30,7 +30,7 @@ export function PrimaryCTA({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540] disabled:opacity-50 disabled:cursor-not-allowed"
+      className="group inline-flex items-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px hover:gap-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540] disabled:opacity-50 disabled:cursor-not-allowed whitespace-pre-line text-center"
       style={{
         background,
         color,
