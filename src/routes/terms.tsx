@@ -24,10 +24,10 @@ function Terms() {
           <span style={{ color: C_DAWN, fontStyle: "italic" }}>Conditions</span>
         </h1>
 
-        <p>By using Kabbalah Astrology you agree to the terms below. The service offers a free Tikkun reading and accompanying workbook for personal, reflective use only.</p>
+        <p>By using this site ("Kabbalah Circle" or "site"), you agree to the terms below. The site offers a free Tikkun reading and other information ("service") for personal and reflective use only. </p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Use of the service</h2>
-        <p>Readings are interpretive and offered for inspiration and self-reflection. They are not medical, legal, financial, or psychological advice. You are responsible for the choices you make in your own life.</p>
+        <p>Readings are interpretive and offered for inspiration and self-reflection. They are not medical, legal, financial, or psychological advice. You are responsible for the choices you make in your own life. </p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Your information</h2>
         <p>You provide your date of birth and email so we can generate and deliver your reading and the free Tikkun Workbook. You may opt in to the Kabbalah Circle mailing list; opting in is never required and you can unsubscribe at any time.</p>
