@@ -318,7 +318,7 @@ function Landing() {
                 words={["Tikkun", "Purpose", "Patterns"]}
                 style={{
                   fontStyle: "italic",
-                  fontWeight: 400,
+                  fontWeight: 700,
                   color: C_DAWN,
                 }}
                 suffix="."
