@@ -317,7 +317,6 @@ function Landing() {
               <TypewriterWord
                 words={["Tikkun", "Purpose", "Patterns"]}
                 style={{
-                  fontStyle: "italic",
                   fontWeight: 400,
                   color: C_DAWN,
                 }}
