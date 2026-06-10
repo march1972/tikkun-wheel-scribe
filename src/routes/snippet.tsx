@@ -360,8 +360,8 @@ function Snippet() {
                   disabled={busy}
                   className="group mt-5 sm:mt-6 flex w-full items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px disabled:opacity-60"
                   style={{
-                    background: "#7a1f2b",
-                    color: C_INK,
+                    background: "linear-gradient(135deg, #f0c868 0%, #c9a14a 100%)",
+                    color: "#0f1729",
                     fontFamily: BODY,
                     fontWeight: 700,
                     letterSpacing: "0.28em",
@@ -369,16 +369,16 @@ function Snippet() {
                     padding: "20px 36px",
                     borderRadius: 0,
                     border: "none",
-                    boxShadow: "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)",
+                    boxShadow: "0 8px 22px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)",
                   }}
                   onMouseEnter={(e) => {
                     if (busy) return;
-                    e.currentTarget.style.background = "#8a2533";
-                    e.currentTarget.style.boxShadow = "0 12px 32px -12px rgba(155,40,55,0.55), inset 0 1px 0 rgba(255,255,255,0.06)";
+                    e.currentTarget.style.background = "linear-gradient(135deg, #FFE9B8 0%, #f0c868 100%)";
+                    e.currentTarget.style.boxShadow = "0 12px 28px -12px rgba(240,200,104,0.55), inset 0 1px 0 rgba(255,255,255,0.1)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "#7a1f2b";
-                    e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)";
+                    e.currentTarget.style.background = "linear-gradient(135deg, #f0c868 0%, #c9a14a 100%)";
+                    e.currentTarget.style.boxShadow = "0 8px 22px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)";
                   }}
                 >
                   <span>{busy ? "Revealing…" : "Reveal my free Kabbalah Astrology Reading"}</span>
