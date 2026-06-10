@@ -465,7 +465,7 @@ function Landing() {
                 }}
               >
                 Ancient{" "}
-                <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>
+                <span style={{ color: C_GOLD, fontStyle: "italic" }}>wisdom</span>
               </h2>
             </Reveal>
             <Reveal delay={140}>
