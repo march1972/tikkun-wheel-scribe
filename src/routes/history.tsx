@@ -107,7 +107,7 @@ function HistoryPage() {
             maxWidth: "36rem",
           }}
         >
-          Kabbalah provides us with wisdom to transform our lives&nbsp;
+          Kabbalah provides us with the tools to transform our lives&nbsp;
         </p>
       </section>
 
