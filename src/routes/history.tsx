@@ -156,7 +156,7 @@ function HistoryPage() {
               letterSpacing: "-0.01em",
             }}
           >
-            “The stars incline — they do not compel.”
+            “Come and see... joy pierces through the celestial garments to draw down pure blessing" — Zohar
           </p>
         </section>
       </Reveal>
