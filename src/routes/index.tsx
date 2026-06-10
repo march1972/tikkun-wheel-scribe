@@ -405,9 +405,9 @@ function Landing() {
               }}
             >
               {[
-                { letter: "א", letterColor: C_DAWN, accent: C_GOLD, title: "Your Tikkun reading & archetype", body: "the soul's pattern of correction drawn from your lunar nodes.", tint: "rgba(240, 200, 104, 0.06)" },
-                { letter: "מ", letterColor: C_DAWN, accent: C_GOLD, title: "Your Aramaic letter and emotion", body: "the sacred letter and inner quality assigned to your path.", tint: "rgba(240, 200, 104, 0.06)" },
-                { letter: "ש", letterColor: C_DAWN, accent: C_GOLD, title: "A daily mantra and reflection",   body: "a verse to meditate on for personal change.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "א", letterColor: C_DAWN, accent: C_GOLD, title: "Your Shadow Patterns", body: "The negative habits and reactive patterns (\"baggage\") carried over from past lifetimes.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "מ", letterColor: C_DAWN, accent: C_GOLD, title: "Your Tikkun", body: "The active spiritual work, conscious restrictions, and real-world responsibilities required for your soul growth.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "ש", letterColor: C_DAWN, accent: C_GOLD, title: "A daily mantra and reflection",   body: "a verse to meditate on for personal growth.", tint: "rgba(240, 200, 104, 0.06)" },
               ].map((item, idx) => {
                 return (
                   <Reveal key={item.title} delay={120 * (idx + 1)}>
