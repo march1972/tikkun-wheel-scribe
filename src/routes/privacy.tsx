@@ -27,7 +27,7 @@ function Privacy() {
         <p>Your privacy matters. This page explains what we collect, why we collect it, and the choices you have.</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>What we collect</h2>
-        <p>We collect your email address, optional name, and date of birth. Date of birth is used to calculate your Tikkun reading. Email is used to deliver the reading and the free Tikkun Workbook.</p>
+        <p>We collect your email address, optional name, location/s, and date of birth. Date of birth is used to calculate your Tikkun reading. Email is used to deliver the reading and the free Tikkun Workbook.</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>How we use it</h2>
         <p>We never sell your data. We only contact you about your reading and workbook. If you opt in to the Kabbalah Circle mailing list, you'll also receive occasional reflections and teachings; you can unsubscribe with one click at any time.</p>
