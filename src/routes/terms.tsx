@@ -24,7 +24,7 @@ function Terms() {
           <span style={{ color: C_DAWN, fontStyle: "italic" }}>Conditions</span>
         </h1>
 
-        <p>By using this site ("Kabbalah Circle" or "site"), you agree to the terms below. The site offers a free astrological reading, chart and/or other information ("service") for personal and reflective use only.</p>
+        <p>By using this site and its services ("Kabbalah Circle" or "service"), you agree to these terms and conditions. The service offers a free astrological reading, chart and/or other information ("readings"), for personal and reflective use only.</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Use of the service</h2>
         <p>Readings are interpretive and offered for inspiration and self-reflection. They are not medical, legal, financial, or psychological advice. You are responsible for the choices you make in your own life. </p>
