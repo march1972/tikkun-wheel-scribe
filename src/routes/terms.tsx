@@ -33,7 +33,7 @@ function Terms() {
         <p>You provide your date of birth and email so we can generate and deliver your reading and the free Tikkun Workbook. You may opt in to the Kabbalah Circle mailing list; opting in is never required and you can unsubscribe at any time.</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Intellectual property</h2>
-        <p>All readings, text, imagery, and/or any workbook ("materials") are the property of Kabbalah Circle and are licensed to you for personal use. Please do not redistribute or resell. If you feel any of the materials should be removed, please email us.</p>
+        <p>All readings, text, imagery, and/or any workbook ("materials") are the property of Kabbalah Circle and are licensed to you for personal use and may not be used for commercial purposes. Please do not redistribute or resell materials. If you feel any of the materials should be removed, please email us.</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Changes</h2>
         <p>We may update these terms from time to time. Continued use of the service constitutes acceptance of the updated terms. </p>
