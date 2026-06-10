@@ -301,12 +301,11 @@ function Snippet() {
 
               <div style={{ maxWidth: 380, margin: "0 auto", width: "100%" }}>
                 <style>{`
-                  #dob { background: rgba(10,14,28,0.36) !important; }
                   #dob::-webkit-datetime-edit-text,
                   #dob::-webkit-datetime-edit-month-field,
                   #dob::-webkit-datetime-edit-day-field,
-                  #dob::-webkit-datetime-edit-year-field { color: ${dob ? C_INK : "rgba(236,227,207,0.56)"}; }
-                  #dob::-webkit-calendar-picker-indicator { filter: invert(0.7) opacity(0.75); cursor: pointer; }
+                  #dob::-webkit-datetime-edit-year-field { color: ${dob ? C_INK : "rgba(236,227,207,0.45)"}; }
+                  #dob::-webkit-calendar-picker-indicator { filter: invert(0.7) opacity(0.55); cursor: pointer; }
                 `}</style>
                 <form onSubmit={onSubmit} className="mt-3 sm:mt-5 flex w-full flex-col gap-3 sm:gap-4 text-left">
 
