@@ -94,7 +94,7 @@ function HistoryPage() {
             textShadow: `0 0 60px ${C_DAWN}33, 0 0 120px ${C_GOLD}22`,
           }}
         >
-          Ancient <span style={{ color: C_GOLD, fontStyle: "italic" }}>roots</span>,
+          Ancient <span style={{ color: C_GOLD, fontStyle: "italic" }}>wisdom</span>,
           <br />
           living <span style={{ color: C_DAWN, fontStyle: "italic" }}>work</span>.
         </h1>
@@ -107,7 +107,7 @@ function HistoryPage() {
             maxWidth: "36rem",
           }}
         >
-          A tradition four thousand years in the making — and the work of a single lifetime.
+          Kabbalah provides us with wisdom to transform our lives&nbsp;
         </p>
       </section>
 
@@ -174,7 +174,7 @@ function HistoryPage() {
                 letterSpacing: "0.42em", textTransform: "uppercase", fontWeight: 600,
               }}
             >
-              The Kabbalah Letter
+              THE KABBALAH CIRCLE
             </p>
             <h2
               className="mt-5"
@@ -189,7 +189,7 @@ function HistoryPage() {
               className="mx-auto mt-5"
               style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "16px", lineHeight: 1.7, maxWidth: "32rem" }}
             >
-              Free weekly teachings on Kabbalah, Astrology, and the work of becoming. Unsubscribe anytime.
+              Join our community for free teachings on Kabbalah, meaning, purpose, and the work of becoming. Leave at anytime.
             </p>
 
             {state === "done" ? (
@@ -213,7 +213,7 @@ function HistoryPage() {
                 <PrimaryCTA
                   type="submit"
                   variant="dawn"
-                  label={state === "busy" ? "Subscribing…" : "Subscribe free"}
+                  label={state === "busy" ? "Subscribing…" : "JOIN WAITLIST"}
                   disabled={state === "busy"}
                 />
               </form>

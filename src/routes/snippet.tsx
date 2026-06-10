@@ -348,7 +348,7 @@ function Snippet() {
                       accentColor: C_DAWN, flexShrink: 0, cursor: "pointer",
                     }}
                   />
-                  <span>Add me to The Kabbalah Letter mailing list</span>
+                  <span>Add me to THE KABBALAH CIRCLE mailing list</span>
                 </label>
 
                 {err && (
