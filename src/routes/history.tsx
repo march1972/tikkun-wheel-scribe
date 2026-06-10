@@ -189,7 +189,7 @@ function HistoryPage() {
               className="mx-auto mt-5"
               style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "16px", lineHeight: 1.7, maxWidth: "32rem" }}
             >
-              Join our free circle for insights and coaching on Kabbalah, meaning, and the work of becoming. Leave at any time.
+              Join our free circle for insights and coaching on Kabbalah, meaning, and the work of becoming. Leave any time.
             </p>
 
             {state === "done" ? (
