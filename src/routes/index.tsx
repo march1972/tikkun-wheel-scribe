@@ -321,8 +321,9 @@ function Landing() {
                   fontWeight: 400,
                   color: C_DAWN,
                 }}
+                suffix="."
+                suffixStyle={{ fontStyle: "normal", fontWeight: 500, color: C_INK }}
               />
-              .
             </h1>
 
             <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]">

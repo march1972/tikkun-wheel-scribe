@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 type Props = {
   words: string[];
@@ -7,6 +7,9 @@ type Props = {
   holdMs?: number;
   gapMs?: number;
   style?: CSSProperties;
+  /** Optional punctuation rendered right after the typed word (e.g. "."). */
+  suffix?: ReactNode;
+  suffixStyle?: CSSProperties;
 };
 
 export function TypewriterWord({
@@ -16,6 +19,8 @@ export function TypewriterWord({
   holdMs = 2200,
   gapMs = 350,
   style,
+  suffix,
+  suffixStyle,
 }: Props) {
   const [reduced, setReduced] = useState<boolean | null>(null);
   const [text, setText] = useState("");
@@ -82,24 +87,27 @@ export function TypewriterWord({
         display: "inline-block",
         textAlign: "left",
         whiteSpace: "nowrap",
-        ...style,
       }}
     >
       {/* Invisible sizer reserves width of the longest word so layout never shifts */}
       <span aria-hidden style={{ visibility: "hidden" }}>
-        {longest}
+        <span style={style}>{longest}</span>
+        {suffix != null && <span style={suffixStyle}>{suffix}</span>}
       </span>
       <span
         aria-live="polite"
-        style={{ position: "absolute", left: 0, top: 0 }}
+        style={{ position: "absolute", left: 0, top: 0, whiteSpace: "nowrap" }}
       >
-        {display}
-        {reduced === false && (
-          <span
-            aria-hidden
-            className={blinking ? "tw-cursor tw-cursor-blink" : "tw-cursor"}
-          />
-        )}
+        <span style={style}>
+          {display}
+          {reduced === false && (
+            <span
+              aria-hidden
+              className={blinking ? "tw-cursor tw-cursor-blink" : "tw-cursor"}
+            />
+          )}
+        </span>
+        {suffix != null && <span style={suffixStyle}>{suffix}</span>}
       </span>
       <style>{`
         .tw-cursor {
