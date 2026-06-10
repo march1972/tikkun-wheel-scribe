@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import { SefirotTree } from "@/components/SefirotTree";
 import { Reveal } from "@/components/landing/Reveal";
+import { TypewriterWord } from "@/components/landing/TypewriterWord";
 import { PrimaryCTA as GoldCTA } from "@/components/landing/PrimaryCTA";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { randomTikkunSign } from "@/lib/tikkun-data";
@@ -313,16 +314,16 @@ function Landing() {
               }}
             >
               Reveal your{" "}
-              <span
+              <TypewriterWord
+                words={["Tikkun", "Purpose", "Patterns"]}
                 style={{
                   fontStyle: "italic",
                   fontWeight: 400,
                   color: C_DAWN,
                 }}
-              >
-                Tikkun
-              </span>
-              .
+                suffix="."
+                suffixStyle={{ fontStyle: "normal", fontWeight: 500, color: C_INK }}
+              />
             </h1>
 
             <div className="relative mt-[clamp(1.5rem,3.5vh,2.5rem)]">
