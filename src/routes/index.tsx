@@ -478,7 +478,7 @@ function Landing() {
                   fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
-                Kabbalah Astrology dates back to <span style={{ color: C_DAWN, fontStyle: "italic" }}>Abraham</span> and many ancient texts — the Talmud (the Oral Torah), Sefer Yetzirah (Book of Formation), and Zohar (Book of Splendor).
+                Kabbalistic Astrology dates back to <span style={{ color: C_DAWN, fontStyle: "italic" }}>Abraham the Patriarch</span> and many ancient texts — the Talmud (the Oral Torah), Sefer Yetzirah (Book of Formation), and Zohar (Book of Splendor).
               </p>
             </Reveal>
           </div>

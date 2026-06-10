@@ -119,8 +119,8 @@ function HistoryPage() {
         <div className="relative mx-auto max-w-2xl">
           <Reveal>
             <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
-              Kabbalah Astrology dates back to{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham</span> and is found in many ancient texts and commentaries — the{" "}
+              Kabbalistic Astrology dates back to{" "}
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham the Patriarch</span> and is found in many ancient texts and commentaries — the{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
