@@ -586,7 +586,7 @@ function Landing() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Your tikkun<br />
+                Your Tikkun<br />
                 <span
                   style={{
                     fontStyle: "italic",
