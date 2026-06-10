@@ -405,9 +405,9 @@ function Landing() {
               }}
             >
               {[
-                { letter: "א", letterColor: C_DAWN, accent: C_GOLD, title: "Your Shadow Patterns", body: "The negative habits and reactive patterns (\"baggage\") carried over from past lifetimes.", tint: "rgba(240, 200, 104, 0.06)" },
-                { letter: "מ", letterColor: C_DAWN, accent: C_GOLD, title: "Your Tikkun", body: "The active spiritual work, conscious restrictions, and real-world responsibilities required for your soul growth.", tint: "rgba(240, 200, 104, 0.06)" },
-                { letter: "ש", letterColor: C_DAWN, accent: C_GOLD, title: "A daily mantra and reflection",   body: "a verse to meditate on for personal growth.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "א", letterColor: C_DAWN, accent: C_GOLD, title: "Your Shadow Patterns (Gilgul)", body: "The default negative habits and reactive patterns (\"baggage\") carried over from past lifetimes.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "מ", letterColor: C_DAWN, accent: C_GOLD, title: "Your Purpose (Tikkun)", body: "The active spiritual work, conscious restrictions, and real-world responsibilities required for your soul's growth.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "ש", letterColor: C_DAWN, accent: C_GOLD, title: "A Daily Mantra",   body: "For you to meditate on your Tikkun, and transform your shadow patterns into personal growth.", tint: "rgba(240, 200, 104, 0.06)" },
               ].map((item, idx) => {
                 return (
                   <Reveal key={item.title} delay={120 * (idx + 1)}>
