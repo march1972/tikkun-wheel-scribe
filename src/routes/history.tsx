@@ -128,7 +128,7 @@ function HistoryPage() {
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
-              Kabbalists accept the signals or influence of the celestial constellations ({" "}
+              Kabbalists generally accept the influence of the celestial constellations ({" "}
               <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span> ), but reject astrology as{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free will always overrides fate.
             </p>

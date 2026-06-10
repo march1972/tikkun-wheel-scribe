@@ -512,7 +512,7 @@ function Landing() {
                   fontSize: "clamp(18px, 1.9vw, 23px)",
                 }}
               >
-                Kabbalists accept the signals or influence of the celestial
+                Kabbalists generally accept the influence of the celestial
                 constellations ({" "}
                 <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
                 ), but reject astrology as fatalistic prediction. A person's{" "}
