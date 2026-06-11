@@ -1,39 +1,78 @@
-## Goal
-Make the vertical rhythm between every section on `/reading` consistent and responsive — no more mix of `<Hairline>` margins, ad-hoc `py-[...]` on sections, and bespoke `marginTop/marginBottom` on the share card.
+# Add About page at `/about`
 
-## Current inconsistencies (src/routes/reading.tsx)
+## 1. Upload the Vilna Gaon image as a CDN asset
 
-- `<Hairline>` uses `margin: clamp(3rem,6vh,5rem) auto` between most sections.
-- The Daily Mantra `<section>` uses `py-[clamp(3rem,6vh,5rem)]` — but it has no preceding `<Hairline>`, so the gap above it is just its own top padding (smaller than the gaps elsewhere).
-- The Share / "Spread the Light" block uses its own `marginTop`/`marginBottom: clamp(3rem,6vh,5rem)` AND has its own internal `padding: clamp(2.5rem,6vh,4rem) ...` — so the gap before/after it visually doubles next to neighbors.
-- The Newsletter `<section>` uses `py-[clamp(5rem,10vh,8rem)]` — roughly 2× the rhythm of every other section, so it feels detached.
-- Hero uses `pt-[clamp(1rem,3vh,2rem)] pb-[clamp(2rem,5vh,4rem)]` and is then followed by a `<Hairline>` — stacking two different spacing systems.
+```bash
+mkdir -p src/assets
+lovable-assets create --file /mnt/user-uploads/vilna-gaon.png --filename vilna-gaon.png > src/assets/vilna-gaon.png.asset.json
+```
 
-Net effect: gaps range from ~2rem to ~8rem on mobile depending on which two sections meet, which is what the user is seeing.
+## 2. New route: `src/routes/about.tsx`
 
-## Plan
+Built on `SkyShell` (same wrapper Terms uses) with the same `max-w-2xl` container, `BODY`/`HEAD` fonts, and `C_INK`/`C_INK_SOFT`/`C_GOLD`/`C_DAWN`/`C_RULE` tokens — no new colors, no new fonts.
 
-1. **Define one spacing token** at the top of `reading.tsx`:
-   ```ts
-   const SECTION_GAP = "clamp(3rem, 6vh, 5rem)"; // single source of truth
-   ```
+**Head meta:**
+- `title`: `About · Kabbalah Circle`
+- `description`: `Meet Marc, the person behind Kabbalah Circle — a personal project exploring meaning, growth, and community through Kabbalah and psychology.`
+- `og:title` / `og:description` / `og:url=/about` / `canonical=/about`
 
-2. **Standardize `<Hairline>`** to use `SECTION_GAP` as its default `my` (it already does, just make it explicit/shared).
+**Color section bands (echoing the home page rhythm):**
+To honor "use different color blocks across page if appropriate", break the long copy into 3 stacked `<section>` bands inside the SkyShell, each using one of the existing landing gradients from `landing-style.ts`. No band exists today on Terms, but the requested layout is the Terms typography *inside* home-style bands, so we keep type/spacing identical and just layer the bands underneath:
 
-3. **Remove bespoke vertical padding from `<section>` wrappers**; let the `<Hairline>` (or a `<SectionSpacer>` when no rule is shown) own the gap. Concretely:
-   - Hero `<section>`: keep `pt` (top of page breathing room) but drop the custom `pb`; the following `<Hairline>` provides the gap.
-   - Daily Mantra `<section>`: change `py-[clamp(3rem,6vh,5rem)]` → `py-0`, and add a `<Hairline />` before it (matches every other section transition).
-   - Share block: remove its outer `marginTop` / `marginBottom`; wrap it between two `<Hairline />`s (or a `<SectionSpacer />` if we want no rule line above/below it). Keep its internal padding as the card's own inset, not as section gap.
-   - Newsletter `<section>`: change `py-[clamp(5rem,10vh,8rem)]` → `py-[clamp(3rem,6vh,5rem)]` so its rhythm matches everything else; add a `<Hairline />` before it.
+1. **Band A — `C_BAND_MID`**: H1 + intro paragraphs ("Hi, I'm Marc." through the "Kabbalah Centre" paragraph) + pull-quote blockquote.
+2. **Band B — `C_BAND_DEEP`**: "Growing up…" paragraph + centered Vilna Gaon portrait with caption.
+3. **Band C — `C_BAND_LIFT`**: remaining personal paragraphs + final CTA.
 
-4. **Add a `<SectionSpacer />` helper** (1px-tall, transparent, `margin: SECTION_GAP auto`) for the two places where we want the uniform gap but no visible gold rule (around the Share card, above the Newsletter if we'd rather not show another hairline there).
+Each band: `<section style={{ background: C_BAND_X }}>` with inner `<div class="mx-auto max-w-2xl px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3rem,6vh,5rem)]">` — same horizontal padding and vertical rhythm as Terms.
 
-5. **Column padding**: confirm `<Column>` keeps its horizontal `clamp(1.25rem,5vw,2rem)`. No change needed — only vertical rhythm is off.
+**H1:** Mirroring Terms/Privacy treatment: `About Kabbalah <em>Circle</em>` with "Circle" italic in `C_DAWN`. Same font sizing (`clamp(28px,5vw,44px)`, weight 500, letterSpacing `-0.02em`).
 
-## Result
+**Body paragraphs:** plain `<p>` elements, `lineHeight: 1.7`, `fontSize: 15px`, `color: C_INK_SOFT`, `marginBottom: 1.25rem`. Em dashes preserved verbatim.
 
-Every section-to-section gap on mobile and desktop is exactly `clamp(3rem, 6vh, 5rem)`, regardless of whether the boundary shows a hairline, the share card, or the newsletter. No section owns its own vertical padding anymore — spacing is decided by one token in one place.
+- First "Kabbalah Centre" occurrence wrapped in `<a href="https://onehouse.kabbalah.com/en/" target="_blank" rel="noopener noreferrer" style={{ color: C_GOLD, textDecoration: "underline" }}>Kabbalah Centre</a>`. Second occurrence stays as plain text.
+
+**Blockquote (pull quote):**
+- `<blockquote>` styled with `borderLeft: 2px solid ${C_GOLD}`, `paddingLeft: 1.25rem`, italic, `color: C_INK`, slightly larger size (`fontSize: 17px`, `lineHeight: 1.6`), generous top/bottom margin.
+- Attribution line beneath, smaller (`fontSize: 12px`, `letterSpacing: 0.1em`, uppercase, `color: C_MUTED`).
+
+**Portrait figure:**
+```tsx
+import vilnaGaon from "@/assets/vilna-gaon.png.asset.json";
+…
+<figure className="my-[clamp(2rem,4vh,3rem)] flex flex-col items-center">
+  <img src={vilnaGaon.url} alt="Portrait of the Vilna Gaon"
+       style={{ maxWidth: 240, width: "100%", height: "auto", borderRadius: 4, boxShadow: "0 10px 30px rgba(0,0,0,0.45)" }} />
+  <figcaption style={{ marginTop: "0.75rem", fontStyle: "italic", fontSize: 12, color: C_MUTED, textAlign: "center" }}>
+    Vilna Gaon — Source: Wikipedia
+  </figcaption>
+</figure>
+```
+
+**Final CTA block** (inside Band C):
+- A `<p>`: `If this resonates, I'd love to connect.`
+- An anchor styled as a subtle pill button using existing tokens: `border: 1px solid ${C_GOLD}`, `color: C_GOLD`, padding `0.75rem 1.5rem`, uppercase, `letterSpacing: 0.1em`, `fontSize: 12px`, hover background `rgba(240,200,104,0.08)`. Opens LinkedIn in a new tab: `https://www.linkedin.com/in/marcherson/`. Label: `Connect with me on LinkedIn →`.
+
+**Tail:** Same "← Back to home" link as Terms/Privacy, inside Band C with a top hairline.
+
+## 3. Footer update — `src/routes/index.tsx` only
+
+The footer only exists on the home page (verified via grep). Inside the existing link row (lines 637–659):
+
+- Prepend `<Link to="/about" …>About</Link>` followed by a `·` separator, before the Terms link. Same styling as Terms (`color: C_INK_SOFT, textDecoration: underline`, same font sizing).
+- Beneath the link row, add a second centered line:
+  ```tsx
+  <p style={{ marginTop: "clamp(0.75rem,1.5vh,1rem)", textAlign: "center", color: C_MUTED, fontFamily: BODY, fontSize: "10px", letterSpacing: "0.12em" }}>
+    Kabbalah Circle is an independent personal project and is not affiliated with any Kabbalah school or centre.
+  </p>
+  ```
+
+No other pages are modified.
+
+## 4. Route registration
+
+`src/routeTree.gen.ts` is auto-generated by the TanStack Router Vite plugin — creating `src/routes/about.tsx` is sufficient.
 
 ## Files touched
-
-- `src/routes/reading.tsx` only.
+- `src/assets/vilna-gaon.png.asset.json` (new — CDN pointer)
+- `src/routes/about.tsx` (new)
+- `src/routes/index.tsx` (footer: About link + disclaimer line)
