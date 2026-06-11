@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SpinningRouteImport } from './routes/spinning'
 import { Route as SnippetRouteImport } from './routes/snippet'
@@ -20,10 +21,20 @@ import { Route as FormRouteImport } from './routes/form'
 import { Route as ContentRouteImport } from './routes/content'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ReadingSignRouteImport } from './routes/reading.$sign'
+import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -79,6 +90,33 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReadingSignRoute = ReadingSignRouteImport.update({
+  id: '/$sign',
+  path: '/$sign',
+  getParentRoute: () => ReadingRoute,
+} as any)
+const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
+  id: '/email/unsubscribe',
+  path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
+  id: '/lovable/email/suppression',
+  path: '/lovable/email/suppression',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailTransactionalSendRoute =
+  LovableEmailTransactionalSendRouteImport.update({
+    id: '/lovable/email/transactional/send',
+    path: '/lovable/email/transactional/send',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -103,14 +141,20 @@ export interface FileRoutesByFullPath {
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
-  '/reading': typeof ReadingRoute
+  '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reading/$sign': typeof ReadingSignRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -119,14 +163,20 @@ export interface FileRoutesByTo {
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
-  '/reading': typeof ReadingRoute
+  '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reading/$sign': typeof ReadingSignRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -136,14 +186,20 @@ export interface FileRoutesById {
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
-  '/reading': typeof ReadingRoute
+  '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reading/$sign': typeof ReadingSignRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -159,9 +215,15 @@ export interface FileRouteTypes {
     | '/snippet'
     | '/spinning'
     | '/terms'
+    | '/unsubscribe'
+    | '/email/unsubscribe'
+    | '/reading/$sign'
+    | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -175,9 +237,15 @@ export interface FileRouteTypes {
     | '/snippet'
     | '/spinning'
     | '/terms'
+    | '/unsubscribe'
+    | '/email/unsubscribe'
+    | '/reading/$sign'
+    | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   id:
     | '__root__'
     | '/'
@@ -191,9 +259,15 @@ export interface FileRouteTypes {
     | '/snippet'
     | '/spinning'
     | '/terms'
+    | '/unsubscribe'
+    | '/email/unsubscribe'
+    | '/reading/$sign'
+    | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -203,18 +277,30 @@ export interface RootRouteChildren {
   FormRoute: typeof FormRoute
   HistoryRoute: typeof HistoryRoute
   PrivacyRoute: typeof PrivacyRoute
-  ReadingRoute: typeof ReadingRoute
+  ReadingRoute: typeof ReadingRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SnippetRoute: typeof SnippetRoute
   SpinningRoute: typeof SpinningRoute
   TermsRoute: typeof TermsRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
+  EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
+  LovableEmailTransactionalSendRoute: typeof LovableEmailTransactionalSendRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -292,6 +378,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reading/$sign': {
+      id: '/reading/$sign'
+      path: '/$sign'
+      fullPath: '/reading/$sign'
+      preLoaderRoute: typeof ReadingSignRouteImport
+      parentRoute: typeof ReadingRoute
+    }
+    '/email/unsubscribe': {
+      id: '/email/unsubscribe'
+      path: '/email/unsubscribe'
+      fullPath: '/email/unsubscribe'
+      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/suppression': {
+      id: '/lovable/email/suppression'
+      path: '/lovable/email/suppression'
+      fullPath: '/lovable/email/suppression'
+      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/send': {
+      id: '/lovable/email/transactional/send'
+      path: '/lovable/email/transactional/send'
+      fullPath: '/lovable/email/transactional/send'
+      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -316,6 +437,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ReadingRouteChildren {
+  ReadingSignRoute: typeof ReadingSignRoute
+}
+
+const ReadingRouteChildren: ReadingRouteChildren = {
+  ReadingSignRoute: ReadingSignRoute,
+}
+
+const ReadingRouteWithChildren =
+  ReadingRoute._addFileChildren(ReadingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -323,14 +455,19 @@ const rootRouteChildren: RootRouteChildren = {
   FormRoute: FormRoute,
   HistoryRoute: HistoryRoute,
   PrivacyRoute: PrivacyRoute,
-  ReadingRoute: ReadingRoute,
+  ReadingRoute: ReadingRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SnippetRoute: SnippetRoute,
   SpinningRoute: SpinningRoute,
   TermsRoute: TermsRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
+  EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
+  LovableEmailTransactionalSendRoute: LovableEmailTransactionalSendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
