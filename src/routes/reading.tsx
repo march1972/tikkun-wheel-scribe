@@ -3,6 +3,10 @@ import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { Link2 } from "lucide-react";
+import { toast } from "sonner";
+
+const SHARE_URL = "https://tikkun.kabbalahcircle.com";
+const SHARE_TEXT = "Hi, get a free Kabbalah Tikkun reading to see your default patterns & purpose.";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import { Reveal } from "@/components/landing/Reveal";
@@ -198,11 +202,26 @@ function ReadingPage() {
   if (!sign) return null;
   const sc = READING_COPY;
   const headers = sc.sectionHeaders;
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-  const shareText = `Discover your Tikkun — your soul's pattern of correction in Kabbalah Astrology.`;
+  const shareUrl = SHARE_URL;
+  const shareText = SHARE_TEXT;
 
   const copy = async () => {
-    try { await navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
+    try { await navigator.clipboard.writeText(SHARE_URL); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
+  };
+
+  const onInstagramShare = async () => {
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ title: "Kabbalah Tikkun reading", text: SHARE_TEXT, url: SHARE_URL });
+        return;
+      } catch {
+        return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(SHARE_URL);
+      toast("Link copied — share it on Instagram.");
+    } catch {}
   };
 
   return (
@@ -216,6 +235,7 @@ function ReadingPage() {
         .tk-fade-d3 { animation: tikkun-fade-up 1.1s ease-out 0.8s both; }
         .tk-share-pill { transition: transform 220ms cubic-bezier(.2,.7,.3,1.2); }
         .tk-share-pill:hover { transform: translateY(-2px) scale(1.03); }
+        .tk-wheel-cta:hover { transform: scale(1.05); filter: drop-shadow(0 0 24px rgba(245,207,122,0.55)); }
       `}</style>
 
       {/* ── Hero ── */}
@@ -420,9 +440,11 @@ function ReadingPage() {
             }}
           >
             <a
-              href="mailto:hello@kabbalahcircle.com"
-              aria-label="Email hello@kabbalahcircle.com"
-              style={{ display: "inline-flex", opacity: 0.92 }}
+              href={SHARE_URL}
+              title={SHARE_TEXT}
+              aria-label={SHARE_TEXT}
+              className="tk-wheel-cta"
+              style={{ display: "inline-flex", opacity: 0.92, cursor: "pointer", borderRadius: "50%", transition: "transform 240ms ease, filter 240ms ease" }}
             >
               <TikkunWheel size={150} state="stopped" hideCenterLabel />
             </a>
@@ -457,8 +479,10 @@ function ReadingPage() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
-              href={`https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`}
+              href={`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + " " + SHARE_URL)}`}
               target="_blank" rel="noopener noreferrer"
+              title={SHARE_TEXT}
+              aria-label={SHARE_TEXT}
               className="tk-share-pill inline-flex items-center gap-2"
               style={{
                 fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
@@ -468,19 +492,22 @@ function ReadingPage() {
             >
               <WhatsAppIcon /> WhatsApp
             </a>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank" rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={onInstagramShare}
+              title={SHARE_TEXT}
+              aria-label={SHARE_TEXT}
               className="tk-share-pill inline-flex items-center gap-2"
               style={{
                 fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
                 background: "linear-gradient(135deg, #515BD4 0%, #8134AF 25%, #DD2A7B 55%, #FEDA77 100%)",
                 padding: "12px 22px", borderRadius: 999,
                 boxShadow: "0 8px 24px -8px rgba(221,42,123,0.5)",
+                border: "none", cursor: "pointer",
               }}
             >
               <InstagramIcon /> Instagram
-            </a>
+            </button>
             <button
               type="button"
               onClick={copy}
