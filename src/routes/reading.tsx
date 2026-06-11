@@ -8,7 +8,8 @@ import { Reveal } from "@/components/landing/Reveal";
 import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
-import { signById, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
+import { SIGNS, toParagraphs, type TikkunSign } from "@/data/tikkun-lookup";
+import { READING_COPY } from "@/lib/reading-copy";
 
 const search = z.object({ sign: z.string().optional() });
 
@@ -120,7 +121,7 @@ function ReadingPage() {
 
   useEffect(() => {
     const id = signId ?? sessionStorage.getItem("tikkun_real_sign");
-    const s = signById(id);
+    const s = id ? (SIGNS.find((x) => x.id === id) ?? null) : null;
     if (!s) {
       navigate({ to: "/" });
       return;
@@ -153,7 +154,7 @@ function ReadingPage() {
   }, [sign]);
 
   if (!sign) return null;
-  const sc = STATIC_COPY.screen6;
+  const sc = READING_COPY;
   const headers = sc.sectionHeaders;
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareText = `Discover your Tikkun — your soul's pattern of correction in Kabbalah Astrology.`;
@@ -201,7 +202,7 @@ function ReadingPage() {
               lineHeight: 1, textShadow: `0 0 40px ${C_DAWN}88, 0 0 80px ${C_GOLD}44`,
             }}
           >
-            {sign.hebrewLetter}
+            {sign.tikkunLetterHebrew}
           </span>
         </div>
 
@@ -223,7 +224,7 @@ function ReadingPage() {
             letterSpacing: "-0.01em",
           }}
         >
-          {sign.sign}
+          {sign.signId}
         </h1>
 
         <p
@@ -234,7 +235,7 @@ function ReadingPage() {
             marginTop: "clamp(2rem,4vh,3rem)",
           }}
         >
-          {sign.screen6.mantraQuote}
+          {sign.quote}
         </p>
 
         <p
@@ -246,7 +247,7 @@ function ReadingPage() {
             whiteSpace: "pre-line",
           }}
         >
-          North Lunar Node in {sign.sign}
+          North Lunar Node in {sign.northNode}
           {"\n"}
           South Lunar Node in {sign.southNode}
           {"\n"}
@@ -256,22 +257,22 @@ function ReadingPage() {
 
       <Hairline />
 
-      {/* ── Life's Pattern ── */}
+      {/* ── Your Shadow Pattern (Gilgul) ── */}
       <Reveal>
         <Column>
           <SectionLabel>{headers[0]}</SectionLabel>
-          <Body text={sign.screen6.lifesPattern} splitOn="\n\n" />
+          <Body text={sign.shadowGilgul} splitOn={"\n\n"} />
         </Column>
       </Reveal>
 
       <Hairline />
 
-      {/* ── Archetype ── */}
+      {/* ── Shadow Archetype ── */}
       <Reveal>
         <Column>
           <SectionLabel>{headers[1]}</SectionLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.6em" }}>
-            {sign.screen6.archetype.split("\n").map((line, i) => (
+            {sign.shadowArchetype.split("\n").map((line: string, i: number) => (
               <p
                 key={i}
                 style={{
@@ -289,17 +290,17 @@ function ReadingPage() {
 
       <Hairline />
 
-      {/* ── Life's Work ── */}
+      {/* ── Your Spiritual Work (Tikkun) ── */}
       <Reveal>
         <Column>
           <SectionLabel>{headers[2]}</SectionLabel>
-          <Body text={sign.screen6.lifesWork} splitOn="\n\n" />
+          <Body text={sign.spiritualWorkTikkun} splitOn={"\n\n"} />
         </Column>
       </Reveal>
 
       <Hairline />
 
-      {/* ── Tikkun Letter — stacked, centered ── */}
+      {/* ── Your Tikkun Letter — stacked, centered ── */}
       <Reveal>
         <Column>
           <SectionLabel>{headers[3]}</SectionLabel>
@@ -311,35 +312,20 @@ function ReadingPage() {
                 textShadow: `0 0 28px ${C_DAWN}55, 0 0 60px ${C_GOLD}22`,
               }}
             >
-              {sign.hebrewLetter}
-            </div>
-            <div
-              style={{
-                fontFamily: HEAD, color: C_INK, fontStyle: "italic",
-                fontSize: "clamp(20px, 2.4vw, 26px)", marginTop: "8px",
-                letterSpacing: "-0.005em",
-              }}
-            >
-              {sign.letterName}
-            </div>
-            <div
-              style={{
-                fontFamily: BODY, color: C_GOLD, fontSize: "10px",
-                letterSpacing: "0.32em", textTransform: "uppercase", marginTop: "6px",
-              }}
-            >
-              {sign.screen6.letterMeaning}
+              {sign.tikkunLetterHebrew}
             </div>
           </div>
           <Hairline width={32} my="clamp(1.5rem,3vh,2rem)" />
-          <p
+          <div
             style={{
               fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px",
-              lineHeight: 1.7, margin: 0, textAlign: "left",
+              lineHeight: 1.7, textAlign: "left",
             }}
           >
-            {sign.screen6.letterTeaching}
-          </p>
+            {toParagraphs(sign.tikkunLetterFull).map((p, i) => (
+              <p key={i} style={{ margin: i === 0 ? 0 : "1.1em 0 0 0" }}>{p}</p>
+            ))}
+          </div>
         </Column>
       </Reveal>
 
@@ -365,7 +351,7 @@ function ReadingPage() {
               letterSpacing: "-0.01em",
             }}
           >
-            {sign.screen6.dailyMantra}
+            {sign.dailyMantra}
           </p>
         </section>
       </Reveal>

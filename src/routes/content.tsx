@@ -3,7 +3,8 @@ import { SkyShell } from "@/components/landing/SkyShell";
 import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
-import { SIGNS, STATIC_COPY } from "@/lib/tikkun-data";
+import { SIGNS, toParagraphs } from "@/data/tikkun-lookup";
+import { READING_COPY } from "@/lib/reading-copy";
 
 export const Route = createFileRoute("/content")({
   component: ContentReview,
@@ -16,10 +17,9 @@ export const Route = createFileRoute("/content")({
 });
 
 function Paragraphs({ text }: { text: string }) {
-  const paras = text.split("\n\n");
   return (
     <>
-      {paras.map((p, i) => (
+      {toParagraphs(text).map((p, i) => (
         <p
           key={i}
           style={{
@@ -30,12 +30,7 @@ function Paragraphs({ text }: { text: string }) {
             marginTop: i === 0 ? 0 : "0.9em",
           }}
         >
-          {p.split("\n").map((line, j, arr) => (
-            <span key={j}>
-              {line}
-              {j < arr.length - 1 && <br />}
-            </span>
-          ))}
+          {p}
         </p>
       ))}
     </>
@@ -61,7 +56,7 @@ function Label({ children }: { children: React.ReactNode }) {
 }
 
 function ContentReview() {
-  const headers = STATIC_COPY.screen6.sectionHeaders;
+  const headers = READING_COPY.sectionHeaders;
   return (
     <SkyShell starDensity={240}>
       <section
@@ -103,7 +98,6 @@ function ContentReview() {
               borderTop: idx === 0 ? "none" : `1px solid ${C_RULE}`,
             }}
           >
-            {/* Sign header */}
             <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap" }}>
               <span
                 aria-hidden
@@ -115,7 +109,7 @@ function ContentReview() {
                   textShadow: `0 0 24px ${C_DAWN}55`,
                 }}
               >
-                {s.hebrewLetter}
+                {s.tikkunLetterHebrew}
               </span>
               <div>
                 <h2
@@ -127,7 +121,7 @@ function ContentReview() {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  {s.sign}
+                  {s.signId}
                 </h2>
                 <p
                   style={{
@@ -139,7 +133,7 @@ function ContentReview() {
                     marginTop: "4px",
                   }}
                 >
-                  {s.letterName} · {s.tikkunDirection}
+                  {s.hebrewName} · N: {s.northNode} · S: {s.southNode}
                 </p>
               </div>
             </div>
@@ -154,10 +148,10 @@ function ContentReview() {
                 lineHeight: 1.65,
               }}
             >
-              {s.screen3.spinSnippet}
+              {s.spinSnippet}
             </p>
 
-            <Label>Mantra quote</Label>
+            <Label>Quote</Label>
             <p
               style={{
                 fontFamily: HEAD,
@@ -167,30 +161,20 @@ function ContentReview() {
                 fontStyle: "italic",
               }}
             >
-              “{s.screen6.mantraQuote}”
+              {s.quote}
             </p>
 
             <Label>{headers[0]}</Label>
-            <Paragraphs text={s.screen6.lifesPattern} />
+            <Paragraphs text={s.shadowGilgul} />
 
             <Label>{headers[1]}</Label>
-            <Paragraphs text={s.screen6.archetype} />
+            <Paragraphs text={s.shadowArchetype} />
 
             <Label>{headers[2]}</Label>
-            <Paragraphs text={s.screen6.lifesWork} />
+            <Paragraphs text={s.spiritualWorkTikkun} />
 
             <Label>{headers[3]}</Label>
-            <p
-              style={{
-                fontFamily: BODY,
-                color: C_INK,
-                fontSize: "15px",
-                lineHeight: 1.7,
-              }}
-            >
-              <strong style={{ color: C_GOLD }}>{s.letterName}</strong> — {s.screen6.letterMeaning}
-            </p>
-            <Paragraphs text={s.screen6.letterTeaching} />
+            <Paragraphs text={s.tikkunLetterFull} />
 
             <Label>{headers[4]}</Label>
             <p
@@ -202,7 +186,7 @@ function ContentReview() {
                 fontStyle: "italic",
               }}
             >
-              {s.screen6.dailyMantra}
+              {s.dailyMantra}
             </p>
           </article>
         ))}

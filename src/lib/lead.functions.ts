@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import { lookupSignByDob } from "./tikkun-data";
+import { getReadingByDOB, OUT_OF_RANGE_MESSAGE } from "@/data/tikkun-lookup";
 
 const leadSchema = z.object({
   name: z.string().trim().max(120).optional().nullable(),
@@ -17,14 +17,11 @@ export const submitLead = createServerFn({ method: "POST" })
     if (data.dob > today) {
       return { ok: false as const, error: "Date of birth cannot be in the future.", signId: null };
     }
-    const sign = lookupSignByDob(data.dob);
-    if (!sign) {
-      return {
-        ok: false as const,
-        error: "That date is outside the lunar-node ranges (1901-2051).",
-        signId: null,
-      };
+    const result = getReadingByDOB(data.dob);
+    if (result.outOfRange) {
+      return { ok: false as const, error: OUT_OF_RANGE_MESSAGE, signId: null };
     }
+    const sign = result.sign;
     const { error } = await supabaseAdmin.from("leads").insert({
       name: data.name || null,
       dob: data.dob,

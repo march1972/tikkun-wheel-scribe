@@ -1,7 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { FREE_SPINS_BEFORE_FORM, setCurrentSpinNumber } from "@/lib/spinAttempts";
-import { randomTikkunSign, signById } from "@/lib/tikkun-data";
+import { getSpinSnippet } from "@/data/tikkun-lookup";
 
 export const Route = createFileRoute("/form")({
   component: FormRedirect,
@@ -11,13 +10,17 @@ export const Route = createFileRoute("/form")({
 function FormRedirect() {
   const navigate = useNavigate();
   useEffect(() => {
-    // Ensure snippet has a target sign to render
+    // Ensure /snippet has a sign to display behind the form.
     const existing = sessionStorage.getItem("tikkun_target_sign");
-    if (!signById(existing)) {
-      sessionStorage.setItem("tikkun_target_sign", randomTikkunSign(null).id);
+    if (!existing) {
+      const result = getSpinSnippet([]);
+      if (!result.exhausted && result.sign) {
+        sessionStorage.setItem("tikkun_target_sign", result.sign.id);
+        sessionStorage.setItem("tikkun_seen_signs", JSON.stringify(result.seen));
+      }
     }
-    // Force snippet into form-mode (spin > FREE_SPINS_BEFORE_FORM)
-    setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
+    // Mark snippet as form-mode by exhausting seen signs.
+    sessionStorage.setItem("tikkun_force_form", "1");
     navigate({ to: "/snippet", replace: true });
   }, [navigate]);
   return null;
