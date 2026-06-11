@@ -407,16 +407,19 @@ function ReadingPage() {
           }}
         >
           <div
-            aria-hidden
             style={{
               display: "flex",
               justifyContent: "center",
               marginBottom: "clamp(1rem,2vh,1.5rem)",
-              pointerEvents: "none",
-              opacity: 0.92,
             }}
           >
-            <TikkunWheel size={150} state="stopped" />
+            <a
+              href="mailto:hello@kabbalahcircle.com"
+              aria-label="Email hello@kabbalahcircle.com"
+              style={{ display: "inline-flex", opacity: 0.92 }}
+            >
+              <TikkunWheel size={150} state="stopped" hideCenterLabel />
+            </a>
           </div>
 
           <h2

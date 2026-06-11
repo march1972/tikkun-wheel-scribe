@@ -30,6 +30,7 @@ interface TikkunWheelProps {
   highlightLetter?: string | null;
   onClick?: () => void;
   onSettle?: (letter: { glyph: string; name: string }) => void;
+  hideCenterLabel?: boolean;
 }
 
 export function TikkunWheel({
@@ -40,6 +41,7 @@ export function TikkunWheel({
   highlightLetter = null,
   onClick,
   onSettle,
+  hideCenterLabel = false,
 }: TikkunWheelProps) {
   const uid = useId().replace(/[:]/g, "");
   const glowId = `tk-glow-${uid}`;
@@ -415,37 +417,41 @@ export function TikkunWheel({
               filter: "drop-shadow(0 0 16px rgba(255,252,235,0.85)) drop-shadow(0 0 34px rgba(255,246,214,0.55))",
             }}
           />
-          <text
-            x={cx}
-            y={cy - size * 0.005}
-            fill="#1b2540"
-            style={{
-              fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontWeight: 500,
-              fontSize: `${Math.max(9, Math.min(15, size * 0.028))}px`,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-            }}
-            textAnchor="middle"
-            dominantBaseline="central"
-          >
-            enter
-          </text>
-          <text
-            x={cx}
-            y={cy + size * 0.032}
-            fill="#1b2540"
-            style={{
-              fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontWeight: 500,
-              fontSize: `${Math.max(8, Math.min(12, size * 0.022))}px`,
-              letterSpacing: "0.2em",
-            }}
-            textAnchor="middle"
-            dominantBaseline="central"
-          >
-            ↓
-          </text>
+          {!hideCenterLabel && (
+            <>
+              <text
+                x={cx}
+                y={cy - size * 0.005}
+                fill="#1b2540"
+                style={{
+                  fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+                  fontWeight: 500,
+                  fontSize: `${Math.max(9, Math.min(15, size * 0.028))}px`,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                }}
+                textAnchor="middle"
+                dominantBaseline="central"
+              >
+                enter
+              </text>
+              <text
+                x={cx}
+                y={cy + size * 0.032}
+                fill="#1b2540"
+                style={{
+                  fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+                  fontWeight: 500,
+                  fontSize: `${Math.max(8, Math.min(12, size * 0.022))}px`,
+                  letterSpacing: "0.2em",
+                }}
+                textAnchor="middle"
+                dominantBaseline="central"
+              >
+                ↓
+              </text>
+            </>
+          )}
         </g>
       </svg>
     </div>
