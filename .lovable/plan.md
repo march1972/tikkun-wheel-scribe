@@ -1,37 +1,29 @@
-## Link audit results
+## Status
 
-Scanned every `<a>`, `<Link>`, and `target=` usage across `src/`. Findings and fixes below. No styling changes — only the element type, `target`/`rel` attributes, and a visually-hidden accessibility label where needed.
+`notify.kabbalahcircle.com` is now **DNS verified** ✅ — emails are ready to flow as soon as the queue processor (pg_cron job) is wired up.
 
-### Internal links to convert from `<a href>` → `<Link to>` (same tab)
+## Plan
 
-1. **`src/routes/snippet.tsx`** (line ~420) — T&Cs link uses `<a href="/terms">`. Convert to `<Link to="/terms">`, keep inline styles/classes.
-2. **`src/routes/reading.tsx`** (line ~441) — The Tikkun wheel anchor uses `<a href={SHARE_URL}>` where `SHARE_URL = "https://tikkun.kabbalahcircle.com"` (our own custom domain). Convert to `<Link to="/">`, keep className/styles. The WhatsApp/Copy buttons keep using `SHARE_URL` as the shared text payload (unchanged).
-3. **`src/lib/error-page.ts`** — Raw HTML error string with `<a href="/">`. Leave as-is (not a React tree; full reload here is acceptable on a crash page).
+1. **Re-run email infrastructure setup** — this is the safe/idempotent step that:
+   - Creates the pgmq queues (`auth_emails`, `transactional_emails`) if missing
+   - Creates the `email_send_log`, `email_send_state`, `suppressed_emails`, `email_unsubscribe_tokens` tables if missing
+   - Registers the `process-email-queue` pg_cron job pointing at `/lovable/email/queue/process` (the route already exists in the codebase)
+   - Refreshes the Vault secret used by the cron job to authenticate
 
-### External links to add visually-hidden "(opens in new tab)" label
+2. **Verify** the cron job is registered and the queue processor route is reachable.
 
-These already use `target="_blank" rel="noopener noreferrer"` — only adding the screen-reader-only span inside the anchor:
+3. **Report back** with what's now live and what (if anything) still needs your action.
 
-1. **`src/routes/about.tsx`** — Kabbalah Centre link (`https://onehouse.kabbalah.com/en/`).
-2. **`src/routes/about.tsx`** — LinkedIn link (`https://www.linkedin.com/in/marcherson/`).
-3. **`src/routes/reading.tsx`** — WhatsApp share link (`https://wa.me/...`).
+## What this does NOT change
 
-The Instagram share is a `<button>` invoking the Web Share API / clipboard, not a link — no change.
+- No edits to the existing `notify.kabbalahcircle.com` DNS
+- No edits to your site code, routes, or pages
+- No new subdomain — the visible "From" address can still be `something@kabbalahcircle.com` later when we scaffold a specific email (auth or transactional)
 
-### Visually-hidden label
+## After this
 
-Use a small inline span (no new file):
+Once the cron is wired, you'll be able to:
+- Scaffold branded **auth emails** (signup, password reset, magic link) — optional
+- Scaffold **transactional emails** (order confirmations, notifications, etc.) — when you have a specific email to send
 
-```tsx
-<span className="sr-only"> (opens in new tab)</span>
-```
-
-`sr-only` is already provided by Tailwind in this project.
-
-### Already correct (no changes)
-
-- `src/routes/privacy.tsx`, `src/routes/terms.tsx`, `src/routes/history.tsx`, `src/routes/index.tsx`, `src/components/landing/SkyShell.tsx` — all internal navigation already uses TanStack `<Link>` with no `target="_blank"`.
-
-### Out of scope
-
-No styling, copy, or routing-target changes beyond the items above.
+Want me to proceed?
