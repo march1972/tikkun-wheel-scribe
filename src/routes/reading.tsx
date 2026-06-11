@@ -219,7 +219,7 @@ function ReadingPage() {
       `}</style>
 
       {/* ── Hero ── */}
-      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,3vh,2rem)] pb-[clamp(2rem,5vh,4rem)] text-center">
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,3vh,2rem)] text-center">
         <div className="relative flex flex-col items-center tk-fade">
           <div
             ref={haloRef}
@@ -371,9 +371,11 @@ function ReadingPage() {
 
       <Hairline />
 
+      <Hairline />
+
       {/* ── Daily Mantra (the moment) ── */}
       <Reveal duration={1100} y={20}>
-        <section className="px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3rem,6vh,5rem)] text-center">
+        <section className="px-[clamp(1.25rem,5vw,3rem)] text-center">
           <h2
             style={{
               fontFamily: HEAD, color: C_GOLD, fontSize: "20px",
@@ -396,13 +398,13 @@ function ReadingPage() {
         </section>
       </Reveal>
 
+      <SectionSpacer />
+
       {/* ── Share / Spread the Light (distinct card) ── */}
       <Reveal>
         <div
           style={{
             width: "100%",
-            marginTop: "clamp(3rem,6vh,5rem)",
-            marginBottom: "clamp(3rem,6vh,5rem)",
             padding: "clamp(2.5rem,6vh,4rem) clamp(1.25rem,5vw,3rem)",
             background:
               "radial-gradient(70% 55% at 50% 25%, rgba(180,200,235,0.16) 0%, rgba(10,14,28,0) 70%), radial-gradient(45% 35% at 90% 100%, rgba(245,207,122,0.08) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #14203c 0%, #1c2848 40%, #22304f 70%, #1c2848 100%)",
@@ -499,10 +501,12 @@ function ReadingPage() {
 
 
 
+      <SectionSpacer />
+
       {/* ── Newsletter ── */}
       <Reveal duration={900} y={20}>
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3rem,6vh,5rem)] text-center"
         >
           <div className="relative mx-auto max-w-2xl">
             <p
