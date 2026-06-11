@@ -98,7 +98,7 @@ function About() {
               rel="noopener noreferrer"
               style={{ color: C_GOLD, textDecoration: "underline" }}
             >
-              Kabbalah Centre
+              Kabbalah Centre<span className="sr-only"> (opens in new tab)</span>
             </a>{" "}
             in New York, alongside my own self-directed learning to explore
             different viewpoints and approaches. This project was actually
@@ -246,7 +246,7 @@ function About() {
                   "transparent";
               }}
             >
-              Connect with me on LinkedIn →
+              Connect with me on LinkedIn →<span className="sr-only"> (opens in new tab)</span>
             </a>
           </div>
 

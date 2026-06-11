@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
@@ -437,15 +437,15 @@ function ReadingPage() {
               marginBottom: "clamp(1rem,2vh,1.5rem)",
             }}
           >
-            <a
-              href={SHARE_URL}
+            <Link
+              to="/"
               title={SHARE_TEXT}
               aria-label={SHARE_TEXT}
               className="tk-wheel-cta"
               style={{ display: "inline-flex", opacity: 0.92, cursor: "pointer", borderRadius: "50%", transition: "transform 240ms ease, filter 240ms ease" }}
             >
               <TikkunWheel size={150} state="stopped" hideCenterLabel />
-            </a>
+            </Link>
           </div>
 
           <h2
@@ -489,6 +489,7 @@ function ReadingPage() {
               }}
             >
               <WhatsAppIcon /> WhatsApp
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
             <button
               type="button"
