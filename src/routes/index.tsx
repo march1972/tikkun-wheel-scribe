@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A free Tikkun astrology chart based on the lunar nodes at your date of birth. You see the Purpose Patterns that influence your path in relationships, career, finances, and personal fulfilment.",
+          "Get a free Tikkun astrology chart from your date of birth — discover the Purpose Patterns shaping your relationships, career, and fulfilment.",
       },
       { property: "og:title", content: "KABBALAH ASTROLOGY — Reveal Your Tikkun" },
       {
@@ -25,9 +25,33 @@ export const Route = createFileRoute("/")({
           "Map your Tikkun. A free reading rooted in the Sefer Yetzirah and the Zohar.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              "@id": "https://tikkun.kabbalahcircle.com/#website",
+              url: "https://tikkun.kabbalahcircle.com/",
+              name: "Kabbalah Circle",
+              description: "Free Kabbalah Tikkun astrology readings.",
+              publisher: { "@id": "https://tikkun.kabbalahcircle.com/#organization" },
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://tikkun.kabbalahcircle.com/#organization",
+              name: "Kabbalah Circle",
+              url: "https://tikkun.kabbalahcircle.com/",
+            },
+          ],
+        }),
+      },
+    ],
   }),
 });
 

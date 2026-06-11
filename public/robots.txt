@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tikkun.kabbalahcircle.com/sitemap.xml

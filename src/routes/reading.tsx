@@ -23,7 +23,17 @@ const search = z.object({ sign: z.string().optional() });
 export const Route = createFileRoute("/reading")({
   component: ReadingPage,
   validateSearch: search,
-  head: () => ({ meta: [{ title: "Your Tikkun Reading — Kabbalah Astrology" }] }),
+  head: () => ({
+    meta: [
+      { title: "Your Tikkun Reading — Kabbalah Astrology" },
+      { name: "description", content: "Your personal Kabbalah Tikkun reading — your Shadow patterns (Gilgul), spiritual work (Tikkun), and daily mantra (Kavanah) based on your birth date." },
+      { property: "og:title", content: "Your Tikkun Reading — Kabbalah Astrology" },
+      { property: "og:description", content: "Your personal Kabbalah Tikkun reading — Shadow patterns, spiritual work, and daily mantra from your birth chart." },
+      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/reading" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/reading" }],
+  }),
 });
 
 /* ---------- shared bits ---------- */

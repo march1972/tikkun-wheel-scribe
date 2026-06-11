@@ -1,0 +1,13 @@
+# Kabbalah Circle
+
+> Free Kabbalah Tikkun astrology readings. Discover the Shadow patterns (Gilgul), spiritual work (Tikkun), and daily mantra (Kavanah) tied to your date of birth.
+
+Kabbalah Circle is an independent project sharing Kabbalistic astrology rooted in the Sefer Yetzirah and the Zohar. Visitors receive a free Tikkun chart based on the lunar nodes at their date of birth.
+
+## Pages
+
+- [Home](/): Free Tikkun astrology reading — spin the wheel and reveal your patterns.
+- [A Brief History of Kabbalah Astrology](/history): Origins of Kabbalah astrology in the Sefer Yetzirah and the Zohar.
+- [About](/about): About Marc and the Kabbalah Circle project.
+- [Privacy Policy](/privacy): How we handle your data.
+- [Terms & Conditions](/terms): Terms for using the reading service.

@@ -40,7 +40,17 @@ const labelStyle: React.CSSProperties = {
 
 export const Route = createFileRoute("/snippet")({
   component: Snippet,
-  head: () => ({ meta: [{ title: "Your Tikkun teaser" }] }),
+  head: () => ({
+    meta: [
+      { title: "Your Tikkun teaser — Kabbalah Astrology" },
+      { name: "description", content: "A short Tikkun snippet revealing a possible Shadow pattern from your Kabbalah astrology chart. Spin again or unlock your full free Tikkun reading." },
+      { property: "og:title", content: "Your Tikkun teaser — Kabbalah Astrology" },
+      { property: "og:description", content: "A short Tikkun snippet revealing a possible Shadow pattern from your Kabbalah astrology chart." },
+      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/snippet" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/snippet" }],
+  }),
 });
 
 function readSeen(): string[] {
@@ -156,7 +166,7 @@ function Snippet() {
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1rem,2.5vh,1.75rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
           <>
-            <h2
+            <h1
               style={{
                 fontFamily: HEAD,
                 color: C_INK,
@@ -167,7 +177,7 @@ function Snippet() {
             >
               Sound like{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>your Shadow?</span>
-            </h2>
+            </h1>
 
             <div
               className="w-full mt-[clamp(1.25rem,3vh,2rem)] mb-[clamp(1.25rem,3vh,2rem)]"
@@ -309,7 +319,7 @@ function Snippet() {
                 textAlign: "center",
               }}
             >
-              <h2
+              <h1
                 style={{
                   fontFamily: HEAD, color: C_INK, fontWeight: 500,
                   fontSize: "clamp(34px, 6.2vw, 60px)", lineHeight: 1.1,
@@ -319,7 +329,7 @@ function Snippet() {
                 See your actual{" "}
                 <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 700, fontSize: "1.05em" }}>Tikkun</span>{" "}
                 chart
-              </h2>
+              </h1>
 
 
 
