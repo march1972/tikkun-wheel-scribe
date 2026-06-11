@@ -133,6 +133,27 @@ function ReadingPage() {
   const [copied, setCopied] = useState(false);
   const haloRef = useRef<HTMLDivElement | null>(null);
 
+  const subscribe = useServerFn(subscribeNewsletter);
+  const [email, setEmail] = useState("");
+  const [subState, setSubState] = useState<"idle" | "busy" | "done" | "error">("idle");
+  const [subErr, setSubErr] = useState<string | null>(null);
+
+  const onSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubErr(null);
+    if (!email) return;
+    setSubState("busy");
+    try {
+      const res = await subscribe({ data: { email } });
+      if (res.ok) { setSubState("done"); setEmail(""); }
+      else { setSubState("error"); setSubErr(res.error); }
+    } catch {
+      setSubState("error");
+      setSubErr("Could not subscribe — please try again.");
+    }
+  };
+
+
   useEffect(() => {
     const id = signId ?? sessionStorage.getItem("tikkun_real_sign");
     const s = id ? (SIGNS.find((x) => x.id === id) ?? null) : null;
