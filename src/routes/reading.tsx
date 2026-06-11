@@ -398,12 +398,8 @@ function ReadingPage() {
             marginTop: "clamp(3rem,6vh,5rem)",
             marginBottom: "clamp(3rem,6vh,5rem)",
             padding: "clamp(2.5rem,6vh,4rem) clamp(1.25rem,5vw,3rem)",
-            borderTop: `1px solid rgba(245,200,104,0.35)`,
-            borderBottom: `1px solid rgba(245,200,104,0.35)`,
             background:
-              "radial-gradient(ellipse at center, rgba(245,200,104,0.16) 0%, rgba(245,200,104,0.09) 40%, rgba(245,200,104,0.04) 100%)",
-            boxShadow:
-              "0 0 80px -20px rgba(245,200,104,0.25), inset 0 0 60px -30px rgba(245,200,104,0.2)",
+              "radial-gradient(70% 55% at 50% 25%, rgba(180,200,235,0.16) 0%, rgba(10,14,28,0) 70%), radial-gradient(45% 35% at 90% 100%, rgba(245,207,122,0.08) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #14203c 0%, #1c2848 40%, #22304f 70%, #1c2848 100%)",
             textAlign: "center",
           }}
         >

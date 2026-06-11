@@ -1,24 +1,14 @@
-Make the "Spread the Light" share section on `/reading` feel like a luminous, full-width call-to-action. Keep the current internal order (TikkunWheel → heading → sub-copy → share buttons) exactly as-is.
+## What
+On the `/reading` page, in the "Spread the Light" share block:
 
-### What will change
+1. **Remove the gold top/bottom hairline borders** — delete the `borderTop` and `borderBottom` styles.
+2. **Replace the background** with the same gradient used by the "What you receive" section on the home page (`/`). That gradient is:
+```
+radial-gradient(70% 55% at 50% 25%, rgba(180,200,235,0.16) 0%, rgba(10,14,28,0) 70%),
+radial-gradient(45% 35% at 90% 100%, rgba(245,207,122,0.08) 0%, rgba(245,207,122,0) 70%),
+linear-gradient(180deg, #14203c 0%, #1c2848 40%, #22304f 70%, #1c2848 100%)
+```
+3. **Remove or tone down the gold box-shadow** so it does not clash with the new cooler background.
 
-1. **Full-width container**  
-   Remove the `maxWidth: 640px` and center-margin constraints so the gold-tinted block spans the full viewport width. Keep comfortable horizontal padding so text and buttons don't touch the edges, and let the share pill row wrap naturally on narrow screens.
-
-2. **Much more luminous background**  
-   Replace the current very subtle gradient (`rgba(245,200,104,0.05) → 0.015`) with a noticeably brighter, lighter treatment so the block clearly stands out from the dark page:
-   - Raise the gold tint opacity (e.g. ~`0.14` at the center fading to ~`0.04` at the edges).
-   - Add a soft radial glow centered behind the wheel to give the block a true "light" feel.
-   - Strengthen the top/bottom hairline borders slightly so the luminous edge is crisp.
-   - Optional subtle outer glow (`box-shadow`) in warm gold to lift it off surrounding content.
-
-3. **Spacing polish for the wider block**  
-   Increase vertical padding (`clamp(2.5rem, 6vh, 4rem)`) so the full-width band breathes. Keep all content centered as it is today.
-
-### Explicitly NOT changing
-- Internal order stays: TikkunWheel (top) → "Spread the Light" heading → sub-copy → share buttons.
-- TikkunWheel component itself, share button logic, URLs, and copy text.
-- Any other section of the page.
-
-### Files to edit
-- `src/routes/reading.tsx` — the "Share / Spread the Light" `Reveal` block (around lines 393–510).
+## File
+- `src/routes/reading.tsx` — lines ~393–408 (the outer container of the share block).
