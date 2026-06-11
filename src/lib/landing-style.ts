@@ -20,7 +20,6 @@ export const C_GOLD = "#f0c868";
 export const C_GOLD_BRIGHT = "#FFE9B8";
 export const C_DAWN = "#b8333f";
 export const C_SAGE = "#9bd1bf";
-export const C_MOONLIGHT = "#a8c8e8";
 export const C_DEEP = "#0f1729";
 export const C_RULE = "rgba(253, 246, 230, 0.20)";
 export const C_RULE_SOFT = "rgba(253, 246, 230, 0.10)";

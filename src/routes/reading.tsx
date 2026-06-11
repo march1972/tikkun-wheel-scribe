@@ -8,7 +8,7 @@ import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import { Reveal } from "@/components/landing/Reveal";
 import { TikkunWheel } from "@/components/TikkunWheel";
 import {
-  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE, C_RULE_SOFT, C_MOONLIGHT,
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE, C_RULE_SOFT,
 } from "@/lib/landing-style";
 import { SIGNS, toParagraphs, type TikkunSign } from "@/data/tikkun-lookup";
 import { READING_COPY } from "@/lib/reading-copy";
@@ -511,7 +511,7 @@ function ReadingPage() {
           <div className="relative mx-auto max-w-2xl">
             <p
               style={{
-                fontFamily: BODY, color: C_MOONLIGHT, fontSize: "11px",
+                fontFamily: BODY, color: C_GOLD, fontSize: "11px",
                 letterSpacing: "0.42em", textTransform: "uppercase", fontWeight: 600,
               }}
             >
