@@ -142,7 +142,7 @@ function Snippet() {
               }}
             >
               Sound like{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>you?</span>
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>your Shadow?</span>
             </h2>
 
             <div
