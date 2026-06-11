@@ -671,7 +671,7 @@ function Landing() {
                   maxWidth: "32rem",
                 }}
               >
-                Kabbalah Circle is an independent personal project and is not affiliated with any Kabbalah school or centre.
+                Kabbalah Circle is an independent unaffiliated project.
               </p>
             </div>
 
