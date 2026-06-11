@@ -478,8 +478,10 @@ function ReadingPage() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
-              href={`https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`}
+              href={`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + " " + SHARE_URL)}`}
               target="_blank" rel="noopener noreferrer"
+              title={SHARE_TEXT}
+              aria-label={SHARE_TEXT}
               className="tk-share-pill inline-flex items-center gap-2"
               style={{
                 fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
@@ -489,15 +491,18 @@ function ReadingPage() {
             >
               <WhatsAppIcon /> WhatsApp
             </a>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank" rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={onInstagramShare}
+              title={SHARE_TEXT}
+              aria-label={SHARE_TEXT}
               className="tk-share-pill inline-flex items-center gap-2"
               style={{
                 fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: "#fff",
                 background: "linear-gradient(135deg, #515BD4 0%, #8134AF 25%, #DD2A7B 55%, #FEDA77 100%)",
                 padding: "12px 22px", borderRadius: 999,
                 boxShadow: "0 8px 24px -8px rgba(221,42,123,0.5)",
+                border: "none", cursor: "pointer",
               }}
             >
               <InstagramIcon /> Instagram
