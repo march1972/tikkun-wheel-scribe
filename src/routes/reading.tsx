@@ -303,7 +303,7 @@ function ReadingPage() {
       {/* ── Your Spiritual Work (Tikkun) ── */}
       <Reveal>
         <Column>
-          <SectionLabel>{headers[2]}</SectionLabel>
+          <SectionLabel><HeaderWithAccent text={headers[2]} /></SectionLabel>
           <Body text={sign.spiritualWorkTikkun} splitOn={"\n\n"} />
         </Column>
       </Reveal>
