@@ -24,6 +24,12 @@ export const Route = createFileRoute("/reading")({
 
 /* ---------- shared bits ---------- */
 
+const SECTION_GAP = "clamp(3rem, 6vh, 5rem)";
+
+function SectionSpacer() {
+  return <div aria-hidden style={{ height: SECTION_GAP }} />;
+}
+
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <h2
@@ -54,7 +60,7 @@ function HeaderWithAccent({ text }: { text: string }) {
   );
 }
 
-function Hairline({ width = 64, my = "clamp(3rem,6vh,5rem)" }: { width?: number; my?: string }) {
+function Hairline({ width = 64, my = SECTION_GAP }: { width?: number; my?: string }) {
   return (
     <div
       aria-hidden
