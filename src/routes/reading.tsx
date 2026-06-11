@@ -1,4 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { Link2 } from "lucide-react";
@@ -6,10 +7,11 @@ import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import { Reveal } from "@/components/landing/Reveal";
 import {
-  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE, C_RULE_SOFT,
 } from "@/lib/landing-style";
 import { SIGNS, toParagraphs, type TikkunSign } from "@/data/tikkun-lookup";
 import { READING_COPY } from "@/lib/reading-copy";
+import { subscribeNewsletter } from "@/lib/lead.functions";
 
 const search = z.object({ sign: z.string().optional() });
 
@@ -130,6 +132,27 @@ function ReadingPage() {
   const [sign, setSign] = useState<TikkunSign | null>(null);
   const [copied, setCopied] = useState(false);
   const haloRef = useRef<HTMLDivElement | null>(null);
+
+  const subscribe = useServerFn(subscribeNewsletter);
+  const [email, setEmail] = useState("");
+  const [subState, setSubState] = useState<"idle" | "busy" | "done" | "error">("idle");
+  const [subErr, setSubErr] = useState<string | null>(null);
+
+  const onSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubErr(null);
+    if (!email) return;
+    setSubState("busy");
+    try {
+      const res = await subscribe({ data: { email } });
+      if (res.ok) { setSubState("done"); setEmail(""); }
+      else { setSubState("error"); setSubErr(res.error); }
+    } catch {
+      setSubState("error");
+      setSubErr("Could not subscribe — please try again.");
+    }
+  };
+
 
   useEffect(() => {
     const id = signId ?? sessionStorage.getItem("tikkun_real_sign");
@@ -438,33 +461,87 @@ function ReadingPage() {
         </Column>
       </Reveal>
 
-      <Hairline />
-
-      {/* ── Closing ── */}
-      <Reveal>
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,4vh,3rem)] pb-[clamp(5rem,10vh,8rem)] text-center">
-          <h2
+      {/* ── Pull quote ── */}
+      <Reveal duration={1100} y={20}>
+        <section className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)] text-center"
+          style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
+        >
+          <p
             style={{
-              fontFamily: HEAD, color: C_GOLD, fontSize: "20px",
-              fontWeight: 500, margin: 0, marginBottom: "1.25rem",
-            }}
-          >
-            {headers[7]}
-          </h2>
-          <h3
-            style={{
-              fontFamily: HEAD, color: C_INK, fontSize: "clamp(28px, 4.2vw, 44px)",
-              fontWeight: 500, lineHeight: 1.25, maxWidth: "32rem", margin: "0 auto",
+              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+              fontSize: "clamp(28px, 4.6vw, 48px)", lineHeight: 1.3,
+              maxWidth: "34rem", margin: "0 auto",
+              textShadow: `0 0 50px ${C_DAWN}55, 0 0 120px ${C_DAWN}22`,
               letterSpacing: "-0.01em",
             }}
           >
-            {sc.deeperSub}
-          </h3>
-          <div className="mt-10 flex justify-center">
-            <PrimaryCTA variant="dawn" label={sc.deeperButton} onClick={() => navigate({ to: "/history" })} />
+            “Come and see... joy pierces through the celestial garments to draw down pure blessing" — Zohar
+          </p>
+        </section>
+      </Reveal>
+
+      {/* ── Newsletter ── */}
+      <Reveal duration={900} y={20}>
+        <section
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
+          style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
+        >
+          <div className="relative mx-auto max-w-2xl">
+            <p
+              style={{
+                fontFamily: BODY, color: C_GOLD, fontSize: "11px",
+                letterSpacing: "0.42em", textTransform: "uppercase", fontWeight: 600,
+              }}
+            >
+              THE KABBALAH CIRCLE
+            </p>
+            <h2
+              className="mt-5"
+              style={{
+                fontFamily: HEAD, color: C_INK, fontWeight: 400,
+                fontSize: "clamp(34px, 5.5vw, 60px)", letterSpacing: "-0.02em", lineHeight: 1.1,
+              }}
+            >
+              Go <span style={{ color: C_GOLD, fontStyle: "italic" }}>deeper</span>.
+            </h2>
+            <p
+              className="mx-auto mt-5"
+              style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "16px", lineHeight: 1.7, maxWidth: "32rem" }}
+            >
+              Join our free circle for insights and coaching on relationships, meaning, and the work of becoming. Leave any time.
+            </p>
+
+            {subState === "done" ? (
+              <p className="mt-10 italic" style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px" }}>
+                Welcome. Check your inbox.
+              </p>
+            ) : (
+              <form
+                onSubmit={onSubscribe}
+                className="mt-10 mx-auto flex w-full max-w-md flex-col sm:flex-row items-stretch gap-3"
+              >
+                <input
+                  type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com" autoComplete="email" maxLength={255}
+                  style={{
+                    flex: 1, fontFamily: BODY, color: C_INK,
+                    background: "rgba(10,14,28,0.45)", border: `1px solid ${C_RULE}`,
+                    borderRadius: 2, padding: "14px 16px", fontSize: "14px", outline: "none",
+                  }}
+                />
+                <PrimaryCTA
+                  type="submit"
+                  variant="dawn"
+                  label={subState === "busy" ? "Subscribing…" : "JOIN WAITLIST"}
+                  disabled={subState === "busy"}
+                />
+              </form>
+            )}
+            {subErr && <p className="mt-3" style={{ fontFamily: BODY, color: C_DAWN, fontSize: "12px" }}>{subErr}</p>}
           </div>
         </section>
       </Reveal>
+
     </SkyShell>
   );
 }
