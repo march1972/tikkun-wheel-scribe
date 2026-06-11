@@ -391,8 +391,6 @@ function ReadingPage() {
 
       <Hairline />
 
-      <Hairline />
-
       {/* ── Daily Mantra (the moment) ── */}
       <Reveal duration={1100} y={20}>
         <section className="px-[clamp(1.25rem,5vw,3rem)] text-center">
