@@ -6,8 +6,7 @@ import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_GOLD_BRIGHT, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
-import { signById, randomTikkunSign, STATIC_COPY, type TikkunSign } from "@/lib/tikkun-data";
-import { MAX_SPINS, FREE_SPINS_BEFORE_FORM, getCurrentSpinNumber, setCurrentSpinNumber } from "@/lib/spinAttempts";
+import { getSpinSnippet, type TikkunSign } from "@/data/tikkun-lookup";
 import { submitLead } from "@/lib/lead.functions";
 
 const inputStyle: React.CSSProperties = {
@@ -44,13 +43,26 @@ export const Route = createFileRoute("/snippet")({
   head: () => ({ meta: [{ title: "Your Tikkun teaser" }] }),
 });
 
+function readSeen(): string[] {
+  try {
+    const raw = sessionStorage.getItem("tikkun_seen_signs");
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr.filter((x): x is string => typeof x === "string") : [];
+  } catch {
+    return [];
+  }
+}
+
 function Snippet() {
   const navigate = useNavigate();
   const submit = useServerFn(submitLead);
   const [sign, setSign] = useState<TikkunSign | null>(null);
-  const [spinNumber, setSpinNumber] = useState(1);
+  const [seen, setSeen] = useState<string[]>([]);
+  const [exhausted, setExhausted] = useState(false);
+  const [forceForm, setForceForm] = useState(false);
 
-  // Inline form state (used on final spin)
+  // Inline form state (used on final spin / explicit reveal)
   const [dob, setDob] = useState("");
   const [email, setEmail] = useState("");
   const [newsletterOptIn, setNewsletterOptIn] = useState(false);
@@ -59,22 +71,35 @@ function Snippet() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    const key = sessionStorage.getItem("tikkun_target_sign");
-    const s = signById(key);
-    if (!s) {
+    const targetId = sessionStorage.getItem("tikkun_target_sign");
+    const seenList = readSeen();
+    setSeen(seenList);
+    setForceForm(sessionStorage.getItem("tikkun_force_form") === "1");
+    if (!targetId) {
       navigate({ to: "/" });
       return;
     }
-    setSign(s);
-    setSpinNumber(Math.min(MAX_SPINS, Math.max(1, getCurrentSpinNumber())));
+    // Resolve the sign via the lookup (only one source of truth)
+    import("@/data/tikkun-lookup").then(({ SIGNS }) => {
+      const s = SIGNS.find((x) => x.id === targetId) ?? null;
+      if (!s) {
+        navigate({ to: "/" });
+        return;
+      }
+      setSign(s);
+    });
   }, [navigate]);
 
   const handleSpinAgain = () => {
-    const next = spinNumber + 1;
-    if (next > MAX_SPINS) return;
-    setCurrentSpinNumber(next);
-    const target = randomTikkunSign(sign?.id ?? null);
-    sessionStorage.setItem("tikkun_target_sign", target.id);
+    const result = getSpinSnippet(seen);
+    if (result.exhausted || !result.sign) {
+      setExhausted(true);
+      sessionStorage.setItem("tikkun_force_form", "1");
+      setForceForm(true);
+      return;
+    }
+    sessionStorage.setItem("tikkun_seen_signs", JSON.stringify(result.seen));
+    sessionStorage.setItem("tikkun_target_sign", result.sign.id);
     navigate({ to: "/spinning" });
   };
 
@@ -101,9 +126,8 @@ function Snippet() {
   };
 
   if (!sign) return null;
-  const canSpinAgain = spinNumber < MAX_SPINS;
-  const showForm = spinNumber > FREE_SPINS_BEFORE_FORM;
-  const copy = STATIC_COPY.screen3;
+  const showForm = forceForm || exhausted;
+  const canSpinAgain = !showForm && seen.length < 4;
   const today = new Date().toISOString().slice(0, 10);
 
   const spinAgainButton = canSpinAgain ? (
