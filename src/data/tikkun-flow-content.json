@@ -3,7 +3,7 @@
   "staticCopy": {
     "screen3": {
       "eyebrow": "This Tikkun is in",
-      "prompt": "Does this sound like you?",
+      "prompt": "Does this sound like your Shadow Pattern?",
       "primaryButton": "See my real Tikkun",
       "reassurance": "Your real reading takes 30 seconds.",
       "secondaryButton": "Not quite — spin again  (N left)"
@@ -19,7 +19,7 @@
       "deeperSub": "The history of Kabbalah Astrology, and where to learn more.",
       "deeperButton": "Continue",
       "sectionHeaders": [
-        "Your Shadow Patterns (Gilgul)",
+        "Your Shadow (Gilgul)",
         "Archetype",
         "Your Life's Work (Tikkun)",
         "Your Life's Aramaic letter and emotion",
