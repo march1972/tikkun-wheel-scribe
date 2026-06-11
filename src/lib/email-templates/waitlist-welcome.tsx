@@ -13,6 +13,7 @@ import {
   Text,
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
+import { EMAIL_COPY } from '@/lib/email-copy'
 
 interface WaitlistWelcomeProps {
   siteUrl: string
@@ -20,35 +21,31 @@ interface WaitlistWelcomeProps {
   ctaLabel: string
 }
 
+const COPY = EMAIL_COPY.waitlistWelcome
+
 export const WaitlistWelcomeEmail = ({
   siteUrl = 'https://tikkun.kabbalahcircle.com',
   ctaUrl = 'https://tikkun.kabbalahcircle.com/form',
-  ctaLabel = 'Get your free Tikkun reading',
+  ctaLabel = COPY.ctaButton,
 }: WaitlistWelcomeProps) => (
   <Html lang="en" dir="ltr">
     <Head />
-    <Preview>Welcome to the Kabbalah Circle waitlist</Preview>
+    <Preview>{COPY.preview}</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={{ textAlign: 'center' }}>
-          <Text style={eyebrow}>THE KABBALAH CIRCLE</Text>
+          <Text style={eyebrow}>{COPY.eyebrow}</Text>
           <Heading style={h1}>
-            Welcome to the <em style={{ color: '#8a6a1f' }}>Circle</em>.
+            {COPY.headingBefore}
+            <em style={{ color: '#8a6a1f' }}>{COPY.headingEmphasis}</em>
+            {COPY.headingAfter}
           </Heading>
         </Section>
 
         <Hr style={hr} />
 
-        <Text style={body}>
-          Thank you for joining the Kabbalah Circle waitlist. You'll receive
-          occasional notes from Marc — short teachings on Kabbalah, reflections
-          on the spiritual work of becoming, and an early invitation when our
-          group programs and coaching open up.
-        </Text>
-        <Text style={body}>
-          Expect roughly one or two emails a month. No noise, no selling. You
-          can leave any time with a single click at the bottom of any email.
-        </Text>
+        <Text style={body}>{COPY.body1}</Text>
+        <Text style={body}>{COPY.body2}</Text>
 
         <Section style={{ textAlign: 'center', margin: '32px 0' }}>
           <Button style={button} href={ctaUrl}>
@@ -58,12 +55,12 @@ export const WaitlistWelcomeEmail = ({
 
         <Hr style={hr} />
         <Text style={footer}>
-          With light,
+          {COPY.footerSignoff}
           <br />
-          Marc — Kabbalah Circle
+          {COPY.footerName}
           <br />
           <Link href={siteUrl} style={footerLink}>
-            tikkun.kabbalahcircle.com
+            {COPY.footerDomain}
           </Link>
         </Text>
       </Container>
@@ -75,12 +72,12 @@ export default WaitlistWelcomeEmail
 
 export const template = {
   component: WaitlistWelcomeEmail,
-  subject: 'Welcome to the Kabbalah Circle',
+  subject: COPY.subject,
   displayName: 'Waitlist welcome',
   previewData: {
     siteUrl: 'https://tikkun.kabbalahcircle.com',
     ctaUrl: 'https://tikkun.kabbalahcircle.com/form',
-    ctaLabel: 'Get your free Tikkun reading',
+    ctaLabel: COPY.ctaButton,
   },
 } satisfies TemplateEntry
 

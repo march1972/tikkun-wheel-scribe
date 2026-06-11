@@ -13,6 +13,7 @@ import {
   Text,
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
+import { EMAIL_COPY, fill } from '@/lib/email-copy'
 
 interface TikkunReadingProps {
   name?: string | null
@@ -28,6 +29,8 @@ interface TikkunReadingProps {
   optedIn: boolean
   waitlistUrl: string
 }
+
+const COPY = EMAIL_COPY.tikkunReading
 
 const splitParas = (text: string) =>
   text.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean)
@@ -51,12 +54,12 @@ export const TikkunReadingEmail = ({
   return (
     <Html lang="en" dir="ltr">
       <Head />
-      <Preview>Your Tikkun reading — {signName}</Preview>
+      <Preview>{fill(COPY.preview, { signName })}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={{ textAlign: 'center' }}>
             <Text style={letter}>{tikkunLetterHebrew}</Text>
-            <Text style={eyebrow}>YOUR TIKKUN</Text>
+            <Text style={eyebrow}>{COPY.eyebrow}</Text>
             <Heading style={h1}>{signName}</Heading>
             <Text style={hebrew}>{hebrewName}</Text>
             <Text style={nodes}>
@@ -69,16 +72,14 @@ export const TikkunReadingEmail = ({
           <Hr style={hr} />
 
           <Text style={greeting}>
-            {greetingName ? `Dear ${greetingName},` : 'Dear friend,'}
+            {greetingName
+              ? fill(COPY.greeting, { name: greetingName })
+              : COPY.greetingFallback}
           </Text>
-          <Text style={body}>
-            Below is the heart of your reading — your Spiritual Work (Tikkun) and
-            your Daily Mantra (Kavanah). Your full reading, including your
-            Shadow Pattern and Tikkun Letter, lives on the site.
-          </Text>
+          <Text style={body}>{COPY.intro}</Text>
 
           <Heading as="h2" style={h2}>
-            Your Spiritual Work (Tikkun)
+            {COPY.tikkunHeading}
           </Heading>
           {paragraphs.map((p, i) => (
             <Text key={i} style={body}>
@@ -87,13 +88,13 @@ export const TikkunReadingEmail = ({
           ))}
 
           <Heading as="h2" style={h2}>
-            Your Daily Mantra (Kavanah)
+            {COPY.mantraHeading}
           </Heading>
           <Text style={mantra}>{dailyMantra}</Text>
 
           <Section style={{ textAlign: 'center', margin: '32px 0' }}>
             <Button style={button} href={readingUrl}>
-              Read your full Tikkun
+              {COPY.ctaButton}
             </Button>
           </Section>
 
@@ -102,28 +103,19 @@ export const TikkunReadingEmail = ({
           {optedIn ? (
             <>
               <Heading as="h2" style={h2}>
-                Welcome to the Kabbalah Circle waitlist
+                {COPY.waitlistOptedInHeading}
               </Heading>
-              <Text style={body}>
-                Thank you for joining. You'll receive occasional notes from
-                Kabbalah Circle — teachings, reflections, and an early
-                invitation when our group programs and coaching open up. No
-                noise, easy to leave any time.
-              </Text>
+              <Text style={body}>{COPY.waitlistOptedInBody}</Text>
             </>
           ) : (
             <>
               <Heading as="h2" style={h2}>
-                Go deeper with the Kabbalah Circle
+                {COPY.waitlistInviteHeading}
               </Heading>
-              <Text style={body}>
-                Want to receive occasional teachings and an early invitation
-                when our group programs open? Join the waitlist — it's free and
-                you can leave any time.
-              </Text>
+              <Text style={body}>{COPY.waitlistInviteBody}</Text>
               <Section style={{ textAlign: 'center', margin: '20px 0 8px' }}>
                 <Link href={waitlistUrl} style={waitlistLink}>
-                  Join the waitlist →
+                  {COPY.waitlistInviteLink}
                 </Link>
               </Section>
             </>
@@ -131,12 +123,12 @@ export const TikkunReadingEmail = ({
 
           <Hr style={hr} />
           <Text style={footer}>
-            With light,
+            {COPY.footerSignoff}
             <br />
-            Marc — Kabbalah Circle
+            {COPY.footerName}
             <br />
             <Link href={siteUrl} style={footerLink}>
-              tikkun.kabbalahcircle.com
+              {COPY.footerDomain}
             </Link>
           </Text>
         </Container>
@@ -150,7 +142,7 @@ export default TikkunReadingEmail
 export const template = {
   component: TikkunReadingEmail,
   subject: (data: Record<string, any>) =>
-    `Your Tikkun reading — ${data.signName ?? 'Kabbalah Circle'}`,
+    fill(COPY.subject, { signName: data.signName ?? 'Kabbalah Circle' }),
   displayName: 'Tikkun reading',
   previewData: {
     name: 'Sarah',
