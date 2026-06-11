@@ -439,9 +439,11 @@ function ReadingPage() {
             }}
           >
             <a
-              href="mailto:hello@kabbalahcircle.com"
-              aria-label="Email hello@kabbalahcircle.com"
-              style={{ display: "inline-flex", opacity: 0.92 }}
+              href={SHARE_URL}
+              title={SHARE_TEXT}
+              aria-label={SHARE_TEXT}
+              className="tk-wheel-cta"
+              style={{ display: "inline-flex", opacity: 0.92, cursor: "pointer", borderRadius: "50%", transition: "transform 240ms ease, filter 240ms ease" }}
             >
               <TikkunWheel size={150} state="stopped" hideCenterLabel />
             </a>
