@@ -230,8 +230,8 @@ function ReadingPage() {
         <p
           className="tk-fade-d2"
           style={{
-            fontFamily: HEAD, color: C_INK, fontSize: "clamp(22px, 3.2vw, 32px)",
-            fontStyle: "italic", lineHeight: 1.45, maxWidth: "34rem",
+            fontFamily: HEAD, color: C_INK, fontSize: "clamp(22px, 2.8vw, 28px)",
+            fontStyle: "italic", lineHeight: 1.5, maxWidth: "34rem",
             marginTop: "clamp(2rem,4vh,3rem)",
           }}
         >
@@ -275,7 +275,7 @@ function ReadingPage() {
                 key={i}
                 style={{
                   fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-                  fontSize: "clamp(24px, 3.2vw, 34px)", lineHeight: 1.35,
+                  fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
                   margin: 0, letterSpacing: "-0.005em",
                 }}
               >
@@ -343,7 +343,7 @@ function ReadingPage() {
           <p
             style={{
               fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-              fontSize: "clamp(32px, 5vw, 56px)", lineHeight: 1.3,
+              fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
               maxWidth: "30rem", margin: "0 auto",
               textShadow: `0 0 40px ${C_DAWN}66, 0 0 100px ${C_DAWN}33`,
               letterSpacing: "-0.01em",
