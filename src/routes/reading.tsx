@@ -275,7 +275,7 @@ function ReadingPage() {
                 key={i}
                 style={{
                   fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-                  fontSize: "clamp(24px, 3.2vw, 34px)", lineHeight: 1.35,
+                  fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
                   margin: 0, letterSpacing: "-0.005em",
                 }}
               >
