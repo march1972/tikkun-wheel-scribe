@@ -506,7 +506,7 @@ function ReadingPage() {
               }}
             >
               <InstagramIcon /> Instagram
-            </a>
+            </button>
             <button
               type="button"
               onClick={copy}
