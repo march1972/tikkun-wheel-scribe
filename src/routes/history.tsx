@@ -11,7 +11,31 @@ import { subscribeNewsletter } from "@/lib/lead.functions";
 
 export const Route = createFileRoute("/history")({
   component: HistoryPage,
-  head: () => ({ meta: [{ title: "Kabbalah Astrology — A Brief History" }] }),
+  head: () => ({
+    meta: [
+      { title: "Kabbalah Astrology — A Brief History" },
+      { name: "description", content: "A brief history of Kabbalah astrology — its roots in the Sefer Yetzirah and the Zohar, and how it shapes the Tikkun tradition today." },
+      { property: "og:title", content: "Kabbalah Astrology — A Brief History" },
+      { property: "og:description", content: "A brief history of Kabbalah astrology — its roots in the Sefer Yetzirah and the Zohar." },
+      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/history" },
+      { property: "og:type", content: "article" },
+    ],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/history" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Kabbalah Astrology — A Brief History",
+          description: "A brief history of Kabbalah astrology — its roots in the Sefer Yetzirah and the Zohar.",
+          url: "https://tikkun.kabbalahcircle.com/history",
+          author: { "@type": "Organization", name: "Kabbalah Circle" },
+          publisher: { "@type": "Organization", name: "Kabbalah Circle" },
+        }),
+      },
+    ],
+  }),
 });
 
 function HistoryPage() {
