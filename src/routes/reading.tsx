@@ -6,6 +6,7 @@ import { Link2 } from "lucide-react";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import { Reveal } from "@/components/landing/Reveal";
+import { TikkunWheel } from "@/components/TikkunWheel";
 import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE, C_RULE_SOFT,
 } from "@/lib/landing-style";
