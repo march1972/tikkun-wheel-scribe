@@ -27,13 +27,13 @@ function Terms() {
         <p>By using this site and its services (Kabbalah Circle or service), you agree to these terms and conditions. The service offers a free astrological reading, chart and/or other information (readings), for personal and reflective use only.</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Use of the service</h2>
-        <p>Readings are interpretive and offered for inspiration and self-reflection. They are not medical, legal, financial, or psychological advice. You are responsible for the choices you make in your own life, and the service shall not be liable to you in any manner whatever.</p>
+        <p>Readings are interpretive and offered for inspiration and self-reflection. They are not medical, legal, financial, or psychological advice. You are responsible for the choices you make in your own life, and the service shall not be liable to you in any manner whatever in connection with using the service or readings.</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Your information</h2>
         <p>You provide your date of birth and email so we can generate and deliver your reading and the free Tikkun Workbook. You may opt in to the Kabbalah Circle mailing list; opting in is never required and you can unsubscribe at any time.</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Intellectual property</h2>
-        <p>All readings, text, imagery, and/or any workbook ("materials") are the property of Kabbalah Circle and are licensed to you for personal use and may not be used for commercial purposes. Please do not redistribute or resell materials. If you feel any of the materials should be removed, please email us.</p>
+        <p>All readings, text, imagery, and/or any workbook ("materials") are the property of Kabbalah Circle and are licensed to you for personal use and may not be used for commercial purposes. Please do not redistribute or resell materials. If you feel any of the materials should be removed, please email us at hello @ kabbalahcircle.com</p>
 
         <h2 style={{ fontFamily: HEAD, color: C_GOLD, fontSize: "20px", marginTop: "2rem", marginBottom: "0.5rem" }}>Changes</h2>
         <p>We may update these terms from time to time. Continued use of the service constitutes acceptance of the updated terms. </p>
