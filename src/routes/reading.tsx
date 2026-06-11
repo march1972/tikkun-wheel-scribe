@@ -390,17 +390,63 @@ function ReadingPage() {
         </section>
       </Reveal>
 
-      <Hairline />
-
-      {/* ── Share ── */}
+      {/* ── Share / Spread the Light (distinct card) ── */}
       <Reveal>
-        <Column>
-          <SectionLabel>{headers[6]}</SectionLabel>
-          <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7, marginTop: "0.75rem" }}>
+        <div
+          className="mx-auto"
+          style={{
+            maxWidth: "640px",
+            marginTop: "clamp(3rem,6vh,5rem)",
+            marginBottom: "clamp(3rem,6vh,5rem)",
+            padding: "clamp(2rem,5vw,3rem) clamp(1.5rem,5vw,2.5rem)",
+            borderTop: `1px solid ${C_RULE_SOFT}`,
+            borderBottom: `1px solid ${C_RULE_SOFT}`,
+            background:
+              "linear-gradient(180deg, rgba(245,200,104,0.05) 0%, rgba(245,200,104,0.015) 100%)",
+            textAlign: "center",
+          }}
+        >
+          <div
+            aria-hidden
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "clamp(1rem,2vh,1.5rem)",
+              pointerEvents: "none",
+              opacity: 0.92,
+            }}
+          >
+            <TikkunWheel size={150} state="stopped" />
+          </div>
+
+          <h2
+            style={{
+              fontFamily: HEAD,
+              color: C_GOLD,
+              fontSize: "20px",
+              fontWeight: 500,
+              margin: 0,
+              marginBottom: "0.75rem",
+              letterSpacing: "-0.005em",
+            }}
+          >
+            {headers[6]}
+          </h2>
+
+          <p
+            style={{
+              fontFamily: BODY,
+              color: C_INK_SOFT,
+              fontSize: "16px",
+              lineHeight: 1.65,
+              margin: "0 auto",
+              maxWidth: "28rem",
+            }}
+          >
             {sc.shareSub}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href={`https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`}
               target="_blank" rel="noopener noreferrer"
@@ -441,7 +487,7 @@ function ReadingPage() {
               {copied ? "Copied ✓" : "Copy link"}
             </button>
           </div>
-        </Column>
+        </div>
       </Reveal>
 
 
