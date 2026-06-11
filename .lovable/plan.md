@@ -1,18 +1,32 @@
-## Text Styling & Duplicate Removal on /reading
+## Goal
 
-### Scope
-1. **Italic + red parenthetical terms in section headers**
-   - In `Your Shadow Pattern (Gilgul)` — render *Gilgul* in italic and `C_DAWN` red
-   - In `Your Spiritual Work (Tikkun)` — render *Tikkun* in italic and `C_DAWN` red
-   - In `Your Daily Mantra (Kavanah)` — render *Kavanah* in italic and `C_DAWN` red
-   - Implementation: split each header string in `reading.tsx` into prefix + styled `<span>` + suffix, passed into `SectionLabel`.
+On `/reading`, remove the existing "Go Deeper" closing section (gold label + "Find fulfilment…" headline + Go deeper CTA) and replace it with the Zohar pull quote and "The Kabbalah Circle" newsletter signup, copied verbatim (content + formatting) from `/history`.
 
-2. **Remove duplicate "Spread the Light"**
-   - In the Share section, `headers[6]` already renders "Spread the Light" as the `SectionLabel` gold heading.
-   - The `<h3>` below it repeats the same text via `sc.shareHeadline`.
-   - Remove the `<h3>` block so only the gold `SectionLabel` remains.
+## Changes — `src/routes/reading.tsx`
 
-### Files changed
-- `src/routes/reading.tsx` — header rendering + remove duplicate headline
+1. **Add imports**:
+   - `useServerFn` from `@tanstack/react-start`
+   - `useState` already imported
+   - `subscribeNewsletter` from `@/lib/lead.functions`
+   - `C_RULE_SOFT` from `@/lib/landing-style`
 
-### No new dependencies or data changes.
+2. **Add newsletter state inside `ReadingPage`**:
+   ```ts
+   const subscribe = useServerFn(subscribeNewsletter);
+   const [email, setEmail] = useState("");
+   const [state, setState] = useState<"idle"|"busy"|"done"|"error">("idle");
+   const [err, setErr] = useState<string|null>(null);
+   const onSubmit = async (e) => { ... } // identical to /history
+   ```
+
+3. **Remove**: the final `<Reveal>` Closing section (the one rendering `headers[7]` "Go Deeper", `sc.deeperSub`, and the `PrimaryCTA` to `/history`) along with its preceding `<Hairline />`.
+
+4. **Insert in its place** the two `<Reveal>` blocks copied verbatim from `/history`:
+   - Pull quote section (Zohar quote)
+   - Newsletter section (THE KABBALAH CIRCLE / Go deeper. / paragraph / email form / JOIN WAITLIST button)
+
+   Both blocks keep their exact styling (`borderTop: 1px solid C_RULE_SOFT`, paddings, fonts, colors, success state).
+
+5. **Leave untouched**: everything above the Share section's buttons, including the Share section itself.
+
+No changes to `/history`, `reading-copy.ts`, or any other file. No new dependencies.
