@@ -243,8 +243,13 @@ function ReadingPage() {
             fontFamily: BODY, color: C_MUTED, fontSize: "10px",
             letterSpacing: "0.32em", textTransform: "uppercase",
             marginTop: "clamp(2.5rem,5vh,3.5rem)",
+            whiteSpace: "pre-line",
           }}
         >
+          North Lunar Node in {sign.sign}
+          {"\n"}
+          South Lunar Node in {sign.southNode}
+          {"\n\n"}
           {sc.scrollHint}
         </p>
       </section>
