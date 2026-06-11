@@ -5,7 +5,7 @@ import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import { Reveal } from "@/components/landing/Reveal";
 import {
-  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE, C_RULE_SOFT,
+  HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE, C_RULE_SOFT, C_MOONLIGHT,
 } from "@/lib/landing-style";
 import { subscribeNewsletter } from "@/lib/lead.functions";
 
@@ -170,7 +170,7 @@ function HistoryPage() {
           <div className="relative mx-auto max-w-2xl">
             <p
               style={{
-                fontFamily: BODY, color: C_GOLD, fontSize: "11px",
+                fontFamily: BODY, color: C_MOONLIGHT, fontSize: "11px",
                 letterSpacing: "0.42em", textTransform: "uppercase", fontWeight: 600,
               }}
             >
