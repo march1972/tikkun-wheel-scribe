@@ -39,6 +39,18 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
+function HeaderWithAccent({ text }: { text: string }) {
+  const m = text.match(/^(.*)\(([^)]+)\)(.*)$/);
+  if (!m) return <>{text}</>;
+  return (
+    <>
+      {m[1]}(
+      <span style={{ color: C_DAWN, fontStyle: "italic" }}>{m[2]}</span>
+      ){m[3]}
+    </>
+  );
+}
+
 function Hairline({ width = 64, my = "clamp(3rem,6vh,5rem)" }: { width?: number; my?: string }) {
   return (
     <div
@@ -258,7 +270,7 @@ function ReadingPage() {
       {/* ── Your Shadow Pattern (Gilgul) ── */}
       <Reveal>
         <Column>
-          <SectionLabel>{headers[0]}</SectionLabel>
+          <SectionLabel><HeaderWithAccent text={headers[0]} /></SectionLabel>
           <Body text={sign.shadowGilgul} splitOn={"\n\n"} />
         </Column>
       </Reveal>
@@ -291,7 +303,7 @@ function ReadingPage() {
       {/* ── Your Spiritual Work (Tikkun) ── */}
       <Reveal>
         <Column>
-          <SectionLabel>{headers[2]}</SectionLabel>
+          <SectionLabel><HeaderWithAccent text={headers[2]} /></SectionLabel>
           <Body text={sign.spiritualWorkTikkun} splitOn={"\n\n"} />
         </Column>
       </Reveal>
@@ -338,7 +350,7 @@ function ReadingPage() {
               fontWeight: 500, margin: 0, marginBottom: "clamp(1.5rem,3vh,2rem)",
             }}
           >
-            {headers[4]}
+            <HeaderWithAccent text={headers[4]} />
           </h2>
           <p
             style={{
@@ -378,14 +390,6 @@ function ReadingPage() {
       <Reveal>
         <Column>
           <SectionLabel>{headers[6]}</SectionLabel>
-          <h3
-            style={{
-              fontFamily: HEAD, color: C_INK, fontSize: "clamp(24px, 3.2vw, 32px)",
-              fontWeight: 500, lineHeight: 1.3, margin: 0,
-            }}
-          >
-            {sc.shareHeadline}
-          </h3>
           <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7, marginTop: "0.75rem" }}>
             {sc.shareSub}
           </p>
