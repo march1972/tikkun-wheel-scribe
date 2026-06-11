@@ -443,23 +443,6 @@ function ReadingPage() {
         </Column>
       </Reveal>
 
-      <Hairline />
-
-      {/* ── Reflection ── */}
-      <Reveal>
-        <Column>
-          <SectionLabel>{headers[5]}</SectionLabel>
-          <p
-            style={{
-              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-              fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
-              margin: 0, letterSpacing: "-0.005em",
-            }}
-          >
-            {sc.reflectionPrompt}
-          </p>
-        </Column>
-      </Reveal>
 
       {/* ── Pull quote ── */}
       <Reveal duration={1100} y={20}>
@@ -468,8 +451,8 @@ function ReadingPage() {
         >
           <p
             style={{
-              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-              fontSize: "clamp(28px, 4.6vw, 48px)", lineHeight: 1.3,
+              fontFamily: HEAD, fontStyle: "italic", color: C_MUTED,
+              fontSize: "clamp(20px, 3.2vw, 32px)", lineHeight: 1.35,
               maxWidth: "34rem", margin: "0 auto",
               textShadow: `0 0 50px ${C_DAWN}55, 0 0 120px ${C_DAWN}22`,
               letterSpacing: "-0.01em",
