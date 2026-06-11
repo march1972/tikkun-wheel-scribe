@@ -41,6 +41,7 @@ export function TikkunWheel({
   highlightLetter = null,
   onClick,
   onSettle,
+  hideCenterLabel = false,
 }: TikkunWheelProps) {
   const uid = useId().replace(/[:]/g, "");
   const glowId = `tk-glow-${uid}`;
