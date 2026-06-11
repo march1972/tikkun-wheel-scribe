@@ -511,7 +511,7 @@ function ReadingPage() {
           <div className="relative mx-auto max-w-2xl">
             <p
               style={{
-                fontFamily: BODY, color: C_GOLD, fontSize: "11px",
+                fontFamily: BODY, color: C_MOONLIGHT, fontSize: "11px",
                 letterSpacing: "0.42em", textTransform: "uppercase", fontWeight: 600,
               }}
             >
