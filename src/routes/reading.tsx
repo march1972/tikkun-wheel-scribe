@@ -3,6 +3,10 @@ import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { Link2 } from "lucide-react";
+import { toast } from "sonner";
+
+const SHARE_URL = "https://tikkun.kabbalahcircle.com";
+const SHARE_TEXT = "Hi, get a free Kabbalah Tikkun reading to see your default patterns & purpose.";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import { Reveal } from "@/components/landing/Reveal";
