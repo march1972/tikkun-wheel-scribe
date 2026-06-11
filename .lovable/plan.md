@@ -62,7 +62,7 @@ The footer only exists on the home page (verified via grep). Inside the existing
 - Beneath the link row, add a second centered line:
   ```tsx
   <p style={{ marginTop: "clamp(0.75rem,1.5vh,1rem)", textAlign: "center", color: C_MUTED, fontFamily: BODY, fontSize: "10px", letterSpacing: "0.12em" }}>
-    Kabbalah Circle is an independent personal project and is not affiliated with any Kabbalah school or centre.
+    Kabbalah Circle is an independent unaffiliated project.
   </p>
   ```
 
