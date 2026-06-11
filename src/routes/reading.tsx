@@ -230,8 +230,8 @@ function ReadingPage() {
         <p
           className="tk-fade-d2"
           style={{
-            fontFamily: HEAD, color: C_INK, fontSize: "clamp(22px, 3.2vw, 32px)",
-            fontStyle: "italic", lineHeight: 1.45, maxWidth: "34rem",
+            fontFamily: HEAD, color: C_INK, fontSize: "clamp(22px, 2.8vw, 28px)",
+            fontStyle: "italic", lineHeight: 1.5, maxWidth: "34rem",
             marginTop: "clamp(2rem,4vh,3rem)",
           }}
         >
