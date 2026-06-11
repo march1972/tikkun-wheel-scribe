@@ -1,16 +1,7 @@
-## Plan
+Delete the entire Pull quote `<Reveal>` block from `src/routes/reading.tsx` that contains:
 
-On the `/reading` page, reorder two adjacent sections so that **Spread the Light** (share buttons: WhatsApp, Instagram, Copy link) appears **before** the **Tikkun Reflection** prompt.
+```
+“Come and see... joy pierces through the celestial garments to draw down pure blessing" — Zohar
+```
 
-### Current order
-1. Reflection — "What’s one uncomfortable thing I can do this week..."
-2. Hairline
-3. Spread the Light — "Share your Tikkun with someone who needs to hear it." + buttons
-
-### New order
-1. Spread the Light — "Share your Tikkun with someone who needs to hear it." + buttons
-2. Hairline
-3. Reflection — "What’s one uncomfortable thing I can do this week..."
-
-### Files changed
-- `src/routes/reading.tsx` — move the Reflection `<Reveal>` block (including its preceding `<Hairline>`) to appear after the Share `<Reveal>` block. Only structural reordering; no content, styling, or import changes.
+This removes the section between the Spread the Light share block and the THE KABBALAH CIRCLE newsletter section.

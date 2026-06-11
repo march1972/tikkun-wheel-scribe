@@ -444,24 +444,6 @@ function ReadingPage() {
       </Reveal>
 
 
-      {/* ── Pull quote ── */}
-      <Reveal duration={1100} y={20}>
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)] text-center"
-          style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
-        >
-          <p
-            style={{
-              fontFamily: HEAD, fontStyle: "italic", color: C_MUTED,
-              fontSize: "clamp(20px, 3.2vw, 32px)", lineHeight: 1.35,
-              maxWidth: "34rem", margin: "0 auto",
-              textShadow: `0 0 50px ${C_DAWN}55, 0 0 120px ${C_DAWN}22`,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            “Come and see... joy pierces through the celestial garments to draw down pure blessing" — Zohar
-          </p>
-        </section>
-      </Reveal>
 
       {/* ── Newsletter ── */}
       <Reveal duration={900} y={20}>
