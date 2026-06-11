@@ -166,7 +166,7 @@ function Snippet() {
       <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1rem,5vw,3rem)] pt-[clamp(1rem,2.5vh,1.75rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
         {!showForm && (
           <>
-            <h2
+            <h1
               style={{
                 fontFamily: HEAD,
                 color: C_INK,
@@ -177,7 +177,7 @@ function Snippet() {
             >
               Sound like{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>your Shadow?</span>
-            </h2>
+            </h1>
 
             <div
               className="w-full mt-[clamp(1.25rem,3vh,2rem)] mb-[clamp(1.25rem,3vh,2rem)]"
