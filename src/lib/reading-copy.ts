@@ -1,7 +1,7 @@
 // Static UI chrome copy for /reading and /content. No per-sign data.
 export const READING_COPY = {
   label: "Your Tikkun",
-  scrollHint: "Scroll to read your reading",
+  
   reflectionPrompt:
     "What’s one uncomfortable thing I can do this week to correct my default Shadow Pattern, and get closer to my Tikkun?",
   shareHeadline: "Spread the Light",

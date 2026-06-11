@@ -247,11 +247,9 @@ function ReadingPage() {
             whiteSpace: "pre-line",
           }}
         >
-          North Lunar Node in {sign.northNode}
+          NORTH LUNAR NODE IN {sign.northNode}
           {"\n"}
-          South Lunar Node in {sign.southNode}
-          {"\n"}
-          {sc.scrollHint}
+          SOUTH LUNAR NODE IN {sign.southNode}
         </p>
       </section>
 
