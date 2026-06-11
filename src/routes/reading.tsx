@@ -202,11 +202,26 @@ function ReadingPage() {
   if (!sign) return null;
   const sc = READING_COPY;
   const headers = sc.sectionHeaders;
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-  const shareText = `Discover your Tikkun — your soul's pattern of correction in Kabbalah Astrology.`;
+  const shareUrl = SHARE_URL;
+  const shareText = SHARE_TEXT;
 
   const copy = async () => {
-    try { await navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
+    try { await navigator.clipboard.writeText(SHARE_URL); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
+  };
+
+  const onInstagramShare = async () => {
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ title: "Kabbalah Tikkun reading", text: SHARE_TEXT, url: SHARE_URL });
+        return;
+      } catch {
+        return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(SHARE_URL);
+      toast("Link copied — share it on Instagram.");
+    } catch {}
   };
 
   return (
