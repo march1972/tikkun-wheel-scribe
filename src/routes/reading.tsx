@@ -390,14 +390,6 @@ function ReadingPage() {
       <Reveal>
         <Column>
           <SectionLabel>{headers[6]}</SectionLabel>
-          <h3
-            style={{
-              fontFamily: HEAD, color: C_INK, fontSize: "clamp(24px, 3.2vw, 32px)",
-              fontWeight: 500, lineHeight: 1.3, margin: 0,
-            }}
-          >
-            {sc.shareHeadline}
-          </h3>
           <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px", lineHeight: 1.7, marginTop: "0.75rem" }}>
             {sc.shareSub}
           </p>
