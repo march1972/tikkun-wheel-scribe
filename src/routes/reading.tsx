@@ -391,24 +391,6 @@ function ReadingPage() {
 
       <Hairline />
 
-      {/* ── Reflection ── */}
-      <Reveal>
-        <Column>
-          <SectionLabel>{headers[5]}</SectionLabel>
-          <p
-            style={{
-              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-              fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
-              margin: 0, letterSpacing: "-0.005em",
-            }}
-          >
-            {sc.reflectionPrompt}
-          </p>
-        </Column>
-      </Reveal>
-
-      <Hairline />
-
       {/* ── Share ── */}
       <Reveal>
         <Column>
@@ -458,6 +440,24 @@ function ReadingPage() {
               {copied ? "Copied ✓" : "Copy link"}
             </button>
           </div>
+        </Column>
+      </Reveal>
+
+      <Hairline />
+
+      {/* ── Reflection ── */}
+      <Reveal>
+        <Column>
+          <SectionLabel>{headers[5]}</SectionLabel>
+          <p
+            style={{
+              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+              fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
+              margin: 0, letterSpacing: "-0.005em",
+            }}
+          >
+            {sc.reflectionPrompt}
+          </p>
         </Column>
       </Reveal>
 
