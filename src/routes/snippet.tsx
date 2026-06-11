@@ -204,7 +204,7 @@ function Snippet() {
                     lineHeight: 1, textShadow: `0 0 24px ${C_DAWN}66`,
                   }}
                 >
-                  {sign.hebrewLetter}
+                  {sign.tikkunLetterHebrew}
                 </span>
               </div>
 
@@ -220,7 +220,7 @@ function Snippet() {
                   fontWeight: 400,
                 }}
               >
-                {sign.screen3.spinSnippet}
+                {sign.spinSnippet}
               </p>
             </div>
           </>
@@ -234,8 +234,8 @@ function Snippet() {
             <div className="mt-[clamp(1.4rem,3.2vh,2rem)]">
               <PrimaryCTA
                 onClick={() => {
-                  setCurrentSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
-                  setSpinNumber(FREE_SPINS_BEFORE_FORM + 1);
+                  sessionStorage.setItem("tikkun_force_form", "1");
+                  setForceForm(true);
                 }}
                 label="Reveal My Actual Chart"
               />
