@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { SkyShell } from "@/components/landing/SkyShell";
@@ -417,13 +417,13 @@ function Snippet() {
                   style={{ fontFamily: BODY, color: "rgba(236,227,207,0.70)", fontSize: "12px", letterSpacing: "0.03em", lineHeight: 1.6 }}
                 >
                   Email & birth date for free Tikkun Chart.{" "}
-                  <a
-                    href="/terms"
+                  <Link
+                    to="/terms"
                     className="terms-link"
                     style={{ fontFamily: BODY, color: "rgba(236,227,207,0.85)", textDecoration: "underline", textDecorationColor: "rgba(236,227,207,0.85)", textUnderlineOffset: "3px", fontSize: "11px" }}
                   >
                     T&Cs
-                  </a>
+                  </Link>
                 </p>
                 <style>{`
                   @media (max-width: 640px) {
