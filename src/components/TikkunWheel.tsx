@@ -30,6 +30,7 @@ interface TikkunWheelProps {
   highlightLetter?: string | null;
   onClick?: () => void;
   onSettle?: (letter: { glyph: string; name: string }) => void;
+  hideCenterLabel?: boolean;
 }
 
 export function TikkunWheel({
