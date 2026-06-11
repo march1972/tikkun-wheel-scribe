@@ -13,13 +13,13 @@ export const Route = createFileRoute("/")({
   component: Landing,
   head: () => ({
     meta: [
-      { title: "Kabbalah Astrology — Reveal Your Tikkun" },
+      { title: "KABBALAH CIRCLE ASTROLOGY — Reveal Your Tikkun" },
       {
         name: "description",
         content:
           "A free Tikkun astrology chart based on the lunar nodes at your date of birth. You see the Purpose Patterns that influence your path in relationships, career, finances, and personal fulfilment.",
       },
-      { property: "og:title", content: "Kabbalah Astrology — Reveal Your Tikkun" },
+      { property: "og:title", content: "KABBALAH CIRCLE ASTROLOGY — Reveal Your Tikkun" },
       {
         property: "og:description",
         content:
@@ -277,7 +277,7 @@ function Landing() {
                 fontWeight: 600,
               }}
             >
-              Kabbalah Astrology
+              KABBALAH CIRCLE ASTROLOGY
             </span>
           </div>
         </header>
