@@ -393,19 +393,21 @@ function ReadingPage() {
       {/* ── Share / Spread the Light (distinct card) ── */}
       <Reveal>
         <div
-          className="mx-auto"
           style={{
-            maxWidth: "640px",
+            width: "100%",
             marginTop: "clamp(3rem,6vh,5rem)",
             marginBottom: "clamp(3rem,6vh,5rem)",
-            padding: "clamp(2rem,5vw,3rem) clamp(1.5rem,5vw,2.5rem)",
-            borderTop: `1px solid ${C_RULE_SOFT}`,
-            borderBottom: `1px solid ${C_RULE_SOFT}`,
+            padding: "clamp(2.5rem,6vh,4rem) clamp(1.25rem,5vw,3rem)",
+            borderTop: `1px solid rgba(245,200,104,0.35)`,
+            borderBottom: `1px solid rgba(245,200,104,0.35)`,
             background:
-              "linear-gradient(180deg, rgba(245,200,104,0.05) 0%, rgba(245,200,104,0.015) 100%)",
+              "radial-gradient(ellipse at center, rgba(245,200,104,0.16) 0%, rgba(245,200,104,0.09) 40%, rgba(245,200,104,0.04) 100%)",
+            boxShadow:
+              "0 0 80px -20px rgba(245,200,104,0.25), inset 0 0 60px -30px rgba(245,200,104,0.2)",
             textAlign: "center",
           }}
         >
+
           <div
             style={{
               display: "flex",
