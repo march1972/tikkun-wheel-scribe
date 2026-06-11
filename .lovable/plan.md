@@ -1,25 +1,18 @@
-# Animated Typing Headline
+## Goal
+Make the small "KABBALAH ASTROLOGY" / "Kabbalah Astrology" label at the top of the home page (`/`) and the spinning page (`/spinning`) appear 15% lighter.
 
-Turn the hero headline into a typewriter animation that cycles through three words.
+## Current state
+Both labels are rendered with the same inline style color:
+- `src/routes/index.tsx` line 273: `color: "rgba(80, 105, 150, 0.35)"`
+- `src/routes/spinning.tsx` line 52: `color: "rgba(80, 105, 150, 0.35)"`
 
-## Behavior
+## Change
+Lighten the RGB by mixing 15% toward white (keep alpha at 0.35):
+- 80 → 106, 105 → 128, 150 → 166
+- New color: `rgba(106, 128, 166, 0.35)`
 
-1. "Reveal your" stays fixed; only the gold italic word animates.
-2. On page load, the word **Tikkun** types out letter by letter with a blinking cursor.
-3. After a short pause (~2.2s), the word deletes itself, then types **Purpose**.
-4. Pause again, delete, then type **Patterns**.
-5. Loop back to **Tikkun** and repeat continuously.
+Update both occurrences only — no other styles, fonts, sizes, or copy change. The hidden placeholder label in `SkyShell.tsx` (opacity-0, used only for layout spacing on other pages) is out of scope.
 
-## Details
-
-- A thin gold blinking cursor bar appears while typing/deleting, in the same dawn-gold style as the current word.
-- The headline reserves space for the longest word ("Patterns") so the wheel and content below never jump as letters appear/disappear.
-- Typing speed ~70ms per letter, deleting slightly faster (~40ms), feels smooth and deliberate.
-- Users with "reduce motion" enabled see the static word "Tikkun" with no animation.
-- The trailing period stays after the animated word.
-
-## Technical
-
-- New small component `TypewriterWord` in `src/components/landing/` driven by `useEffect` timers (no new packages).
-- `src/routes/index.tsx`: replace the static "Tikkun" span with the new component, passing the words `["Tikkun", "Purpose", "Patterns"]`.
-- No backend, content JSON, or other pages touched.
+## Files
+- `src/routes/index.tsx` — update the header span color.
+- `src/routes/spinning.tsx` — update the header span color.
