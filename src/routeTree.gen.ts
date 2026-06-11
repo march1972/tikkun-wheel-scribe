@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SpinningRouteImport } from './routes/spinning'
 import { Route as SnippetRouteImport } from './routes/snippet'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ReadingRouteImport } from './routes/reading'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as HistoryRouteImport } from './routes/history'
@@ -33,6 +34,11 @@ const SpinningRoute = SpinningRouteImport.update({
 const SnippetRoute = SnippetRouteImport.update({
   id: '/snippet',
   path: '/snippet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReadingRoute = ReadingRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/history': typeof HistoryRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/reading'
+    | '/sitemap.xml'
     | '/snippet'
     | '/spinning'
     | '/terms'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/reading'
+    | '/sitemap.xml'
     | '/snippet'
     | '/spinning'
     | '/terms'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/privacy'
     | '/reading'
+    | '/sitemap.xml'
     | '/snippet'
     | '/spinning'
     | '/terms'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   HistoryRoute: typeof HistoryRoute
   PrivacyRoute: typeof PrivacyRoute
   ReadingRoute: typeof ReadingRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SnippetRoute: typeof SnippetRoute
   SpinningRoute: typeof SpinningRoute
   TermsRoute: typeof TermsRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/snippet'
       fullPath: '/snippet'
       preLoaderRoute: typeof SnippetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reading': {
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   HistoryRoute: HistoryRoute,
   PrivacyRoute: PrivacyRoute,
   ReadingRoute: ReadingRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SnippetRoute: SnippetRoute,
   SpinningRoute: SpinningRoute,
   TermsRoute: TermsRoute,
@@ -250,3 +271,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
