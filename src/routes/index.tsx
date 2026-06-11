@@ -5,8 +5,7 @@ import { Reveal } from "@/components/landing/Reveal";
 import { TypewriterWord } from "@/components/landing/TypewriterWord";
 import { PrimaryCTA as GoldCTA } from "@/components/landing/PrimaryCTA";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
-import { randomTikkunSign } from "@/lib/tikkun-data";
-import { resetAttempts, setCurrentSpinNumber } from "@/lib/spinAttempts";
+import { getSpinSnippet } from "@/data/tikkun-lookup";
 import { useEffect, useRef } from "react";
 
 export const Route = createFileRoute("/")({
@@ -216,9 +215,11 @@ function Landing() {
   const wheelSize = useResponsiveWheelSize(0.72, 220, 460);
   const haloRef = useRef<HTMLDivElement | null>(null);
 
-  // Reset spin counter on each fresh visit to the landing page.
+  // Reset seen-signs on each fresh visit to the landing page.
   useEffect(() => {
-    resetAttempts();
+    sessionStorage.removeItem("tikkun_seen_signs");
+    sessionStorage.removeItem("tikkun_target_sign");
+    sessionStorage.removeItem("tikkun_force_form");
   }, []);
 
   // Scroll-linked halo drift behind the hero wheel (matches /history, /reading).
@@ -245,9 +246,11 @@ function Landing() {
 
 
   const handleSpin = () => {
-    setCurrentSpinNumber(1);
-    const target = randomTikkunSign();
-    sessionStorage.setItem("tikkun_target_sign", target.id);
+    const result = getSpinSnippet([]);
+    if (result.exhausted || !result.sign) return;
+    sessionStorage.setItem("tikkun_seen_signs", JSON.stringify(result.seen));
+    sessionStorage.setItem("tikkun_target_sign", result.sign.id);
+    sessionStorage.removeItem("tikkun_force_form");
     navigate({ to: "/spinning" });
   };
 
