@@ -343,7 +343,7 @@ function ReadingPage() {
           <p
             style={{
               fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-              fontSize: "clamp(32px, 5vw, 56px)", lineHeight: 1.3,
+              fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
               maxWidth: "30rem", margin: "0 auto",
               textShadow: `0 0 40px ${C_DAWN}66, 0 0 100px ${C_DAWN}33`,
               letterSpacing: "-0.01em",
