@@ -270,7 +270,7 @@ function ReadingPage() {
       {/* ── Your Shadow Pattern (Gilgul) ── */}
       <Reveal>
         <Column>
-          <SectionLabel>{headers[0]}</SectionLabel>
+          <SectionLabel><HeaderWithAccent text={headers[0]} /></SectionLabel>
           <Body text={sign.shadowGilgul} splitOn={"\n\n"} />
         </Column>
       </Reveal>
