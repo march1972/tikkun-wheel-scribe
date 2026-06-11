@@ -1,7 +1,16 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import { getReadingByDOB, OUT_OF_RANGE_MESSAGE } from "@/data/tikkun-lookup";
+import { getReadingByDOB, OUT_OF_RANGE_MESSAGE, SIGNS } from "@/data/tikkun-lookup";
+import { enqueueAppEmail } from "@/lib/email/send-internal.server";
+
+const SITE_URL = "https://tikkun.kabbalahcircle.com";
+
+function readingUrlForSign(signId: string): string {
+  const sign = SIGNS.find((s) => s.id === signId);
+  const seg = sign ? sign.signId : signId;
+  return `${SITE_URL}/reading/${seg}?utm_source=email&utm_medium=tikkun_reading`;
+}
 
 const leadSchema = z.object({
   name: z.string().trim().max(120).optional().nullable(),
@@ -22,18 +31,48 @@ export const submitLead = createServerFn({ method: "POST" })
       return { ok: false as const, error: OUT_OF_RANGE_MESSAGE, signId: null };
     }
     const sign = result.sign;
-    const { error } = await supabaseAdmin.from("leads").insert({
-      name: data.name || null,
-      dob: data.dob,
-      email: data.email,
-      sign_id: sign.id,
-      newsletter_opt_in: data.newsletterOptIn,
-      source: "reading_form",
-    });
-    if (error) {
+    const { data: inserted, error } = await supabaseAdmin
+      .from("leads")
+      .insert({
+        name: data.name || null,
+        dob: data.dob,
+        email: data.email,
+        sign_id: sign.id,
+        newsletter_opt_in: data.newsletterOptIn,
+        source: "reading_form",
+      })
+      .select("id")
+      .single();
+    if (error || !inserted) {
       console.error("lead insert failed", error);
       return { ok: false as const, error: "Could not save your reading. Please try again.", signId: null };
     }
+
+    // Fire-and-forget Tikkun reading email. Never block / break the form.
+    try {
+      await enqueueAppEmail({
+        templateName: "tikkun-reading",
+        recipientEmail: data.email,
+        idempotencyKey: `tikkun-reading-${inserted.id}`,
+        templateData: {
+          name: data.name || null,
+          signName: sign.signId,
+          hebrewName: sign.hebrewName,
+          tikkunLetterHebrew: sign.tikkunLetterHebrew,
+          northNode: sign.northNode,
+          southNode: sign.southNode,
+          spiritualWorkTikkun: sign.spiritualWorkTikkun,
+          dailyMantra: sign.dailyMantra,
+          readingUrl: readingUrlForSign(sign.id),
+          siteUrl: SITE_URL,
+          optedIn: data.newsletterOptIn,
+          waitlistUrl: `${SITE_URL}/history?subscribe=1`,
+        },
+      });
+    } catch (e) {
+      console.error("tikkun email enqueue failed", e);
+    }
+
     return { ok: true as const, error: null, signId: sign.id };
   });
 
@@ -49,5 +88,36 @@ export const subscribeNewsletter = createServerFn({ method: "POST" })
       console.error("newsletter sub failed", error);
       return { ok: false as const, error: "Could not subscribe — please try again." };
     }
+
+    // Look up most recent lead for this email to deep-link the CTA to their reading.
+    let ctaUrl = `${SITE_URL}/form`;
+    let ctaLabel = "Get your free Tikkun reading";
+    try {
+      const { data: lead } = await supabaseAdmin
+        .from("leads")
+        .select("sign_id")
+        .eq("email", data.email)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (lead?.sign_id) {
+        ctaUrl = readingUrlForSign(lead.sign_id);
+        ctaLabel = "Open your Tikkun reading";
+      }
+    } catch (e) {
+      console.error("lead lookup for welcome email failed", e);
+    }
+
+    try {
+      await enqueueAppEmail({
+        templateName: "waitlist-welcome",
+        recipientEmail: data.email,
+        idempotencyKey: `waitlist-welcome-${data.email.toLowerCase()}`,
+        templateData: { siteUrl: SITE_URL, ctaUrl, ctaLabel },
+      });
+    } catch (e) {
+      console.error("waitlist email enqueue failed", e);
+    }
+
     return { ok: true as const, error: null };
   });
