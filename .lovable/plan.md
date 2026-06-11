@@ -1,12 +1,18 @@
-Make four italic "statement" blocks on `/reading` share one type size, matching the Reflection prompt.
+## Text Styling & Duplicate Removal on /reading
 
-## Target size
-`clamp(22px, 2.8vw, 28px)`, line-height `1.5`, HEAD italic, color `C_INK`.
+### Scope
+1. **Italic + red parenthetical terms in section headers**
+   - In `Your Shadow Pattern (Gilgul)` — render *Gilgul* in italic and `C_DAWN` red
+   - In `Your Spiritual Work (Tikkun)` — render *Tikkun* in italic and `C_DAWN` red
+   - In `Your Daily Mantra (Kavanah)` — render *Kavanah* in italic and `C_DAWN` red
+   - Implementation: split each header string in `reading.tsx` into prefix + styled `<span>` + suffix, passed into `SectionLabel`.
 
-## Changes in `src/routes/reading.tsx`
+2. **Remove duplicate "Spread the Light"**
+   - In the Share section, `headers[6]` already renders "Spread the Light" as the `SectionLabel` gold heading.
+   - The `<h3>` below it repeats the same text via `sc.shareHeadline`.
+   - Remove the `<h3>` block so only the gold `SectionLabel` remains.
 
-1. **Hero quote** (line ~233) — change `fontSize: "clamp(22px, 3.2vw, 32px)"` and `lineHeight: 1.45` → `clamp(22px, 2.8vw, 28px)` / `1.5`.
-2. **Shadow Archetype lines** (line ~278) — change `fontSize: "clamp(24px, 3.2vw, 34px)"` and `lineHeight: 1.35` → `clamp(22px, 2.8vw, 28px)` / `1.5`.
-3. **Daily Mantra text** (line ~346) — change `fontSize: "clamp(32px, 5vw, 56px)"` and `lineHeight: 1.3` → `clamp(22px, 2.8vw, 28px)` / `1.5`. Keep the existing glow `textShadow` and centering.
+### Files changed
+- `src/routes/reading.tsx` — header rendering + remove duplicate headline
 
-No changes to: section labels (20px), body prose (15px), Tikkun letter glyph, Share headline, Closing sub, or any copy text.
+### No new dependencies or data changes.

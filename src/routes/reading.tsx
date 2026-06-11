@@ -39,6 +39,18 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
+function HeaderWithAccent({ text }: { text: string }) {
+  const m = text.match(/^(.*)\(([^)]+)\)(.*)$/);
+  if (!m) return <>{text}</>;
+  return (
+    <>
+      {m[1]}(
+      <span style={{ color: C_DAWN, fontStyle: "italic" }}>{m[2]}</span>
+      ){m[3]}
+    </>
+  );
+}
+
 function Hairline({ width = 64, my = "clamp(3rem,6vh,5rem)" }: { width?: number; my?: string }) {
   return (
     <div
