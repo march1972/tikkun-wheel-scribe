@@ -496,7 +496,6 @@ function ReadingPage() {
       <Reveal duration={900} y={20}>
         <section
           className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(5rem,10vh,8rem)] text-center"
-          style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
         >
           <div className="relative mx-auto max-w-2xl">
             <p
