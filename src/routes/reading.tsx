@@ -350,7 +350,7 @@ function ReadingPage() {
               fontWeight: 500, margin: 0, marginBottom: "clamp(1.5rem,3vh,2rem)",
             }}
           >
-            {headers[4]}
+            <HeaderWithAccent text={headers[4]} />
           </h2>
           <p
             style={{
