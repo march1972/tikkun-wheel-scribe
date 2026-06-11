@@ -235,6 +235,7 @@ function ReadingPage() {
         .tk-fade-d3 { animation: tikkun-fade-up 1.1s ease-out 0.8s both; }
         .tk-share-pill { transition: transform 220ms cubic-bezier(.2,.7,.3,1.2); }
         .tk-share-pill:hover { transform: translateY(-2px) scale(1.03); }
+        .tk-wheel-cta:hover { transform: scale(1.05); filter: drop-shadow(0 0 24px rgba(245,207,122,0.55)); }
       `}</style>
 
       {/* ── Hero ── */}
