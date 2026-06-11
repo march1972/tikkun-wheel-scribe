@@ -249,7 +249,7 @@ function ReadingPage() {
           North Lunar Node in {sign.sign}
           {"\n"}
           South Lunar Node in {sign.southNode}
-          {"\n\n"}
+          {"\n"}
           {sc.scrollHint}
         </p>
       </section>
