@@ -44,9 +44,9 @@ function HeaderWithAccent({ text }: { text: string }) {
   if (!m) return <>{text}</>;
   return (
     <>
-      {m[1]}(
-      <span style={{ color: C_DAWN, fontStyle: "italic" }}>{m[2]}</span>
-      ){m[3]}
+      {m[1]}
+      <span style={{ color: C_DAWN, fontStyle: "italic" }}>({m[2]})</span>
+      {m[3]}
     </>
   );
 }
