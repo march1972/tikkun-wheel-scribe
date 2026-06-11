@@ -319,7 +319,7 @@ function Snippet() {
                 textAlign: "center",
               }}
             >
-              <h2
+              <h1
                 style={{
                   fontFamily: HEAD, color: C_INK, fontWeight: 500,
                   fontSize: "clamp(34px, 6.2vw, 60px)", lineHeight: 1.1,
@@ -329,7 +329,7 @@ function Snippet() {
                 See your actual{" "}
                 <span style={{ color: C_DAWN, fontStyle: "italic", fontWeight: 700, fontSize: "1.05em" }}>Tikkun</span>{" "}
                 chart
-              </h2>
+              </h1>
 
 
 
