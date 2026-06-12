@@ -240,17 +240,19 @@ function About() {
             <br />
             I am also inspired to see that some of the great modern
             psychologists like Carl Yung, who although not a Kabbalist (or
-            Jewish), studied Kabbalah and developed frameworks like the "Jungian
-            shadow", which echo concepts such as Tikkun, where we learn to
-            identify, restrict and repair darker patterns hidden in our soul or
-            psyche. Even if we don't quite believe that our date of birth can
-            yield a specific cosmic signal, there is much we can learn about
-            ourselves and others if we study the Tikkun's "Shadow Patterns" (a
-            term I borrowed from Yung to refer to the required spiritual
-            "corrections" necessary for the soul to perfect its purpose). In
-            doing so, we may begin to understand ourselves better, and what
-            stands in our way of transforming our lives and the lives of those
-            around us.
+            Jewish), developed frameworks like the "Jungian shadow", which
+            parallel ancient Kabbalistic concepts such as Tikkun, where we learn
+            to identify, restrict and repair darker patterns (shadows) hidden in
+            our soul or psyche. <br />
+            <br />
+            <br />
+            Even if we don't quite believe that our date of birth can yield a
+            specific cosmic signal, there is much we can learn about ourselves
+            and others if we study the Tikkun's "Shadow Patterns" (a term I
+            borrowed from Yung to refer to the required spiritual "corrections"
+            necessary for the soul to perfect its purpose). In doing so, we may
+            begin to understand ourselves better, and what stands in our way of
+            transforming our lives and the lives of those around us.
           </p>
 
           <p style={paraStyle}>
