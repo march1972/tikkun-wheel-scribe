@@ -26,9 +26,9 @@ export const Route = createFileRoute("/reading")({
   head: () => ({
     meta: [
       { title: "Your Tikkun Reading — Kabbalah Astrology" },
-      { name: "description", content: "Your personal Kabbalah Tikkun reading — your Shadow patterns (Gilgul), spiritual work (Tikkun), and daily mantra (Kavanah) based on your birth date." },
+      { name: "description", content: "Your personal Kabbalah Tikkun reading — your Soul's Shadow patterns, spiritual work (Tikkun), and daily mantra (Kavanah) based on your birth date." },
       { property: "og:title", content: "Your Tikkun Reading — Kabbalah Astrology" },
-      { property: "og:description", content: "Your personal Kabbalah Tikkun reading — Shadow patterns, spiritual work, and daily mantra from your birth chart." },
+      { property: "og:description", content: "Your personal Kabbalah Tikkun reading — Soul's Shadow patterns, spiritual work, and daily mantra from your birth chart." },
       { property: "og:url", content: "https://tikkun.kabbalahcircle.com/reading" },
       { property: "og:type", content: "website" },
     ],

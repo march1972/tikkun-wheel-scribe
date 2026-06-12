@@ -10,7 +10,7 @@ export const READING_COPY = {
   deeperSub: "Find fulfilment through the wisdom of Kabbalah, community, and coaching.",
   deeperButton: "Go deeper",
   sectionHeaders: [
-    "Your Shadow Pattern (Gilgul)",
+    "Your Soul's Shadow Patterns",
     "Shadow Archetype",
     "Your Spiritual Work (Tikkun)",
     "Your Tikkun Letter",
