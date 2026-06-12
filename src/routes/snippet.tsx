@@ -398,9 +398,9 @@ function Snippet() {
                     color: "#0f1729",
                     fontFamily: BODY,
                     fontWeight: 700,
-                    letterSpacing: "0.28em",
+                    letterSpacing: "0.18em",
                     fontSize: "12px",
-                    padding: "20px 36px",
+                    padding: "20px 28px",
                     borderRadius: 0,
                     border: "none",
                     boxShadow: "0 8px 22px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)",
@@ -415,7 +415,7 @@ function Snippet() {
                     e.currentTarget.style.boxShadow = "0 8px 22px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)";
                   }}
                 >
-                  <span>{busy ? "Revealing…" : "Reveal my free Kabbalah Astrology Reading"}</span>
+                  <span>{busy ? "Revealing…" : "Reveal my free reading"}</span>
                   {!busy && (
                     <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
                   )}

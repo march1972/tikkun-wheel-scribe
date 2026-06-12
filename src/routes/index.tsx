@@ -206,7 +206,7 @@ function OxbloodCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex w-auto min-w-[260px] max-w-[340px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(184,51,63,0.55)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+      className="group inline-flex w-auto min-w-[220px] max-w-[340px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(184,51,63,0.55)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
       style={{
         background: "#7a1f2b",
         color: C_INK,
@@ -384,7 +384,7 @@ function Landing() {
             </p>
 
             <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
-              <GoldCTA onClick={handleSpin} label={"Your Tikkun\nchart"} />
+              <GoldCTA onClick={handleSpin} label="Your Tikkun chart" />
               <p
                 style={{
                   fontFamily: BODY,
@@ -403,7 +403,7 @@ function Landing() {
 
         {/* ── WHAT YOU RECEIVE ─────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,12vh,9rem)]"
           style={{ background: "radial-gradient(70% 55% at 50% 25%, rgba(180,200,235,0.16) 0%, rgba(10,14,28,0) 70%), radial-gradient(45% 35% at 90% 100%, rgba(245,207,122,0.08) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #14203c 0%, #1c2848 40%, #22304f 70%, #1c2848 100%)" }}
         >
           <StarField density={140} opacity={0.5} seedOffset={2100} />
@@ -412,7 +412,7 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  fontSize: "clamp(32px, 6.5vw, 76px)",
                   lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
@@ -474,7 +474,7 @@ function Landing() {
 
         {/* ── ORIGINS ──────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,12vh,9rem)]"
           style={{
             background: C_BAND_DEEP,
             borderTop: `1px solid ${C_RULE_SOFT}`,
@@ -487,7 +487,7 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  fontSize: "clamp(32px, 6.5vw, 76px)",
                   lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
@@ -513,7 +513,7 @@ function Landing() {
 
         {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
           <StarField density={160} opacity={0.5} seedOffset={900} />
@@ -522,7 +522,7 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  fontSize: "clamp(32px, 6.5vw, 76px)",
                   lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
@@ -540,8 +540,7 @@ function Landing() {
                 }}
               >
                 Kabbalists generally accept the influence of the celestial
-                constellations ({" "}
-                <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
+                constellations (<span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>
                 ), but reject astrology as fatalistic prediction. A person's{" "}
                 <span style={{ color: C_DAWN, fontStyle: "italic" }}>free will</span>{" "}
                 always overrides fate.
@@ -552,7 +551,7 @@ function Landing() {
 
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
           <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
@@ -562,7 +561,7 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  fontSize: "clamp(32px, 6.5vw, 76px)",
                   lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
@@ -660,23 +659,23 @@ function Landing() {
             <div style={{ borderTop: `1px solid ${C_RULE}` }} className="mb-[clamp(1.5rem,3vh,2.5rem)]" />
             <div className="flex flex-col items-center">
               <div
-                className="flex flex-col items-center gap-2 md:flex-row md:gap-0"
+                className="flex flex-col items-center gap-3 md:flex-row md:gap-0"
                 style={{
                   fontFamily: BODY,
-                  fontSize: "10px",
+                  fontSize: "12px",
                   letterSpacing: "0.12em",
                   fontWeight: 500,
                 }}
               >
-                <Link to="/about" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                <Link to="/about" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
                   About
                 </Link>
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-                <Link to="/terms" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                <Link to="/terms" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
                   Terms &amp; Conditions
                 </Link>
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-                <Link to="/privacy" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                <Link to="/privacy" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
                   Privacy
                 </Link>
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
@@ -691,7 +690,8 @@ function Landing() {
                   color: C_MUTED,
                   fontFamily: BODY,
                   fontSize: "10px",
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.08em",
+                  lineHeight: 1.5,
                   maxWidth: "32rem",
                 }}
               >
