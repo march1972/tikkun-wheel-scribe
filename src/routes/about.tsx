@@ -190,14 +190,6 @@ function About() {
       <section style={{ background: C_BAND_LIFT }}>
         <div className={sectionInner} style={bodyStyle}>
           <p style={paraStyle}>
-            Like many people, I approach religion, astrology, and spiritual
-            wisdom, with a healthy dose of skepticism. I oscillate between
-            believing and questioning, but carry a profound sense that we're
-            connected to a higher energy, and have a purpose here: to connect
-            with one another, and to serve something larger than any one of us.
-          </p>
-
-          <p style={paraStyle}>
             A little about my background: I'm a trained lawyer with an MBA from
             INSEAD. I've worked at companies like Sony and Softbank, and lived
             and worked in South Africa, Israel, Germany, and the United States.{" "}
@@ -209,12 +201,58 @@ function About() {
           </p>
 
           <p style={paraStyle}>
-            I am South African and currently live in New York City with my
-            wife, our three kids, and our Sheepadoodle, Ferdi. In my spare
+            I grew up in South Africa and currently live in New York City with
+            my wife, our three kids, and our Sheepadoodle, Ferdi. In my spare
             time, I spend time with our family, write, read, study Kabbalah and
             psychology, and run around Central Park with Ferdi and friends. (I
             start a Master's in Relationship Therapy in August 2026 — wish me
             luck!)
+          </p>
+
+          <p style={paraStyle}>
+            Like many people, I approach religion, astrology, and spiritual
+            wisdom, with a healthy dose of skepticism. I oscillate between
+            believing and questioning, but carry a profound sense that we're
+            connected to a higher energy, and have a purpose here: to connect
+            with one another, and to serve something larger than any one of us.{" "}
+            <br />
+            <br />
+            <br />
+            Kabbalistic Astrology (also sometimes known as Hebrew Astrology or
+            Jewish Astrology), is relatively new to me, and while Kabbalah
+            teachers us to embrace "certainty beyond logic", I have spent many
+            skeptical days researching the origins of Kabbalistic Astrology, and
+            whether it is broadly accepted or not. Despite much debate around
+            the acceptability or otherwise of Hebrew Astrology by different
+            movements, it is agreed that the cosmic constellations have never
+            been seen as predictive of the future by Kabbalists. There may be
+            cosmic influence, but humans always have free will, and the ability
+            to direct and transform their own lives and Tikkun (regardless of
+            the cosmos). What's also excited me about Kabbalistic Astrology is
+            that it brings the tangible beauty and awesomness of the universe
+            into our spiritual quest
+          </p>
+
+          <p style={paraStyle}>
+            What's excited me about Kabbalistic Astrology is that it brings the
+            tangible beauty and awesomeness of the universe into our daily
+            spiritual quest. We gaze out at the same skies that the Patriarch
+            Abraham and Matriarch Sarah gazed at many thousands of years ago.{" "}
+            <br />
+            <br />
+            <br />
+            Some of the great modern psychologists like Carl Yung, who although
+            not a Kabbalist (or Jewish), studied Kabbalah and developed
+            frameworks like the "Jungian shadow", which echo concepts in
+            Kabbalah, such as Tikkun (where we learn to identify, restrict and
+            repair darker patterns hidden in our soul or psyche). Even if we
+            don't quite believe that our date of birth can yield a specific
+            cosmic signal, there is much we can learn about ourselves and others
+            if we study the 12 different Tikkun "Shadow Patterns" (a term I
+            borrowed from Yung to refer to the required spiritual "corrections"
+            necessary for the soul to perfect its purpose). In doing so, we may
+            begin to understand ourselves better, and what stands in our way of
+            transforming our lives and the lives of those around us.
           </p>
 
           <p style={paraStyle}>
