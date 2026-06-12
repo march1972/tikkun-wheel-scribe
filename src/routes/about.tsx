@@ -113,8 +113,8 @@ function About() {
               paddingLeft: "1.25rem",
               margin: "clamp(2rem,4vh,2.75rem) 0",
               fontStyle: "italic",
-              color: C_INK,
-              fontSize: "17px",
+              color: C_DAWN,
+              fontSize: "20px",
               lineHeight: 1.6,
               fontFamily: HEAD,
             }}
