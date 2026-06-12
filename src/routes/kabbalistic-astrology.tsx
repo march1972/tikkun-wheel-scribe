@@ -157,8 +157,42 @@ function KabbalisticAstrologyPage() {
       <Matrix />
       <Glossary />
       <Faq />
+      <TikkunSection />
       <Closing />
     </SkyShell>
+  );
+}
+
+// ── tikkun ──────────────────────────────────────────────────────────
+function TikkunSection() {
+  return (
+    <section id="tikkun" style={{ background: C_BAND_MID, scrollMarginTop: "80px" }}>
+      <div className={sectionInner} style={bodyStyle}>
+        <h2 style={sectionTitle}>The 12 Tikkunim</h2>
+        <p style={{ marginTop: "1.25rem" }}>
+          In Kabbalistic Astrology, a <em>Tikkun</em> is the soul-level
+          correction a person is here to perform in this lifetime: the work of
+          moving from a reactive shadow pattern (carried over from past lives
+          through the South lunar node) toward the conscious work pointed to by
+          the North lunar node. There are twelve, one for each zodiac sign.
+        </p>
+        <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
+          <Link
+            to="/tikkun"
+            style={{
+              color: C_GOLD,
+              textDecoration: "underline",
+              fontFamily: BODY,
+              fontSize: "14px",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+            }}
+          >
+            Explore the 12 Tikkunim →
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -220,6 +254,7 @@ function Hero() {
             ["Letters & Mappings", "#letters"],
             ["Modern Paths", "#streams"],
             ["Glossary", "#glossary"],
+            ["Tikkun", "#tikkun"],
           ].map(([label, href]) => (
             <a
               key={href}
