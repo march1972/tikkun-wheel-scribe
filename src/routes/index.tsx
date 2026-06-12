@@ -6,6 +6,7 @@ import { TypewriterWord } from "@/components/landing/TypewriterWord";
 import { PrimaryCTA as GoldCTA } from "@/components/landing/PrimaryCTA";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { getSpinSnippet } from "@/data/tikkun-lookup";
+import { track } from "@/lib/analytics";
 import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
