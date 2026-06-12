@@ -10,7 +10,7 @@ const SITE_URL = "https://tikkun.kabbalahcircle.com";
 const URL = `${SITE_URL}/tikkun`;
 const TITLE = "The 12 Tikkunim — Kabbalistic Soul Corrections by Zodiac Sign";
 const DESC =
-  "The 12 Tikkunim of Kabbalistic astrology: the soul correction (Tikkun) for each zodiac sign, drawn from the lunar nodes and the Hebrew letters of the Sefer Yetzirah.";
+  "The 12 Tikkunim of Kabbalistic Astrology: the soul correction (Tikkun) for each zodiac sign, drawn from the lunar nodes and the Hebrew letters of the Sefer Yetzirah.";
 
 export const Route = createFileRoute("/tikkun")({
   head: () => ({
@@ -112,7 +112,7 @@ function TikkunIndex() {
             fontStyle: "italic",
           }}
         >
-          In Kabbalistic astrology, a <em>Tikkun</em> is the soul-level correction a person is here to perform in this lifetime — the work of moving from a reactive shadow pattern (carried over from past lives through the South lunar node) toward the conscious work pointed to by the North lunar node. There are twelve, one for each zodiac sign.
+          In Kabbalistic Astrology, a <em>Tikkun</em> is the soul-level correction a person is here to perform in this lifetime: the work of moving from a reactive shadow pattern (carried over from past lives through the South lunar node) toward the conscious work pointed to by the North lunar node. There are twelve, one for each zodiac sign.
         </p>
 
         <ul
