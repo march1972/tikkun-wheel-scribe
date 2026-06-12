@@ -496,24 +496,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     def: "The Orchard of Pomegranates, Rabbi Moshe Cordovero's systematic summary of Kabbalah, which organized earlier teaching on the Sefirot and the descent of divine light into one framework just before the time of Isaac Luria.",
   },
   {
-    term: "Kabbalah Centre",
-    cat: "Modern",
-    def: "An international organization founded in 1965 that teaches Ashlagian Kabbalah as a practical wisdom open to everyone. It is widely known for popularizing Kabbalistic astrology, scanning the Zohar, the red string, and the 72 Names of God.",
-  },
-  {
     term: "Scanning the Zohar",
-    cat: "Modern",
-    def: "A practice taught at the Kabbalah Centre of passing the eyes over the Aramaic letters of the Zohar as a way of connecting to its energy, even without translating every word.",
+    cat: "Practice",
+    def: "A practice of passing the eyes over the Aramaic letters of the Zohar as a way of connecting to its energy, even without translating every word.",
   },
   {
     term: "Red String",
-    cat: "Modern",
-    def: "A length of red wool worn on the wrist, popularized by the Kabbalah Centre, understood as a guard against the evil eye (ayin hara) and a reminder of the intention to give.",
+    cat: "Practice",
+    def: "A length of red wool worn on the wrist, understood as a guard against the evil eye (ayin hara) and a reminder of the intention to give.",
   },
   {
     term: "72 Names of God",
-    cat: "Modern",
-    def: "A set of seventy-two three-letter combinations drawn from verses in the Book of Exodus, used in some Kabbalistic practice and taught at the Kabbalah Centre as focal points for meditation.",
+    cat: "Practice",
+    def: "A set of seventy-two three-letter combinations drawn from verses in the Book of Exodus, used in some Kabbalistic practice as focal points for meditation.",
   },
 ];
 
@@ -523,7 +518,6 @@ export const GCATS: ReadonlyArray<"All" | GlossaryCat> = [
   "Cosmology",
   "Texts",
   "Practice",
-  "Modern",
 ];
 
 export interface FaqItem {
