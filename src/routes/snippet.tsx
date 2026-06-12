@@ -241,6 +241,7 @@ function Snippet() {
             <div className="mt-[clamp(1.4rem,3.2vh,2rem)]">
               <PrimaryCTA
                 onClick={() => {
+                  track("cta_click", { ctaId: "snippet_reveal_actual_chart", page: "/snippet" });
                   sessionStorage.setItem("tikkun_force_form", "1");
                   setForceForm(true);
                 }}
