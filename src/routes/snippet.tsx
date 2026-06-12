@@ -8,6 +8,7 @@ import {
 } from "@/lib/landing-style";
 import { getSpinSnippet, type TikkunSign } from "@/data/tikkun-lookup";
 import { submitLead } from "@/lib/lead.functions";
+import { getSessionId, track } from "@/lib/analytics";
 
 const inputStyle: React.CSSProperties = {
   fontFamily: BODY,
