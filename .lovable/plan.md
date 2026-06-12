@@ -1,77 +1,48 @@
+# A History of Kabbalistic Astrology — new article route
 
-# Per-Sign SEO Pages: /tikkun/[sign]
+## 1. New route: `/kabbalistic-astrology`
 
-## Goals
-- 12 indexable, AEO-friendly pages — one per zodiac sign — that rank for "tikkun for [sign]", "[sign] soul correction", "[sign] kabbalistic astrology".
-- Reuse content from `src/data/tikkun-data.json` (shortened) — no new copywriting required.
-- Keep the personalized reading funnel intact: these pages teach the archetype, they don't replace the personalized reading.
-- Hide from primary UI: pages exist in sitemap and cross-link to each other, but the only in-app surface is a footer link + index page revealed only **after the user has entered their email** (post-reveal state).
+Create `src/routes/kabbalistic-astrology.tsx` using `createFileRoute("/kabbalistic-astrology")`. The page is wrapped in our existing `SkyShell` and styled with the same tokens (`HEAD`, `BODY`, `C_INK`, `C_GOLD`, `C_RULE`, etc.) used by `/history` and `/reading`, so it reads as a native site page (parchment/ink palette, serif headings, gold rules) rather than the indigo/dark theme in the source HTML. Tailwind + our existing classes only; the source file's CSS is discarded.
 
-## Routes to create
+Content is ported verbatim from `kabbalistic-astrology.html` — intro, the three "Modern Paths of Kabbalah" cards, the Practical vs Mystical comparison table, all timeline entries (with their bodies, sources, quotes, notes), the seven-doubles and twelve-elementals letter tables, the full glossary, and the FAQ. No text is rewritten or shortened. The page's data (timeline entries, letters, glossary terms, FAQ Q&As) is extracted into a sibling module `src/data/kabbalistic-astrology.ts` to keep the route file readable.
 
-```
-src/routes/tikkun.tsx              -> /tikkun (index of all 12)
-src/routes/tikkun.$sign.tsx        -> /tikkun/aries, /tikkun/taurus, ...
-```
+## 2. Interactivity (preserved)
 
-Both are static, no loaders. `tikkun.$sign.tsx` validates `params.sign` against `SIGNS` from `src/data/tikkun-lookup.ts`; unknown sign → `notFound()`.
+All client-side behaviors rebuilt in React with our shadcn primitives where they exist, plain state otherwise — no new libraries:
 
-## Per-sign page layout (`/tikkun/[sign]`)
+- **Timeline**: era filter chips (All / Foundations / Talmudic / Medieval / Classical Kabbalah / Modern); each entry is a button row that expands to reveal body + source + quote + note. `useState` for active filter and an open-set.
+- **Letter tables**: shadcn `Tabs` toggling "Seven Doubles · Planets" and "Twelve Elementals · Zodiac".
+- **Glossary**: text `Input` (live filter) + category chips (All, Core, Cosmology, Texts, Practice), filtering a list rendered from the data module.
+- **FAQ**: shadcn `Accordion` (single-collapse), already wired with the right ARIA.
 
-Structure, top to bottom:
+All interactive controls are real buttons / inputs with visible focus rings; headings follow a single `<h1>` then `<h2>`/`<h3>` per section.
 
-1. **Breadcrumb**: Home › Tikkun › [Sign]
-2. **H1**: "Tikkun for [Sign]: Soul Correction in Kabbalistic Astrology"
-3. **Lede (40–60 words, AEO answer block)**: One-paragraph definitional answer — what Tikkun means for this sign, in plain language. Derived from `shadowArchetype` + `spiritualWorkTikkun` opening line, shortened.
-4. **Quick facts list**: Hebrew name, Tikkun letter, North Node, South Node, date ranges (first range only, shortened).
-5. **"The Shadow Pattern"** section — first 1–2 paragraphs of `shadowGilgul`, then truncated with a fade and a CTA: *"Your personal Tikkun reading reveals the specific shadow patterns active in your chart."*
-6. **"The Spiritual Work"** section — first 1–2 paragraphs of `spiritualWorkTikkun`, similarly truncated.
-7. **Daily mantra**: full `dailyMantra` (it's one line, fine to show).
-8. **CTA block**: "Get your personal Tikkun reading →" → `/` (form entry).
-9. **Related signs**: 2–3 cross-links to sibling `/tikkun/[sign]` pages (e.g. previous + next in zodiac order).
-10. **Footer disclaimer**: "Last updated: [date]"
+## 3. SEO
 
-What we deliberately omit (kept inside the gated reading): the full multi-paragraph `shadowGilgul`, full `spiritualWorkTikkun`, full `tikkunLetterFull`, and the personalized chart logic. Roughly 30–40% of the source text is shown; the rest stays behind the email.
+Following the existing `head()` pattern (same shape as `src/routes/history.tsx`):
 
-## /tikkun index page
+- `title`: `Kabbalistic Astrology: History, Glossary & Timeline (Chokhmat HaMazalot)`
+- `description`: the long-form description from the brief.
+- `og:title`, `og:description`, `og:url` = `https://tikkun.kabbalahcircle.com/kabbalistic-astrology`, `og:type=article`, plus `twitter:card=summary_large_image` and matching `twitter:title`/`twitter:description`. `og:image` reuses the site default already configured at root (no per-page image yet).
+- `links`: `rel=canonical` to the same URL (leaf-only, per our convention).
+- `scripts`: two JSON-LD blocks — `Article` (headline, description, url, author/publisher = Kabbalah Circle) and `FAQPage` (mainEntity built from the FAQ data array, so it stays in sync).
+- Add the URL to `src/routes/sitemap[.]xml.ts` and to `public/llms.txt`.
 
-- H1: "The 12 Tikkunim: Kabbalistic Soul Corrections by Zodiac Sign"
-- 60-word lede answering "what is a tikkun".
-- Grid of 12 cards, each linking to `/tikkun/[sign]` with the sign name, Hebrew name, Tikkun letter, and a one-line teaser (`spinSnippet`).
-- CTA at bottom → `/` to get personalized reading.
+## 4. Footer link (index page)
 
-## SEO/AEO wiring (per-sign page)
+In `src/routes/index.tsx` line 659, swap the inert `<span>Kabbalah Astrology</span>` for a `<Link to="/kabbalistic-astrology">` using the same `C_INK_SOFT` + `textDecoration: underline` styling as the sibling Terms / Privacy / About links. Wording and position unchanged.
 
-In `head()`:
-- `title`: "Tikkun for [Sign] — Soul Correction in Kabbalistic Astrology"
-- `description`: 150-char summary derived from `shadowArchetype`.
-- `og:title`, `og:description`, `og:url` (absolute), `og:type: "article"`, `og:image`: existing `og-default.jpg`.
-- Canonical: `https://tikkun.kabbalahcircle.com/tikkun/[sign]`.
-- JSON-LD: `Article` (headline, description, datePublished, author=Organization) + `BreadcrumbList`.
+## 5. Out of scope
 
-Index page: same pattern, `og:type: "website"`, `CollectionPage` JSON-LD listing all 12.
+- No changes to other pages' footers (history page footer not part of the brief).
+- No new image generation; if you'd like a hero illustration for `og:image` later, that's a separate ask.
+- No changes to nav/header.
 
-## Visibility / "hidden until email reveal"
+## Files
 
-- **Not** added to header nav.
-- **Footer**: add a conditional footer link "Explore the 12 Tikkunim" → `/tikkun`, rendered only when the user has reached the post-email state. Implementation: read the same flag/localStorage key that `/snippet` and `/reading` already use to gate the reveal (will verify by reading `snippet.tsx` / `reading.tsx` during implementation; reuse, don't invent a new flag).
-- **Sitemap** (`src/routes/sitemap[.]xml.ts`): add `/tikkun` (priority 0.7) and all 12 `/tikkun/[sign]` (priority 0.8) with today's `lastmod`. This is what gives Google + LLMs discoverability.
-- **Internal link graph**: each sign page links to 2–3 sibling signs + the index, giving Google enough crawl paths without exposing the section in main nav.
-- **robots.txt**: no change needed — these are indexable.
-
-## Files touched
-
-- `src/routes/tikkun.tsx` (new) — index
-- `src/routes/tikkun.$sign.tsx` (new) — per-sign page
-- `src/routes/sitemap[.]xml.ts` — add 13 entries
-- `src/routes/__root.tsx` or wherever the footer lives — add the gated footer link (will locate during implementation)
-- `public/llms.txt` — add the 12 sign URLs in "answer voice"
-
-No changes to `/reading`, `/reading/$sign`, the form, the wheel, or any existing copy. No new data, no new dependencies.
-
-## Out of scope (defer)
-
-- FAQ page
-- Pillar/glossary pages (`tikkun olam meaning`, `kavanah meaning`, etc.) — Phase 3
-- Rewriting the per-sign copy from scratch — using existing JSON, shortened
-- GSC/Bing submission — do after deploy
+- **New** `src/routes/kabbalistic-astrology.tsx`
+- **New** `src/data/kabbalistic-astrology.ts` (timeline, letters, glossary, FAQ data)
+- **Edit** `src/routes/index.tsx` (link the footer text)
+- **Edit** `src/routes/sitemap[.]xml.ts` (add URL)
+- **Edit** `public/llms.txt` (add URL + one-line description)
+- Auto-regenerated `src/routeTree.gen.ts`

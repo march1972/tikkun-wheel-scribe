@@ -20,6 +20,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0", lastmod: today },
           { path: "/history", changefreq: "monthly", priority: "0.8", lastmod: today },
+          { path: "/kabbalistic-astrology", changefreq: "monthly", priority: "0.8", lastmod: today },
           { path: "/about", changefreq: "monthly", priority: "0.7", lastmod: today },
           { path: "/tikkun", changefreq: "monthly", priority: "0.7", lastmod: today },
           ...SIGNS.map((s) => ({

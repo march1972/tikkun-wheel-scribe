@@ -656,7 +656,9 @@ function Landing() {
                 </Link>
                 <TikkunFooterLink />
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-                <span style={{ color: C_INK_SOFT }}>Kabbalah Astrology</span>
+                <Link to="/kabbalistic-astrology" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                  Kabbalah Astrology
+                </Link>
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
                 <span style={{ color: C_INK_SOFT }}>Kabbalah Circle © 2026</span>
               </div>
