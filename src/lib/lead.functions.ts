@@ -17,6 +17,7 @@ const leadSchema = z.object({
   dob: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   email: z.string().trim().email().max(255),
   newsletterOptIn: z.boolean().default(false),
+  sessionId: z.string().min(8).max(64).regex(/^[a-zA-Z0-9_-]+$/).optional().nullable(),
 });
 
 export const submitLead = createServerFn({ method: "POST" })
