@@ -17,6 +17,7 @@ import { Route as SnippetRouteImport } from './routes/snippet'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ReadingRouteImport } from './routes/reading'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as KabbalisticAstrologyRouteImport } from './routes/kabbalistic-astrology'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as FormRouteImport } from './routes/form'
 import { Route as ContentRouteImport } from './routes/content'
@@ -70,6 +71,11 @@ const ReadingRoute = ReadingRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KabbalisticAstrologyRoute = KabbalisticAstrologyRouteImport.update({
+  id: '/kabbalistic-astrology',
+  path: '/kabbalistic-astrology',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HistoryRoute = HistoryRouteImport.update({
@@ -152,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
+  '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -176,6 +183,7 @@ export interface FileRoutesByTo {
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
+  '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -201,6 +209,7 @@ export interface FileRoutesById {
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
   '/history': typeof HistoryRoute
+  '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -227,6 +236,7 @@ export interface FileRouteTypes {
     | '/content'
     | '/form'
     | '/history'
+    | '/kabbalistic-astrology'
     | '/privacy'
     | '/reading'
     | '/sitemap.xml'
@@ -251,6 +261,7 @@ export interface FileRouteTypes {
     | '/content'
     | '/form'
     | '/history'
+    | '/kabbalistic-astrology'
     | '/privacy'
     | '/reading'
     | '/sitemap.xml'
@@ -275,6 +286,7 @@ export interface FileRouteTypes {
     | '/content'
     | '/form'
     | '/history'
+    | '/kabbalistic-astrology'
     | '/privacy'
     | '/reading'
     | '/sitemap.xml'
@@ -300,6 +312,7 @@ export interface RootRouteChildren {
   ContentRoute: typeof ContentRoute
   FormRoute: typeof FormRoute
   HistoryRoute: typeof HistoryRoute
+  KabbalisticAstrologyRoute: typeof KabbalisticAstrologyRoute
   PrivacyRoute: typeof PrivacyRoute
   ReadingRoute: typeof ReadingRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -373,6 +386,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kabbalistic-astrology': {
+      id: '/kabbalistic-astrology'
+      path: '/kabbalistic-astrology'
+      fullPath: '/kabbalistic-astrology'
+      preLoaderRoute: typeof KabbalisticAstrologyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/history': {
@@ -504,6 +524,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContentRoute: ContentRoute,
   FormRoute: FormRoute,
   HistoryRoute: HistoryRoute,
+  KabbalisticAstrologyRoute: KabbalisticAstrologyRoute,
   PrivacyRoute: PrivacyRoute,
   ReadingRoute: ReadingRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
