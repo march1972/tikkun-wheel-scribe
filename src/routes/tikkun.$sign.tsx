@@ -1,4 +1,4 @@
-import { createFileRoute, notFound, Link } from "@tanstack/react-router";
+import { createFileRoute, notFound, Link, useNavigate } from "@tanstack/react-router";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import {
@@ -124,6 +124,7 @@ function Paragraphs({ text }: { text: string }) {
 
 function TikkunSignPage() {
   const { sign } = Route.useLoaderData();
+  const navigate = useNavigate();
   const idx = SIGNS.findIndex((s) => s.id === sign.id);
   const prev = SIGNS[(idx - 1 + SIGNS.length) % SIGNS.length];
   const next = SIGNS[(idx + 1) % SIGNS.length];
@@ -276,7 +277,7 @@ function TikkunSignPage() {
 
         {/* CTA */}
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <PrimaryCTA to="/" label="Get your personal Tikkun reading" />
+          <PrimaryCTA onClick={() => navigate({ to: "/" })} label="Get your personal Tikkun reading" />
           <p
             style={{
               marginTop: "0.85rem",

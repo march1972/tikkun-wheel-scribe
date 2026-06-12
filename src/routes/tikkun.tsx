@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import {
@@ -53,6 +53,7 @@ export const Route = createFileRoute("/tikkun")({
 });
 
 function TikkunIndex() {
+  const navigate = useNavigate();
   return (
     <SkyShell starDensity={300}>
       <main className="mx-auto max-w-4xl px-[clamp(1rem,5vw,2.5rem)] pt-[clamp(1.5rem,4vh,2.5rem)] pb-[clamp(3rem,6vh,5rem)]">
@@ -184,7 +185,7 @@ function TikkunIndex() {
         </ul>
 
         <div style={{ textAlign: "center", marginTop: "3rem" }}>
-          <PrimaryCTA to="/" label="Get your personal Tikkun reading" />
+          <PrimaryCTA onClick={() => navigate({ to: "/" })} label="Get your personal Tikkun reading" />
           <p
             style={{
               marginTop: "0.85rem",
