@@ -14,7 +14,7 @@ function firstParagraphs(text: string, n: number): string {
 
 function leadSentence(sign: TikkunSign): string {
   // 40–60 word AEO answer block.
-  return `In Kabbalistic astrology, the Tikkun for ${sign.name} is the soul correction of moving from a ${sign.southNode} shadow — ${sign.shadowArchetype.replace(/\.$/, "")} — toward the ${sign.northNode} work of conscious, courageous action. It is the lifetime task carried by anyone born when the lunar nodes draw this axis.`;
+  return `In Kabbalistic Astrology, the Tikkun for ${sign.name} is the soul correction of moving from a ${sign.southNode} shadow — ${sign.shadowArchetype.replace(/\.$/, "")} — toward the ${sign.northNode} work of conscious, courageous action. It is the lifetime task carried by anyone born when the lunar nodes draw this axis.`;
 }
 
 function metaDescription(sign: TikkunSign): string {
@@ -62,7 +62,7 @@ export const Route = createFileRoute("/tikkun/$sign")({
             dateModified: "2026-06-12",
             inLanguage: "en",
             mainEntityOfPage: url,
-            about: `Kabbalistic astrology, Tikkun for ${sign.name}`,
+            about: `Kabbalistic Astrology, Tikkun for ${sign.name}`,
           }),
         },
         {

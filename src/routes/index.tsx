@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Get a free Kabbalistic astrology reading from your date of birth — discover your Soul's Shadow patterns (Gilgul), your Tikkun, and your daily Kavanah.",
+          "Get a free Kabbalistic Astrology reading from your date of birth — discover your Soul's Shadow patterns (Gilgul), your Tikkun, and your daily Kavanah.",
       },
       { property: "og:title", content: "Kabbalah Astrology — Reveal Your Tikkun" },
       {

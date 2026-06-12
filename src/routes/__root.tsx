@@ -35,7 +35,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Free Kabbalistic astrology reading from your date of birth. Discover your Soul's Shadow patterns (Gilgul), your spiritual work (Tikkun) and your daily mantra (Kavanah).",
+          "Free Kabbalistic Astrology reading from your date of birth. Discover your Soul's Shadow patterns (Gilgul), your spiritual work (Tikkun) and your daily mantra (Kavanah).",
       },
       { name: "author", content: "Kabbalah Circle" },
       { property: "og:site_name", content: "Kabbalah Circle" },
@@ -43,7 +43,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Free Kabbalistic astrology reading from your date of birth — rooted in the Sefer Yetzirah and the Zohar.",
+          "Free Kabbalistic Astrology reading from your date of birth — rooted in the Sefer Yetzirah and the Zohar.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: OG_IMAGE },
@@ -54,7 +54,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Kabbalah Circle — Free Tikkun Astrology Reading" },
       {
         name: "twitter:description",
-        content: "Free Kabbalistic astrology reading from your date of birth.",
+        content: "Free Kabbalistic Astrology reading from your date of birth.",
       },
       { name: "twitter:image", content: OG_IMAGE },
       { name: "theme-color", content: "#0c1426" },
@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               url: `${SITE_URL}/`,
               logo: OG_IMAGE,
               description:
-                "An independent project sharing Kabbalistic astrology rooted in the Sefer Yetzirah and the Zohar.",
+                "An independent project sharing Kabbalistic Astrology rooted in the Sefer Yetzirah and the Zohar.",
             },
             {
               "@type": "WebSite",
