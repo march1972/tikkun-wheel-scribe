@@ -434,7 +434,7 @@ function Landing() {
               {[
                 { letter: "ג", letterColor: C_DAWN, accent: C_GOLD, title: "Your Soul's Shadow Patterns", body: "The default habits and reactive patterns (\"baggage\") carried over from past lifetimes (Gilgulim) we are here to correct.", tint: "rgba(240, 200, 104, 0.06)" },
                 { letter: "ת", letterColor: C_DAWN, accent: C_GOLD, title: "Your Spiritual Work (Tikkun)", body: "The active spiritual work, conscious restrictions, and real-world responsibilities required for your soul's growth.", tint: "rgba(240, 200, 104, 0.06)" },
-                { letter: "ק", letterColor: C_DAWN, accent: C_GOLD, title: "Your Daily Mantra (Kavanah)", body: "Words to\u00A0meditate on to restrict your ego and reactivity and direct your intention towards living your Tikkun.", tint: "rgba(240, 200, 104, 0.06)" },
+                { letter: "ק", letterColor: C_DAWN, accent: C_GOLD, title: "Your Daily Mantra (Kavanah)", body: "Words to\u00A0meditate on to restrict your ego and reactivity, and direct your intention towards living your Tikkun.", tint: "rgba(240, 200, 104, 0.06)" },
               ].map((item, idx) => {
                 return (
                   <Reveal key={item.title} delay={120 * (idx + 1)}>
