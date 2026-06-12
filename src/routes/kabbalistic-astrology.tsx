@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
+import { track } from "@/lib/analytics";
 import {
   HEAD,
   BODY,
