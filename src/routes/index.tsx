@@ -6,6 +6,7 @@ import { TypewriterWord } from "@/components/landing/TypewriterWord";
 import { PrimaryCTA as GoldCTA } from "@/components/landing/PrimaryCTA";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { getSpinSnippet } from "@/data/tikkun-lookup";
+import { track } from "@/lib/analytics";
 import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -245,7 +246,8 @@ function Landing() {
   }, []);
 
 
-  const handleSpin = () => {
+  const handleSpin = (ctaId: string = "home_wheel") => {
+    track("cta_click", { ctaId, page: "/" });
     const result = getSpinSnippet([]);
     if (result.exhausted || !result.sign) return;
     sessionStorage.setItem("tikkun_seen_signs", JSON.stringify(result.seen));
@@ -337,7 +339,7 @@ function Landing() {
                     "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
                 }}
               >
-                <TikkunWheel size={wheelSize} state="idle" onClick={handleSpin} />
+                <TikkunWheel size={wheelSize} state="idle" onClick={() => handleSpin("home_wheel")} />
               </div>
             </div>
 
@@ -360,7 +362,7 @@ function Landing() {
             </p>
 
             <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
-              <GoldCTA onClick={handleSpin} label="Your Tikkun chart" />
+              <GoldCTA onClick={() => handleSpin("home_gold_your_tikkun_chart")} label="Your Tikkun chart" />
               <p
                 style={{
                   fontFamily: BODY,
@@ -621,7 +623,7 @@ function Landing() {
             </Reveal>
             <Reveal delay={280}>
               <div className="mt-[clamp(2.25rem,4.2vh,3rem)] flex justify-center">
-                <OxbloodCTA onClick={handleSpin} label="Receive your reading" />
+                <OxbloodCTA onClick={() => handleSpin("home_oxblood_receive_reading")} label="Receive your reading" />
               </div>
             </Reveal>
           </div>

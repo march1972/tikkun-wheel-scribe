@@ -17,6 +17,7 @@ const leadSchema = z.object({
   dob: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   email: z.string().trim().email().max(255),
   newsletterOptIn: z.boolean().default(false),
+  sessionId: z.string().min(8).max(64).regex(/^[a-zA-Z0-9_-]+$/).optional().nullable(),
 });
 
 export const submitLead = createServerFn({ method: "POST" })
@@ -40,6 +41,7 @@ export const submitLead = createServerFn({ method: "POST" })
         sign_id: sign.id,
         newsletter_opt_in: data.newsletterOptIn,
         source: "reading_form",
+        session_id: data.sessionId ?? null,
       })
       .select("id")
       .single();
@@ -71,6 +73,21 @@ export const submitLead = createServerFn({ method: "POST" })
       });
     } catch (e) {
       console.error("tikkun email enqueue failed", e);
+    }
+
+    // Record server-side analytics event for funnel attribution.
+    if (data.sessionId) {
+      try {
+        await supabaseAdmin.from("analytics_events").insert({
+          session_id: data.sessionId,
+          event_name: "lead_submitted",
+          page: "/snippet",
+          cta_id: "reveal_my_free_reading",
+          metadata: { lead_id: inserted.id, sign_id: sign.id, newsletter_opt_in: data.newsletterOptIn },
+        });
+      } catch (e) {
+        console.error("analytics lead_submitted insert failed", e);
+      }
     }
 
     return { ok: true as const, error: null, signId: sign.id };

@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      analytics_events: {
+        Row: {
+          created_at: string
+          cta_id: string | null
+          event_name: string
+          id: string
+          metadata: Json
+          page: string | null
+          session_id: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          cta_id?: string | null
+          event_name: string
+          id?: string
+          metadata?: Json
+          page?: string | null
+          session_id: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          cta_id?: string | null
+          event_name?: string
+          id?: string
+          metadata?: Json
+          page?: string | null
+          session_id?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
@@ -109,6 +142,7 @@ export type Database = {
           id: string
           name: string | null
           newsletter_opt_in: boolean
+          session_id: string | null
           sign_id: string
           source: string
         }
@@ -119,6 +153,7 @@ export type Database = {
           id?: string
           name?: string | null
           newsletter_opt_in?: boolean
+          session_id?: string | null
           sign_id: string
           source?: string
         }
@@ -129,6 +164,7 @@ export type Database = {
           id?: string
           name?: string | null
           newsletter_opt_in?: boolean
+          session_id?: string | null
           sign_id?: string
           source?: string
         }

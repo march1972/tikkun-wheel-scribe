@@ -5,6 +5,7 @@ import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { SIGNS } from "@/data/tikkun-lookup";
+import { track } from "@/lib/analytics";
 
 const SITE_URL = "https://tikkun.kabbalahcircle.com";
 const URL = `${SITE_URL}/tikkun`;
@@ -185,7 +186,7 @@ function TikkunIndex() {
         </ul>
 
         <div style={{ textAlign: "center", marginTop: "3rem" }}>
-          <PrimaryCTA onClick={() => navigate({ to: "/form" })} label="Get your personal Tikkun reading" />
+          <PrimaryCTA onClick={() => { track("cta_click", { ctaId: "tikkun_bottom_get_reading", page: "/tikkun" }); navigate({ to: "/form" }); }} label="Get your personal Tikkun reading" />
           <p
             style={{
               marginTop: "0.85rem",

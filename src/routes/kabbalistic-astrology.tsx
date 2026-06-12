@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
+import { track } from "@/lib/analytics";
 import {
   HEAD,
   BODY,
@@ -179,6 +180,7 @@ function TikkunSection() {
         <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
           <Link
             to="/tikkun"
+            onClick={() => track("cta_click", { ctaId: "ka_explore_12_tikkunim", page: "/kabbalistic-astrology" })}
             style={{
               color: C_GOLD,
               textDecoration: "underline",
