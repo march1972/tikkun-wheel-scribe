@@ -31,7 +31,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kabbalah Circle — Free Tikkun Astrology Reading" },
+      { title: "Kabbalistic Astrology Free Tikkun Olam Reading" },
       {
         name: "description",
         content:
@@ -40,7 +40,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Kabbalah Circle" },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { property: "og:site_name", content: "Kabbalah Circle" },
-      { property: "og:title", content: "Kabbalah Circle — Free Tikkun Astrology Reading" },
+      { property: "og:title", content: "Kabbalistic Astrology Free Tikkun Olam Reading" },
       {
         property: "og:description",
         content:
@@ -52,13 +52,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:height", content: "640" },
       { property: "og:image:alt", content: "Kabbalah Astrology — Reveal your Tikkun" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Kabbalah Circle — Free Tikkun Astrology Reading" },
+      { name: "twitter:title", content: "Kabbalistic Astrology Free Tikkun Olam Reading" },
       {
         name: "twitter:description",
         content: "Free Kabbalistic Astrology reading from your date of birth.",
       },
       { name: "twitter:image", content: OG_IMAGE },
       { name: "theme-color", content: "#0c1426" },
+      { name: "description", content: "Free Kabbalistic Astrology readings based on birth dates & info on Jewish Astrology, Hebrew Astrology, Tikkun Olam, Kabbalah, Psychology" },
+      { property: "og:description", content: "Free Kabbalistic Astrology readings based on birth dates & info on Jewish Astrology, Hebrew Astrology, Tikkun Olam, Kabbalah, Psychology" },
+      { name: "twitter:description", content: "Free Kabbalistic Astrology readings based on birth dates & info on Jewish Astrology, Hebrew Astrology, Tikkun Olam, Kabbalah, Psychology" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/gyLXDS55k9gIhfeCCWLqWpCmUea2/social-images/social-1781245045765-vilna-gaon.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/gyLXDS55k9gIhfeCCWLqWpCmUea2/social-images/social-1781245045765-vilna-gaon.webp" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
