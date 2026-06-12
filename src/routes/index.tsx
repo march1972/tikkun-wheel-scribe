@@ -623,7 +623,7 @@ function Landing() {
             </Reveal>
             <Reveal delay={280}>
               <div className="mt-[clamp(2.25rem,4.2vh,3rem)] flex justify-center">
-                <OxbloodCTA onClick={handleSpin} label="Receive your reading" />
+                <OxbloodCTA onClick={() => handleSpin("home_oxblood_receive_reading")} label="Receive your reading" />
               </div>
             </Reveal>
           </div>
