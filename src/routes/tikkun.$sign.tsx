@@ -62,7 +62,7 @@ export const Route = createFileRoute("/tikkun/$sign")({
             dateModified: "2026-06-12",
             inLanguage: "en",
             mainEntityOfPage: url,
-            about: `Kabbalistic astrology, Tikkun for ${sign.name}`,
+            about: `Kabbalistic Astrology, Tikkun for ${sign.name}`,
           }),
         },
         {
