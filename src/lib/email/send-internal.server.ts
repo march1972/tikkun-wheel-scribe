@@ -2,7 +2,7 @@
 // Renders a registered template and enqueues it on the transactional_emails queue.
 // Sets From = "Marc <marc@kabbalahcircle.com>" and Reply-To = "hello@kabbalahcircle.com".
 import * as React from 'react'
-import { render as renderAsync } from '@react-email/components'
+import { render as renderAsync } from '@react-email/render'
 import { supabaseAdmin } from '@/integrations/supabase/client.server'
 import { TEMPLATES } from '@/lib/email-templates/registry'
 
