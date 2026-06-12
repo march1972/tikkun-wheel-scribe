@@ -41,6 +41,7 @@ export const submitLead = createServerFn({ method: "POST" })
         sign_id: sign.id,
         newsletter_opt_in: data.newsletterOptIn,
         source: "reading_form",
+        session_id: data.sessionId ?? null,
       })
       .select("id")
       .single();
