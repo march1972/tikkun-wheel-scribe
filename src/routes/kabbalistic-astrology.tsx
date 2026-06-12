@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { track } from "@/lib/analytics";
 import {
@@ -29,12 +29,10 @@ import {
   ERAS,
   SEVEN_DOUBLES,
   TWELVE_ELEMENTALS,
-  STREAMS,
   MATRIX,
   GLOSSARY,
   GCATS,
   FAQ,
-  type Era,
   type GlossaryCat,
 } from "@/data/kabbalistic-astrology";
 
@@ -42,7 +40,9 @@ const PAGE_URL = "https://tikkun.kabbalahcircle.com/kabbalistic-astrology";
 const PAGE_TITLE =
   "Kabbalistic Astrology: History, Glossary & Timeline (Chokhmat HaMazalot)";
 const PAGE_DESC =
-  "A guide to Kabbalistic Astrology (Jewish or Hebrew Astrology): the Hebrew zodiac, the mazalot, Sefer Yetzirah, the Sefirot, and how Jewish thinkers from Abraham and ibn Ezra to Aryeh Kaplan understood cosmic influence. Includes an interactive timeline and a searchable glossary.";
+  "A guide to Kabbalistic Astrology (Jewish or Hebrew Astrology): the Hebrew zodiac, the mazalot, Sefer Yetzirah, the Sefirot, and how Jewish thinkers from Abraham and ibn Ezra to Aryeh Kaplan and the Kabbalah Centre understood cosmic influence. Includes an interactive timeline and a searchable glossary.";
+const PAGE_KEYWORDS =
+  "Kabbalistic astrology, Jewish astrology, Hebrew astrology, mazal, mazalot, Chokhmat HaMazalot, Sefer Yetzirah, Hebrew zodiac, Hebrew months, Sefirot, Tikkun, Kabbalah, Zohar, Arizal, Baal HaSulam, Aryeh Kaplan, Rosh Chodesh, Hebrew letters, Kabbalah Centre, Philip Berg, red string, 72 Names of God";
 
 export const Route = createFileRoute("/kabbalistic-astrology")({
   component: KabbalisticAstrologyPage,
@@ -50,6 +50,7 @@ export const Route = createFileRoute("/kabbalistic-astrology")({
     meta: [
       { title: PAGE_TITLE },
       { name: "description", content: PAGE_DESC },
+      { name: "keywords", content: PAGE_KEYWORDS },
       { property: "og:title", content: PAGE_TITLE },
       { property: "og:description", content: PAGE_DESC },
       { property: "og:url", content: PAGE_URL },
@@ -65,8 +66,17 @@ export const Route = createFileRoute("/kabbalistic-astrology")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: PAGE_TITLE,
+          headline: "A History of Kabbalistic Astrology",
           description: PAGE_DESC,
+          about:
+            "Kabbalistic Astrology, also called Jewish or Hebrew Astrology",
+          articleSection: [
+            "History",
+            "Glossary",
+            "Timeline",
+            "Modern Paths",
+            "The Kabbalah Centre",
+          ],
           url: PAGE_URL,
           mainEntityOfPage: PAGE_URL,
           author: { "@type": "Organization", name: "Kabbalah Circle" },
@@ -146,6 +156,10 @@ const tableHeadCell: React.CSSProperties = {
   fontWeight: 600,
 };
 
+// Event used by the hero "Tikkun" chip to reset glossary filters
+// before scrolling to the #g-tikkun card.
+const RESET_GLOSSARY_EVENT = "ka:reset-glossary";
+
 // ── page ────────────────────────────────────────────────────────────
 function KabbalisticAstrologyPage() {
   return (
@@ -154,57 +168,39 @@ function KabbalisticAstrologyPage() {
       <Intro />
       <Timeline />
       <Letters />
-      <Streams />
       <Matrix />
       <Glossary />
       <Faq />
-      <TikkunSection />
-      <Closing />
     </SkyShell>
-  );
-}
-
-// ── tikkun ──────────────────────────────────────────────────────────
-function TikkunSection() {
-  return (
-    <section id="tikkun" style={{ background: C_BAND_MID, scrollMarginTop: "80px" }}>
-      <div className={sectionInner} style={bodyStyle}>
-        <h2 style={sectionTitle}>The 12 Tikkunim</h2>
-        <p style={{ marginTop: "1.25rem" }}>
-          In Kabbalistic Astrology, a <em>Tikkun</em> is the soul-level
-          correction a person is here to perform in this lifetime: the work of
-          moving from a reactive shadow pattern (carried over from past lives
-          through the South lunar node) toward the conscious work pointed to by
-          the North lunar node. There are twelve, one for each zodiac sign.
-        </p>
-        <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
-          <Link
-            to="/tikkun"
-            onClick={() => track("cta_click", { ctaId: "ka_explore_12_tikkunim", page: "/kabbalistic-astrology" })}
-            style={{
-              color: C_GOLD,
-              textDecoration: "underline",
-              fontFamily: BODY,
-              fontSize: "14px",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-            }}
-          >
-            Explore the 12 Tikkunim →
-          </Link>
-        </div>
-      </div>
-    </section>
   );
 }
 
 // ── hero ────────────────────────────────────────────────────────────
 function Hero() {
+  const handleTikkunClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent(RESET_GLOSSARY_EVENT));
+    track("cta_click", {
+      ctaId: "ka_hero_tikkun",
+      page: "/kabbalistic-astrology",
+    });
+    // Wait one frame so the glossary re-renders with the Tikkun card present
+    requestAnimationFrame(() => {
+      const el = document.getElementById("g-tikkun");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      else window.location.hash = "#g-tikkun";
+    });
+  };
+
   return (
     <section style={{ background: C_BAND_MID }}>
       <div
         className="mx-auto max-w-3xl px-[clamp(1.25rem,5vw,3rem)]"
-        style={{ paddingTop: "clamp(3.5rem,7vh,5.5rem)", paddingBottom: "clamp(2rem,4vh,3rem)", textAlign: "center" }}
+        style={{
+          paddingTop: "clamp(3.5rem,7vh,5.5rem)",
+          paddingBottom: "clamp(2rem,4vh,3rem)",
+          textAlign: "center",
+        }}
       >
         <p
           style={{
@@ -252,15 +248,15 @@ function Hero() {
           aria-label="On this page"
         >
           {[
-            ["Timeline", "#timeline"],
-            ["Letters & Mappings", "#letters"],
-            ["Modern Paths", "#streams"],
-            ["Glossary", "#glossary"],
-            ["Tikkun", "#tikkun"],
-          ].map(([label, href]) => (
+            { label: "Timeline", href: "#timeline" },
+            { label: "Letters & Mappings", href: "#letters" },
+            { label: "Tikkun", href: "#g-tikkun", onClick: handleTikkunClick },
+            { label: "Glossary", href: "#glossary" },
+          ].map((item) => (
             <a
-              key={href}
-              href={href}
+              key={item.href}
+              href={item.href}
+              onClick={item.onClick}
               style={{
                 fontFamily: BODY,
                 fontSize: "12px",
@@ -273,7 +269,7 @@ function Hero() {
                 textDecoration: "none",
               }}
             >
-              {label}
+              {item.label}
             </a>
           ))}
         </nav>
@@ -289,20 +285,20 @@ function Intro() {
       <div className={sectionInner} style={bodyStyle}>
         <h2 style={sectionTitle}>What is Kabbalistic Astrology?</h2>
         <p style={{ marginTop: "1.25rem" }}>
-          This page follows Kabbalistic Astrology across roughly four millennia
-          of texts and teachers, and gathers its core vocabulary into a glossary
-          you can search. Many Kabbalistic astrologers hold that cosmic
-          influence is not physical radiation or fixed fate, but the structured
-          flow of divine energy (<em>Shefa</em>) moving through spiritual
-          gateways that are mapped to the letters of the Hebrew alphabet.
+          This page traces Kabbalistic Astrology across about four thousand
+          years of texts and teachers, and pulls its key terms into a glossary
+          you can search. The idea most of these teachers share is simple: the
+          stars do not beam down a fixed fate. They work more like gateways,
+          mapped to the letters of the Hebrew alphabet, through which a kind of
+          divine energy (<em>Shefa</em>) flows into the world.
         </p>
         <p style={{ marginTop: "1rem" }}>
-          The sections below trace how that idea took shape and changed over
-          time, from the letter mysticism of <em>Sefer Yetzirah</em> and the
-          cosmology of the <em>Zohar</em> to the inner, psychological readings
-          of the Hasidic masters and the systems taught today. They are
-          presented so you can see what each tradition actually says, side by
-          side, rather than as a single fixed doctrine.
+          What follows shows how that idea grew and shifted over time, from the
+          letter mysticism of <em>Sefer Yetzirah</em> and the <em>Zohar</em> to
+          the inner, psychological reading of the Hasidic masters and the
+          schools teaching it today. The point is to let you see what each
+          tradition actually says, side by side, instead of flattening them into
+          one doctrine.
         </p>
       </div>
     </section>
@@ -328,12 +324,15 @@ function Timeline() {
     });
 
   return (
-    <section id="timeline" style={{ background: C_BAND_LIFT }}>
+    <section
+      id="timeline"
+      style={{ background: C_BAND_LIFT, scrollMarginTop: "80px" }}
+    >
       <div className={sectionInner} style={bodyStyle}>
         <h2 style={sectionTitle}>Interactive Timeline</h2>
         <p style={sectionLead}>
-          Filter by era, then tap any entry to open its teaching, its key
-          source, and a representative passage.
+          Filter by era, then tap any entry to open it up: the teaching, the
+          main source, and a sample passage.
         </p>
 
         <div
@@ -456,7 +455,7 @@ function Timeline() {
                         letterSpacing: "0.06em",
                       }}
                     >
-                      Read more →
+                      Tap to expand →
                     </p>
                   )}
                   {isOpen && (
@@ -516,6 +515,9 @@ function Timeline() {
                             color: C_INK_SOFT,
                           }}
                         >
+                          <b style={{ color: C_INK, fontWeight: 600 }}>
+                            In short.
+                          </b>{" "}
                           {t.teaching}
                         </p>
                       )}
@@ -548,7 +550,10 @@ function Timeline() {
 // ── letters ─────────────────────────────────────────────────────────
 function Letters() {
   return (
-    <section id="letters" style={{ background: C_BAND_DEEP }}>
+    <section
+      id="letters"
+      style={{ background: C_BAND_DEEP, scrollMarginTop: "80px" }}
+    >
       <div className={sectionInner} style={bodyStyle}>
         <h2 style={sectionTitle}>The Hebrew Letters and the Heavens</h2>
         <p style={{ ...sectionLead, maxWidth: "44rem" }}>
@@ -668,73 +673,6 @@ function Letters() {
   );
 }
 
-// ── modern streams ──────────────────────────────────────────────────
-function Streams() {
-  return (
-    <section id="streams" style={{ background: C_BAND_MID }}>
-      <div className={sectionInner} style={bodyStyle}>
-        <h2 style={sectionTitle}>Modern Paths of Kabbalah</h2>
-        <p style={{ ...sectionLead, maxWidth: "44rem" }}>
-          Kabbalah today is carried by several distinct paths. They share a
-          great deal, yet each reads cosmic influence in its own way, some as
-          literal spiritual law, some as inner psychology, some as cultural
-          history. The notes below describe the main living streams and how
-          each tends to understand the stars.
-        </p>
-        <div className="grid gap-4 sm:grid-cols-2 mt-6">
-          {STREAMS.map((s) => (
-            <article
-              key={s.name}
-              style={{ ...cardStyle, padding: "18px 20px" }}
-            >
-              <h3
-                style={{
-                  fontFamily: HEAD,
-                  color: C_INK,
-                  fontSize: "17px",
-                  fontWeight: 500,
-                  margin: 0,
-                }}
-              >
-                {s.name}
-              </h3>
-              <p
-                style={{
-                  fontFamily: BODY,
-                  fontSize: "11px",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: C_GOLD,
-                  marginTop: 4,
-                }}
-              >
-                {s.character}
-              </p>
-              <p style={{ marginTop: "0.8rem", fontSize: "14px", color: C_INK_SOFT }}>
-                {s.text}
-              </p>
-              <p
-                style={{
-                  marginTop: "0.8rem",
-                  borderTop: `1px solid ${C_RULE_SOFT}`,
-                  paddingTop: "0.75rem",
-                  fontSize: "14px",
-                  color: C_MUTED,
-                }}
-              >
-                <b style={{ color: C_INK_SOFT, fontWeight: 600 }}>
-                  View of the stars.
-                </b>{" "}
-                {s.view}
-              </p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ── matrix ──────────────────────────────────────────────────────────
 function Matrix() {
   return (
@@ -759,10 +697,10 @@ function Matrix() {
               </tr>
             </thead>
             <tbody>
-              {MATRIX.map(([era, src, where, how]) => (
-                <tr key={era}>
+              {MATRIX.map(([eraName, src, where, how]) => (
+                <tr key={eraName}>
                   <td style={{ ...tableCell, color: C_INK, fontWeight: 600 }}>
-                    {era}
+                    {eraName}
                   </td>
                   <td style={tableCell}>{src}</td>
                   <td style={tableCell}>{where}</td>
@@ -778,9 +716,25 @@ function Matrix() {
 }
 
 // ── glossary ────────────────────────────────────────────────────────
+function slugify(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 function Glossary() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<(typeof GCATS)[number]>("All");
+
+  useEffect(() => {
+    const reset = () => {
+      setQ("");
+      setCat("All");
+    };
+    window.addEventListener(RESET_GLOSSARY_EVENT, reset);
+    return () => window.removeEventListener(RESET_GLOSSARY_EVENT, reset);
+  }, []);
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -795,7 +749,10 @@ function Glossary() {
   }, [q, cat]);
 
   return (
-    <section id="glossary" style={{ background: C_BAND_DEEP }}>
+    <section
+      id="glossary"
+      style={{ background: C_BAND_DEEP, scrollMarginTop: "80px" }}
+    >
       <div className={sectionInner} style={bodyStyle}>
         <h2 style={sectionTitle}>Searchable Glossary</h2>
         <p style={sectionLead}>Search a term or filter by category.</p>
@@ -852,44 +809,90 @@ function Glossary() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 mt-6">
-          {filtered.map((g) => (
-            <article key={g.term} style={{ ...cardStyle, padding: "16px 18px" }}>
-              <div className="flex items-baseline justify-between gap-2">
-                <h3
-                  style={{
-                    fontFamily: HEAD,
-                    color: C_INK,
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    margin: 0,
-                  }}
+          {filtered.map((g) => {
+            const id = `g-${slugify(g.term)}`;
+            const highlight = id === "g-tikkun";
+            return (
+              <article
+                key={g.term}
+                id={id}
+                style={{
+                  ...cardStyle,
+                  padding: "16px 18px",
+                  scrollMarginTop: "80px",
+                  ...(highlight
+                    ? {
+                        borderColor: C_GOLD,
+                        boxShadow: `0 0 0 1px ${C_GOLD}33`,
+                      }
+                    : {}),
+                }}
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3
+                    style={{
+                      fontFamily: HEAD,
+                      color: C_INK,
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      margin: 0,
+                    }}
+                  >
+                    {g.term}
+                  </h3>
+                  <span
+                    style={{
+                      fontFamily: BODY,
+                      fontSize: "10px",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: C_GOLD,
+                      background: "rgba(240,200,104,0.1)",
+                      borderRadius: 4,
+                      padding: "2px 8px",
+                    }}
+                  >
+                    {g.cat as GlossaryCat}
+                  </span>
+                </div>
+                <p
+                  style={{ marginTop: 10, fontSize: "14px", color: C_INK_SOFT }}
                 >
-                  {g.term}
-                </h3>
-                <span
-                  style={{
-                    fontFamily: BODY,
-                    fontSize: "10px",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: C_GOLD,
-                    background: "rgba(240,200,104,0.1)",
-                    borderRadius: 4,
-                    padding: "2px 8px",
-                  }}
-                >
-                  {g.cat as GlossaryCat}
-                </span>
-              </div>
-              <p style={{ marginTop: 10, fontSize: "14px", color: C_INK_SOFT }}>
-                {g.def}
-              </p>
-            </article>
-          ))}
+                  {g.def}
+                </p>
+                {g.link && (
+                  <p style={{ marginTop: 12 }}>
+                    <Link
+                      to={g.link}
+                      onClick={() =>
+                        track("cta_click", {
+                          ctaId: "ka_explore_12_tikkunim",
+                          page: "/kabbalistic-astrology",
+                        })
+                      }
+                      style={{
+                        display: "inline-block",
+                        fontFamily: BODY,
+                        fontSize: "13px",
+                        fontWeight: 600,
+                        color: C_GOLD,
+                        textDecoration: "none",
+                        border: `1px solid ${C_GOLD}`,
+                        borderRadius: 999,
+                        padding: "7px 14px",
+                      }}
+                    >
+                      {g.linkText || "Learn more"} →
+                    </Link>
+                  </p>
+                )}
+              </article>
+            );
+          })}
         </div>
         {filtered.length === 0 && (
           <p style={{ marginTop: "1rem", color: C_MUTED, fontSize: "14px" }}>
-            No terms match that search.
+            No terms match "{q}".
           </p>
         )}
       </div>
@@ -941,51 +944,6 @@ function Faq() {
             </AccordionItem>
           ))}
         </Accordion>
-      </div>
-    </section>
-  );
-}
-
-// ── closing ─────────────────────────────────────────────────────────
-function Closing() {
-  return (
-    <section style={{ background: C_BAND_DEEP }}>
-      <div className={sectionInner} style={bodyStyle}>
-        <p
-          style={{
-            fontSize: "13px",
-            color: C_MUTED,
-            textAlign: "center",
-            fontStyle: "italic",
-          }}
-        >
-          Kabbalistic Astrology, also known as Chokhmat HaMazalot. An
-          educational overview presented for study. Primary sources include
-          Sefer Yetzirah, the Zohar, and the writings of the teachers named
-          above.
-        </p>
-        <div
-          style={{
-            marginTop: "clamp(2rem,4vh,3rem)",
-            borderTop: `1px solid ${C_RULE}`,
-            paddingTop: "1.5rem",
-            textAlign: "center",
-          }}
-        >
-          <Link
-            to="/"
-            style={{
-              color: C_INK_SOFT,
-              textDecoration: "underline",
-              fontSize: "13px",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              fontFamily: BODY,
-            }}
-          >
-            ← Back to home
-          </Link>
-        </div>
       </div>
     </section>
   );
