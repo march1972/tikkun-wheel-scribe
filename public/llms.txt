@@ -20,3 +20,19 @@ Kabbalah Circle is an independent project sharing Kabbalistic astrology. A Tikku
 - [About](https://tikkun.kabbalahcircle.com/about): About Marc and the Kabbalah Circle project.
 - [Privacy Policy](https://tikkun.kabbalahcircle.com/privacy): How user data is collected, used, and protected.
 - [Terms & Conditions](https://tikkun.kabbalahcircle.com/terms): Terms for using the free reading service.
+
+## The 12 Tikkunim (by zodiac sign)
+
+- [The 12 Tikkunim — overview](https://tikkun.kabbalahcircle.com/tikkun): The twelve Kabbalistic soul corrections, one per zodiac sign, drawn from the lunar nodes and the Hebrew letters of the Sefer Yetzirah.
+- [Tikkun for Aries](https://tikkun.kabbalahcircle.com/tikkun/aries): Soul correction from Libran people-pleasing and indecision toward Aries leadership, courage, and direct action.
+- [Tikkun for Taurus](https://tikkun.kabbalahcircle.com/tikkun/taurus): Soul correction from Scorpio intensity and dependency toward Taurean self-worth, simplicity, and steady values.
+- [Tikkun for Gemini](https://tikkun.kabbalahcircle.com/tikkun/gemini): Soul correction from Sagittarian certainty toward Gemini curiosity, listening, and present-moment communication.
+- [Tikkun for Cancer](https://tikkun.kabbalahcircle.com/tikkun/cancer): Soul correction from Capricornian control and over-responsibility toward Cancerian emotional honesty and nurture.
+- [Tikkun for Leo](https://tikkun.kabbalahcircle.com/tikkun/leo): Soul correction from Aquarian detachment toward Leonine heart-centered creativity and personal expression.
+- [Tikkun for Virgo](https://tikkun.kabbalahcircle.com/tikkun/virgo): Soul correction from Piscean escapism toward Virgoan discernment, service, and grounded daily practice.
+- [Tikkun for Libra](https://tikkun.kabbalahcircle.com/tikkun/libra): Soul correction from Arian self-orientation toward Libran partnership, fairness, and considered cooperation.
+- [Tikkun for Scorpio](https://tikkun.kabbalahcircle.com/tikkun/scorpio): Soul correction from Taurean material attachment toward Scorpionic transformation, depth, and surrender.
+- [Tikkun for Sagittarius](https://tikkun.kabbalahcircle.com/tikkun/sagittarius): Soul correction from Geminian scattered curiosity toward Sagittarian vision, faith, and meaning.
+- [Tikkun for Capricorn](https://tikkun.kabbalahcircle.com/tikkun/capricorn): Soul correction from Cancerian emotional reactivity toward Capricornian responsibility, structure, and mature authority.
+- [Tikkun for Aquarius](https://tikkun.kabbalahcircle.com/tikkun/aquarius): Soul correction from Leonine ego-centered drama toward Aquarian community, vision, and humanitarian work.
+- [Tikkun for Pisces](https://tikkun.kabbalahcircle.com/tikkun/pisces): Soul correction from Virgoan over-analysis and worry toward Piscean compassion, surrender, and intuitive trust.
