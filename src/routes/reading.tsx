@@ -25,14 +25,12 @@ export const Route = createFileRoute("/reading")({
   validateSearch: search,
   head: () => ({
     meta: [
-      { title: "Your Tikkun Reading — Kabbalah Astrology" },
+      { title: "Your Tikkun Reading — Kabbalah Circle" },
       { name: "description", content: "Your personal Kabbalah Tikkun reading — your Soul's Shadow patterns, spiritual work (Tikkun), and daily mantra (Kavanah) based on your birth date." },
-      { property: "og:title", content: "Your Tikkun Reading — Kabbalah Astrology" },
-      { property: "og:description", content: "Your personal Kabbalah Tikkun reading — Soul's Shadow patterns, spiritual work, and daily mantra from your birth chart." },
-      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/reading" },
-      { property: "og:type", content: "website" },
+      // Personalised, query-string-driven reading — not a canonical landing page.
+      // Kept out of the index until we move per-sign content to static /tikkun/[sign] pages in Phase 3.
+      { name: "robots", content: "noindex, follow" },
     ],
-    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/reading" }],
   }),
 });
 
