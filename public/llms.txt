@@ -17,6 +17,7 @@ Kabbalah Circle is an independent project sharing Kabbalistic Astrology. A Tikku
 
 - [Home](https://tikkun.kabbalahcircle.com/): Free Kabbalistic Astrology reading from your date of birth — spin the Tikkun wheel and reveal your soul's purpose patterns.
 - [A Brief History of Kabbalah Astrology](https://tikkun.kabbalahcircle.com/history): The origins of Kabbalistic Astrology in the Sefer Yetzirah, the Zohar, and the Talmud — and how free will overrides celestial influence.
+- [Kabbalistic Astrology: History, Glossary & Timeline](https://tikkun.kabbalahcircle.com/kabbalistic-astrology): Long-form guide to Chokhmat HaMazalot — interactive timeline from Abraham and Sefer Yetzirah through ibn Ezra, the Zohar, the Arizal, Baal HaSulam and Aryeh Kaplan, plus letter/planet/zodiac mappings and a searchable glossary.
 - [About](https://tikkun.kabbalahcircle.com/about): About Marc and the Kabbalah Circle project.
 - [Privacy Policy](https://tikkun.kabbalahcircle.com/privacy): How user data is collected, used, and protected.
 - [Terms & Conditions](https://tikkun.kabbalahcircle.com/terms): Terms for using the free reading service.
