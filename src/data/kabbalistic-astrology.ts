@@ -8,7 +8,8 @@ export type Era =
   | "Early Modern"
   | "18th Century"
   | "18th–19th Century"
-  | "20th Century";
+  | "20th Century"
+  | "Modern Paths";
 
 export interface TimelineEntry {
   id: string;
@@ -56,7 +57,7 @@ export const TIMELINE: TimelineEntry[] = [
     date: "c. 37–100 CE",
     source: "Antiquities of the Jews 3.7.7 (3.181–187)",
     body:
-      "In the Second Temple era the historian Flavius Josephus read the furnishings of the Tabernacle and Temple as a deliberate map of the heavens. The seven branches of the menorah, the twelve loaves of showbread, and other vessels were, in his telling, designed to mirror the structure of the cosmos. It is one of the earliest written bridges between Jewish worship and the order of the stars.",
+      "In the Second Temple era the historian Flavius Josephus read the furnishings of the Tabernacle and Temple as a deliberate map of the heavens. The seven branches of the menorah, the twelve loaves of showbread, and other vessels were, in his telling, built to mirror the structure of the cosmos. It is one of the earliest places we see Jews reading the order of the stars into their own worship.",
     quote:
       "“The seven lamps upon the candlestick referred to the course of the planets, of which that is the number; and the twelve loaves that were upon the table signified the circle of the zodiac and the year.”",
     quoteCite: "Josephus, Antiquities 3.7.7 (Whiston translation, lightly modernized)",
@@ -104,7 +105,7 @@ export const TIMELINE: TimelineEntry[] = [
     date: "c. 1089–1167 CE",
     source: "Reshit Chochmah, Sefer ha-Te'amim, Sefer ha-Moladot and others",
     body:
-      "Abraham ibn Ezra was the most important Jewish astrologer of the Middle Ages. A grammarian, poet, biblical commentator, and lifelong traveler, he wrote a whole library of astrological treatises in Hebrew, among them Reshit Chochmah (The Beginning of Wisdom), Sefer ha-Te'amim (The Book of Reasons), Sefer ha-Moladot (The Book of Nativities), and Sefer ha-Olam (The Book of the World). These works carried Greek and Arabic astrology into the Hebrew language and shaped how later Jewish thinkers spoke about the planets and signs. His Torah commentary also weaves in astrological readings, even as he insists that the God of Israel stands above the natural order.",
+      "Abraham ibn Ezra was the most important Jewish astrologer of the Middle Ages. A grammarian, poet, biblical commentator, and lifelong traveler, he wrote a whole library of astrological treatises in Hebrew, among them Reshit Chochmah (The Beginning of Wisdom), Sefer ha-Te'amim (The Book of Reasons), Sefer ha-Moladot (The Book of Nativities), and Sefer ha-Olam (The Book of the World). These works carried Greek and Arabic astrology into the Hebrew language and shaped how later Jewish thinkers talked about the planets and signs. His Torah commentary also brings in astrological readings, even while he holds that the God of Israel is above the natural order.",
     note:
       "Ibn Ezra is the main channel through which classical and Arabic astrology entered later Jewish and Kabbalistic writing.",
     teaching:
@@ -117,7 +118,7 @@ export const TIMELINE: TimelineEntry[] = [
     date: "1138–1204 CE",
     source: "Letter on Astrology (to the sages of southern France)",
     body:
-      "Not every Jewish thinker welcomed the stars. Maimonides, the great philosopher and legal authority, stands as the tradition's sharpest critic of astrology. Asked by the sages of Montpellier and Lunel for his opinion, he answered in his Letter on Astrology that judging human affairs by the constellations is not a science but a mistake, and that a thoughtful person should rely on reason, effort, and trust in God rather than on horoscopes. His view became the lasting counterweight to the astrological strand of Jewish thought, and an honest history has to hold the two side by side.",
+      "Not every Jewish thinker welcomed the stars. Maimonides, the great philosopher and legal authority, was the tradition's sharpest critic of astrology. When the sages of Montpellier and Lunel wrote to ask his opinion, he answered in his Letter on Astrology that judging human affairs by the constellations is not a science but a mistake, and that a thinking person should rely on reason, effort, and trust in God rather than on horoscopes. His view stayed the main counterweight to the astrological side of Jewish thought, and any fair history has to keep the two together.",
     note: "Maimonides read Ein Mazal LeYisrael as a rejection of astral determinism for everyone, not only for Israel.",
     quote:
       "“These matters are no science at all, but folly, and a person of understanding should not be drawn after them.”",
@@ -130,7 +131,7 @@ export const TIMELINE: TimelineEntry[] = [
     date: "Traditional: 2nd c. CE · Composed/compiled: 13th c. CE",
     source: "Zohar, especially Parashat Terumah (II:171b)",
     body:
-      "The Zohar, the central work of classical Kabbalah, gives the heavens a deeply spiritual reading. The stars and constellations hold no independent power of their own. They function more like officials in a vast chain of command, carrying out decrees that begin in higher spiritual roots. In the same breath the Zohar binds the great world of the heavens to the small world of the human body, so that every limb and faculty answers to something above it.",
+      "The Zohar, the central work of classical Kabbalah, reads the heavens in a thoroughly spiritual way. The stars and constellations have no power of their own. They work more like officials in a vast chain of command, carrying out decrees that begin higher up. The Zohar also ties the large world of the heavens to the small world of the human body, so that every limb and faculty answers to something above it.",
     note:
       "Tradition attributes the Zohar to Rabbi Shimon bar Yochai. Academic scholarship places its composition in 13th-century Spain and associates it with Rabbi Moses de León.",
     teaching:
@@ -200,7 +201,7 @@ export const TIMELINE: TimelineEntry[] = [
     date: "Baal Shem Tov 1698–1760 · Bnei Yissaschar 1783–1841",
     source: "Bnei Yissaschar (R. Tzvi Elimelech of Dynów)",
     body:
-      "Hasidism, founded by Rabbi Israel Baal Shem Tov and carried forward by teachers such as Rabbi Tzvi Elimelech of Dynów, author of the Bnei Yissaschar, turned Kabbalah inward. The planets and signs are read less as objects in the sky and more as inner forces, archetypes and states of mind living within the soul. A moment such as the New Moon (Rosh Chodesh) becomes an opening to draw on the particular energy of that month.",
+      "Hasidism, founded by Rabbi Israel Baal Shem Tov and continued by teachers such as Rabbi Tzvi Elimelech of Dynów, author of the Bnei Yissaschar, turned Kabbalah inward. The planets and signs are read less as objects in the sky and more as inner forces, the moods and states of mind that live inside a person. A moment like the New Moon (Rosh Chodesh) becomes an opening to draw on the particular energy of that month.",
     teaching:
       "The twelve signs are twelve pathways of the mind. When the month of Nissan arrives, the force of Aries, which is renewal and the power of speech, stirs inside the human heart and not only among the stars.",
   },
@@ -226,6 +227,61 @@ export const TIMELINE: TimelineEntry[] = [
     teaching:
       "The mappings in Sefer Yetzirah read as instructions for meditation. By picturing the letters tied to a given planet or sign, a practitioner can steady and shift their state of awareness.",
   },
+  {
+    id: "rashash",
+    era: "Modern Paths",
+    title: "The Sephardic Rashash School",
+    date: "Living tradition · Rashash 1720–1777",
+    source: "Siddur HaRashash; the writings of Rabbi Shalom Sharabi",
+    body:
+      "This path carries the Lurianic Kabbalah of the Arizal as it was organized in the 18th century by the Yemenite master Rabbi Shalom Sharabi, known as the Rashash. Its heart is theurgical prayer, long and exact meditations called kavanot that use the Siddur HaRashash to route divine light through the worlds of the Sefirot. It remains a living and highly traditional discipline among Sephardic and Mizrahi kabbalists.",
+    teaching:
+      "Astrological forces are taken as real and objective laws of the spiritual world, navigated through precise divine names rather than read as metaphors. As a ship must read real ocean currents, the soul reads the real currents of the mazalot.",
+  },
+  {
+    id: "ashlagian",
+    era: "Modern Paths",
+    title: "Traditional Ashlagian Schools",
+    date: "Living tradition · after Baal HaSulam and the Rabash",
+    source: "Talmud Eser Sefirot; the writings of the Rabash",
+    body:
+      "Students of Baal HaSulam and his son and successor Rav Baruch Shalom Ashlag, the Rabash, center their work on close study of Talmud Eser Sefirot, the structured physics of the spiritual worlds, together with group study aimed at moving the heart from self interest toward giving. Some communities have built large lay study structures while keeping a conservative curriculum.",
+    teaching:
+      "The stars stand for the architecture of the ego, the Desire to Receive. Real growth means reaching equivalence of form with the Creator, which naturally raises a person above the pull of the zodiac.",
+  },
+  {
+    id: "centre",
+    era: "Modern Paths",
+    title: "The Kabbalah Centre and Universalist Kabbalah",
+    date: "Founded 1965 · Los Angeles centre 1984",
+    source: "Philip Berg, Kabbalistic Astrology, and other works",
+    body:
+      "The best known of these today is the Kabbalah Centre. It began in 1965, when Rav Yehuda Tzvi Brandwein, a student in the circle of Rav Yehuda Ashlag, and his own student Philip Berg founded an institute to publish and teach Ashlagian Kabbalah. Under Philip Berg and Karen Berg it grew into an international network of centers and online study, with a major branch opening in Los Angeles in 1984, and it is now led by Karen Berg and Michael Berg. The Centre teaches Kabbalah as a practical wisdom open to anyone, the idea being that turning from selfish reaction toward sharing brings a person into harmony with what it calls the Light. Its signature practices include reading or scanning the Aramaic letters of the Zohar, wearing a red string, meditating on the 72 Names of God, using Kabbalah water, and gathering at each New Moon. Astrology is central to its message: Philip Berg's Kabbalistic Astrology roots the birth chart and the Hebrew months in Sefer Yetzirah and reads them as a map of a person's tendencies and their work of Tikkun, not as fixed fate.",
+    note:
+      "The Kabbalah Centre is the most widely known popular presentation of Kabbalah. It has drawn a large international following, along with ongoing discussion about how its universal and accessible style relates to older, more traditional forms of study.",
+  },
+  {
+    id: "renewal",
+    era: "Modern Paths",
+    title: "Neo-Hasidism and Jewish Renewal",
+    date: "Living tradition · mid-20th century to today",
+    source: "Writings of Zalman Schachter-Shalomi and Arthur Green",
+    body:
+      "Rooted in the Baal Shem Tov and carried into the present by teachers such as Rabbi Zalman Schachter-Shalomi and Rabbi Arthur Green, this broad current joins Hasidic inwardness with meditation, chant, embodied practice, and care for the natural world, including an ethic some call eco-kashrut. It tends to be experiential, egalitarian, and open to conversation with other contemplative traditions.",
+    teaching:
+      "Cosmic cycles are living, sacred rhythms to move with for healing and inner integration, often understood through the Divine Presence, the Shekhinah.",
+  },
+  {
+    id: "academic",
+    era: "Modern Paths",
+    title: "Academic and Historical-Critical Study",
+    date: "Living tradition · 20th century to today",
+    source: "Gershom Scholem, Moshe Idel, Elliot Wolfson",
+    body:
+      "Opened by Gershom Scholem and continued by scholars such as Moshe Idel and Elliot Wolfson, this approach studies Kabbalah through manuscripts, language, and history rather than as received revelation. It has changed how scholars, and a good number of practitioners, understand where these ideas actually came from.",
+    teaching:
+      "Kabbalistic cosmology is read as a living human tradition that took in Babylonian, Hellenistic, Islamic, and Renaissance ideas and reshaped them within a Jewish, monotheistic, letter based framework.",
+  },
 ];
 
 export const ERAS: ReadonlyArray<"All" | Era> = [
@@ -237,6 +293,7 @@ export const ERAS: ReadonlyArray<"All" | Era> = [
   "18th Century",
   "18th–19th Century",
   "20th Century",
+  "Modern Paths",
 ];
 
 export const SEVEN_DOUBLES: ReadonlyArray<readonly [string, string, string]> = [
@@ -264,56 +321,6 @@ export const TWELVE_ELEMENTALS: ReadonlyArray<
   ["Ayin ע", "Capricorn", "Tevet", "Anger", "Liver"],
   ["Tzadi צ", "Aquarius", "Shevat", "Taste", "Gizzard (korkeban)"],
   ["Qof ק", "Pisces", "Adar", "Laughter", "Spleen"],
-];
-
-export interface Stream {
-  name: string;
-  character: string;
-  text: string;
-  view: string;
-}
-
-export const STREAMS: Stream[] = [
-  {
-    name: "Sephardic, the Rashash School",
-    character: "Classical, precise, prayer centered",
-    text:
-      "This lineage carries the Lurianic Kabbalah of the Arizal as it was organized in the 18th century by the Yemenite master Rabbi Shalom Sharabi, known as the Rashash. Its heart is theurgical prayer: long and exact meditations, called kavanot, using the Siddur HaRashash to route divine light through the worlds of the Sefirot.",
-    view:
-      "Astrological forces are taken as real and objective laws of the spiritual world. They are navigated through precise divine names, not treated as mere metaphors. Just as a ship must read real ocean currents, the soul reads the real currents of the mazalot.",
-  },
-  {
-    name: "Traditional Ashlagian Schools",
-    character: "Systematic, study driven, communal",
-    text:
-      "Students of Baal HaSulam and his son and successor Rav Baruch Shalom Ashlag, the Rabash, center their work on close study of Talmud Eser Sefirot, the structured physics of the spiritual worlds, together with group study aimed at moving the heart from self interest toward giving. Some, such as the worldwide Bnei Baruch community, have built large lay study structures while keeping a conservative curriculum.",
-    view:
-      "The stars stand for the architecture of the ego, the Desire to Receive. Real growth means reaching equivalence of form with the Creator, which naturally raises a person above the pull of the zodiac.",
-  },
-  {
-    name: "Universalist and Global Kabbalah",
-    character: "Accessible, practical, widely taught",
-    text:
-      "A number of modern centers present Ashlagian Kabbalah to a broad international audience as a path of personal growth open to anyone. Common practices include reading or scanning the Aramaic letters of the Zohar, wearing a red string, visualization, and gathering for meditations at each New Moon.",
-    view:
-      "Astrology is framed as a usable blueprint of cosmic forces and a map of personal tendencies, a kind of Tikkun, that a person can actively work with through these practices.",
-  },
-  {
-    name: "Hasidic, Neo-Hasidic and Jewish Renewal",
-    character: "Devotional, inward, ecological",
-    text:
-      "Rooted in the Baal Shem Tov and carried into the present by teachers such as Rabbi Zalman Schachter-Shalomi and Rabbi Arthur Green, this broad current joins Hasidic inwardness with meditation, chant, embodied practice, and care for the natural world, including an ethic some call eco-kashrut.",
-    view:
-      "Cosmic cycles are living, sacred rhythms to move with for healing and inner integration, often understood through the Divine Presence, the Shekhinah.",
-  },
-  {
-    name: "Academic and Historical-Critical Study",
-    character: "Analytical, source based",
-    text:
-      "Opened by Gershom Scholem and continued by scholars such as Moshe Idel and Elliot Wolfson, this approach studies Kabbalah through manuscripts, language, and history rather than as received revelation.",
-    view:
-      "Kabbalistic cosmology is read as a living human tradition that took in Babylonian, Hellenistic, Islamic, and Renaissance ideas and reshaped them within a Jewish, monotheistic, letter based framework.",
-  },
 ];
 
 export const MATRIX: ReadonlyArray<readonly [string, string, string, string]> = [
@@ -355,12 +362,14 @@ export const MATRIX: ReadonlyArray<readonly [string, string, string, string]> = 
   ],
 ];
 
-export type GlossaryCat = "Core" | "Cosmology" | "Texts" | "Practice";
+export type GlossaryCat = "Core" | "Cosmology" | "Texts" | "Practice" | "Modern";
 
 export interface GlossaryTerm {
   term: string;
   cat: GlossaryCat;
   def: string;
+  link?: string;
+  linkText?: string;
 }
 
 export const GLOSSARY: GlossaryTerm[] = [
@@ -417,7 +426,9 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: "Tikkun",
     cat: "Core",
-    def: "Rectification or repair, the mending of what was broken in creation and in the soul. In Lurianic astrology it is the specific correction a soul comes into the world to make.",
+    def: "Rectification or repair, the mending of what was broken in creation and in the soul. In Lurianic astrology it is the specific correction a soul comes into the world to make. Each of the twelve months and signs carries its own work of Tikkun.",
+    link: "/tikkun",
+    linkText: "Explore the 12 Tikkunim",
   },
   {
     term: "Gilgul",
@@ -484,6 +495,26 @@ export const GLOSSARY: GlossaryTerm[] = [
     cat: "Texts",
     def: "The Orchard of Pomegranates, Rabbi Moshe Cordovero's systematic summary of Kabbalah, which organized earlier teaching on the Sefirot and the descent of divine light into one framework just before the time of Isaac Luria.",
   },
+  {
+    term: "Kabbalah Centre",
+    cat: "Modern",
+    def: "An international organization founded in 1965 that teaches Ashlagian Kabbalah as a practical wisdom open to everyone. It is widely known for popularizing Kabbalistic astrology, scanning the Zohar, the red string, and the 72 Names of God.",
+  },
+  {
+    term: "Scanning the Zohar",
+    cat: "Modern",
+    def: "A practice taught at the Kabbalah Centre of passing the eyes over the Aramaic letters of the Zohar as a way of connecting to its energy, even without translating every word.",
+  },
+  {
+    term: "Red String",
+    cat: "Modern",
+    def: "A length of red wool worn on the wrist, popularized by the Kabbalah Centre, understood as a guard against the evil eye (ayin hara) and a reminder of the intention to give.",
+  },
+  {
+    term: "72 Names of God",
+    cat: "Modern",
+    def: "A set of seventy-two three-letter combinations drawn from verses in the Book of Exodus, used in some Kabbalistic practice and taught at the Kabbalah Centre as focal points for meditation.",
+  },
 ];
 
 export const GCATS: ReadonlyArray<"All" | GlossaryCat> = [
@@ -492,6 +523,7 @@ export const GCATS: ReadonlyArray<"All" | GlossaryCat> = [
   "Cosmology",
   "Texts",
   "Practice",
+  "Modern",
 ];
 
 export interface FaqItem {
@@ -519,5 +551,9 @@ export const FAQ: FaqItem[] = [
   {
     q: "Why do the correspondence tables sometimes differ?",
     a: "Sefer Yetzirah survives in several recensions, the Short, Long, Saadia, and Gra, and they assign letters to planets and organs in slightly different ways. The tables here follow the Gra-Ari recension and note that other versions vary.",
+  },
+  {
+    q: "What is the Kabbalah Centre?",
+    a: "The Kabbalah Centre is an international organization founded in 1965 that grew out of the Ashlagian tradition through Rav Yehuda Tzvi Brandwein and Philip and Karen Berg. It teaches Kabbalah as a practical wisdom open to everyone and is well known for popularizing Kabbalistic astrology, scanning the Zohar, the red string, and the 72 Names of God. You can find it as an entry in the Interactive Timeline above, filed under the Modern Paths era.",
   },
 ];
