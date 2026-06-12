@@ -98,17 +98,13 @@ function About() {
               rel="noopener noreferrer"
               style={{ color: C_GOLD, textDecoration: "underline" }}
             >
-              Kabbalah Centre
-            </a>
-            <br />
-            (opens in new tab)
-            <br /> in New York, alongside my own self-directed learning to
-            explore different viewpoints and approaches. This project was
-            actually inspired by a teacher at the Kabbalah Centre, who
-            challenged me to go out and start something that could help spread
-            the wisdom and Light of Kabbalah. More recently, I have gone much
-            deeper into Kabbalistic Astrology (sometimes called Jewish Astrology
-            or Hebrew Astrology).
+              Kabbalah Centre<span className="sr-only"> (opens in new tab)</span>
+            </a>{" "}
+            in New York, alongside my own self-directed learning to explore
+            different viewpoints and approaches. This project was actually
+            inspired by a teacher at the Kabbalah Centre, who challenged me to
+            go out and start something that could help spread the wisdom and
+            Light of Kabbalah.
           </p>
 
           <blockquote
