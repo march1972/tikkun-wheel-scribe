@@ -66,13 +66,13 @@ export const EMAIL_COPY = {
     headingAfter: '.',
 
     body1:
-      "Thank you for joining the Kabbalah Circle waitlist. You'll receive occasional notes from Marc — short teachings on Kabbalah, reflections on the spiritual work of becoming, and an early invitation when our group programs and coaching open up.",
+      "Thank you for joining the Circle. You'll receive occasional notes with learnings, reflections, and an early invitation to the launch later this year, including any events or coaching programs.",
     body2:
       "Expect roughly one or two emails a month. No noise, no selling. You can leave any time with a single click at the bottom of any email.",
 
     ctaButton: 'Get your free Tikkun reading',
 
-    footerSignoff: 'With light,',
+    footerSignoff: 'With love,',
     footerName: 'Marc — Kabbalah Circle',
     footerDomain: 'tikkun.kabbalahcircle.com',
   },
