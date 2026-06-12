@@ -245,7 +245,6 @@ function About() {
             to identify, restrict and repair darker patterns (shadows) hidden in
             our soul or psyche. <br />
             <br />
-            <br />
             Even if we don't quite believe that our date of birth can yield a
             specific cosmic signal, there is much we can learn about ourselves
             and others if we study the Tikkun's "Shadow Patterns" (a term I
