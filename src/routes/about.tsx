@@ -200,9 +200,12 @@ function About() {
           <p style={paraStyle}>
             A little about my background: I'm a trained lawyer with an MBA from
             INSEAD. I've worked at companies like Sony and Softbank, and lived
-            and worked in South Africa, Israel, Germany, and the United States.
-            I'm also a certified executive, relationship, and life coach, a
-            mediator, a tech founder, and a venture capitalist.
+            and worked in South Africa, Israel, Germany, and the United States.{" "}
+            <br />
+            <br />
+            <br />
+            I'm also a certified coach (executive and relationship coaching), a
+            mediator, a startup founder, and a venture capitalist.
           </p>
 
           <p style={paraStyle}>
