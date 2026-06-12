@@ -164,7 +164,6 @@ const RESET_GLOSSARY_EVENT = "ka:reset-glossary";
 function KabbalisticAstrologyPage() {
   return (
     <SkyShell starDensity={80}>
-      <TopBar />
       <Hero />
       <Intro />
       <Timeline />
@@ -172,33 +171,30 @@ function KabbalisticAstrologyPage() {
       <Matrix />
       <Glossary />
       <Faq />
+      <BackToHome />
       <PageFooter />
     </SkyShell>
   );
 }
 
-// ── top bar (back to home) ──────────────────────────────────────────
-function TopBar() {
+// ── back to home ──────────────────────────────────────────────────────
+function BackToHome() {
   return (
-    <div className="px-[clamp(1.25rem,5vw,3rem)] pt-6">
-      <div className="mx-auto max-w-6xl">
+    <div className="px-[clamp(1.25rem,5vw,3rem)] pb-[clamp(1.5rem,3vh,2.5rem)]">
+      <div className="mx-auto max-w-3xl" style={{ borderTop: `1px solid ${C_RULE}`, paddingTop: "1.5rem" }}>
         <Link
           to="/"
           onClick={() => track("nav_back_home", { page: "/kabbalistic-astrology" })}
-          className="inline-flex items-center gap-2 hover:text-[#f0c868] transition-colors duration-200"
           style={{
             fontFamily: BODY,
-            fontSize: "12px",
-            letterSpacing: "0.14em",
+            color: C_INK_SOFT,
+            textDecoration: "underline",
+            fontSize: "13px",
+            letterSpacing: "0.1em",
             textTransform: "uppercase",
-            color: "#f1e9d5",
-            textDecoration: "none",
-            borderRadius: 999,
-            padding: "8px 14px",
-            border: "1px solid rgba(253,246,230,0.20)",
           }}
         >
-          ← Home
+          ← Back to home
         </Link>
       </div>
     </div>
