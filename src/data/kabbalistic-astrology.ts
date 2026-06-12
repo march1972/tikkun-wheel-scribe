@@ -362,7 +362,7 @@ export const MATRIX: ReadonlyArray<readonly [string, string, string, string]> = 
   ],
 ];
 
-export type GlossaryCat = "Core" | "Cosmology" | "Texts" | "Practice" | "Modern";
+export type GlossaryCat = "Core" | "Cosmology" | "Texts" | "Practice";
 
 export interface GlossaryTerm {
   term: string;
