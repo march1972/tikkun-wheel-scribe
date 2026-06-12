@@ -6,7 +6,7 @@ import { TypewriterWord } from "@/components/landing/TypewriterWord";
 import { PrimaryCTA as GoldCTA } from "@/components/landing/PrimaryCTA";
 import { useResponsiveWheelSize } from "@/hooks/useResponsiveWheelSize";
 import { getSpinSnippet } from "@/data/tikkun-lookup";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -654,6 +654,7 @@ function Landing() {
                 <Link to="/privacy" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
                   Privacy
                 </Link>
+                <TikkunFooterLink />
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
                 <span style={{ color: C_INK_SOFT }}>Kabbalah Astrology</span>
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
