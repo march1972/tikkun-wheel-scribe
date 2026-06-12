@@ -246,7 +246,8 @@ function Landing() {
   }, []);
 
 
-  const handleSpin = () => {
+  const handleSpin = (ctaId: string = "home_wheel") => {
+    track("cta_click", { ctaId, page: "/" });
     const result = getSpinSnippet([]);
     if (result.exhausted || !result.sign) return;
     sessionStorage.setItem("tikkun_seen_signs", JSON.stringify(result.seen));
