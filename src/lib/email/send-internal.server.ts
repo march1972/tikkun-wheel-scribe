@@ -1,6 +1,6 @@
 // Server-only helper used by public form triggers (no Supabase JWT available).
 // Renders a registered template and enqueues it on the transactional_emails queue.
-// Sets From = "Marc <marc@kabbalahcircle.com>" and Reply-To = "hello@kabbalahcircle.com".
+// Sets From = "Kabbala Circle <kabbala-circle@kabbalahcircle.com>" and Reply-To = "kabbala-circle@kabbalahcircle.com".
 import * as React from 'react'
 import { render as renderAsync } from '@react-email/render'
 import { supabaseAdmin } from '@/integrations/supabase/client.server'
@@ -8,8 +8,8 @@ import { TEMPLATES } from '@/lib/email-templates/registry'
 
 const SITE_NAME = 'Kabbalah Circle'
 const SENDER_DOMAIN = 'notify.kabbalahcircle.com'
-const FROM = 'Marc <marc@kabbalahcircle.com>'
-const REPLY_TO = 'marc@kabbalahcircle.com'
+const FROM = 'Kabbala Circle <kabbala-circle@kabbalahcircle.com>'
+const REPLY_TO = 'kabbala-circle@kabbalahcircle.com'
 
 function generateToken(): string {
   const bytes = new Uint8Array(32)
