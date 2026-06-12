@@ -5,6 +5,7 @@ import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE,
 } from "@/lib/landing-style";
 import { SIGNS } from "@/data/tikkun-lookup";
+import { track } from "@/lib/analytics";
 
 const SITE_URL = "https://tikkun.kabbalahcircle.com";
 const URL = `${SITE_URL}/tikkun`;
