@@ -63,9 +63,9 @@ export const TikkunReadingEmail = ({
             <Heading style={h1}>{signName}</Heading>
             <Text style={hebrew}>{hebrewName}</Text>
             <Text style={nodes}>
-              NORTH LUNAR NODE IN {northNode}
+              NORTH LUNAR NODE IN {northNode.toUpperCase()}
               <br />
-              SOUTH LUNAR NODE IN {southNode}
+              SOUTH LUNAR NODE IN {southNode.toUpperCase()}
             </Text>
           </Section>
 
