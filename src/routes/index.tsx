@@ -206,7 +206,7 @@ function OxbloodCTA({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex w-auto min-w-[260px] max-w-[340px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(184,51,63,0.55)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
+      className="group inline-flex w-auto min-w-[220px] max-w-[340px] items-center justify-center gap-3 uppercase transition-all duration-300 ease-out hover:-translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(184,51,63,0.55)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#1b2540]"
       style={{
         background: "#7a1f2b",
         color: C_INK,
@@ -384,7 +384,7 @@ function Landing() {
             </p>
 
             <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
-              <GoldCTA onClick={handleSpin} label={"Your Tikkun\nchart"} />
+              <GoldCTA onClick={handleSpin} label="Your Tikkun chart" />
               <p
                 style={{
                   fontFamily: BODY,
@@ -540,8 +540,7 @@ function Landing() {
                 }}
               >
                 Kabbalists generally accept the influence of the celestial
-                constellations ({" "}
-                <span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>{" "}
+                constellations (<span style={{ color: C_INK, fontStyle: "italic" }}>Mazalot</span>
                 ), but reject astrology as fatalistic prediction. A person's{" "}
                 <span style={{ color: C_DAWN, fontStyle: "italic" }}>free will</span>{" "}
                 always overrides fate.
