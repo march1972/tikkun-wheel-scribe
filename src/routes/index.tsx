@@ -682,3 +682,25 @@ function Landing() {
     </main>
   );
 }
+
+function TikkunFooterLink() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    try {
+      if (typeof window !== "undefined" && sessionStorage.getItem("tikkun_real_sign")) {
+        setShow(true);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+  if (!show) return null;
+  return (
+    <>
+      <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
+      <Link to="/tikkun" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+        The 12 Tikkunim
+      </Link>
+    </>
+  );
+}
