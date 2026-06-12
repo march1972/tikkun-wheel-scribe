@@ -4,7 +4,12 @@ import { getSpinSnippet } from "@/data/tikkun-lookup";
 
 export const Route = createFileRoute("/form")({
   component: FormRedirect,
-  head: () => ({ meta: [{ title: "See your real Tikkun pattern" }] }),
+  head: () => ({
+    meta: [
+      { title: "See your real Tikkun pattern" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
 });
 
 function FormRedirect() {

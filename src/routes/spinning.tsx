@@ -17,14 +17,9 @@ export const Route = createFileRoute("/spinning")({
   component: Spinning,
   head: () => ({
     meta: [
-      { title: "Searching your Tikkun… — Kabbalah Astrology" },
-      { name: "description", content: "Spinning the Tikkun wheel to surface a Shadow pattern from your Kabbalah astrology chart." },
-      { property: "og:title", content: "Searching your Tikkun…" },
-      { property: "og:description", content: "Spinning the Tikkun wheel to surface a Shadow pattern from your Kabbalah astrology chart." },
-      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/spinning" },
-      { property: "og:type", content: "website" },
+      { title: "Searching your Tikkun…" },
+      { name: "robots", content: "noindex, nofollow" },
     ],
-    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/spinning" }],
   }),
 });
 

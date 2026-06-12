@@ -19,7 +19,10 @@ export const Route = createFileRoute("/unsubscribe")({
   validateSearch: search,
   component: UnsubscribePage,
   head: () => ({
-    meta: [{ title: "Unsubscribe — Kabbalah Circle" }],
+    meta: [
+      { title: "Unsubscribe — Kabbalah Circle" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
 });
 

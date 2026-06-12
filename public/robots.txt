@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Funnel / utility routes — not for the index
+Disallow: /form
+Disallow: /snippet
+Disallow: /spinning
+Disallow: /content
+Disallow: /unsubscribe
+Disallow: /reading
+
 Sitemap: https://tikkun.kabbalahcircle.com/sitemap.xml

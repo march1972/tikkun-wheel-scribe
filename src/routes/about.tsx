@@ -31,10 +31,27 @@ export const Route = createFileRoute("/about")({
         content:
           "Meet Marc, the person behind Kabbalah Circle — a personal project exploring meaning, growth, and community through Kabbalah and psychology.",
       },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/about" },
       { property: "og:type", content: "article" },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/about" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          url: "https://tikkun.kabbalahcircle.com/about",
+          name: "About · Kabbalah Circle",
+          isPartOf: { "@id": "https://tikkun.kabbalahcircle.com/#website" },
+          about: {
+            "@type": "Person",
+            name: "Marc",
+            description: "Founder of Kabbalah Circle — a personal project exploring Kabbalah and psychology.",
+          },
+        }),
+      },
+    ],
   }),
 });
 

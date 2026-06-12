@@ -42,14 +42,9 @@ export const Route = createFileRoute("/snippet")({
   component: Snippet,
   head: () => ({
     meta: [
-      { title: "Your Tikkun teaser — Kabbalah Astrology" },
-      { name: "description", content: "A short Tikkun snippet revealing a possible Shadow pattern from your Kabbalah astrology chart. Spin again or unlock your full free Tikkun reading." },
-      { property: "og:title", content: "Your Tikkun teaser — Kabbalah Astrology" },
-      { property: "og:description", content: "A short Tikkun snippet revealing a possible Shadow pattern from your Kabbalah astrology chart." },
-      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/snippet" },
-      { property: "og:type", content: "website" },
+      { title: "Your Tikkun teaser — Kabbalah Circle" },
+      { name: "robots", content: "noindex, nofollow" },
     ],
-    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/snippet" }],
   }),
 });
 

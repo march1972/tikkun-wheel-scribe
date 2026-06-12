@@ -1,13 +1,22 @@
 # Kabbalah Circle
 
-> Free Kabbalah Tikkun astrology readings. Discover the Shadow patterns (Gilgul), spiritual work (Tikkun), and daily mantra (Kavanah) tied to your date of birth.
+> Free Kabbalistic astrology readings. Discover your Soul's Shadow patterns (Gilgul), your spiritual work (Tikkun), and your daily mantra (Kavanah) — rooted in the Sefer Yetzirah and the Zohar.
 
-Kabbalah Circle is an independent project sharing Kabbalistic astrology rooted in the Sefer Yetzirah and the Zohar. Visitors receive a free Tikkun chart based on the lunar nodes at their date of birth.
+Kabbalah Circle is an independent project sharing Kabbalistic astrology. A Tikkun is the soul-level correction a person is here to make in this lifetime — the work of transforming reactive Shadow patterns (Gilgulim) carried over from past lives into purposeful action. Visitors receive a free Tikkun chart based on the lunar nodes at their date of birth.
+
+## Key concepts
+
+- **Tikkun**: the soul-level correction or spiritual work a person is here to perform in this lifetime.
+- **Tikkun Olam**: the broader work of repairing the world by fulfilling one's personal Tikkun.
+- **Gilgul / Gilgulim**: reincarnation — the default reactive patterns ("baggage") a soul carries from past lifetimes.
+- **Kavanah**: focused intention; a daily mantra used to restrict ego and direct one's actions toward the Tikkun.
+- **Mazalot**: celestial constellations whose influence Kabbalists acknowledge while rejecting fatalistic prediction — free will overrides fate.
+- **Kabbalistic Astrology**: the system of reading the soul's purpose from the lunar nodes and Hebrew letters, dating back to Abraham the Patriarch in the Sefer Yetzirah.
 
 ## Pages
 
-- [Home](/): Free Tikkun astrology reading — spin the wheel and reveal your patterns.
-- [A Brief History of Kabbalah Astrology](/history): Origins of Kabbalah astrology in the Sefer Yetzirah and the Zohar.
-- [About](/about): About Marc and the Kabbalah Circle project.
-- [Privacy Policy](/privacy): How we handle your data.
-- [Terms & Conditions](/terms): Terms for using the reading service.
+- [Home](https://tikkun.kabbalahcircle.com/): Free Kabbalistic astrology reading from your date of birth — spin the Tikkun wheel and reveal your soul's purpose patterns.
+- [A Brief History of Kabbalah Astrology](https://tikkun.kabbalahcircle.com/history): The origins of Kabbalistic astrology in the Sefer Yetzirah, the Zohar, and the Talmud — and how free will overrides celestial influence.
+- [About](https://tikkun.kabbalahcircle.com/about): About Marc and the Kabbalah Circle project.
+- [Privacy Policy](https://tikkun.kabbalahcircle.com/privacy): How user data is collected, used, and protected.
+- [Terms & Conditions](https://tikkun.kabbalahcircle.com/terms): Terms for using the free reading service.
