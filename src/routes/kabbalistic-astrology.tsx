@@ -220,6 +220,7 @@ function Hero() {
             ["Letters & Mappings", "#letters"],
             ["Modern Paths", "#streams"],
             ["Glossary", "#glossary"],
+            ["Tikkun", "#tikkun"],
           ].map(([label, href]) => (
             <a
               key={href}
