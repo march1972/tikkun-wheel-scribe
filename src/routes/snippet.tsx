@@ -97,6 +97,7 @@ function Snippet() {
   }, [navigate]);
 
   const handleSpinAgain = () => {
+    track("cta_click", { ctaId: "snippet_spin_again", page: "/snippet" });
     const result = getSpinSnippet(seen);
     if (result.exhausted || !result.sign) {
       setExhausted(true);
@@ -116,7 +117,7 @@ function Snippet() {
     if (!email) return setErr("Please enter your email.");
     setBusy(true);
     try {
-      const res = await submit({ data: { name: name || undefined, dob, email, newsletterOptIn } });
+      const res = await submit({ data: { name: name || undefined, dob, email, newsletterOptIn, sessionId: getSessionId() } });
       if (!res.ok || !res.signId) {
         setErr(res.error ?? "Something went wrong.");
         setBusy(false);
