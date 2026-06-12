@@ -362,7 +362,7 @@ function Landing() {
             </p>
 
             <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
-              <GoldCTA onClick={handleSpin} label="Your Tikkun chart" />
+              <GoldCTA onClick={() => handleSpin("home_gold_your_tikkun_chart")} label="Your Tikkun chart" />
               <p
                 style={{
                   fontFamily: BODY,
