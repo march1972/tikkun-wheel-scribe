@@ -17,8 +17,11 @@ import { Route as SnippetRouteImport } from './routes/snippet'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ReadingRouteImport } from './routes/reading'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as KabbalisticAstrologyReadingRouteImport } from './routes/kabbalistic-astrology-reading'
 import { Route as KabbalisticAstrologyRouteImport } from './routes/kabbalistic-astrology'
+import { Route as JewishAstrologyRouteImport } from './routes/jewish-astrology'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as HebrewAstrologyRouteImport } from './routes/hebrew-astrology'
 import { Route as FormRouteImport } from './routes/form'
 import { Route as ContentRouteImport } from './routes/content'
 import { Route as AboutRouteImport } from './routes/about'
@@ -73,14 +76,30 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KabbalisticAstrologyReadingRoute =
+  KabbalisticAstrologyReadingRouteImport.update({
+    id: '/kabbalistic-astrology-reading',
+    path: '/kabbalistic-astrology-reading',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const KabbalisticAstrologyRoute = KabbalisticAstrologyRouteImport.update({
   id: '/kabbalistic-astrology',
   path: '/kabbalistic-astrology',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JewishAstrologyRoute = JewishAstrologyRouteImport.update({
+  id: '/jewish-astrology',
+  path: '/jewish-astrology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HistoryRoute = HistoryRouteImport.update({
   id: '/history',
   path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HebrewAstrologyRoute = HebrewAstrologyRouteImport.update({
+  id: '/hebrew-astrology',
+  path: '/hebrew-astrology',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FormRoute = FormRouteImport.update({
@@ -157,8 +176,11 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
+  '/hebrew-astrology': typeof HebrewAstrologyRoute
   '/history': typeof HistoryRoute
+  '/jewish-astrology': typeof JewishAstrologyRoute
   '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
+  '/kabbalistic-astrology-reading': typeof KabbalisticAstrologyReadingRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -182,8 +204,11 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
+  '/hebrew-astrology': typeof HebrewAstrologyRoute
   '/history': typeof HistoryRoute
+  '/jewish-astrology': typeof JewishAstrologyRoute
   '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
+  '/kabbalistic-astrology-reading': typeof KabbalisticAstrologyReadingRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -208,8 +233,11 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
+  '/hebrew-astrology': typeof HebrewAstrologyRoute
   '/history': typeof HistoryRoute
+  '/jewish-astrology': typeof JewishAstrologyRoute
   '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
+  '/kabbalistic-astrology-reading': typeof KabbalisticAstrologyReadingRoute
   '/privacy': typeof PrivacyRoute
   '/reading': typeof ReadingRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -235,8 +263,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/content'
     | '/form'
+    | '/hebrew-astrology'
     | '/history'
+    | '/jewish-astrology'
     | '/kabbalistic-astrology'
+    | '/kabbalistic-astrology-reading'
     | '/privacy'
     | '/reading'
     | '/sitemap.xml'
@@ -260,8 +291,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/content'
     | '/form'
+    | '/hebrew-astrology'
     | '/history'
+    | '/jewish-astrology'
     | '/kabbalistic-astrology'
+    | '/kabbalistic-astrology-reading'
     | '/privacy'
     | '/reading'
     | '/sitemap.xml'
@@ -285,8 +319,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/content'
     | '/form'
+    | '/hebrew-astrology'
     | '/history'
+    | '/jewish-astrology'
     | '/kabbalistic-astrology'
+    | '/kabbalistic-astrology-reading'
     | '/privacy'
     | '/reading'
     | '/sitemap.xml'
@@ -311,8 +348,11 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContentRoute: typeof ContentRoute
   FormRoute: typeof FormRoute
+  HebrewAstrologyRoute: typeof HebrewAstrologyRoute
   HistoryRoute: typeof HistoryRoute
+  JewishAstrologyRoute: typeof JewishAstrologyRoute
   KabbalisticAstrologyRoute: typeof KabbalisticAstrologyRoute
+  KabbalisticAstrologyReadingRoute: typeof KabbalisticAstrologyReadingRoute
   PrivacyRoute: typeof PrivacyRoute
   ReadingRoute: typeof ReadingRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -388,6 +428,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kabbalistic-astrology-reading': {
+      id: '/kabbalistic-astrology-reading'
+      path: '/kabbalistic-astrology-reading'
+      fullPath: '/kabbalistic-astrology-reading'
+      preLoaderRoute: typeof KabbalisticAstrologyReadingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kabbalistic-astrology': {
       id: '/kabbalistic-astrology'
       path: '/kabbalistic-astrology'
@@ -395,11 +442,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KabbalisticAstrologyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/jewish-astrology': {
+      id: '/jewish-astrology'
+      path: '/jewish-astrology'
+      fullPath: '/jewish-astrology'
+      preLoaderRoute: typeof JewishAstrologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/history': {
       id: '/history'
       path: '/history'
       fullPath: '/history'
       preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hebrew-astrology': {
+      id: '/hebrew-astrology'
+      path: '/hebrew-astrology'
+      fullPath: '/hebrew-astrology'
+      preLoaderRoute: typeof HebrewAstrologyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/form': {
@@ -523,8 +584,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContentRoute: ContentRoute,
   FormRoute: FormRoute,
+  HebrewAstrologyRoute: HebrewAstrologyRoute,
   HistoryRoute: HistoryRoute,
+  JewishAstrologyRoute: JewishAstrologyRoute,
   KabbalisticAstrologyRoute: KabbalisticAstrologyRoute,
+  KabbalisticAstrologyReadingRoute: KabbalisticAstrologyReadingRoute,
   PrivacyRoute: PrivacyRoute,
   ReadingRoute: ReadingRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
