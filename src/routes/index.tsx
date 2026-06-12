@@ -403,7 +403,7 @@ function Landing() {
 
         {/* ── WHAT YOU RECEIVE ─────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,12vh,9rem)]"
           style={{ background: "radial-gradient(70% 55% at 50% 25%, rgba(180,200,235,0.16) 0%, rgba(10,14,28,0) 70%), radial-gradient(45% 35% at 90% 100%, rgba(245,207,122,0.08) 0%, rgba(245,207,122,0) 70%), linear-gradient(180deg, #14203c 0%, #1c2848 40%, #22304f 70%, #1c2848 100%)" }}
         >
           <StarField density={140} opacity={0.5} seedOffset={2100} />
@@ -412,7 +412,7 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  fontSize: "clamp(32px, 6.5vw, 76px)",
                   lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
@@ -474,7 +474,7 @@ function Landing() {
 
         {/* ── ORIGINS ──────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,12vh,9rem)]"
           style={{
             background: C_BAND_DEEP,
             borderTop: `1px solid ${C_RULE_SOFT}`,
@@ -487,7 +487,7 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  fontSize: "clamp(32px, 6.5vw, 76px)",
                   lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
@@ -513,7 +513,7 @@ function Landing() {
 
         {/* ── FREE WILL ────────────────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,12vh,9rem)]"
           style={{ background: C_BAND_MID }}
         >
           <StarField density={160} opacity={0.5} seedOffset={900} />
@@ -522,7 +522,7 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  fontSize: "clamp(32px, 6.5vw, 76px)",
                   lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
@@ -551,7 +551,7 @@ function Landing() {
 
         {/* ── TIKKUN OLAM + TREE ───────────────────────────────── */}
         <section
-          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(6rem,12vh,9rem)]"
+          className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(3.5rem,12vh,9rem)]"
           style={{ background: C_BAND_LIFT }}
         >
           <StarField density={120} opacity={0.5} seedOffset={1300} driftSeconds={140} />
@@ -561,7 +561,7 @@ function Landing() {
               <h2
                 style={{
                   fontFamily: HEAD, color: C_INK,
-                  fontSize: "clamp(38px, 6.5vw, 76px)",
+                  fontSize: "clamp(32px, 6.5vw, 76px)",
                   lineHeight: 1.1, letterSpacing: "-0.025em",
                 }}
               >
