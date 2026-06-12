@@ -144,11 +144,19 @@ function About() {
         <div className={sectionInner} style={bodyStyle}>
           <p style={paraStyle}>
             Growing up, my grandmother Rose, whose family came from Lithuania,
-            told me we were descendants of the Vilna Gaon, one of the greatest
-            sages and Kabbalists. I'm not sure if that's true, but I have a
-            distinct memory of a large, framed image of an austere sage,
-            looking over us, in her apartment in Pretoria, South Africa. It
-            looked similar to this one.
+            told me we were descendants of the{" "}
+            <a
+              href="https://en.wikipedia.org/wiki/Vilna_Gaon"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: C_GOLD, textDecoration: "underline" }}
+            >
+              Vilna Gaon<span className="sr-only"> (opens in new tab)</span>
+            </a>
+            , one of the greatest sages and Kabbalists. I'm not sure if that's
+            true, but I have a distinct memory of a large, framed image of an
+            austere sage, looking over us, in her apartment in Pretoria, South
+            Africa. It looked similar to this one.
           </p>
 
           <figure className="my-[clamp(2rem,4vh,3rem)] flex flex-col items-center">
