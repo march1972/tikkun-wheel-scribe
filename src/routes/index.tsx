@@ -659,23 +659,23 @@ function Landing() {
             <div style={{ borderTop: `1px solid ${C_RULE}` }} className="mb-[clamp(1.5rem,3vh,2.5rem)]" />
             <div className="flex flex-col items-center">
               <div
-                className="flex flex-col items-center gap-2 md:flex-row md:gap-0"
+                className="flex flex-col items-center gap-3 md:flex-row md:gap-0"
                 style={{
                   fontFamily: BODY,
-                  fontSize: "10px",
+                  fontSize: "12px",
                   letterSpacing: "0.12em",
                   fontWeight: 500,
                 }}
               >
-                <Link to="/about" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                <Link to="/about" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
                   About
                 </Link>
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-                <Link to="/terms" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                <Link to="/terms" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
                   Terms &amp; Conditions
                 </Link>
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-                <Link to="/privacy" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
+                <Link to="/privacy" className="py-2 md:py-0" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
                   Privacy
                 </Link>
                 <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
@@ -690,7 +690,8 @@ function Landing() {
                   color: C_MUTED,
                   fontFamily: BODY,
                   fontSize: "10px",
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.08em",
+                  lineHeight: 1.5,
                   maxWidth: "32rem",
                 }}
               >
