@@ -38,6 +38,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Free Kabbalistic Astrology reading from your date of birth. Discover your Soul's Shadow patterns (Gilgul), your spiritual work (Tikkun) and your daily mantra (Kavanah).",
       },
       { name: "author", content: "Kabbalah Circle" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { property: "og:site_name", content: "Kabbalah Circle" },
       { property: "og:title", content: "Kabbalah Circle — Free Tikkun Astrology Reading" },
       {

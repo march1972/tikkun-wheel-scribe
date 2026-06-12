@@ -40,9 +40,9 @@ const PAGE_URL = "https://tikkun.kabbalahcircle.com/kabbalistic-astrology";
 const PAGE_TITLE =
   "Kabbalistic Astrology: History, Glossary & Timeline (Chokhmat HaMazalot)";
 const PAGE_DESC =
-  "A guide to Kabbalistic Astrology (Jewish or Hebrew Astrology): the Hebrew zodiac, the mazalot, Sefer Yetzirah, the Sefirot, and how Jewish thinkers from Abraham and ibn Ezra to Aryeh Kaplan and the Kabbalah Centre understood cosmic influence. Includes an interactive timeline and a searchable glossary.";
+  "A guide to Kabbalistic Astrology (Jewish or Hebrew Astrology): the Hebrew zodiac, the mazalot, Sefer Yetzirah, the Sefirot, and how Jewish thinkers from Abraham and ibn Ezra through the Arizal, Baal HaSulam and Aryeh Kaplan understood cosmic influence. Includes an interactive timeline and a searchable glossary.";
 const PAGE_KEYWORDS =
-  "Kabbalistic astrology, Jewish astrology, Hebrew astrology, mazal, mazalot, Chokhmat HaMazalot, Sefer Yetzirah, Hebrew zodiac, Hebrew months, Sefirot, Tikkun, Kabbalah, Zohar, Arizal, Baal HaSulam, Aryeh Kaplan, Rosh Chodesh, Hebrew letters, Kabbalah Centre, Philip Berg, red string, 72 Names of God";
+  "Kabbalistic astrology, Jewish astrology, Hebrew astrology, mazal, mazalot, Chokhmat HaMazalot, Sefer Yetzirah, Hebrew zodiac, Hebrew months, Sefirot, Tikkun, Kabbalah, Zohar, Arizal, Baal HaSulam, Aryeh Kaplan, Rosh Chodesh, Hebrew letters, red string, 72 Names of God";
 
 export const Route = createFileRoute("/kabbalistic-astrology")({
   component: KabbalisticAstrologyPage,
@@ -70,13 +70,7 @@ export const Route = createFileRoute("/kabbalistic-astrology")({
           description: PAGE_DESC,
           about:
             "Kabbalistic Astrology, also called Jewish or Hebrew Astrology",
-          articleSection: [
-            "History",
-            "Glossary",
-            "Timeline",
-            "Modern Paths",
-            "The Kabbalah Centre",
-          ],
+          articleSection: ["History", "Glossary", "Timeline", "Practice"],
           url: PAGE_URL,
           mainEntityOfPage: PAGE_URL,
           author: { "@type": "Organization", name: "Kabbalah Circle" },
