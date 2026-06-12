@@ -6,9 +6,14 @@ export const Route = createFileRoute("/terms")({
   component: Terms,
   head: () => ({
     meta: [
-      { title: "Terms & Conditions — Kabbalah Astrology" },
-      { name: "description", content: "Terms and conditions for using Kabbalah Astrology and receiving your free Tikkun reading." },
+      { title: "Terms & Conditions — Kabbalah Circle" },
+      { name: "description", content: "Terms and conditions for using Kabbalah Circle and receiving your free Tikkun reading." },
+      { property: "og:title", content: "Terms & Conditions — Kabbalah Circle" },
+      { property: "og:description", content: "Terms and conditions for using Kabbalah Circle and receiving your free Tikkun reading." },
+      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/terms" },
+      { property: "og:type", content: "article" },
     ],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/terms" }],
   }),
 });
 

@@ -8,6 +8,10 @@ import {
 import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
+import ogDefault from "@/assets/og-default.jpg.asset.json";
+
+const SITE_URL = "https://tikkun.kabbalahcircle.com";
+const OG_IMAGE = `${SITE_URL}${ogDefault.url}`;
 
 function SilentHomeRedirect() {
   useEffect(() => {
@@ -27,14 +31,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Tikkun Microsite" },
-      { name: "description", content: "KABBALAH ASTROLOGY" },
-      { name: "author", content: "Tikkun" },
-      { property: "og:title", content: "Tikkun Microsite" },
-      { property: "og:description", content: "KABBALAH ASTROLOGY" },
+      { title: "Kabbalah Circle — Free Tikkun Astrology Reading" },
+      {
+        name: "description",
+        content:
+          "Free Kabbalistic astrology reading from your date of birth. Discover your Soul's Shadow patterns (Gilgul), your spiritual work (Tikkun) and your daily mantra (Kavanah).",
+      },
+      { name: "author", content: "Kabbalah Circle" },
+      { property: "og:site_name", content: "Kabbalah Circle" },
+      { property: "og:title", content: "Kabbalah Circle — Free Tikkun Astrology Reading" },
+      {
+        property: "og:description",
+        content:
+          "Free Kabbalistic astrology reading from your date of birth — rooted in the Sefer Yetzirah and the Zohar.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1216" },
+      { property: "og:image:height", content: "640" },
+      { property: "og:image:alt", content: "Kabbalah Astrology — Reveal your Tikkun" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Kabbalah Circle — Free Tikkun Astrology Reading" },
+      {
+        name: "twitter:description",
+        content: "Free Kabbalistic astrology reading from your date of birth.",
+      },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "theme-color", content: "#0c1426" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -50,6 +73,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": `${SITE_URL}/#organization`,
+              name: "Kabbalah Circle",
+              url: `${SITE_URL}/`,
+              logo: OG_IMAGE,
+              description:
+                "An independent project sharing Kabbalistic astrology rooted in the Sefer Yetzirah and the Zohar.",
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${SITE_URL}/#website`,
+              url: `${SITE_URL}/`,
+              name: "Kabbalah Circle",
+              description: "Free Kabbalah Tikkun astrology readings.",
+              publisher: { "@id": `${SITE_URL}/#organization` },
+              inLanguage: "en",
+            },
+          ],
+        }),
       },
     ],
   }),

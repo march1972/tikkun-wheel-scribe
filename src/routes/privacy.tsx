@@ -6,9 +6,14 @@ export const Route = createFileRoute("/privacy")({
   component: Privacy,
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Kabbalah Astrology" },
-      { name: "description", content: "How Kabbalah Astrology collects, uses, and protects your personal information." },
+      { title: "Privacy Policy — Kabbalah Circle" },
+      { name: "description", content: "How Kabbalah Circle collects, uses, and protects your personal information." },
+      { property: "og:title", content: "Privacy Policy — Kabbalah Circle" },
+      { property: "og:description", content: "How Kabbalah Circle collects, uses, and protects your personal information." },
+      { property: "og:url", content: "https://tikkun.kabbalahcircle.com/privacy" },
+      { property: "og:type", content: "article" },
     ],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/privacy" }],
   }),
 });
 
