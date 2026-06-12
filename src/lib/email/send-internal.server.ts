@@ -8,8 +8,8 @@ import { TEMPLATES } from '@/lib/email-templates/registry'
 
 const SITE_NAME = 'Kabbalah Circle'
 const SENDER_DOMAIN = 'notify.kabbalahcircle.com'
-const FROM = 'Marc <marc@kabbalahcircle.com>'
-const REPLY_TO = 'marc@kabbalahcircle.com'
+const FROM = 'Kabbala Circle <kabbala-circle@kabbalahcircle.com>'
+const REPLY_TO = 'kabbala-circle@kabbalahcircle.com'
 
 function generateToken(): string {
   const bytes = new Uint8Array(32)
