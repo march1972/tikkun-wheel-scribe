@@ -109,12 +109,12 @@ function About() {
 
           <blockquote
             style={{
-              borderLeft: `2px solid ${C_GOLD}`,
+              borderLeft: `1px solid rgba(201, 168, 111, 0.35)`,
               paddingLeft: "1.25rem",
               margin: "clamp(2rem,4vh,2.75rem) 0",
               fontStyle: "italic",
               color: C_DAWN,
-              fontSize: "20px",
+              fontSize: "24px",
               lineHeight: 1.6,
               fontFamily: HEAD,
             }}
