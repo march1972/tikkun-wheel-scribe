@@ -24,7 +24,7 @@ export const EMAIL_COPY = {
 
     // Intro paragraph under the greeting
     intro:
-      "Below is the heart of your reading — your Spiritual Work (Tikkun) and your Daily Mantra (Kavanah). Your full reading, including your Shadow Pattern and Tikkun Letter, lives on the site.",
+      "Below is the heart of your Tikkun reading, showing you North Lunar Node, and a Daily Mantra (Kavanah) to focus on your Tikkun. Your full reading, including your Shadow Pattern and Tikkun Letter can be found here.",
 
     // Section headings
     tikkunHeading: 'Your Spiritual Work (Tikkun)',
@@ -36,7 +36,7 @@ export const EMAIL_COPY = {
     // ── Waitlist block (shown when recipient opted in) ──
     waitlistOptedInHeading: 'Welcome to the Kabbalah Circle waitlist',
     waitlistOptedInBody:
-      "Thank you for joining. You'll receive occasional notes from Kabbalah Circle — teachings, reflections, and an early invitation when our group programs and coaching open up. No noise, easy to leave any time.",
+      "Thank you for joining the Circle. You'll receive occasional notes with learnings, reflections, and an early invitation to the launch later this year, including any events or coaching programs.",
 
     // ── Waitlist block (shown when recipient did NOT opt in) ──
     waitlistInviteHeading: 'Go deeper with the Kabbalah Circle',
@@ -45,10 +45,11 @@ export const EMAIL_COPY = {
     waitlistInviteLink: 'Join the waitlist →',
 
     // Footer signature
-    footerSignoff: 'With light,',
+    footerSignoff: 'With love,',
     footerName: 'Marc — Kabbalah Circle',
     footerDomain: 'tikkun.kabbalahcircle.com',
   },
+
 
   // ──────────────────────────────────────────────────────────────────────────
   // WAITLIST WELCOME EMAIL — standalone waitlist confirmation
@@ -65,13 +66,13 @@ export const EMAIL_COPY = {
     headingAfter: '.',
 
     body1:
-      "Thank you for joining the Kabbalah Circle waitlist. You'll receive occasional notes from Marc — short teachings on Kabbalah, reflections on the spiritual work of becoming, and an early invitation when our group programs and coaching open up.",
+      "Thank you for joining the Circle. You'll receive occasional notes with learnings, reflections, and an early invitation to the launch later this year, including any events or coaching programs.",
     body2:
       "Expect roughly one or two emails a month. No noise, no selling. You can leave any time with a single click at the bottom of any email.",
 
     ctaButton: 'Get your free Tikkun reading',
 
-    footerSignoff: 'With light,',
+    footerSignoff: 'With love,',
     footerName: 'Marc — Kabbalah Circle',
     footerDomain: 'tikkun.kabbalahcircle.com',
   },
