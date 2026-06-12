@@ -339,7 +339,7 @@ function Landing() {
                     "drop-shadow(0 0 60px rgba(240,200,104,0.32)) drop-shadow(0 0 30px rgba(255,233,184,0.22))",
                 }}
               >
-                <TikkunWheel size={wheelSize} state="idle" onClick={handleSpin} />
+                <TikkunWheel size={wheelSize} state="idle" onClick={() => handleSpin("home_wheel")} />
               </div>
             </div>
 
