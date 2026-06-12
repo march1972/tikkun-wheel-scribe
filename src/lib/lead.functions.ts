@@ -75,6 +75,21 @@ export const submitLead = createServerFn({ method: "POST" })
       console.error("tikkun email enqueue failed", e);
     }
 
+    // Record server-side analytics event for funnel attribution.
+    if (data.sessionId) {
+      try {
+        await supabaseAdmin.from("analytics_events").insert({
+          session_id: data.sessionId,
+          event_name: "lead_submitted",
+          page: "/snippet",
+          cta_id: "reveal_my_free_reading",
+          metadata: { lead_id: inserted.id, sign_id: sign.id, newsletter_opt_in: data.newsletterOptIn },
+        });
+      } catch (e) {
+        console.error("analytics lead_submitted insert failed", e);
+      }
+    }
+
     return { ok: true as const, error: null, signId: sign.id };
   });
 
