@@ -75,18 +75,18 @@ function About() {
           <p style={paraStyle}>Hi, I'm Marc.</p>
 
           <p style={paraStyle}>
-            Kabbalah Circle is a personal project I'm working on, with the goal
-            of helping people find greater meaning, spiritual growth, and
-            fulfillment in their lives — through Kabbalah, psychology, human
-            connection, and community.
+            Kabbalah Circle is an independent personal project I'm working on,
+            with the goal of helping people find greater meaning, spiritual
+            growth, and fulfillment in their lives — through Kabbalah,
+            psychology, human connection, and community.
           </p>
 
           <p style={paraStyle}>
-            Kabbalah Circle is an independent, personal project. It isn't
-            affiliated with any school or institution, and it isn't meant to
-            replace one. If anything, I hope it encourages people to go deeper
-            — including with the established teachers and centers who have
-            carried this wisdom far longer, and far better, than I can.
+            Kabbalah Circle isn't affiliated with any school or institution, and
+            it isn't meant to replace one. If anything, I hope it encourages
+            people to go deeper — including with the established teachers and
+            centers who have carried this wisdom far longer, and far better,
+            than I can.
           </p>
 
           <p style={paraStyle}>
