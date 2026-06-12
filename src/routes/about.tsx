@@ -195,7 +195,6 @@ function About() {
             and worked in South Africa, Israel, Germany, and the United States.{" "}
             <br />
             <br />
-            <br />
             I'm also a certified coach (executive and relationship coaching), a
             mediator, a startup founder, and a venture capitalist.
           </p>
@@ -215,7 +214,6 @@ function About() {
             believing and questioning, but carry a profound sense that we're
             connected to a higher energy, and have a purpose here: to connect
             with one another, and to serve something larger than any one of us.{" "}
-            <br />
             <br />
             <br />
             Kabbalistic Astrology (also sometimes known as Hebrew Astrology or
