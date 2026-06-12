@@ -185,7 +185,7 @@ function TikkunIndex() {
         </ul>
 
         <div style={{ textAlign: "center", marginTop: "3rem" }}>
-          <PrimaryCTA onClick={() => navigate({ to: "/" })} label="Get your personal Tikkun reading" />
+          <PrimaryCTA onClick={() => navigate({ to: "/form" })} label="Get your personal Tikkun reading" />
           <p
             style={{
               marginTop: "0.85rem",
