@@ -6,6 +6,7 @@ import {
   HEAD,
   BODY,
   C_INK,
+  C_INK_BRIGHT,
   C_INK_SOFT,
   C_MUTED,
   C_GOLD,
