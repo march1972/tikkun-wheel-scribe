@@ -1,8 +1,8 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
-import { Link2 } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { toast } from "sonner";
 
 const SHARE_URL = "https://tikkun.kabbalahcircle.com";
@@ -149,7 +149,7 @@ function ReadingPage() {
   const navigate = useNavigate();
   const { sign: signId } = Route.useSearch();
   const [sign, setSign] = useState<TikkunSign | null>(null);
-  const [copied, setCopied] = useState(false);
+  
   const haloRef = useRef<HTMLDivElement | null>(null);
 
   const subscribe = useServerFn(subscribeNewsletter);
@@ -213,11 +213,7 @@ function ReadingPage() {
   const shareUrl = SHARE_URL;
   const shareText = SHARE_TEXT;
 
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(SHARE_URL); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
-  };
-
-  const onInstagramShare = async () => {
+  const handleShare = async () => {
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({ title: "Kabbalah Tikkun reading", text: SHARE_TEXT, url: SHARE_URL });
@@ -228,7 +224,7 @@ function ReadingPage() {
     }
     try {
       await navigator.clipboard.writeText(SHARE_URL);
-      toast("Link copied — share it on Instagram.");
+      toast("Link copied — paste it to share.");
     } catch {}
   };
 
@@ -445,15 +441,16 @@ function ReadingPage() {
               marginBottom: "clamp(1rem,2vh,1.5rem)",
             }}
           >
-            <Link
-              to="/"
+            <button
+              type="button"
+              onClick={handleShare}
               title={SHARE_TEXT}
               aria-label={SHARE_TEXT}
               className="tk-wheel-cta"
-              style={{ display: "inline-flex", opacity: 0.92, cursor: "pointer", borderRadius: "50%", transition: "transform 240ms ease, filter 240ms ease" }}
+              style={{ display: "inline-flex", opacity: 0.92, cursor: "pointer", borderRadius: "50%", transition: "transform 240ms ease, filter 240ms ease", background: "none", border: "none", padding: 0 }}
             >
               <TikkunWheel size={150} state="stopped" hideCenterLabel />
-            </Link>
+            </button>
           </div>
 
           <h2
@@ -501,7 +498,7 @@ function ReadingPage() {
             </a>
             <button
               type="button"
-              onClick={onInstagramShare}
+              onClick={handleShare}
               title={SHARE_TEXT}
               aria-label={SHARE_TEXT}
               className="tk-share-pill inline-flex items-center gap-2"
@@ -517,7 +514,7 @@ function ReadingPage() {
             </button>
             <button
               type="button"
-              onClick={copy}
+              onClick={handleShare}
               className="tk-share-pill inline-flex items-center gap-2"
               style={{
                 fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: C_INK,
@@ -526,8 +523,8 @@ function ReadingPage() {
                 padding: "12px 22px", borderRadius: 999, cursor: "pointer",
               }}
             >
-              <Link2 size={16} />
-              {copied ? "Copied ✓" : "Copy link"}
+              <Share2 size={16} />
+              Share
             </button>
           </div>
         </div>
