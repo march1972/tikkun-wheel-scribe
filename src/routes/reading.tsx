@@ -213,11 +213,7 @@ function ReadingPage() {
   const shareUrl = SHARE_URL;
   const shareText = SHARE_TEXT;
 
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(SHARE_URL); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
-  };
-
-  const onInstagramShare = async () => {
+  const handleShare = async () => {
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({ title: "Kabbalah Tikkun reading", text: SHARE_TEXT, url: SHARE_URL });
@@ -228,7 +224,7 @@ function ReadingPage() {
     }
     try {
       await navigator.clipboard.writeText(SHARE_URL);
-      toast("Link copied — share it on Instagram.");
+      toast("Link copied — paste it to share.");
     } catch {}
   };
 
