@@ -318,16 +318,14 @@ function Landing() {
                 letterSpacing: "-0.035em",
               }}
             >
-              Reveal you?{" "}
+              Reveal{" "}
               <TypewriterWord
-                words={["Tikkun", "Purpose", "Patterns"]}
+                words={["you?", "Tikkun.", "Purpose.", "Patterns."]}
                 style={{
                   fontStyle: "italic",
                   fontWeight: 700,
                   color: C_DAWN,
                 }}
-                suffix="."
-                suffixStyle={{ fontStyle: "normal", fontWeight: 500, color: C_INK }}
               />
             </h1>
 
