@@ -311,7 +311,7 @@ function Landing() {
               className="relative"
               style={{
                 fontFamily: HEAD,
-                color: C_INK,
+                color: "#ffffff",
                 fontWeight: 500,
                 fontSize: "clamp(38px, 7.1vw, 88px)",
                 lineHeight: 1.02,
