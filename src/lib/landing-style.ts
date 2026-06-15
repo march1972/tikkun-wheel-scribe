@@ -15,6 +15,7 @@ export const C_BAND_DAWN =
 
 export const C_INK = "#fdf6e6";
 export const C_INK_SOFT = "#f1e9d5";
+export const C_INK_BRIGHT = "#ffffff";
 export const C_MUTED = "rgba(236, 227, 207, 0.62)";
 export const C_GOLD = "#f0c868";
 export const C_GOLD_BRIGHT = "#FFE9B8";

@@ -275,7 +275,7 @@ function Landing() {
             <span
               style={{
                 fontFamily: BODY,
-                color: "rgba(106, 128, 166, 0.35)",
+                color: "rgba(140, 175, 215, 0.55)",
                 fontSize: "10px",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
@@ -311,7 +311,7 @@ function Landing() {
               className="relative"
               style={{
                 fontFamily: HEAD,
-                color: C_INK,
+                color: "#ffffff",
                 fontWeight: 500,
                 fontSize: "clamp(38px, 7.1vw, 88px)",
                 lineHeight: 1.02,
