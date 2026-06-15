@@ -275,7 +275,7 @@ function Landing() {
             <span
               style={{
                 fontFamily: BODY,
-                color: "rgba(106, 128, 166, 0.35)",
+                color: "rgba(140, 175, 215, 0.55)",
                 fontSize: "10px",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
