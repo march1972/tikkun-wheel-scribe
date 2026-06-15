@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
-import { Link2 } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { toast } from "sonner";
 
 const SHARE_URL = "https://tikkun.kabbalahcircle.com";
