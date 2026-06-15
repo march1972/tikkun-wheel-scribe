@@ -318,7 +318,7 @@ function Landing() {
                 letterSpacing: "-0.035em",
               }}
             >
-              Reveal your{" "}
+              Reveal you?{" "}
               <TypewriterWord
                 words={["Tikkun", "Purpose", "Patterns"]}
                 style={{
@@ -605,7 +605,7 @@ function Landing() {
                 >
                   chart
                 </span>
-                <span style={{ color: C_GOLD }}>.</span>
+                <span style={{ color: C_GOLD }}>?</span>
               </h2>
             </Reveal>
             <Reveal delay={140}>
