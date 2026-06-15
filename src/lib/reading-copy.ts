@@ -3,7 +3,7 @@ export const READING_COPY = {
   label: "Your Tikkun",
   
   reflectionPrompt:
-    "What’s one uncomfortable thing I can do this week to correct my default Shadow Pattern, and get closer to my Tikkun?",
+    "What’s one uncomfortable thing I can do this week to correct my default Shadow Pattern, and get closer to you?",
   shareHeadline: "Spread the Light",
   shareSub:
     "Share the Tikkun Wheel with friends to help them learn more about Kabbalah and Tikkun.",
