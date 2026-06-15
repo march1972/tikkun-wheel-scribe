@@ -100,7 +100,7 @@ export function SeoLanding(props: SeoLandingProps) {
           <h1
             style={{
               fontFamily: HEAD,
-              color: C_INK,
+              color: C_INK_BRIGHT,
               fontSize: "clamp(30px,5.5vw,52px)",
               fontWeight: 500,
               lineHeight: 1.15,
