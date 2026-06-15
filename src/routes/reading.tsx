@@ -498,7 +498,7 @@ function ReadingPage() {
             </a>
             <button
               type="button"
-              onClick={onInstagramShare}
+              onClick={handleShare}
               title={SHARE_TEXT}
               aria-label={SHARE_TEXT}
               className="tk-share-pill inline-flex items-center gap-2"
@@ -514,7 +514,7 @@ function ReadingPage() {
             </button>
             <button
               type="button"
-              onClick={copy}
+              onClick={handleShare}
               className="tk-share-pill inline-flex items-center gap-2"
               style={{
                 fontFamily: BODY, fontSize: "13px", fontWeight: 600, color: C_INK,
@@ -523,8 +523,8 @@ function ReadingPage() {
                 padding: "12px 22px", borderRadius: 999, cursor: "pointer",
               }}
             >
-              <Link2 size={16} />
-              {copied ? "Copied ✓" : "Copy link"}
+              <Share2 size={16} />
+              Share
             </button>
           </div>
         </div>
