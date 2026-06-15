@@ -441,15 +441,16 @@ function ReadingPage() {
               marginBottom: "clamp(1rem,2vh,1.5rem)",
             }}
           >
-            <Link
-              to="/"
+            <button
+              type="button"
+              onClick={handleShare}
               title={SHARE_TEXT}
               aria-label={SHARE_TEXT}
               className="tk-wheel-cta"
-              style={{ display: "inline-flex", opacity: 0.92, cursor: "pointer", borderRadius: "50%", transition: "transform 240ms ease, filter 240ms ease" }}
+              style={{ display: "inline-flex", opacity: 0.92, cursor: "pointer", borderRadius: "50%", transition: "transform 240ms ease, filter 240ms ease", background: "none", border: "none", padding: 0 }}
             >
               <TikkunWheel size={150} state="stopped" hideCenterLabel />
-            </Link>
+            </button>
           </div>
 
           <h2
