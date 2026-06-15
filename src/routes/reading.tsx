@@ -149,7 +149,7 @@ function ReadingPage() {
   const navigate = useNavigate();
   const { sign: signId } = Route.useSearch();
   const [sign, setSign] = useState<TikkunSign | null>(null);
-  const [copied, setCopied] = useState(false);
+  
   const haloRef = useRef<HTMLDivElement | null>(null);
 
   const subscribe = useServerFn(subscribeNewsletter);
