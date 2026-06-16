@@ -262,6 +262,7 @@ function SignInForm({ onSignedIn }: { onSignedIn: (email: string) => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState<string | null>(null);
+  const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   return (
     <Shell>
@@ -271,6 +272,7 @@ function SignInForm({ onSignedIn }: { onSignedIn: (email: string) => void }) {
         onSubmit={async (e) => {
           e.preventDefault();
           setErr(null);
+          setMsg(null);
           setBusy(true);
           const { data, error } = await supabase.auth.signInWithPassword({ email, password });
           setBusy(false);
@@ -291,7 +293,6 @@ function SignInForm({ onSignedIn }: { onSignedIn: (email: string) => void }) {
         />
         <input
           type="password"
-          required
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -303,7 +304,27 @@ function SignInForm({ onSignedIn }: { onSignedIn: (email: string) => void }) {
         >
           {busy ? "Signing in…" : "Sign in"}
         </button>
+        <button
+          type="button"
+          disabled={busy || !email}
+          className="w-full border py-2 rounded disabled:opacity-50"
+          onClick={async () => {
+            setErr(null);
+            setMsg(null);
+            setBusy(true);
+            const { error } = await supabase.auth.signInWithOtp({
+              email,
+              options: { emailRedirectTo: `${window.location.origin}/admin` },
+            });
+            setBusy(false);
+            if (error) setErr(error.message);
+            else setMsg(`Magic sign-in link sent to ${email}. Check your inbox.`);
+          }}
+        >
+          Email me a sign-in link
+        </button>
         {err && <p className="text-red-700 text-sm">{err}</p>}
+        {msg && <p className="text-green-700 text-sm">{msg}</p>}
       </form>
     </Shell>
   );
