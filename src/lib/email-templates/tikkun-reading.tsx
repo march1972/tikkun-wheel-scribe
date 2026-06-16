@@ -63,9 +63,9 @@ export const TikkunReadingEmail = ({
             <Heading style={h1}>{signName}</Heading>
             <Text style={hebrew}>{hebrewName}</Text>
             <Text style={nodes}>
-              NORTH LUNAR NODE IN {northNode.toUpperCase()}
+              NORTH NODE IN {northNode.toUpperCase()}
               <br />
-              SOUTH LUNAR NODE IN {southNode.toUpperCase()}
+              SOUTH NODE IN {southNode.toUpperCase()}
             </Text>
           </Section>
 
@@ -76,11 +76,7 @@ export const TikkunReadingEmail = ({
               ? fill(COPY.greeting, { name: greetingName })
               : COPY.greetingFallback}
           </Text>
-          <Text style={body}>{COPY.intro}</Text>
 
-          <Heading as="h2" style={h2}>
-            {COPY.tikkunHeading}
-          </Heading>
           {paragraphs.map((p, i) => (
             <Text key={i} style={body}>
               {p}
@@ -91,6 +87,7 @@ export const TikkunReadingEmail = ({
             {COPY.mantraHeading}
           </Heading>
           <Text style={mantra}>{dailyMantra}</Text>
+
 
           <Section style={{ textAlign: 'center', margin: '32px 0' }}>
             <Button style={button} href={readingUrl}>
