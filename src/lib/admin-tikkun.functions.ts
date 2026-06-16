@@ -133,7 +133,7 @@ export const adminUploadVersion = createServerFn({ method: "POST" })
       .insert({
         filename: data.filename,
         storage_path: storagePath,
-        content: parsed as object,
+        content: parsed as never,
         notes: data.notes ?? null,
         uploaded_by: context.userId,
         is_active: false,
