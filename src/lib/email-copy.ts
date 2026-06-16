@@ -22,12 +22,11 @@ export const EMAIL_COPY = {
     greeting: 'Dear {name},',
     greetingFallback: 'Dear friend,',
 
-    // Intro paragraph under the greeting
-    intro:
-      "Below is the heart of your Tikkun reading, showing you North Lunar Node, and a Daily Mantra (Kavanah) to focus on your Tikkun. Your full reading, including your Shadow Pattern and Tikkun Letter can be found here.",
+    // Intro paragraph under the greeting (removed — body now starts directly with Tikkun text)
+    intro: '',
 
     // Section headings
-    tikkunHeading: 'Your Spiritual Work (Tikkun)',
+    tikkunHeading: '',
     mantraHeading: 'Your Daily Mantra (Kavanah)',
 
     // Button under the mantra
@@ -41,7 +40,7 @@ export const EMAIL_COPY = {
     // ── Waitlist block (shown when recipient did NOT opt in) ──
     waitlistInviteHeading: 'Go deeper with the Kabbalah Circle',
     waitlistInviteBody:
-      "Want to receive occasional teachings and an early invitation when our group programs open? Join the waitlist — it's free and you can leave any time.",
+      "Want to receive occasional teachings and an early invitation to join the Kabbalah Circle? Join the waitlist — it's free and you can leave any time.",
     waitlistInviteLink: 'Join the waitlist →',
 
     // Footer signature
