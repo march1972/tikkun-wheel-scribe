@@ -321,7 +321,7 @@ function Hero() {
               key={item.href}
               href={item.href}
               onClick={item.onClick}
-              className="text-[#f1e9d5] border border-red-500 hover:text-red-400 hover:border-red-400 transition-colors duration-200"
+              className="text-[#f1e9d5] border border-yellow-400 hover:text-yellow-300 hover:border-yellow-300 transition-colors duration-200"
               style={{
                 fontFamily: BODY,
                 fontSize: "12px",
