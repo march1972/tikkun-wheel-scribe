@@ -273,7 +273,7 @@ function Landing() {
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
           <div className="mx-auto mt-[clamp(1rem,2vh,1.5rem)] text-center">
             <Link
-              to="/kabbalah-astrology"
+              to="/kabbalistic-astrology"
               style={{
                 fontFamily: BODY,
                 color: "rgba(140, 175, 215, 0.55)",
@@ -282,9 +282,11 @@ function Landing() {
                 textTransform: "uppercase",
                 fontWeight: 600,
               }}
-              className="inline-block transition-colors duration-300 hover:text-[rgba(180,210,245,0.75)]"
+              className="inline-block transition-all duration-300 hover:text-orange-400"
             >
-              KABBALAH ASTROLOGY
+              <span className="inline-block transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(251,146,60,0.85)] hover:scale-105">
+                KABBALAH ASTROLOGY
+              </span>
             </Link>
           </div>
         </header>
