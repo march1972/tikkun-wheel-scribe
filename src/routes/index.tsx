@@ -357,12 +357,11 @@ function Landing() {
               }}
             >
               Kabbalistic Astrology maps your{" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span>
-              :&nbsp;the soul's recurring pattern of correction that signals how to{" "}
+              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun:</span>&nbsp;the
+              soul's recurring patterns that signal how to{" "}
               <span style={{ color: C_GOLD, fontStyle: "italic" }}>
-                fulfill your life's purpose
-              </span>{" "}
-              — in relationships, finances, and career.
+                fulfill your life's purpose.
+              </span>
             </p>
 
             <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
