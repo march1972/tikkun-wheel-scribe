@@ -368,11 +368,10 @@ function Landing() {
               <p
                 style={{
                   fontFamily: BODY,
-                  color: C_MUTED,
+                  color: "#FFE9B8",
                   fontSize: "10px",
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
-                  fontWeight: 600,
                 }}
               >
                 FREE KABBALAH ASTROLOGY READING
