@@ -67,7 +67,7 @@ export const Route = createFileRoute("/kabbalistic-astrology")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: "A History of Kabbalistic Astrology",
+          headline: "A Guide to Kabbalistic Astrology",
           description: PAGE_DESC,
           about:
             "Kabbalistic Astrology, also called Jewish or Hebrew Astrology",
@@ -288,7 +288,7 @@ function Hero() {
             letterSpacing: "-0.02em",
           }}
         >
-          A History of{" "}
+          A Guide to{" "}
           <span style={{ color: C_DAWN, fontStyle: "italic" }}>
             Kabbalistic Astrology
           </span>
