@@ -288,7 +288,7 @@ function Hero() {
             letterSpacing: "-0.02em",
           }}
         >
-          A History of{" "}
+          A Guide to{" "}
           <span style={{ color: C_DAWN, fontStyle: "italic" }}>
             Kabbalistic Astrology
           </span>
