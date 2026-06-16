@@ -6,7 +6,7 @@ export const READING_COPY = {
     "What’s one uncomfortable thing I can do this week to correct my default Shadow Pattern, and get closer to you?",
   shareHeadline: "Spread the Light",
   shareSub:
-    "Share the Tikkun Wheel with friends to help them learn more about Kabbalah and Tikkun.",
+    "Share the Tikkun Wheel with friends to get their free reading.",
   deeperSub: "Find fulfilment through the wisdom of Kabbalah, community, and coaching.",
   deeperButton: "Go deeper",
   sectionHeaders: [
