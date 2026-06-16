@@ -215,6 +215,39 @@ export type Database = {
         }
         Relationships: []
       }
+      tikkun_content_versions: {
+        Row: {
+          content: Json
+          filename: string
+          id: string
+          is_active: boolean
+          notes: string | null
+          storage_path: string
+          uploaded_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          content: Json
+          filename: string
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          storage_path: string
+          uploaded_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          content?: Json
+          filename?: string
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          storage_path?: string
+          uploaded_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -228,6 +261,7 @@ export type Database = {
         Args: { payload: Json; queue_name: string }
         Returns: number
       }
+      is_tikkun_admin: { Args: never; Returns: boolean }
       move_to_dlq: {
         Args: {
           dlq_name: string

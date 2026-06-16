@@ -52,20 +52,22 @@ export const submitLead = createServerFn({ method: "POST" })
 
     // Fire-and-forget Tikkun reading email. Never block / break the form.
     try {
+      const { getMergedSignById } = await import("@/lib/tikkun-content.server");
+      const liveSign = (await getMergedSignById(sign.id)) ?? sign;
       await enqueueAppEmail({
         templateName: "tikkun-reading",
         recipientEmail: data.email,
         idempotencyKey: `tikkun-reading-${inserted.id}`,
         templateData: {
           name: data.name || null,
-          signName: sign.signId,
-          hebrewName: sign.hebrewName,
-          tikkunLetterHebrew: sign.tikkunLetterHebrew,
-          northNode: sign.northNode,
-          southNode: sign.southNode,
-          spiritualWorkTikkun: sign.spiritualWorkTikkun,
-          dailyMantra: sign.dailyMantra,
-          readingUrl: readingUrlForSign(sign.id),
+          signName: liveSign.signId,
+          hebrewName: liveSign.hebrewName,
+          tikkunLetterHebrew: liveSign.tikkunLetterHebrew,
+          northNode: liveSign.northNode,
+          southNode: liveSign.southNode,
+          spiritualWorkTikkun: liveSign.spiritualWorkTikkun,
+          dailyMantra: liveSign.dailyMantra,
+          readingUrl: readingUrlForSign(liveSign.id),
           siteUrl: SITE_URL,
           optedIn: data.newsletterOptIn,
           waitlistUrl: `${SITE_URL}/history?subscribe=1`,
