@@ -19,7 +19,7 @@ export const getActiveTikkunContent = createServerFn({ method: "GET" }).handler(
       id: data.id as string,
       filename: data.filename as string,
       uploadedAt: data.uploaded_at as string,
-      content: data.content as unknown,
+      content: data.content as Record<string, unknown> | unknown[] | null,
     };
   },
 );
