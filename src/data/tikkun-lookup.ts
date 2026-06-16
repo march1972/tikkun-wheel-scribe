@@ -9,6 +9,7 @@
 // Requires "resolveJsonModule": true in tsconfig (Vite/TanStack already supports this).
 
 import tikkunData from "./tikkun-data.json";
+import tikkunContentUpdate from "./tikkun-content-update.json";
 
 export interface DateRange {
   start: string; // ISO "YYYY-MM-DD" inclusive
@@ -45,7 +46,27 @@ interface TikkunData {
 }
 
 const DATA = tikkunData as TikkunData;
-export const SIGNS: TikkunSign[] = DATA.signs;
+type TikkunContentUpdate = Pick<
+  TikkunSign,
+  | "signId"
+  | "spinSnippet"
+  | "quote"
+  | "shadowGilgul"
+  | "shadowArchetype"
+  | "spiritualWorkTikkun"
+  | "tikkunLetterFull"
+  | "dailyMantra"
+>;
+
+const CONTENT_UPDATES = tikkunContentUpdate as TikkunContentUpdate[];
+const CONTENT_BY_SIGN = new Map(
+  CONTENT_UPDATES.map((sign) => [sign.signId.toLowerCase(), sign]),
+);
+
+export const SIGNS: TikkunSign[] = DATA.signs.map((sign) => ({
+  ...sign,
+  ...(CONTENT_BY_SIGN.get(sign.signId.toLowerCase()) ?? {}),
+}));
 export const COVERAGE_START = DATA.meta.coverageStart; // "1901-01-22"
 export const COVERAGE_END = DATA.meta.coverageEnd;     // "2051-06-28"
 export const MAX_SPINS = 4;
