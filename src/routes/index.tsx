@@ -276,17 +276,16 @@ function Landing() {
               to="/kabbalistic-astrology"
               style={{
                 fontFamily: BODY,
-                color: "rgba(140, 175, 215, 0.55)",
+                color: "#f0c868",
                 fontSize: "10px",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
                 fontWeight: 600,
+                textShadow: "0 0 6px rgba(240, 200, 104, 0.35)",
               }}
-              className="inline-block transition-all duration-300 hover:text-orange-400"
+              className="inline-block transition-all duration-300 hover:!text-[#FFE9B8] hover:scale-105 hover:drop-shadow-[0_0_14px_rgba(255,233,184,0.95)]"
             >
-              <span className="inline-block transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(251,146,60,0.85)] hover:scale-105">
-                KABBALAH ASTROLOGY
-              </span>
+              <span>KABBALAH ASTROLOGY</span>
             </Link>
           </div>
         </header>
