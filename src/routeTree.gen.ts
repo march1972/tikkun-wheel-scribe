@@ -24,6 +24,7 @@ import { Route as HistoryRouteImport } from './routes/history'
 import { Route as HebrewAstrologyRouteImport } from './routes/hebrew-astrology'
 import { Route as FormRouteImport } from './routes/form'
 import { Route as ContentRouteImport } from './routes/content'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TikkunSignRouteImport } from './routes/tikkun.$sign'
@@ -112,6 +113,11 @@ const ContentRoute = ContentRouteImport.update({
   path: '/content',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -174,6 +180,7 @@ const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
   '/hebrew-astrology': typeof HebrewAstrologyRoute
@@ -202,6 +209,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
   '/hebrew-astrology': typeof HebrewAstrologyRoute
@@ -231,6 +239,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/content': typeof ContentRoute
   '/form': typeof FormRoute
   '/hebrew-astrology': typeof HebrewAstrologyRoute
@@ -261,6 +270,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/content'
     | '/form'
     | '/hebrew-astrology'
@@ -289,6 +299,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/admin'
     | '/content'
     | '/form'
     | '/hebrew-astrology'
@@ -317,6 +328,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/content'
     | '/form'
     | '/hebrew-astrology'
@@ -346,6 +358,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRoute
   ContentRoute: typeof ContentRoute
   FormRoute: typeof FormRoute
   HebrewAstrologyRoute: typeof HebrewAstrologyRoute
@@ -477,6 +490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -582,6 +602,7 @@ const TikkunRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRoute,
   ContentRoute: ContentRoute,
   FormRoute: FormRoute,
   HebrewAstrologyRoute: HebrewAstrologyRoute,
