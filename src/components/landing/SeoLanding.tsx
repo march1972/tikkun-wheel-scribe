@@ -141,7 +141,7 @@ export function SeoLanding(props: SeoLandingProps) {
                 fontWeight: 600,
               }}
             >
-              Free Tikkun Astrology Reading · No sign-up
+              FREE KABBALAH ASTROLOGY READING · No sign-up
             </p>
           </div>
         </div>
