@@ -243,7 +243,10 @@ function HistoryPage() {
                 onSubmit={onSubmit}
                 className="mt-10 mx-auto flex w-full max-w-md flex-col sm:flex-row items-stretch gap-3"
               >
+                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
                 <input
+                  id="newsletter-email"
+                  aria-label="Email address"
                   type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com" autoComplete="email" maxLength={255}
                   style={{

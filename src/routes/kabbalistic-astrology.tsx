@@ -905,7 +905,7 @@ function Glossary() {
                         padding: "7px 14px",
                       }}
                     >
-                      {g.linkText || "Learn more"} →
+                      {g.linkText || `Read more about ${g.term}`} →
                     </Link>
                   </p>
                 )}
