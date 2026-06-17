@@ -25,6 +25,7 @@ const SECTIONS = [
   { id: "personal", label: "Personal Tikkun" },
   { id: "olam", label: "Tikkun Olam" },
   { id: "discover", label: "Discover Yours" },
+  { id: "twelve", label: "The 12 Tikkunim" },
   { id: "faq", label: "FAQ" },
 ];
 
@@ -369,23 +370,107 @@ function WhatIsTikkunPage() {
             ))}
           </dl>
 
-          <p
+          <div
+            id="twelve"
             style={{
-              fontFamily: BODY,
-              color: C_INK_SOFT,
-              fontSize: "14px",
-              marginTop: "clamp(2rem,4vh,3rem)",
+              marginTop: "clamp(2.5rem,6vh,4rem)",
+              borderTop: `1px solid ${C_RULE}`,
+              paddingTop: "clamp(2rem,4vh,3rem)",
               textAlign: "center",
             }}
           >
-            Continue reading:{" "}
-            <Link
-              to="/kabbalistic-astrology"
-              style={{ color: C_GOLD, textDecoration: "underline" }}
+            <h2
+              style={{
+                fontFamily: HEAD,
+                color: C_INK,
+                fontSize: "clamp(26px, 4vw, 42px)",
+                lineHeight: 1.15,
+                letterSpacing: "-0.02em",
+                marginBottom: "1rem",
+              }}
             >
-              A guide to Kabbalistic Astrology
+              The <span style={{ color: C_GOLD, fontStyle: "italic" }}>12 Tikkunim</span>
+            </h2>
+            <p
+              style={{
+                fontFamily: BODY,
+                color: C_INK_SOFT,
+                fontSize: "clamp(16px, 1.5vw, 19px)",
+                lineHeight: 1.7,
+                maxWidth: "560px",
+                margin: "0 auto 1.5rem",
+              }}
+            >
+              Each zodiac sign carries a distinct soul correction. Explore the
+              twelve Tikkunim — from Aries to Pisces — and discover which
+              spiritual work belongs to your birth sign.
+            </p>
+            <Link
+              to="/tikkun"
+              style={{
+                fontFamily: BODY,
+                color: C_GOLD,
+                fontSize: "13px",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                fontWeight: 600,
+                textDecoration: "underline",
+                textUnderlineOffset: "4px",
+              }}
+            >
+              Explore the 12 Tikkunim →
             </Link>
-          </p>
+          </div>
+
+          <div
+            style={{
+              marginTop: "clamp(2.5rem,6vh,4rem)",
+              textAlign: "center",
+            }}
+          >
+            <GoldCTA
+              variant="dawn"
+              onClick={() => {
+                window.location.href = "/form";
+              }}
+              label="Get your personal Tikkun reading"
+            />
+            <p
+              style={{
+                fontFamily: BODY,
+                color: "rgba(184,51,63,0.85)",
+                fontSize: "11px",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                marginTop: "0.85rem",
+                marginBottom: "1.25rem",
+              }}
+            >
+              Free · Based on your date of birth
+            </p>
+            <p
+              style={{
+                fontFamily: BODY,
+                color: C_INK_SOFT,
+                fontSize: "13px",
+              }}
+            >
+              Or explore:{" "}
+              <Link
+                to="/tikkun"
+                style={{ color: C_GOLD, textDecoration: "underline" }}
+              >
+                The 12 Tikkunim
+              </Link>
+              {" · "}
+              <Link
+                to="/kabbalistic-astrology"
+                style={{ color: C_GOLD, textDecoration: "underline" }}
+              >
+                Kabbalistic Astrology guide
+              </Link>
+            </p>
+          </div>
         </div>
       </article>
       <PageFooter />
