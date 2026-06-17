@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
+import { PageFooter } from "@/components/landing/PageFooter";
 import { Reveal } from "@/components/landing/Reveal";
 import {
   HEAD, BODY, C_INK, C_INK_SOFT, C_MUTED, C_GOLD, C_DAWN, C_RULE, C_RULE_SOFT,
@@ -247,33 +248,7 @@ function HistoryPage() {
         </section>
       </Reveal>
 
-      {/* ── Footer ───────────────────────────────────────────── */}
-      <footer className="px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(3rem,6vh,5rem)] pb-[clamp(1.5rem,3vh,2.5rem)]">
-        <div className="mx-auto max-w-6xl">
-          <div style={{ borderTop: `1px solid ${C_RULE}` }} className="mb-[clamp(1.5rem,3vh,2.5rem)]" />
-          <div className="flex justify-center">
-            <div
-              className="flex flex-col items-center gap-2 md:flex-row md:gap-0"
-              style={{
-                fontFamily: BODY, fontSize: "10px",
-                letterSpacing: "0.12em", fontWeight: 500,
-              }}
-            >
-              <Link to="/terms" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
-                Terms &amp; Conditions
-              </Link>
-              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-              <Link to="/privacy" style={{ color: C_INK_SOFT, textDecoration: "underline" }}>
-                Privacy
-              </Link>
-              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-              <span style={{ color: C_INK_SOFT }}>Kabbalah Astrology</span>
-              <span className="hidden md:inline" style={{ color: C_MUTED, margin: "0 8px" }}>·</span>
-              <span style={{ color: C_INK_SOFT }}>Kabbalah Circle © 2026</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <PageFooter />
     </SkyShell>
   );
 }

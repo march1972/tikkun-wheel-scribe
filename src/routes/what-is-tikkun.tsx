@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SkyShell } from "@/components/landing/SkyShell";
+import { PageFooter } from "@/components/landing/PageFooter";
 import { PrimaryCTA as GoldCTA } from "@/components/landing/PrimaryCTA";
 import { Reveal } from "@/components/landing/Reveal";
 import {
@@ -387,6 +388,7 @@ function WhatIsTikkunPage() {
           </p>
         </div>
       </article>
+      <PageFooter />
     </SkyShell>
   );
 }
