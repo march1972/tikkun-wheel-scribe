@@ -89,6 +89,9 @@ function HistoryPage() {
     }
   };
 
+  const { subscribe } = Route.useSearch();
+  const isSubscribe = subscribe === "1";
+
   return (
     <SkyShell starDensity={280}>
       <style>{`
@@ -98,49 +101,53 @@ function HistoryPage() {
         .hist-fade-d2 { animation: hist-fade-up 1.1s ease-out 0.5s both; }
       `}</style>
 
-      {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative mx-auto flex max-w-3xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        <div
-          ref={haloRef}
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "clamp(320px, 60vw, 560px)",
-            height: "clamp(320px, 60vw, 560px)",
-            background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
-            filter: "blur(10px)",
-            pointerEvents: "none",
-            willChange: "transform",
-          }}
-        />
+      {!isSubscribe && (
+        <>
+          {/* ── Hero ─────────────────────────────────────────────── */}
+          <section className="relative mx-auto flex max-w-3xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
+            <div
+              ref={haloRef}
+              aria-hidden
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "clamp(320px, 60vw, 560px)",
+                height: "clamp(320px, 60vw, 560px)",
+                background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
+                filter: "blur(10px)",
+                pointerEvents: "none",
+                willChange: "transform",
+              }}
+            />
 
-        <h1
-          className="hist-fade relative"
-          style={{
-            fontFamily: HEAD, color: C_INK, fontWeight: 400,
-            fontSize: "clamp(40px, 7.5vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.02em",
-            textShadow: `0 0 60px ${C_DAWN}33, 0 0 120px ${C_GOLD}22`,
-          }}
-        >
-          Ancient <span style={{ color: C_GOLD, fontStyle: "italic" }}>wisdom</span>,
-          <br />
-          living <span style={{ color: C_DAWN, fontStyle: "italic" }}>work</span>.
-        </h1>
+            <h1
+              className="hist-fade relative"
+              style={{
+                fontFamily: HEAD, color: C_INK, fontWeight: 400,
+                fontSize: "clamp(40px, 7.5vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.02em",
+                textShadow: `0 0 60px ${C_DAWN}33, 0 0 120px ${C_GOLD}22`,
+              }}
+            >
+              Ancient <span style={{ color: C_GOLD, fontStyle: "italic" }}>wisdom</span>,
+              <br />
+              living <span style={{ color: C_DAWN, fontStyle: "italic" }}>work</span>.
+            </h1>
 
-        <p
-          className="hist-fade-d1 relative mt-[clamp(1.5rem,3vh,2.25rem)]"
-          style={{
-            fontFamily: HEAD, fontStyle: "italic", color: C_INK_SOFT,
-            fontSize: "clamp(18px, 2.4vw, 24px)", lineHeight: 1.5,
-            maxWidth: "36rem",
-          }}
-        >
-          Kabbalah provides us with the tools to transform our lives&nbsp;
-        </p>
-      </section>
+            <p
+              className="hist-fade-d1 relative mt-[clamp(1.5rem,3vh,2.25rem)]"
+              style={{
+                fontFamily: HEAD, fontStyle: "italic", color: C_INK_SOFT,
+                fontSize: "clamp(18px, 2.4vw, 24px)", lineHeight: 1.5,
+                maxWidth: "36rem",
+              }}
+            >
+              Kabbalah provides us with the tools to transform our lives&nbsp;
+            </p>
+          </section>
+        </>
+      )}
 
       {/* ── Prose ────────────────────────────────────────────── */}
       <section
