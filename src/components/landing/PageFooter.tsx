@@ -78,8 +78,8 @@ export function PageFooter() {
             </span>
             <Link
               to="/what-is-tikkun"
-              className="py-2 md:py-0"
-              style={linkStyle}
+              className="flex items-center min-h-[44px] py-2 md:py-0"
+              style={{ ...linkStyle, color: C_GOLD, textDecorationThickness: "1.5px", textUnderlineOffset: "3px" }}
             >
               What is Tikkun
             </Link>
