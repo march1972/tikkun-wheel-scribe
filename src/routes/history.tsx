@@ -1,6 +1,7 @@
-import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
+import { z } from "zod";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import { PageFooter } from "@/components/landing/PageFooter";
