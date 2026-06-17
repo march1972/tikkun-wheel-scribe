@@ -25,6 +25,7 @@ const SECTIONS = [
   { id: "personal", label: "Personal Tikkun" },
   { id: "olam", label: "Tikkun Olam" },
   { id: "discover", label: "Discover Yours" },
+  { id: "twelve", label: "The 12 Tikkunim" },
   { id: "faq", label: "FAQ" },
 ];
 
