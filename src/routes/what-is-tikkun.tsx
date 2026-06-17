@@ -374,8 +374,9 @@ function WhatIsTikkunPage() {
             id="twelve"
             style={{
               marginTop: "clamp(2.5rem,6vh,4rem)",
-              borderTop: `1px solid ${C_RULE}`,
-              paddingTop: "clamp(2rem,4vh,3rem)",
+              backgroundColor: "rgba(253, 246, 230, 0.04)",
+              borderRadius: "16px",
+              padding: "clamp(2rem,4vh,3rem) clamp(1.5rem,4vw,2.5rem)",
               textAlign: "center",
             }}
           >
@@ -412,7 +413,6 @@ function WhatIsTikkunPage() {
                 color: C_GOLD,
                 fontSize: "13px",
                 letterSpacing: "0.18em",
-                textTransform: "uppercase",
                 fontWeight: 600,
                 textDecoration: "underline",
                 textUnderlineOffset: "4px",
@@ -438,37 +438,14 @@ function WhatIsTikkunPage() {
             <p
               style={{
                 fontFamily: BODY,
-                color: "rgba(184,51,63,0.85)",
+                color: C_INK_SOFT,
                 fontSize: "11px",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
+                letterSpacing: "0.06em",
                 marginTop: "0.85rem",
                 marginBottom: "1.25rem",
               }}
             >
               Free · Based on your date of birth
-            </p>
-            <p
-              style={{
-                fontFamily: BODY,
-                color: C_INK_SOFT,
-                fontSize: "13px",
-              }}
-            >
-              Or explore:{" "}
-              <Link
-                to="/tikkun"
-                style={{ color: C_GOLD, textDecoration: "underline" }}
-              >
-                The 12 Tikkunim
-              </Link>
-              {" · "}
-              <Link
-                to="/kabbalistic-astrology"
-                style={{ color: C_GOLD, textDecoration: "underline" }}
-              >
-                Kabbalistic Astrology guide
-              </Link>
             </p>
           </div>
         </div>
