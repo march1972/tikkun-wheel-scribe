@@ -11,8 +11,13 @@ import {
 } from "@/lib/landing-style";
 import { subscribeNewsletter } from "@/lib/lead.functions";
 
+const historySearch = z.object({
+  subscribe: z.string().optional(),
+});
+
 export const Route = createFileRoute("/history")({
   component: HistoryPage,
+  validateSearch: historySearch,
   head: () => ({
     meta: [
       { title: "Kabbalah Astrology — A Brief History" },
