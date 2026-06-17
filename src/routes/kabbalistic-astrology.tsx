@@ -40,9 +40,9 @@ import {
 
 const PAGE_URL = "https://tikkun.kabbalahcircle.com/kabbalistic-astrology";
 const PAGE_TITLE =
-  "Kabbalistic Astrology: History, Glossary & Timeline (Chokhmat HaMazalot)";
+  "Kabbalistic Astrology Guide: History, Glossary & Timeline";
 const PAGE_DESC =
-  "A guide to Kabbalistic Astrology (Jewish or Hebrew Astrology): the Hebrew zodiac, the mazalot, Sefer Yetzirah, the Sefirot, and how Jewish thinkers from Abraham and ibn Ezra through the Arizal, Baal HaSulam and Aryeh Kaplan understood cosmic influence. Includes an interactive timeline and a searchable glossary.";
+  "A guide to Kabbalistic Astrology: the Hebrew zodiac, mazalot, Sefer Yetzirah, and Sefirot. Includes an interactive timeline and glossary.";
 const PAGE_KEYWORDS =
   "Kabbalistic astrology, Jewish astrology, Hebrew astrology, mazal, mazalot, Chokhmat HaMazalot, Sefer Yetzirah, Hebrew zodiac, Hebrew months, Sefirot, Tikkun, Kabbalah, Zohar, Arizal, Baal HaSulam, Aryeh Kaplan, Rosh Chodesh, Hebrew letters, red string, 72 Names of God";
 
