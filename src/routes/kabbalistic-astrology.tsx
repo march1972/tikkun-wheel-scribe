@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { PageFooter } from "@/components/landing/PageFooter";
 import { useEffect, useMemo, useState } from "react";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { track } from "@/lib/analytics";
