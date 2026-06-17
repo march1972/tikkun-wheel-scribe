@@ -60,11 +60,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "twitter:image", content: OG_IMAGE },
       { name: "theme-color", content: "#0c1426" },
-      { name: "description", content: "Free Kabbalistic Astrology readings based on birth dates & info on Jewish Astrology, Hebrew Astrology, Tikkun Olam, Kabbalah, Psychology" },
-      { property: "og:description", content: "Free Kabbalistic Astrology readings based on birth dates & info on Jewish Astrology, Hebrew Astrology, Tikkun Olam, Kabbalah, Psychology" },
-      { name: "twitter:description", content: "Free Kabbalistic Astrology readings based on birth dates & info on Jewish Astrology, Hebrew Astrology, Tikkun Olam, Kabbalah, Psychology" },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/gyLXDS55k9gIhfeCCWLqWpCmUea2/social-images/social-1781245045765-vilna-gaon.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/gyLXDS55k9gIhfeCCWLqWpCmUea2/social-images/social-1781245045765-vilna-gaon.webp" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
