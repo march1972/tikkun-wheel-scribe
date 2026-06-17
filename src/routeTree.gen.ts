@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhatIsTikkunRouteImport } from './routes/what-is-tikkun'
 import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as TikkunRouteImport } from './routes/tikkun'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -37,6 +38,11 @@ import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/e
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 
+const WhatIsTikkunRoute = WhatIsTikkunRouteImport.update({
+  id: '/what-is-tikkun',
+  path: '/what-is-tikkun',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UnsubscribeRoute = UnsubscribeRouteImport.update({
   id: '/unsubscribe',
   path: '/unsubscribe',
@@ -196,6 +202,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/tikkun': typeof TikkunRouteWithChildren
   '/unsubscribe': typeof UnsubscribeRoute
+  '/what-is-tikkun': typeof WhatIsTikkunRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reading/$sign': typeof ReadingSignRoute
   '/tikkun/$sign': typeof TikkunSignRoute
@@ -225,6 +232,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/tikkun': typeof TikkunRouteWithChildren
   '/unsubscribe': typeof UnsubscribeRoute
+  '/what-is-tikkun': typeof WhatIsTikkunRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reading/$sign': typeof ReadingSignRoute
   '/tikkun/$sign': typeof TikkunSignRoute
@@ -255,6 +263,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/tikkun': typeof TikkunRouteWithChildren
   '/unsubscribe': typeof UnsubscribeRoute
+  '/what-is-tikkun': typeof WhatIsTikkunRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reading/$sign': typeof ReadingSignRoute
   '/tikkun/$sign': typeof TikkunSignRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tikkun'
     | '/unsubscribe'
+    | '/what-is-tikkun'
     | '/email/unsubscribe'
     | '/reading/$sign'
     | '/tikkun/$sign'
@@ -315,6 +325,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tikkun'
     | '/unsubscribe'
+    | '/what-is-tikkun'
     | '/email/unsubscribe'
     | '/reading/$sign'
     | '/tikkun/$sign'
@@ -344,6 +355,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tikkun'
     | '/unsubscribe'
+    | '/what-is-tikkun'
     | '/email/unsubscribe'
     | '/reading/$sign'
     | '/tikkun/$sign'
@@ -374,6 +386,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TikkunRoute: typeof TikkunRouteWithChildren
   UnsubscribeRoute: typeof UnsubscribeRoute
+  WhatIsTikkunRoute: typeof WhatIsTikkunRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
@@ -385,6 +398,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/what-is-tikkun': {
+      id: '/what-is-tikkun'
+      path: '/what-is-tikkun'
+      fullPath: '/what-is-tikkun'
+      preLoaderRoute: typeof WhatIsTikkunRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/unsubscribe': {
       id: '/unsubscribe'
       path: '/unsubscribe'
@@ -618,6 +638,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TikkunRoute: TikkunRouteWithChildren,
   UnsubscribeRoute: UnsubscribeRoute,
+  WhatIsTikkunRoute: WhatIsTikkunRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
