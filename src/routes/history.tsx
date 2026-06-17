@@ -89,8 +89,8 @@ function HistoryPage() {
     }
   };
 
-  const { subscribe } = Route.useSearch();
-  const isSubscribe = subscribe === "1";
+  const search = Route.useSearch();
+  const isSubscribe = search.subscribe === "1";
 
   return (
     <SkyShell starDensity={280}>
