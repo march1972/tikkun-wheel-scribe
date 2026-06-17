@@ -428,7 +428,7 @@ function WhatIsTikkunPage() {
               textAlign: "center",
             }}
           >
-            <PrimaryCTA
+            <GoldCTA
               variant="dawn"
               onClick={() => {
                 window.location.href = "/form";
