@@ -388,6 +388,7 @@ function WhatIsTikkunPage() {
           </p>
         </div>
       </article>
+      <PageFooter />
     </SkyShell>
   );
 }
