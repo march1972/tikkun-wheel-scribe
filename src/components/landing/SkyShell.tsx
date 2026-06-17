@@ -24,19 +24,8 @@ export function SkyShell({
       <div className="relative">
         <header className="relative px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,2vh,1.5rem)]">
           <div className="mx-auto max-w-6xl flex justify-center">
-            <Link
-              to="/"
-              className="opacity-0"
-              style={{
-                fontFamily: BODY,
-                color: "rgba(200, 215, 235, 0.78)",
-                fontSize: "10px",
-                letterSpacing: "0.42em",
-                textTransform: "uppercase",
-                fontWeight: 600,
-              }}
-            >
-              Kabbalah Astrology
+            <Link to="/" className="sr-only">
+              Kabbalah Astrology — Home
             </Link>
           </div>
         </header>

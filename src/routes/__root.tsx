@@ -36,7 +36,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Free Kabbalistic Astrology reading from your date of birth. Discover your Soul's Shadow patterns (Gilgul), your spiritual work (Tikkun) and your daily mantra (Kavanah).",
+          "Free Kabbalistic Astrology reading from your date of birth — discover your Soul's Shadow (Gilgul), your Tikkun, and your daily Kavanah.",
       },
       { name: "author", content: "Kabbalah Circle" },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
@@ -45,7 +45,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Free Kabbalistic Astrology reading from your date of birth — rooted in the Sefer Yetzirah and the Zohar.",
+          "Free Kabbalistic Astrology reading from your date of birth — discover your Soul's Shadow (Gilgul), your Tikkun, and your daily Kavanah.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: OG_IMAGE },
@@ -56,7 +56,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Kabbalistic Astrology Free Tikkun Olam Reading" },
       {
         name: "twitter:description",
-        content: "Free Kabbalistic Astrology reading from your date of birth.",
+        content:
+          "Free Kabbalistic Astrology reading from your date of birth — discover your Soul's Shadow (Gilgul), your Tikkun, and your daily Kavanah.",
       },
       { name: "twitter:image", content: OG_IMAGE },
       { name: "theme-color", content: "#0c1426" },
