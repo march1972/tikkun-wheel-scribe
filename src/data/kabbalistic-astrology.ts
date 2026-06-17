@@ -550,4 +550,52 @@ export const FAQ: FaqItem[] = [
     q: "What is the Kabbalah Centre?",
     a: "The Kabbalah Centre is an international organization founded in 1965 that grew out of the Ashlagian tradition through Rav Yehuda Tzvi Brandwein and Philip and Karen Berg. It teaches Kabbalah as a practical wisdom open to everyone and is well known for popularizing Kabbalistic astrology, scanning the Zohar, the red string, and the 72 Names of God. You can find it as an entry in the Interactive Timeline above, filed under the Modern Paths era.",
   },
+  {
+    q: "What is Kabbalah and where did it originate?",
+    a: "Kabbalah is the mystical and esoteric stream of Jewish tradition. Its roots reach back into Second Temple-era esotericism and the early Merkavah and Heichalot writings. The literature we now call Kabbalah took shape in 12th and 13th century Provence and Spain with works like Sefer ha-Bahir and the Zohar, and was systematized in 16th-century Safed by Rabbi Moshe Cordovero and Rabbi Isaac Luria.",
+  },
+  {
+    q: "Is Kabbalah a religion?",
+    a: "No. Kabbalah is not a separate religion. It is the mystical and esoteric layer within Judaism, a way of reading Torah, prayer, and creation in terms of divine emanation and inner spiritual work. Some modern schools teach it as a universal wisdom open to anyone, but its native home is inside Jewish tradition.",
+  },
+  {
+    q: "What is the Zohar?",
+    a: "The Zohar, the Book of Splendor, is the central work of classical Kabbalah. It is a mystical commentary on the Torah written largely in Aramaic and traditionally attributed to the 2nd-century sage Rabbi Shimon bar Yochai (Rashbi). Academic scholarship places its composition in 13th-century Spain, associated with Rabbi Moses de León.",
+  },
+  {
+    q: "What does Ein Sof mean?",
+    a: "Ein Sof literally means without end. It is the Kabbalistic name for the Infinite, the unknowable divine essence beyond all attributes and descriptions. The Ten Sefirot are understood as the channels through which Ein Sof acts within creation while remaining hidden in itself.",
+  },
+  {
+    q: "What are the Ten Sefirot?",
+    a: "The Ten Sefirot are the primary emanations or channels through which Ein Sof reveals itself and sustains creation: Keter (crown), Chokhmah (wisdom), Binah (understanding), Chesed (loving-kindness), Gevurah (strength), Tiferet (beauty), Netzach (eternity), Hod (splendor), Yesod (foundation), and Malkhut (kingdom). Together they form the structural map beneath Kabbalistic cosmology.",
+  },
+  {
+    q: "How can Kabbalah improve daily life?",
+    a: "Kabbalah frames ordinary actions as opportunities for Tikkun, repair of the soul and the world. Practices like setting a daily Kavanah (intention), noticing the energy of each Hebrew month at Rosh Chodesh, and slowly turning the Desire to Receive into a Desire to Bestow give a clear inner framework for relationships, work, and reaction.",
+  },
+  {
+    q: "How does Kabbalah explain suffering and evil?",
+    a: "Lurianic Kabbalah teaches Shevirat HaKelim, the breaking of the vessels: at the dawn of creation the vessels meant to hold the divine light shattered, scattering sparks throughout reality. Suffering and evil are the friction of that brokenness, and the spiritual work of a lifetime is to gather and elevate the sparks through Tikkun.",
+  },
+  {
+    q: "What is the purpose of meditation in Kabbalah?",
+    a: "Kabbalistic meditation is a way of steadying attention so the soul can align with the flow of divine light. Classical methods include the letter permutations of Sefer Yetzirah and Abulafian practice, visualization of the Sefirot, and the precise Kavanot of the Rashash school that route intention through divine names during prayer.",
+  },
+  {
+    q: "Do you need to read Hebrew to study Kabbalah?",
+    a: "It helps but it is not required. Most foundational texts, including the Zohar, Sefer Yetzirah, and the writings of the Arizal and Baal HaSulam, are available in good English translations. That said, the Hebrew letters are themselves the material of Kabbalistic teaching, so even learning the alephbet deepens the study considerably.",
+  },
+  {
+    q: "Can non-Jews study Kabbalah?",
+    a: "Traditional schools historically restricted the transmission of Kabbalah to mature Jewish students grounded in Torah and Talmud. Modern and universalist schools, including the Kabbalah Centre and outward-facing Ashlagian groups, teach it openly to anyone who is interested. Both views coexist within the broader Kabbalistic world today.",
+  },
+  {
+    q: "What is the difference between traditional and modern or New Age Kabbalah?",
+    a: "Traditional Kabbalah is text-centered, taught in Hebrew and Aramaic within Jewish observance and a teacher-to-student lineage. Modern and New Age presentations, including the Kabbalah Centre and many wellness adaptations, are universalist and English-first, and often blend Kabbalistic vocabulary with self-help, astrology, or other contemplative traditions.",
+  },
+  {
+    q: "Where should a beginner start with Kabbalah?",
+    a: "A good entry path is Rabbi Aryeh Kaplan's translations and commentaries on Sefer Yetzirah and Sefer ha-Bahir, followed by Daniel Matt's Essential Kabbalah and then the Pritzker edition of the Zohar. The Interactive Timeline and Glossary on this page give you the lineage and vocabulary, and the free reading on this site applies the same framework to your own birth chart.",
+  },
 ];
