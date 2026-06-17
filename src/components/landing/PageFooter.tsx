@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BODY, C_INK_SOFT, C_MUTED, C_RULE } from "@/lib/landing-style";
+import { BODY, C_GOLD, C_INK_SOFT, C_MUTED, C_RULE } from "@/lib/landing-style";
 
 export function PageFooter() {
   const linkStyle: React.CSSProperties = {
