@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BODY, C_INK_SOFT, C_MUTED, C_RULE } from "@/lib/landing-style";
+import { BODY, C_GOLD, C_INK_SOFT, C_MUTED, C_RULE } from "@/lib/landing-style";
 
 export function PageFooter() {
   const linkStyle: React.CSSProperties = {
@@ -78,8 +78,8 @@ export function PageFooter() {
             </span>
             <Link
               to="/what-is-tikkun"
-              className="py-2 md:py-0"
-              style={linkStyle}
+              className="flex items-center min-h-[44px] py-2 md:py-0"
+              style={{ ...linkStyle, color: C_GOLD, textDecorationThickness: "1.5px", textUnderlineOffset: "3px" }}
             >
               What is Tikkun
             </Link>
