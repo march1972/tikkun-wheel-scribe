@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
+import { z } from "zod";
 import { SkyShell } from "@/components/landing/SkyShell";
 import { PrimaryCTA } from "@/components/landing/PrimaryCTA";
 import { PageFooter } from "@/components/landing/PageFooter";
@@ -10,8 +11,13 @@ import {
 } from "@/lib/landing-style";
 import { subscribeNewsletter } from "@/lib/lead.functions";
 
+const historySearch = z.object({
+  subscribe: z.string().optional(),
+});
+
 export const Route = createFileRoute("/history")({
   component: HistoryPage,
+  validateSearch: historySearch,
   head: () => ({
     meta: [
       { title: "Kabbalah Astrology — A Brief History" },
@@ -83,6 +89,9 @@ function HistoryPage() {
     }
   };
 
+  const search = Route.useSearch();
+  const isSubscribe = search.subscribe === "1";
+
   return (
     <SkyShell starDensity={280}>
       <style>{`
@@ -92,99 +101,107 @@ function HistoryPage() {
         .hist-fade-d2 { animation: hist-fade-up 1.1s ease-out 0.5s both; }
       `}</style>
 
-      {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative mx-auto flex max-w-3xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
-        <div
-          ref={haloRef}
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "clamp(320px, 60vw, 560px)",
-            height: "clamp(320px, 60vw, 560px)",
-            background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
-            filter: "blur(10px)",
-            pointerEvents: "none",
-            willChange: "transform",
-          }}
-        />
+      {!isSubscribe && (
+        <>
+          {/* ── Hero ─────────────────────────────────────────────── */}
+          <section className="relative mx-auto flex max-w-3xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(2rem,5vh,4rem)] pb-[clamp(3rem,6vh,5rem)] text-center">
+            <div
+              ref={haloRef}
+              aria-hidden
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "clamp(320px, 60vw, 560px)",
+                height: "clamp(320px, 60vw, 560px)",
+                background: `radial-gradient(circle, ${C_GOLD}33 0%, ${C_DAWN}1f 40%, transparent 70%)`,
+                filter: "blur(10px)",
+                pointerEvents: "none",
+                willChange: "transform",
+              }}
+            />
 
-        <h1
-          className="hist-fade relative"
-          style={{
-            fontFamily: HEAD, color: C_INK, fontWeight: 400,
-            fontSize: "clamp(40px, 7.5vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.02em",
-            textShadow: `0 0 60px ${C_DAWN}33, 0 0 120px ${C_GOLD}22`,
-          }}
-        >
-          Ancient <span style={{ color: C_GOLD, fontStyle: "italic" }}>wisdom</span>,
-          <br />
-          living <span style={{ color: C_DAWN, fontStyle: "italic" }}>work</span>.
-        </h1>
+            <h1
+              className="hist-fade relative"
+              style={{
+                fontFamily: HEAD, color: C_INK, fontWeight: 400,
+                fontSize: "clamp(40px, 7.5vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.02em",
+                textShadow: `0 0 60px ${C_DAWN}33, 0 0 120px ${C_GOLD}22`,
+              }}
+            >
+              Ancient <span style={{ color: C_GOLD, fontStyle: "italic" }}>wisdom</span>,
+              <br />
+              living <span style={{ color: C_DAWN, fontStyle: "italic" }}>work</span>.
+            </h1>
 
-        <p
-          className="hist-fade-d1 relative mt-[clamp(1.5rem,3vh,2.25rem)]"
-          style={{
-            fontFamily: HEAD, fontStyle: "italic", color: C_INK_SOFT,
-            fontSize: "clamp(18px, 2.4vw, 24px)", lineHeight: 1.5,
-            maxWidth: "36rem",
-          }}
-        >
-          Kabbalah provides us with the tools to transform our lives&nbsp;
-        </p>
-      </section>
-
-      {/* ── Prose ────────────────────────────────────────────── */}
-      <section
-        className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)]"
-        style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
-      >
-        <div className="relative mx-auto max-w-2xl">
-          <Reveal>
-            <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
-              Kabbalistic Astrology dates back to{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham the Patriarch</span> and is found in many ancient texts and commentaries — the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
+            <p
+              className="hist-fade-d1 relative mt-[clamp(1.5rem,3vh,2.25rem)]"
+              style={{
+                fontFamily: HEAD, fontStyle: "italic", color: C_INK_SOFT,
+                fontSize: "clamp(18px, 2.4vw, 24px)", lineHeight: 1.5,
+                maxWidth: "36rem",
+              }}
+            >
+              Kabbalah provides us with the tools to transform our lives&nbsp;
             </p>
-          </Reveal>
-          <Reveal delay={140}>
-            <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
-              Kabbalists generally accept the influence of the celestial constellations (Mazalot), but reject astrology as{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free will always overrides fate.
-            </p>
-          </Reveal>
-          <Reveal delay={280}>
-            <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
-              Fulfilling your{" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> serves a greater purpose —{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic", fontWeight: 500 }}>Tikkun Olam</span> — sharing your light to build a better world.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+          </section>
+        </>
+      )}
 
-      {/* ── Pull quote ───────────────────────────────────────── */}
-      <Reveal duration={1100} y={20}>
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)] text-center"
-          style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
-        >
-          <p
-            style={{
-              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-              fontSize: "clamp(28px, 4.6vw, 48px)", lineHeight: 1.3,
-              maxWidth: "34rem", margin: "0 auto",
-              textShadow: `0 0 50px ${C_DAWN}55, 0 0 120px ${C_DAWN}22`,
-              letterSpacing: "-0.01em",
-            }}
+      {!isSubscribe && (
+        <>
+          {/* ── Prose ────────────────────────────────────────────── */}
+          <section
+            className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)]"
+            style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
           >
-            “Come and see... joy pierces through the celestial garments to draw down pure blessing" — Zohar
-          </p>
-        </section>
-      </Reveal>
+            <div className="relative mx-auto max-w-2xl">
+              <Reveal>
+                <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
+                  Kabbalistic Astrology dates back to{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham the Patriarch</span> and is found in many ancient texts and commentaries — the{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
+                </p>
+              </Reveal>
+              <Reveal delay={140}>
+                <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
+                  Kabbalists generally accept the influence of the celestial constellations (Mazalot), but reject astrology as{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free will always overrides fate.
+                </p>
+              </Reveal>
+              <Reveal delay={280}>
+                <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
+                  Fulfilling your{" "}
+                  <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> serves a greater purpose —{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic", fontWeight: 500 }}>Tikkun Olam</span> — sharing your light to build a better world.
+                </p>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* ── Pull quote ───────────────────────────────────────── */}
+          <Reveal duration={1100} y={20}>
+            <section className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)] text-center"
+              style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
+            >
+              <p
+                style={{
+                  fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+                  fontSize: "clamp(28px, 4.6vw, 48px)", lineHeight: 1.3,
+                  maxWidth: "34rem", margin: "0 auto",
+                  textShadow: `0 0 50px ${C_DAWN}55, 0 0 120px ${C_DAWN}22`,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                “Come and see... joy pierces through the celestial garments to draw down pure blessing" — Zohar
+              </p>
+            </section>
+          </Reveal>
+        </>
+      )}
 
       {/* ── Newsletter ───────────────────────────────────────── */}
       <Reveal duration={900} y={20}>
