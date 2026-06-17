@@ -231,25 +231,6 @@ function Snippet() {
               </p>
             </div>
 
-            <div className="mt-5">
-              <Link
-                to="/what-is-tikkun"
-                style={{
-                  fontFamily: BODY,
-                  color: C_GOLD,
-                  fontSize: "12px",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  fontWeight: 600,
-                  textDecoration: "underline",
-                  textUnderlineOffset: "4px",
-                  textDecorationColor: "rgba(240,200,104,0.4)",
-                }}
-                className="inline-block transition-all duration-300 hover:!text-[#FFE9B8] hover:scale-105"
-              >
-                What is Tikkun? →
-              </Link>
-            </div>
           </>
         )}
 
