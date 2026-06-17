@@ -16,9 +16,9 @@ import {
 
 const PAGE_URL = "https://tikkun.kabbalahcircle.com/what-is-tikkun";
 const PAGE_TITLE =
-  "What is Tikkun? Meaning, Origins & Your Personal Tikkun in Kabbalah";
+  "What Is Tikkun? Meaning, Origins & Your Personal Tikkun";
 const PAGE_DESC =
-  "Tikkun (תיקון) means 'repair' or 'correction' in Hebrew. Learn what Tikkun means in Kabbalah, the difference between Tikkun Olam and your personal Tikkun, and how to discover the soul-corrections you are here to make.";
+  "Tikkun means repair in Hebrew. Learn its Kabbalah meaning, the difference between Tikkun Olam and personal Tikkun, and how to discover your soul correction.";
 
 const SECTIONS = [
   { id: "meaning", label: "Meaning" },
