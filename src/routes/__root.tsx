@@ -65,6 +65,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://api.fontshare.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://cdn.fontshare.com", crossOrigin: "anonymous" },
+      {
+        rel: "preload",
+        as: "style",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Frank+Ruhl+Libre:wght@400;500;600;700&display=swap",
+        fetchpriority: "high",
+      },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Frank+Ruhl+Libre:wght@400;500;600;700&display=swap",
@@ -72,6 +80,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: "https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap",
+        media: "print",
+        onLoad: "this.media='all'",
       },
       {
         rel: "stylesheet",
