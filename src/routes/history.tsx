@@ -149,55 +149,59 @@ function HistoryPage() {
         </>
       )}
 
-      {/* ── Prose ────────────────────────────────────────────── */}
-      <section
-        className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)]"
-        style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
-      >
-        <div className="relative mx-auto max-w-2xl">
-          <Reveal>
-            <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
-              Kabbalistic Astrology dates back to{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham the Patriarch</span> and is found in many ancient texts and commentaries — the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
-            </p>
-          </Reveal>
-          <Reveal delay={140}>
-            <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
-              Kabbalists generally accept the influence of the celestial constellations (Mazalot), but reject astrology as{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free will always overrides fate.
-            </p>
-          </Reveal>
-          <Reveal delay={280}>
-            <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
-              Fulfilling your{" "}
-              <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> serves a greater purpose —{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic", fontWeight: 500 }}>Tikkun Olam</span> — sharing your light to build a better world.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── Pull quote ───────────────────────────────────────── */}
-      <Reveal duration={1100} y={20}>
-        <section className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)] text-center"
-          style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
-        >
-          <p
-            style={{
-              fontFamily: HEAD, fontStyle: "italic", color: C_INK,
-              fontSize: "clamp(28px, 4.6vw, 48px)", lineHeight: 1.3,
-              maxWidth: "34rem", margin: "0 auto",
-              textShadow: `0 0 50px ${C_DAWN}55, 0 0 120px ${C_DAWN}22`,
-              letterSpacing: "-0.01em",
-            }}
+      {!isSubscribe && (
+        <>
+          {/* ── Prose ────────────────────────────────────────────── */}
+          <section
+            className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)]"
+            style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
           >
-            “Come and see... joy pierces through the celestial garments to draw down pure blessing" — Zohar
-          </p>
-        </section>
-      </Reveal>
+            <div className="relative mx-auto max-w-2xl">
+              <Reveal>
+                <p style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
+                  Kabbalistic Astrology dates back to{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>Abraham the Patriarch</span> and is found in many ancient texts and commentaries — the{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>Talmud</span> (the Oral Torah), the{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>Sefer Yetzirah</span> (Book of Formation), and the{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>Zohar</span> (Book of Splendor).
+                </p>
+              </Reveal>
+              <Reveal delay={140}>
+                <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
+                  Kabbalists generally accept the influence of the celestial constellations (Mazalot), but reject astrology as{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic" }}>fatalistic prediction</span>. A person's free will always overrides fate.
+                </p>
+              </Reveal>
+              <Reveal delay={280}>
+                <p className="mt-7" style={{ fontFamily: BODY, color: C_INK_SOFT, fontSize: "17px", lineHeight: 1.75 }}>
+                  Fulfilling your{" "}
+                  <span style={{ color: C_DAWN, fontStyle: "italic" }}>Tikkun</span> serves a greater purpose —{" "}
+                  <span style={{ color: C_GOLD, fontStyle: "italic", fontWeight: 500 }}>Tikkun Olam</span> — sharing your light to build a better world.
+                </p>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* ── Pull quote ───────────────────────────────────────── */}
+          <Reveal duration={1100} y={20}>
+            <section className="relative px-[clamp(1.25rem,5vw,3rem)] py-[clamp(4rem,8vh,7rem)] text-center"
+              style={{ borderTop: `1px solid ${C_RULE_SOFT}` }}
+            >
+              <p
+                style={{
+                  fontFamily: HEAD, fontStyle: "italic", color: C_INK,
+                  fontSize: "clamp(28px, 4.6vw, 48px)", lineHeight: 1.3,
+                  maxWidth: "34rem", margin: "0 auto",
+                  textShadow: `0 0 50px ${C_DAWN}55, 0 0 120px ${C_DAWN}22`,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                “Come and see... joy pierces through the celestial garments to draw down pure blessing" — Zohar
+              </p>
+            </section>
+          </Reveal>
+        </>
+      )}
 
       {/* ── Newsletter ───────────────────────────────────────── */}
       <Reveal duration={900} y={20}>
