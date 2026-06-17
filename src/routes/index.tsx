@@ -30,6 +30,20 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://tikkun.kabbalahcircle.com/" },
     ],
     links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+    ],
   }),
 });
 
