@@ -30,6 +30,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
+      { name: "google-site-verification", content: "CSzhF1bOAOJyUFwazEdpmT1sP_8ghfkCg8TDaffyY28" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Kabbalistic Astrology Free Tikkun Olam Reading" },
       {
