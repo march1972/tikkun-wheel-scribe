@@ -379,26 +379,6 @@ function Landing() {
               </span>
             </p>
 
-            <div className="relative mt-4">
-              <Link
-                to="/what-is-tikkun"
-                style={{
-                  fontFamily: BODY,
-                  color: C_GOLD,
-                  fontSize: "13px",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  fontWeight: 600,
-                  textDecoration: "underline",
-                  textUnderlineOffset: "4px",
-                  textDecorationColor: "rgba(240,200,104,0.4)",
-                }}
-                className="inline-block transition-all duration-300 hover:!text-[#FFE9B8] hover:scale-105"
-              >
-                What is Tikkun? →
-              </Link>
-            </div>
-
             <div className="relative mt-[clamp(1.5rem,3vh,2rem)] flex flex-col items-center gap-3">
               <GoldCTA onClick={() => handleSpin("home_gold_your_tikkun_chart")} label="Your Tikkun chart" />
               <p
