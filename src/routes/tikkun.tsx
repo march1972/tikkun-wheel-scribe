@@ -11,7 +11,7 @@ const SITE_URL = "https://tikkun.kabbalahcircle.com";
 const URL = `${SITE_URL}/tikkun`;
 const TITLE = "The 12 Tikkunim — Kabbalistic Soul Corrections by Zodiac Sign";
 const DESC =
-  "The 12 Tikkunim of Kabbalistic Astrology: the soul correction (Tikkun) for each zodiac sign, drawn from the lunar nodes and the Hebrew letters of the Sefer Yetzirah.";
+  "The 12 Tikkunim of Kabbalistic Astrology: soul correction for each zodiac sign, drawn from lunar nodes and Hebrew letters of Sefer Yetzirah.";
 
 export const Route = createFileRoute("/tikkun")({
   head: () => ({

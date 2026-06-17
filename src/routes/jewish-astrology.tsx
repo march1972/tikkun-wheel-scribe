@@ -4,7 +4,7 @@ import { SeoLanding, type SeoLandingFAQ } from "@/components/landing/SeoLanding"
 const URL = "https://tikkun.kabbalahcircle.com/jewish-astrology";
 const TITLE = "Jewish Astrology — Your Free Tikkun Birth Chart";
 const DESC =
-  "Jewish Astrology, the mystical reading of the Hebrew zodiac (mazalot) rooted in Sefer Yetzirah and the Zohar. Get a free Tikkun birth chart from your date of birth.";
+  "Jewish Astrology reads the Hebrew zodiac (mazalot) rooted in Sefer Yetzirah and the Zohar. Get a free Tikkun birth chart from your date of birth.";
 
 const FAQ: SeoLandingFAQ[] = [
   {

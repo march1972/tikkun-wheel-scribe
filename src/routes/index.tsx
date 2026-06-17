@@ -15,11 +15,11 @@ export const Route = createFileRoute("/")({
   component: Landing,
   head: () => ({
     meta: [
-      { title: "Kabbalah Astrology Calculator — Free Birth Chart & Tikkun Reading" },
+      { title: "Free Kabbalah Birth Chart & Tikkun Reading" },
       {
         name: "description",
         content:
-          "Free Kabbalah Astrology calculator. Enter your date of birth to reveal your Kabbalistic birth chart, your Soul's Shadow patterns (Gilgul), your Tikkun, and your daily Kavanah.",
+          "Free Kabbalah Astrology calculator. Enter your date of birth to reveal your Kabbalistic birth chart, Soul's Shadow, Tikkun, and daily Kavanah.",
       },
       { property: "og:title", content: "Kabbalah Astrology Calculator — Free Birth Chart" },
       {
