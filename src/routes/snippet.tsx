@@ -44,7 +44,6 @@ export const Route = createFileRoute("/snippet")({
   head: () => ({
     meta: [
       { title: "Your Tikkun teaser — Kabbalah Circle" },
-      { name: "robots", content: "noindex, nofollow" },
     ],
   }),
 });
