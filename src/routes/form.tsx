@@ -7,7 +7,6 @@ export const Route = createFileRoute("/form")({
   head: () => ({
     meta: [
       { title: "See your real Tikkun pattern" },
-      { name: "robots", content: "noindex, nofollow" },
     ],
   }),
 });
