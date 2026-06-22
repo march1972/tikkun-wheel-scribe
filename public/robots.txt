@@ -2,10 +2,6 @@ User-agent: *
 Allow: /
 
 # Funnel / utility routes — not for the index
-Disallow: /form
-
-Disallow: /spinning
-Disallow: /content
 Disallow: /unsubscribe
 Disallow: /reading
 

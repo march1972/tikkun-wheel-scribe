@@ -18,7 +18,6 @@ export const Route = createFileRoute("/spinning")({
   head: () => ({
     meta: [
       { title: "Searching your Tikkun…" },
-      { name: "robots", content: "noindex, nofollow" },
     ],
   }),
 });

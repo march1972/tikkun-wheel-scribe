@@ -11,7 +11,6 @@ export const Route = createFileRoute("/content")({
   head: () => ({
     meta: [
       { title: "All Tikkun content — internal review" },
-      { name: "robots", content: "noindex, nofollow" },
     ],
   }),
 });
