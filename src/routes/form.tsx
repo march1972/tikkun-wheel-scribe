@@ -8,6 +8,7 @@ export const Route = createFileRoute("/form")({
     meta: [
       { title: "See your real Tikkun pattern" },
     ],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/form" }],
   }),
 });
 
