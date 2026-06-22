@@ -27,6 +27,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/about", changefreq: "monthly", priority: "0.7", lastmod: today },
           { path: "/tikkun", changefreq: "monthly", priority: "0.7", lastmod: today },
           { path: "/what-is-tikkun", changefreq: "monthly", priority: "0.9", lastmod: today },
+          { path: "/snippet", changefreq: "weekly", priority: "0.6", lastmod: today },
           ...SIGNS.map((s) => ({
             path: `/tikkun/${s.id}`,
             changefreq: "monthly" as const,
