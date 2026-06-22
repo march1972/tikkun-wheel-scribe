@@ -1,34 +1,40 @@
-Plan to resolve the repeated robots.txt rejection:
+Apply the same verification flow used for `/form` to every public, indexable route on `tikkun.kabbalahcircle.com`.
 
-1. **Confirm the root cause**
-   - The live file at `https://tikkun.kabbalahcircle.com/robots.txt` does **not** match the corrected project file.
-   - The project file explicitly allows `Googlebot`, but the published site is still serving the older robots file.
-   - This strongly suggests the robots.txt fix has not been published to the custom domain yet, or the custom domain is still serving a cached older deployment.
+## Pages to verify
 
-2. **Publish the current project**
-   - Publish/update the frontend so the corrected `public/robots.txt` goes live on `https://tikkun.kabbalahcircle.com`.
-   - This is required because robots.txt lives in the published static frontend assets.
+Static routes (from `src/routeTree.gen.ts`, excluding `/admin`, `/unsubscribe`, `/email/*`, `/lovable/*`, `/sitemap.xml`, and parameterized `$sign` shells):
 
-3. **Verify the live robots.txt after publishing**
-   - Recheck `https://tikkun.kabbalahcircle.com/robots.txt` and confirm it contains explicit blocks for:
-     - `User-agent: Googlebot`
-     - `User-agent: Googlebot-Image`
-     - `User-agent: Googlebot-Mobile`
-     - `User-agent: *`
-   - Confirm only `/unsubscribe` is disallowed.
+- `/`
+- `/about`
+- `/content`
+- `/form`
+- `/hebrew-astrology`
+- `/history`
+- `/jewish-astrology`
+- `/kabbalistic-astrology`
+- `/kabbalistic-astrology-reading`
+- `/privacy`
+- `/reading`
+- `/snippet`
+- `/spinning`
+- `/terms`
+- `/tikkun`
+- `/what-is-tikkun`
 
-4. **Verify the five URLs are fetchable**
-   - Check these routes return normal content and are not redirected/blocked:
-     - `/form`
-     - `/spinning`
-     - `/content`
-     - `/snippet`
-     - `/reading`
+Dynamic sign pages (`/tikkun/$sign`, `/reading/$sign`) — verify whichever URLs appear in the live sitemap.
 
-5. **Resubmit sitemap and capture status**
-   - Resubmit `https://tikkun.kabbalahcircle.com/sitemap.xml` through the Search Console connector.
-   - Use the available Search Console APIs to capture the latest property/sitemap status.
-   - Note: Google’s public APIs can resubmit sitemaps and inspect data, but manual “Request indexing” is not fully exposed for normal web pages; if needed, I’ll give you the exact final URL Inspection clicks after the robots file is live.
+## What I will do for each URL
 
-6. **Retry URL Inspection only after live verification**
-   - Once Google can see the corrected robots file, rerun live inspection for the five pages and record the new result.
+1. Fetch with `User-Agent: Googlebot` against the live custom domain and confirm HTTP 200.
+2. Call the Search Console URL Inspection API (`urlInspection.index.inspect`) and capture:
+   - `verdict` (PASS / NEUTRAL / FAIL)
+   - `robotsTxtState` (should be `ALLOWED`)
+   - `pageFetchState`
+   - `indexingState`
+   - `googleCanonical` vs `userCanonical`
+3. Resubmit the sitemap once (covers all URLs at once) and capture sitemap status.
+4. Report a single table with one row per URL.
+
+## Note on "Request Indexing"
+
+Google's URL Inspection API does **not** expose a public "Request indexing" button. Resubmitting the sitemap is the API-level equivalent and tells Google to recrawl. If a specific URL still won't index, the "Request indexing" button has to be clicked manually in Search Console for that URL — I'll list which ones (if any) still need that after the API check.
