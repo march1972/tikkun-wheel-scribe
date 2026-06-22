@@ -1,40 +1,37 @@
-## Full audit of all routes vs robots.txt + meta robots + sitemap
+## Plan
 
-I re-checked every route file, `public/robots.txt`, and `src/routes/sitemap.xml.ts`. Here's the actual current state in the codebase (already fixed from previous turns):
+1. **Simplify `robots.txt` to a crawler-safe format**
+   - Keep `User-agent: *` with `Allow: /`.
+   - Keep only the intentional blocked route: `Disallow: /unsubscribe`.
+   - Remove the many extra AI-specific `User-agent` blocks, because Google can apply the most specific matching group and these extra groups can make debugging harder.
+   - Add explicit Google crawler groups so Googlebot and the smartphone inspection crawler are clearly allowed.
 
-### robots.txt
-Only `Disallow: /unsubscribe`. Everything else is `Allow: /`. AI crawlers explicitly welcomed. Sitemap directive present.
+2. **Keep sitemap discovery intact**
+   - Keep `Sitemap: https://tikkun.kabbalahcircle.com/sitemap.xml`.
 
-### Per-route status
+3. **Verify live behavior after publish**
+   - Check `https://tikkun.kabbalahcircle.com/robots.txt` after publishing.
+   - Re-run URL Inspection on the affected URL in Google Search Console.
 
-| Route | Meta robots | In sitemap | Status |
-|---|---|---|---|
-| `/` | index,follow (root default) | ✅ | OK |
-| `/about` | inherits index | ✅ | OK |
-| `/admin` | **noindex,nofollow** | ❌ | Intentionally blocked |
-| `/content` | inherits index | ✅ | OK |
-| `/form` | inherits index | ✅ | OK |
-| `/hebrew-astrology` | inherits index | ✅ | OK |
-| `/history` | inherits index | ✅ | OK |
-| `/jewish-astrology` | inherits index | ✅ | OK |
-| `/kabbalistic-astrology` | inherits index | ✅ | OK |
-| `/kabbalistic-astrology-reading` | inherits index | ✅ | OK |
-| `/privacy` | inherits index | ✅ | OK |
-| `/reading` | explicit index,follow | ✅ | OK |
-| `/reading/$sign` | redirect → `/reading?sign=…` | ❌ (correct — redirects don't belong in sitemap) | OK |
-| `/snippet` | inherits index | ✅ | OK |
-| `/spinning` | inherits index | ✅ | OK |
-| `/terms` | inherits index | ✅ | OK |
-| `/tikkun` | inherits index | ✅ | OK |
-| `/tikkun/$sign` | inherits index | ✅ (all 12 signs) | OK |
-| `/what-is-tikkun` | inherits index | ✅ | OK |
-| `/unsubscribe` | **noindex,nofollow** + robots Disallow | ❌ | Intentionally blocked |
-| `/email/unsubscribe` | server route (no HTML) | ❌ | Intentionally blocked |
+## Proposed `robots.txt`
 
-### Conclusion
-**No code changes required.** Every public route is allowed by robots.txt, has `index,follow`, and is listed in the sitemap. Only `/admin`, `/unsubscribe`, and `/email/unsubscribe` are blocked — which is correct.
+```txt
+User-agent: Googlebot
+Allow: /
 
-### Next step for you
-Republish the site (so the latest `robots.txt` and `sitemap.xml` are live on tikkun.kabbalahcircle.com), then in Google Search Console:
-1. Open **Sitemaps** → resubmit `https://tikkun.kabbalahcircle.com/sitemap.xml`
-2. Use **URL Inspection** → "Test live URL" → "Request indexing" for any URL that previously showed as blocked. Google's cached robots.txt verdict can lag 24–48h even after the file is updated.
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /unsubscribe
+
+Sitemap: https://tikkun.kabbalahcircle.com/sitemap.xml
+```
+
+## Note
+
+The currently live `robots.txt` does not visibly block Google, so this is a defensive cleanup to remove any crawler-specific ambiguity and make Google’s inspection result easier to resolve after republishing and reinspection.
