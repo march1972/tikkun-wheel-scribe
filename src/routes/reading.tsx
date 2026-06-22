@@ -29,6 +29,7 @@ export const Route = createFileRoute("/reading")({
       { name: "description", content: "Your personal Kabbalah Tikkun reading — your Soul's Shadow patterns, spiritual work (Tikkun), and daily mantra (Kavanah) based on your birth date." },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
     ],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/reading" }],
   }),
 });
 
