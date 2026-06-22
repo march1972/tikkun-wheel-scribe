@@ -1,25 +1,16 @@
-I checked the current project files and the live published site.
+Add every currently-open URL to the sitemap so Google can discover them.
 
-Current live status:
-- `https://tikkun.kabbalahcircle.com/robots.txt` does **not** block `/snippet` anymore.
-- `https://tikkun.kabbalahcircle.com/snippet` returns `200 OK`.
-- The remaining robots.txt blocks are only:
-  - `https://tikkun.kabbalahcircle.com/unsubscribe`
-  - `https://tikkun.kabbalahcircle.com/reading`
-- Remaining noindex routes are:
-  - `https://tikkun.kabbalahcircle.com/unsubscribe`
-  - `https://tikkun.kabbalahcircle.com/reading`
-  - `https://tikkun.kabbalahcircle.com/admin`
+Current sitemap already includes: `/`, `/history`, `/kabbalistic-astrology`, `/kabbalistic-astrology-reading`, `/jewish-astrology`, `/hebrew-astrology`, `/about`, `/tikkun`, `/what-is-tikkun`, `/snippet`, `/tikkun/$sign` (12 signs), `/privacy`, `/terms`.
 
-Why Google may still show “Blocked by robots.txt” for `/snippet`:
-- Google likely cached an older robots.txt result from before `/snippet` was unblocked.
-- `/snippet` is currently **missing from the live sitemap**, which makes rediscovery slower.
+Add these missing open routes to `src/routes/sitemap[.]xml.ts`:
+- `/content`
+- `/form`
+- `/spinning`
 
-Plan:
-1. Add `https://tikkun.kabbalahcircle.com/snippet` to `public/sitemap.xml` so Google has a direct discovery signal.
-2. Verify `/snippet` route metadata does not contain `noindex` and self-references correctly where applicable.
-3. Keep robots.txt unchanged unless we find a hidden `/snippet` block; it already allows `/snippet` live.
-4. After implementation, you should republish/update the frontend, then in Google Search Console:
-   - Test live URL again for `/snippet`
-   - Request indexing
-   - Optionally resubmit `https://tikkun.kabbalahcircle.com/sitemap.xml`
+Exclude:
+- `/admin` — noindex meta tag (intentionally hidden)
+- `/reading`, `/reading/$sign` — blocked by robots.txt
+- `/unsubscribe`, `/email/unsubscribe` — utility/funnel routes, not for indexing
+- `/sitemap.xml` — the sitemap itself
+
+After republish, resubmit the sitemap in Search Console.
