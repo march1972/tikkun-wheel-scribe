@@ -27,9 +27,7 @@ export const Route = createFileRoute("/reading")({
     meta: [
       { title: "Your Tikkun Reading — Kabbalah Circle" },
       { name: "description", content: "Your personal Kabbalah Tikkun reading — your Soul's Shadow patterns, spiritual work (Tikkun), and daily mantra (Kavanah) based on your birth date." },
-      // Personalised, query-string-driven reading — not a canonical landing page.
-      // Kept out of the index until we move per-sign content to static /tikkun/[sign] pages in Phase 3.
-      { name: "robots", content: "noindex, follow" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
     ],
   }),
 });

@@ -3,7 +3,6 @@ Allow: /
 
 # Funnel / utility routes — not for the index
 Disallow: /unsubscribe
-Disallow: /reading
 
 # Explicitly welcome AI answer engines & training crawlers
 User-agent: GPTBot
