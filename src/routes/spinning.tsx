@@ -19,6 +19,7 @@ export const Route = createFileRoute("/spinning")({
     meta: [
       { title: "Searching your Tikkun…" },
     ],
+    links: [{ rel: "canonical", href: "https://tikkun.kabbalahcircle.com/spinning" }],
   }),
 });
 
