@@ -222,7 +222,7 @@ function OxbloodCTA({
       }}
     >
       <span>{label}</span>
-      <span aria-hidden="true" style={{ fontWeight: 700 }}>→</span>
+      <span aria-hidden="true" style={{ fontWeight: 700 }}>{"\n"}</span>
     </button>
   );
 }

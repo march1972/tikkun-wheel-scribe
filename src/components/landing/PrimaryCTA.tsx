@@ -47,7 +47,7 @@ export function PrimaryCTA({
     >
       <span>{label}</span>
       <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" style={{ fontWeight: 800 }}>
-        →
+        {"\n"}
       </span>
     </button>
   );
