@@ -246,7 +246,7 @@ function Snippet() {
                   sessionStorage.setItem("tikkun_force_form", "1");
                   setForceForm(true);
                 }}
-                label="Reveal My Actual Chart"
+                label={"MAYBE...\nGET FULL ACTUAL CHART"}
               />
             </div>
 
@@ -301,7 +301,7 @@ function Snippet() {
                     padding: "4px 6px",
                   }}
                 >
-                  Spin again
+                  TRY AGAIN
                 </button>
               </>
             )}
