@@ -246,7 +246,7 @@ function Snippet() {
                   sessionStorage.setItem("tikkun_force_form", "1");
                   setForceForm(true);
                 }}
-                label={"MAYBE...\nGET FULL ACTUAL CHART"}
+                label={"MAYBE...\nGET FULL CHART"}
               />
             </div>
 
