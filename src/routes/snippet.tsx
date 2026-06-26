@@ -154,7 +154,7 @@ function Snippet() {
         border: `1px solid ${C_RULE}`,
       }}
     >
-      <span>{showForm ? "Spin again" : "Not quite — spin again"}</span>
+      <span>{showForm ? "TRY AGAIN" : "Not quite — TRY AGAIN"}</span>
     </button>
   ) : null;
 
@@ -246,7 +246,7 @@ function Snippet() {
                   sessionStorage.setItem("tikkun_force_form", "1");
                   setForceForm(true);
                 }}
-                label="Reveal My Actual Chart"
+                label={"MAYBE...\nGET FULL ACTUAL CHART"}
               />
             </div>
 
@@ -301,7 +301,7 @@ function Snippet() {
                     padding: "4px 6px",
                   }}
                 >
-                  Spin again
+                  TRY AGAIN
                 </button>
               </>
             )}
