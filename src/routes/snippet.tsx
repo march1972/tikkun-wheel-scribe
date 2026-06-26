@@ -173,7 +173,7 @@ function Snippet() {
               }}
             >
               Sound like{" "}
-              <span style={{ color: C_GOLD, fontStyle: "italic" }}>your Shadow?</span>
+              <span style={{ color: C_GOLD, fontStyle: "italic" }}>you?</span>
             </h1>
 
             <div
@@ -416,7 +416,7 @@ function Snippet() {
                 >
                   <span>{busy ? "Revealing…" : "Reveal my free reading"}</span>
                   {!busy && (
-                    <span aria-hidden="true" style={{ fontWeight: 800 }}>→</span>
+                    <span aria-hidden="true" style={{ fontWeight: 800 }}>{"\n"}</span>
                   )}
                 </button>
               </form>
