@@ -154,7 +154,7 @@ function Snippet() {
         border: `1px solid ${C_RULE}`,
       }}
     >
-      <span>{showForm ? "Spin again" : "Not quite — spin again"}</span>
+      <span>{showForm ? "TRY AGAIN" : "Not quite — TRY AGAIN"}</span>
     </button>
   ) : null;
 
