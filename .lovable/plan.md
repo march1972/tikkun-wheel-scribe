@@ -1,34 +1,31 @@
-## Goal
-Add browser caching, asset minification, and HTTP compression across the site.
+## Sitemap audit — results
 
-## Current state
-- **Minification**: Vite already minifies JS/CSS in production builds (default esbuild minifier). No action needed beyond confirming the prod build is what's deployed — which it is on Lovable/Cloudflare.
-- **Compression**: Cloudflare automatically applies Brotli/gzip to text responses at the edge. Our Worker isn't disabling it, so this already works for HTML/JS/CSS/JSON/SVG. No code change required.
-- **Caching**: This is the real gap. Our Worker (`src/server.ts`) returns responses untouched, so static assets fall back to weak defaults. We need explicit `Cache-Control` headers.
+I fetched every URL in `src/routes/sitemap[.]xml.ts` and confirmed final status + canonical:
 
-## Changes
+| URL | Status | Canonical |
+|---|---|---|
+| `/`, `/history`, `/kabbalistic-astrology`, `/kabbalistic-astrology-reading`, `/jewish-astrology`, `/hebrew-astrology`, `/about`, `/tikkun`, `/what-is-tikkun`, `/snippet`, `/reading`, `/content`, `/form`, `/spinning`, `/privacy`, `/terms` | 200 | self-referencing ✓ |
+| `/tikkun/aries` … `/tikkun/pisces` (all 12) | 200 | self-referencing ✓ |
 
-### 1. `src/server.ts` — add cache headers in the Worker
-Wrap the response from `handler.fetch` and set `Cache-Control` based on the URL:
+**No redirects, no non-200s, no non-canonicals in the sitemap.** (As a side check, `/reading/{sign}` 307-redirects to `/reading?sign={sign}`, but those URLs are NOT in the sitemap, so no action needed.)
 
-- `/_build/assets/*`, `/assets/*`, hashed JS/CSS/font/image files → `public, max-age=31536000, immutable` (1 year — safe because filenames are content-hashed by Vite).
-- Other static files in `/public` (favicon, robots.txt, sitemap.xml, og images, llms.txt) → `public, max-age=86400, must-revalidate` (1 day).
-- HTML / SSR document responses (`text/html`) → `public, max-age=0, must-revalidate` (always revalidate so deploys are visible immediately).
-- API / server-function responses (`/_serverFn/*`, `/api/*`) → leave untouched (handlers set their own caching).
-- Never overwrite a `Cache-Control` header the inner handler already set.
+## The 12 tikkun pages — what to do
 
-Implementation: a small `applyCacheHeaders(request, response)` helper called inside the existing `fetch` after `normalizeCatastrophicSsrResponse`. Clone headers before mutating (Response headers are immutable when the body is a stream).
+Nothing to fix. They are the correct canonical form:
 
-### 2. Confirm minification (no code change)
-Document in the plan that Vite's production build already minifies JS and CSS via esbuild — no config edit needed. If we ever want to verify, `bun run build` output shows `.js`/`.css` sizes minified.
+- All 12 return 200.
+- Each `/tikkun/{sign}` sets its own `<link rel="canonical" href="https://tikkun.kabbalahcircle.com/tikkun/{sign}">` and matching `og:url`.
+- Each has a unique title and description (e.g. "Tikkun for Aries — Soul Correction in Kabbalistic Astrology").
+- The hub page `/tikkun` carries a `CollectionPage` + `ItemList` JSON-LD that links to all 12, which is the right internal-linking pattern.
+- `robots` is `index, follow` on each.
 
-### 3. Compression (no code change)
-Cloudflare's edge auto-compresses eligible responses. The Worker must not set `Content-Encoding` manually (it doesn't). No change needed.
+**Recommendation: keep the 12 `/tikkun/{sign}` URLs in the sitemap as-is.** They are already final, canonical, 200 URLs.
 
-## Out of scope
-- Service worker / offline caching.
-- Image format conversion (separate perf task).
-- Changing the build pipeline or Vite config.
+## Proposed change
 
-## Verification
-After deploy: `curl -I https://tikkun.kabbalahcircle.com/_build/assets/<hashed>.js` shows `cache-control: public, max-age=31536000, immutable` and `content-encoding: br` (or `gzip`). HTML root shows `cache-control: public, max-age=0, must-revalidate`.
+None. The sitemap is clean. I'll only act if you want me to:
+
+1. Also add a redirect-free entry for per-sign reading pages (would require turning `/reading/{sign}` from a 307 into a real route, or removing it — but it's not in the sitemap today, so this is optional).
+2. Add `<lastmod>` from a real "last content update" timestamp instead of `today` (today resets every request, which can make crawlers think every page changed daily).
+
+Tell me if you want either of those follow-ups; otherwise no edits are needed.
