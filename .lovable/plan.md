@@ -1,31 +1,48 @@
-## Sitemap audit — results
+## Root cause
 
-I fetched every URL in `src/routes/sitemap[.]xml.ts` and confirmed final status + canonical:
+Semrush is right. Each `/tikkun/{sign}` page emits **two** `<link rel="canonical">` tags:
 
-| URL | Status | Canonical |
-|---|---|---|
-| `/`, `/history`, `/kabbalistic-astrology`, `/kabbalistic-astrology-reading`, `/jewish-astrology`, `/hebrew-astrology`, `/about`, `/tikkun`, `/what-is-tikkun`, `/snippet`, `/reading`, `/content`, `/form`, `/spinning`, `/privacy`, `/terms` | 200 | self-referencing ✓ |
-| `/tikkun/aries` … `/tikkun/pisces` (all 12) | 200 | self-referencing ✓ |
+```html
+<link rel="canonical" href="https://tikkun.kabbalahcircle.com/tikkun"/>          <!-- from parent tikkun.tsx -->
+<link rel="canonical" href="https://tikkun.kabbalahcircle.com/tikkun/aries"/>    <!-- from leaf tikkun.$sign.tsx -->
+```
 
-**No redirects, no non-200s, no non-canonicals in the sitemap.** (As a side check, `/reading/{sign}` 307-redirects to `/reading?sign={sign}`, but those URLs are NOT in the sitemap, so no action needed.)
+TanStack Router concatenates `links` from every matched route without dedup. `tikkun.tsx` is both the page for `/tikkun` AND the parent layout for `/tikkun/$sign`, so its canonical leaks into every sign page. Most crawlers (including Semrush and Google) take the **first** canonical, which says "the canonical of `/tikkun/aries` is `/tikkun`". That's why all 12 sign URLs show up as "Non-canonical URL" in the sitemap audit.
 
-## The 12 tikkun pages — what to do
+This is documented in our head-meta guidance: *"Canonical lives on leaf routes only … a canonical in `__root.tsx` plus a leaf canonical emits both — invalid."* Same applies to a parent route that also serves a page.
 
-Nothing to fix. They are the correct canonical form:
+## The fix
 
-- All 12 return 200.
-- Each `/tikkun/{sign}` sets its own `<link rel="canonical" href="https://tikkun.kabbalahcircle.com/tikkun/{sign}">` and matching `og:url`.
-- Each has a unique title and description (e.g. "Tikkun for Aries — Soul Correction in Kabbalistic Astrology").
-- The hub page `/tikkun` carries a `CollectionPage` + `ItemList` JSON-LD that links to all 12, which is the right internal-linking pattern.
-- `robots` is `index, follow` on each.
+Split `src/routes/tikkun.tsx` into a layout + an index leaf, the standard TanStack pattern for "a route that has both a page and children":
 
-**Recommendation: keep the 12 `/tikkun/{sign}` URLs in the sitemap as-is.** They are already final, canonical, 200 URLs.
+1. **Rename** `src/routes/tikkun.tsx` → `src/routes/tikkun.index.tsx`.  
+   Change its `createFileRoute("/tikkun")` to `createFileRoute("/tikkun/")` (the index segment). All page code, `head()`, canonical, JSON-LD — unchanged. This file remains the leaf for `/tikkun` and keeps its self-canonical.
 
-## Proposed change
+2. **Create** a new minimal layout `src/routes/tikkun.tsx`:
+   ```tsx
+   import { createFileRoute, Outlet } from "@tanstack/react-router";
+   export const Route = createFileRoute("/tikkun")({
+     component: () => <Outlet />,
+   });
+   ```
+   No `head()`, no canonical, no metadata. Children inherit nothing.
 
-None. The sitemap is clean. I'll only act if you want me to:
+3. **No changes** to `tikkun.$sign.tsx`, the sitemap, or any other file. The 12 sign pages keep their own correct self-canonical.
 
-1. Also add a redirect-free entry for per-sign reading pages (would require turning `/reading/{sign}` from a 307 into a real route, or removing it — but it's not in the sitemap today, so this is optional).
-2. Add `<lastmod>` from a real "last content update" timestamp instead of `today` (today resets every request, which can make crawlers think every page changed daily).
+After the change, each `/tikkun/{sign}` page will emit exactly one canonical, matching its own URL.
 
-Tell me if you want either of those follow-ups; otherwise no edits are needed.
+## Verification
+
+Re-run the same curl I used to find the bug:
+```
+curl -s https://tikkun.kabbalahcircle.com/tikkun/aries | grep canonical
+```
+Expected: exactly one line, `href=".../tikkun/aries"`. Then re-trigger the Semrush audit; the 12 "Non-canonical URL" rows should clear.
+
+## Out of scope
+
+- No sitemap changes (`/tikkun` and all 12 signs stay listed).
+- No metadata/copy changes on any page.
+- No edits to the parent metadata that lives in `__root.tsx`.
+
+This is a 2-file change with zero visible impact and fixes the SEO finding cleanly.

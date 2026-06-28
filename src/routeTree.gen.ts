@@ -28,6 +28,7 @@ import { Route as ContentRouteImport } from './routes/content'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TikkunIndexRouteImport } from './routes/tikkun.index'
 import { Route as TikkunSignRouteImport } from './routes/tikkun.$sign'
 import { Route as ReadingSignRouteImport } from './routes/reading.$sign'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
@@ -134,6 +135,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TikkunIndexRoute = TikkunIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TikkunRoute,
+} as any)
 const TikkunSignRoute = TikkunSignRouteImport.update({
   id: '/$sign',
   path: '/$sign',
@@ -206,6 +212,7 @@ export interface FileRoutesByFullPath {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reading/$sign': typeof ReadingSignRoute
   '/tikkun/$sign': typeof TikkunSignRoute
+  '/tikkun/': typeof TikkunIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -230,12 +237,12 @@ export interface FileRoutesByTo {
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
-  '/tikkun': typeof TikkunRouteWithChildren
   '/unsubscribe': typeof UnsubscribeRoute
   '/what-is-tikkun': typeof WhatIsTikkunRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reading/$sign': typeof ReadingSignRoute
   '/tikkun/$sign': typeof TikkunSignRoute
+  '/tikkun': typeof TikkunIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -267,6 +274,7 @@ export interface FileRoutesById {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reading/$sign': typeof ReadingSignRoute
   '/tikkun/$sign': typeof TikkunSignRoute
+  '/tikkun/': typeof TikkunIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -299,6 +307,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/reading/$sign'
     | '/tikkun/$sign'
+    | '/tikkun/'
     | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -323,12 +332,12 @@ export interface FileRouteTypes {
     | '/snippet'
     | '/spinning'
     | '/terms'
-    | '/tikkun'
     | '/unsubscribe'
     | '/what-is-tikkun'
     | '/email/unsubscribe'
     | '/reading/$sign'
     | '/tikkun/$sign'
+    | '/tikkun'
     | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -359,6 +368,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/reading/$sign'
     | '/tikkun/$sign'
+    | '/tikkun/'
     | '/lovable/email/suppression'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -531,6 +541,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tikkun/': {
+      id: '/tikkun/'
+      path: '/'
+      fullPath: '/tikkun/'
+      preLoaderRoute: typeof TikkunIndexRouteImport
+      parentRoute: typeof TikkunRoute
+    }
     '/tikkun/$sign': {
       id: '/tikkun/$sign'
       path: '/$sign'
@@ -610,10 +627,12 @@ const ReadingRouteWithChildren =
 
 interface TikkunRouteChildren {
   TikkunSignRoute: typeof TikkunSignRoute
+  TikkunIndexRoute: typeof TikkunIndexRoute
 }
 
 const TikkunRouteChildren: TikkunRouteChildren = {
   TikkunSignRoute: TikkunSignRoute,
+  TikkunIndexRoute: TikkunIndexRoute,
 }
 
 const TikkunRouteWithChildren =
