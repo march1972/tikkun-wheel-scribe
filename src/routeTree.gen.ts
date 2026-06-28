@@ -20,6 +20,7 @@ import { Route as ReadingRouteImport } from './routes/reading'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as KabbalisticAstrologyReadingRouteImport } from './routes/kabbalistic-astrology-reading'
 import { Route as KabbalisticAstrologyRouteImport } from './routes/kabbalistic-astrology'
+import { Route as KabbalahAstrologyRouteImport } from './routes/kabbalah-astrology'
 import { Route as JewishAstrologyRouteImport } from './routes/jewish-astrology'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as HebrewAstrologyRouteImport } from './routes/hebrew-astrology'
@@ -93,6 +94,11 @@ const KabbalisticAstrologyReadingRoute =
 const KabbalisticAstrologyRoute = KabbalisticAstrologyRouteImport.update({
   id: '/kabbalistic-astrology',
   path: '/kabbalistic-astrology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KabbalahAstrologyRoute = KabbalahAstrologyRouteImport.update({
+  id: '/kabbalah-astrology',
+  path: '/kabbalah-astrology',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JewishAstrologyRoute = JewishAstrologyRouteImport.update({
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/hebrew-astrology': typeof HebrewAstrologyRoute
   '/history': typeof HistoryRoute
   '/jewish-astrology': typeof JewishAstrologyRoute
+  '/kabbalah-astrology': typeof KabbalahAstrologyRoute
   '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
   '/kabbalistic-astrology-reading': typeof KabbalisticAstrologyReadingRoute
   '/privacy': typeof PrivacyRoute
@@ -229,6 +236,7 @@ export interface FileRoutesByTo {
   '/hebrew-astrology': typeof HebrewAstrologyRoute
   '/history': typeof HistoryRoute
   '/jewish-astrology': typeof JewishAstrologyRoute
+  '/kabbalah-astrology': typeof KabbalahAstrologyRoute
   '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
   '/kabbalistic-astrology-reading': typeof KabbalisticAstrologyReadingRoute
   '/privacy': typeof PrivacyRoute
@@ -260,6 +268,7 @@ export interface FileRoutesById {
   '/hebrew-astrology': typeof HebrewAstrologyRoute
   '/history': typeof HistoryRoute
   '/jewish-astrology': typeof JewishAstrologyRoute
+  '/kabbalah-astrology': typeof KabbalahAstrologyRoute
   '/kabbalistic-astrology': typeof KabbalisticAstrologyRoute
   '/kabbalistic-astrology-reading': typeof KabbalisticAstrologyReadingRoute
   '/privacy': typeof PrivacyRoute
@@ -293,6 +302,7 @@ export interface FileRouteTypes {
     | '/hebrew-astrology'
     | '/history'
     | '/jewish-astrology'
+    | '/kabbalah-astrology'
     | '/kabbalistic-astrology'
     | '/kabbalistic-astrology-reading'
     | '/privacy'
@@ -324,6 +334,7 @@ export interface FileRouteTypes {
     | '/hebrew-astrology'
     | '/history'
     | '/jewish-astrology'
+    | '/kabbalah-astrology'
     | '/kabbalistic-astrology'
     | '/kabbalistic-astrology-reading'
     | '/privacy'
@@ -354,6 +365,7 @@ export interface FileRouteTypes {
     | '/hebrew-astrology'
     | '/history'
     | '/jewish-astrology'
+    | '/kabbalah-astrology'
     | '/kabbalistic-astrology'
     | '/kabbalistic-astrology-reading'
     | '/privacy'
@@ -386,6 +398,7 @@ export interface RootRouteChildren {
   HebrewAstrologyRoute: typeof HebrewAstrologyRoute
   HistoryRoute: typeof HistoryRoute
   JewishAstrologyRoute: typeof JewishAstrologyRoute
+  KabbalahAstrologyRoute: typeof KabbalahAstrologyRoute
   KabbalisticAstrologyRoute: typeof KabbalisticAstrologyRoute
   KabbalisticAstrologyReadingRoute: typeof KabbalisticAstrologyReadingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -483,6 +496,13 @@ declare module '@tanstack/react-router' {
       path: '/kabbalistic-astrology'
       fullPath: '/kabbalistic-astrology'
       preLoaderRoute: typeof KabbalisticAstrologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kabbalah-astrology': {
+      id: '/kabbalah-astrology'
+      path: '/kabbalah-astrology'
+      fullPath: '/kabbalah-astrology'
+      preLoaderRoute: typeof KabbalahAstrologyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jewish-astrology': {
@@ -647,6 +667,7 @@ const rootRouteChildren: RootRouteChildren = {
   HebrewAstrologyRoute: HebrewAstrologyRoute,
   HistoryRoute: HistoryRoute,
   JewishAstrologyRoute: JewishAstrologyRoute,
+  KabbalahAstrologyRoute: KabbalahAstrologyRoute,
   KabbalisticAstrologyRoute: KabbalisticAstrologyRoute,
   KabbalisticAstrologyReadingRoute: KabbalisticAstrologyReadingRoute,
   PrivacyRoute: PrivacyRoute,
