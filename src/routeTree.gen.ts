@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhatIsTikkunRouteImport } from './routes/what-is-tikkun'
 import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
+import { Route as TikkunRouteImport } from './routes/tikkun'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SpinningRouteImport } from './routes/spinning'
 import { Route as SnippetRouteImport } from './routes/snippet'
@@ -46,6 +47,11 @@ const WhatIsTikkunRoute = WhatIsTikkunRouteImport.update({
 const UnsubscribeRoute = UnsubscribeRouteImport.update({
   id: '/unsubscribe',
   path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TikkunRoute = TikkunRouteImport.update({
+  id: '/tikkun',
+  path: '/tikkun',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -130,14 +136,14 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const TikkunIndexRoute = TikkunIndexRouteImport.update({
-  id: '/tikkun/',
-  path: '/tikkun/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => TikkunRoute,
 } as any)
 const TikkunSignRoute = TikkunSignRouteImport.update({
-  id: '/tikkun/$sign',
-  path: '/tikkun/$sign',
-  getParentRoute: () => rootRouteImport,
+  id: '/$sign',
+  path: '/$sign',
+  getParentRoute: () => TikkunRoute,
 } as any)
 const ReadingSignRoute = ReadingSignRouteImport.update({
   id: '/$sign',
@@ -200,6 +206,7 @@ export interface FileRoutesByFullPath {
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
+  '/tikkun': typeof TikkunRouteWithChildren
   '/unsubscribe': typeof UnsubscribeRoute
   '/what-is-tikkun': typeof WhatIsTikkunRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -261,6 +268,7 @@ export interface FileRoutesById {
   '/snippet': typeof SnippetRoute
   '/spinning': typeof SpinningRoute
   '/terms': typeof TermsRoute
+  '/tikkun': typeof TikkunRouteWithChildren
   '/unsubscribe': typeof UnsubscribeRoute
   '/what-is-tikkun': typeof WhatIsTikkunRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -293,6 +301,7 @@ export interface FileRouteTypes {
     | '/snippet'
     | '/spinning'
     | '/terms'
+    | '/tikkun'
     | '/unsubscribe'
     | '/what-is-tikkun'
     | '/email/unsubscribe'
@@ -353,6 +362,7 @@ export interface FileRouteTypes {
     | '/snippet'
     | '/spinning'
     | '/terms'
+    | '/tikkun'
     | '/unsubscribe'
     | '/what-is-tikkun'
     | '/email/unsubscribe'
@@ -384,11 +394,10 @@ export interface RootRouteChildren {
   SnippetRoute: typeof SnippetRoute
   SpinningRoute: typeof SpinningRoute
   TermsRoute: typeof TermsRoute
+  TikkunRoute: typeof TikkunRouteWithChildren
   UnsubscribeRoute: typeof UnsubscribeRoute
   WhatIsTikkunRoute: typeof WhatIsTikkunRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
-  TikkunSignRoute: typeof TikkunSignRoute
-  TikkunIndexRoute: typeof TikkunIndexRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
@@ -411,6 +420,13 @@ declare module '@tanstack/react-router' {
       path: '/unsubscribe'
       fullPath: '/unsubscribe'
       preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tikkun': {
+      id: '/tikkun'
+      path: '/tikkun'
+      fullPath: '/tikkun'
+      preLoaderRoute: typeof TikkunRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -527,17 +543,17 @@ declare module '@tanstack/react-router' {
     }
     '/tikkun/': {
       id: '/tikkun/'
-      path: '/tikkun'
+      path: '/'
       fullPath: '/tikkun/'
       preLoaderRoute: typeof TikkunIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof TikkunRoute
     }
     '/tikkun/$sign': {
       id: '/tikkun/$sign'
-      path: '/tikkun/$sign'
+      path: '/$sign'
       fullPath: '/tikkun/$sign'
       preLoaderRoute: typeof TikkunSignRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof TikkunRoute
     }
     '/reading/$sign': {
       id: '/reading/$sign'
@@ -609,6 +625,19 @@ const ReadingRouteChildren: ReadingRouteChildren = {
 const ReadingRouteWithChildren =
   ReadingRoute._addFileChildren(ReadingRouteChildren)
 
+interface TikkunRouteChildren {
+  TikkunSignRoute: typeof TikkunSignRoute
+  TikkunIndexRoute: typeof TikkunIndexRoute
+}
+
+const TikkunRouteChildren: TikkunRouteChildren = {
+  TikkunSignRoute: TikkunSignRoute,
+  TikkunIndexRoute: TikkunIndexRoute,
+}
+
+const TikkunRouteWithChildren =
+  TikkunRoute._addFileChildren(TikkunRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -626,11 +655,10 @@ const rootRouteChildren: RootRouteChildren = {
   SnippetRoute: SnippetRoute,
   SpinningRoute: SpinningRoute,
   TermsRoute: TermsRoute,
+  TikkunRoute: TikkunRouteWithChildren,
   UnsubscribeRoute: UnsubscribeRoute,
   WhatIsTikkunRoute: WhatIsTikkunRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
-  TikkunSignRoute: TikkunSignRoute,
-  TikkunIndexRoute: TikkunIndexRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
