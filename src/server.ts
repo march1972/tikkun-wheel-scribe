@@ -66,15 +66,67 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   return brandedErrorResponse();
 }
 
+const IMMUTABLE_EXT = /\.(js|mjs|css|woff2?|ttf|otf|eot|png|jpe?g|webp|avif|gif|ico|svg)$/i;
+const PUBLIC_FILES = new Set([
+  "/favicon.ico",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/llms.txt",
+  "/manifest.json",
+  "/site.webmanifest",
+]);
+
+function applyCacheHeaders(request: Request, response: Response): Response {
+  // Don't touch error/redirect responses, or anything that set its own policy.
+  if (response.status >= 300) return response;
+  if (response.headers.has("cache-control")) return response;
+
+  const url = new URL(request.url);
+  const path = url.pathname;
+
+  // Skip server-fn / API routes — handlers manage their own caching.
+  if (path.startsWith("/_serverFn") || path.startsWith("/api/")) return response;
+
+  let cacheControl: string | null = null;
+
+  // Hashed build assets — long-lived, immutable.
+  if (
+    path.startsWith("/_build/") ||
+    path.startsWith("/assets/") ||
+    /\/[^/]+-[A-Za-z0-9_-]{8,}\.[a-z0-9]+$/i.test(path)
+  ) {
+    cacheControl = "public, max-age=31536000, immutable";
+  } else if (PUBLIC_FILES.has(path) || (IMMUTABLE_EXT.test(path) && !path.endsWith(".html"))) {
+    cacheControl = "public, max-age=86400, must-revalidate";
+  } else {
+    const ct = response.headers.get("content-type") ?? "";
+    if (ct.includes("text/html")) {
+      cacheControl = "public, max-age=0, must-revalidate";
+    }
+  }
+
+  if (!cacheControl) return response;
+
+  const headers = new Headers(response.headers);
+  headers.set("cache-control", cacheControl);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const normalized = await normalizeCatastrophicSsrResponse(response);
+      return applyCacheHeaders(request, normalized);
     } catch (error) {
       console.error(error);
       return brandedErrorResponse();
     }
   },
 };
+
