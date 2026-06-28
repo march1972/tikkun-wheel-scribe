@@ -1,48 +1,36 @@
-## Root cause
+## Add Google Ads tag (AW-18281814766)
 
-Semrush is right. Each `/tikkun/{sign}` page emits **two** `<link rel="canonical">` tags:
+Inject the gtag.js script sitewide via the root route's `head().scripts` array in `src/routes/__root.tsx`, so it loads in the `<head>` on every page via `<HeadContent />`.
 
-```html
-<link rel="canonical" href="https://tikkun.kabbalahcircle.com/tikkun"/>          <!-- from parent tikkun.tsx -->
-<link rel="canonical" href="https://tikkun.kabbalahcircle.com/tikkun/aries"/>    <!-- from leaf tikkun.$sign.tsx -->
-```
+### Changes
 
-TanStack Router concatenates `links` from every matched route without dedup. `tikkun.tsx` is both the page for `/tikkun` AND the parent layout for `/tikkun/$sign`, so its canonical leaks into every sign page. Most crawlers (including Semrush and Google) take the **first** canonical, which says "the canonical of `/tikkun/aries` is `/tikkun`". That's why all 12 sign URLs show up as "Non-canonical URL" in the sitemap audit.
+**`src/routes/__root.tsx`** — append two entries to the existing `scripts` array in `head()`:
 
-This is documented in our head-meta guidance: *"Canonical lives on leaf routes only … a canonical in `__root.tsx` plus a leaf canonical emits both — invalid."* Same applies to a parent route that also serves a page.
-
-## The fix
-
-Split `src/routes/tikkun.tsx` into a layout + an index leaf, the standard TanStack pattern for "a route that has both a page and children":
-
-1. **Rename** `src/routes/tikkun.tsx` → `src/routes/tikkun.index.tsx`.  
-   Change its `createFileRoute("/tikkun")` to `createFileRoute("/tikkun/")` (the index segment). All page code, `head()`, canonical, JSON-LD — unchanged. This file remains the leaf for `/tikkun` and keeps its self-canonical.
-
-2. **Create** a new minimal layout `src/routes/tikkun.tsx`:
-   ```tsx
-   import { createFileRoute, Outlet } from "@tanstack/react-router";
-   export const Route = createFileRoute("/tikkun")({
-     component: () => <Outlet />,
-   });
+1. External loader:
+   ```ts
+   { src: "https://www.googletagmanager.com/gtag/js?id=AW-18281814766", async: true }
    ```
-   No `head()`, no canonical, no metadata. Children inherit nothing.
+2. Inline bootstrap:
+   ```ts
+   {
+     children:
+       "window.dataLayer = window.dataLayer || [];" +
+       "function gtag(){dataLayer.push(arguments);}" +
+       "gtag('js', new Date());" +
+       "gtag('config', 'AW-18281814766');",
+   }
+   ```
 
-3. **No changes** to `tikkun.$sign.tsx`, the sitemap, or any other file. The 12 sign pages keep their own correct self-canonical.
+No other files change. The existing JSON-LD script entry stays as is.
 
-After the change, each `/tikkun/{sign}` page will emit exactly one canonical, matching its own URL.
+### Verification
 
-## Verification
+After the edit, run a preview JS check confirming:
+- `typeof window.gtag === "function"`
+- `Array.isArray(window.dataLayer) && window.dataLayer.length > 0`
+- A `<script>` with `src` containing `googletagmanager.com/gtag/js?id=AW-18281814766` exists in the DOM
 
-Re-run the same curl I used to find the bug:
-```
-curl -s https://tikkun.kabbalahcircle.com/tikkun/aries | grep canonical
-```
-Expected: exactly one line, `href=".../tikkun/aries"`. Then re-trigger the Semrush audit; the 12 "Non-canonical URL" rows should clear.
+### Notes
 
-## Out of scope
-
-- No sitemap changes (`/tikkun` and all 12 signs stay listed).
-- No metadata/copy changes on any page.
-- No edits to the parent metadata that lives in `__root.tsx`.
-
-This is a 2-file change with zero visible impact and fixes the SEO finding cleanly.
+- Tag fires on preview immediately; it will also fire on the published site after the next publish.
+- No consent gating is added (matches the snippet you provided). If you later need GDPR/consent-mode, that's a separate change.
