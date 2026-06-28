@@ -246,7 +246,7 @@ function Snippet() {
                   sessionStorage.setItem("tikkun_force_form", "1");
                   setForceForm(true);
                 }}
-                label={"MAYBE...\nSEE YOUR FULL CHART"}
+                label={"SEE MY FULL CHART"}
               />
             </div>
 
@@ -414,7 +414,7 @@ function Snippet() {
                     e.currentTarget.style.boxShadow = "0 8px 22px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)";
                   }}
                 >
-                  <span>{busy ? "Revealing…" : "SEE YOUR FULL CHART"}</span>
+                  <span>{busy ? "Revealing…" : "SEE MY FULL CHART"}</span>
                   {!busy && (
                     <span aria-hidden="true" style={{ fontWeight: 800 }}>{"\n"}</span>
                   )}
