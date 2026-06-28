@@ -100,11 +100,14 @@ function Body({ text, splitOn }: { text: string; splitOn: string }) {
             marginTop: i === 0 ? 0 : "1.1em",
             marginBottom: 0,
             textAlign: "left",
+            overflowWrap: "anywhere",
+            hyphens: "auto",
           }}
         >
           {p}
         </p>
       ))}
+
     </>
   );
 }
@@ -115,14 +118,15 @@ function Column({ children }: { children: React.ReactNode }) {
       className="mx-auto"
       style={{
         maxWidth: "620px",
-        paddingLeft: "clamp(1.25rem,5vw,2rem)",
-        paddingRight: "clamp(1.25rem,5vw,2rem)",
+        paddingLeft: "max(clamp(1.5rem,7vw,2.25rem), env(safe-area-inset-left))",
+        paddingRight: "max(clamp(1.5rem,7vw,2.25rem), env(safe-area-inset-right))",
       }}
     >
       {children}
     </div>
   );
 }
+
 
 /* ---------- brand share icons ---------- */
 
@@ -242,7 +246,7 @@ function ReadingPage() {
       `}</style>
 
       {/* ── Hero ── */}
-      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.25rem,5vw,3rem)] pt-[clamp(1rem,3vh,2rem)] text-center">
+      <section className="relative mx-auto flex max-w-2xl flex-col items-center px-[clamp(1.5rem,7vw,3rem)] pt-[clamp(1rem,3vh,2rem)] text-center">
         <div className="relative flex flex-col items-center tk-fade">
           <div
             ref={haloRef}
@@ -362,11 +366,13 @@ function ReadingPage() {
                   fontFamily: HEAD, fontStyle: "italic", color: C_INK,
                   fontSize: "clamp(22px, 2.8vw, 28px)", lineHeight: 1.5,
                   margin: 0, letterSpacing: "-0.005em",
+                  overflowWrap: "anywhere", hyphens: "auto",
                 }}
               >
                 {line}
               </p>
             ))}
+
           </div>
         </Column>
       </Reveal>
@@ -403,12 +409,14 @@ function ReadingPage() {
             style={{
               fontFamily: BODY, color: C_INK_SOFT, fontSize: "15px",
               lineHeight: 1.7, textAlign: "left",
+              overflowWrap: "anywhere", hyphens: "auto",
             }}
           >
             {toParagraphs(sign.tikkunLetterFull).map((p, i) => (
               <p key={i} style={{ margin: i === 0 ? 0 : "1.1em 0 0 0" }}>{p}</p>
             ))}
           </div>
+
         </Column>
       </Reveal>
 
