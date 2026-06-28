@@ -21,6 +21,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/", changefreq: "weekly", priority: "1.0", lastmod: today },
           { path: "/history", changefreq: "monthly", priority: "0.8", lastmod: today },
           { path: "/kabbalistic-astrology", changefreq: "monthly", priority: "0.8", lastmod: today },
+          { path: "/kabbalah-astrology", changefreq: "monthly", priority: "0.9", lastmod: today },
           { path: "/kabbalistic-astrology-reading", changefreq: "monthly", priority: "0.9", lastmod: today },
           { path: "/jewish-astrology", changefreq: "monthly", priority: "0.9", lastmod: today },
           { path: "/hebrew-astrology", changefreq: "monthly", priority: "0.9", lastmod: today },
