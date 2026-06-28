@@ -13,7 +13,7 @@ const TITLE = "The 12 Tikkunim — Kabbalistic Soul Corrections by Zodiac Sign";
 const DESC =
   "The 12 Tikkunim of Kabbalistic Astrology: soul correction for each zodiac sign, drawn from lunar nodes and Hebrew letters of Sefer Yetzirah.";
 
-export const Route = createFileRoute("/tikkun")({
+export const Route = createFileRoute("/tikkun/")({
   head: () => ({
     meta: [
       { title: TITLE },
